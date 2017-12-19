@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<title>登 陆</title>
+</head>
+<body>
+	<div class="layui-layout layui-layout-login">
+		<h1>
+			<strong>后 台 管 理 系 统</strong> <em>Management System</em>
+		</h1>
+		<form th:action="@{/login}" th:method="post">
+			<div class="layui-user-icon larry-login">
+				<input type="text" name="username" th:autocomplete="off"
+					required="required" placeholder="请输入账号" class="login_txtbx" />
+			</div>
+			<div class="layui-pwd-icon larry-login">
+				<input type="password" name="password" th:autocomplete="off"
+					required="required" placeholder="请输入密码" class="login_txtbx" />
+			</div>
+			<div class="layui-submit larry-login">
+				<input type="submit" value="登陆" class="submit_btn" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

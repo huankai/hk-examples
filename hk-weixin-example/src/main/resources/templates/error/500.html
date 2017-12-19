@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>500错误页面</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</head>
+	<body>
+		<h1>500</h1>
+		<p th:text="|timestamp：${#dates.format(timestamp, 'yyyy-MM-dd HH:mm:ss:SSS')}|"></p>
+		<p th:text="|status：${status}|"></p>
+		<p th:text="|error：${error}|"></p>
+		<p th:text="|message：${message}|"></p>
+		<p th:text="|path：${path}|"></p>
+	</body>
+</html>

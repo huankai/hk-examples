@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>未授权</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</head>
+	<body>
+		<h1>未授权</h1>
+		<p th:text="|timestamp：${#dates.format(timestamp, 'yyyy-MM-dd HH:mm:ss:SSS')}|"></p>
+		<p th:text="|status：${status}|"></p>
+		<p th:text="|error：您没有权限访问此功能，请与管理员联系|"></p>
+		<p th:text="|path：${path}|"></p>
+	</body>
+</html>
