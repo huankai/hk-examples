@@ -8,6 +8,8 @@ import com.google.common.collect.Lists;
 
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
+import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 
@@ -35,6 +37,17 @@ public class WeichatTestController {
 	}
 
 	/**
+	 * 获取Token
+	 * 
+	 * @return
+	 * @throws WxErrorException
+	 */
+	@GetMapping("get_menu")
+	public Object getMenu() throws WxErrorException {
+		return wxMpService.getMenuService().menuGet();
+	}
+
+	/**
 	 * 获取用户列表信息
 	 * 
 	 * @return
@@ -56,7 +69,7 @@ public class WeichatTestController {
 	public Object getUserInfo() throws WxErrorException {
 		return wxMpService.getUserService().userInfo("oNvZtv__To1bNI5clj3-oB05OO4U");
 	}
-	
+
 	/**
 	 * 获取设置的行业信息
 	 * 
@@ -67,7 +80,7 @@ public class WeichatTestController {
 	public Object getIndustry() throws WxErrorException {
 		return wxMpService.getTemplateMsgService().getIndustry();
 	}
-	
+
 	/**
 	 * 获取模板列表
 	 * 
@@ -78,7 +91,7 @@ public class WeichatTestController {
 	public Object getTemplate() throws WxErrorException {
 		return wxMpService.getTemplateMsgService().getAllPrivateTemplate();
 	}
-	
+
 	/**
 	 * 发送模板消息
 	 * 
@@ -87,15 +100,28 @@ public class WeichatTestController {
 	 */
 	@GetMapping("send_template_message")
 	public Object sendTemplateMessage() throws WxErrorException {
-		WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
-				.toUser("oNvZtv__To1bNI5clj3-oB05OO4U")
-				.url("https://www.baidu.com")
-				.templateId("RniEogUuXy0RyTg5zkPaQBl4exR1SQXhKN761H7TSk0")
-				.data(Lists.newArrayList(
-						new WxMpTemplateData("first", "黄老板"),
-						new WxMpTemplateData("spmc", "美德*不想畫"),
-						new WxMpTemplateData("spPrice", "10000")
-				)).build();
+		WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder().toUser("oNvZtv__To1bNI5clj3-oB05OO4U")
+				.url("https://www.baidu.com").templateId("RniEogUuXy0RyTg5zkPaQBl4exR1SQXhKN761H7TSk0")
+				.data(Lists.newArrayList(new WxMpTemplateData("first", "黄老板"), new WxMpTemplateData("spmc", "美德*不想畫"),
+						new WxMpTemplateData("spPrice", "10000")))
+				.build();
 		return wxMpService.getTemplateMsgService().sendTemplateMsg(templateMessage);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	@GetMapping("/login")
+	public String login() {
+		String authorizationUrl = wxMpService.oauth2buildAuthorizationUrl("http%3a%2f%2f5984d62b.ngrok.io%2fauth", "snsapi_base", "123");
+		return "redirect:" + authorizationUrl;
+	}
+
+	@GetMapping("/auth")
+	public Object auth(String code, String state) throws WxErrorException {
+		WxMpOAuth2AccessToken token = wxMpService.oauth2getAccessToken(code);
+		WxMpUser userInfo = wxMpService.oauth2getUserInfo(token, "zh_CN");
+		return userInfo;
 	}
 }

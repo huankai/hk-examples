@@ -15,6 +15,7 @@
 		<hk.commons.version>1.0.0.RELEASE</hk.commons.version>
 		<weixin.java.version>2.9.0</weixin.java.version>
 		<spring.boot.version>1.5.8.RELEASE</spring.boot.version>
+		<hk.core.version>1.0.0.RELEASE</hk.core.version>
 	</properties>
 
 	<dependencyManagement>
@@ -34,6 +35,16 @@
 			<groupId>com.hk</groupId>
 			<artifactId>hk-commons-util</artifactId>
 			<version>${hk.commons.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hk</groupId>
+			<artifactId>hk-core-authentication-api</artifactId>
+			<version>${hk.core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hk</groupId>
+			<artifactId>hk-core-authentication-shiro</artifactId>
+			<version>${hk.core.version}</version>
 		</dependency>
 
 		<dependency>

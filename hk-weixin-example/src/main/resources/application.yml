@@ -1,7 +1,6 @@
 server:
   port: 80
   context-path: /
-
 spring:
   thymeleaf:
     cache: false
@@ -11,7 +10,6 @@ spring:
     suffix: .html
     mode: HTML5
     content-type: text/html; charset=utf-8
-
 logging:
   level:
     org.springframework.web: DEBUG
@@ -22,3 +20,13 @@ wechat:
     secret: 7fbd0b68cf003238306745446bf0bf16
     token: hk9060
     aesKey: null
+shiro: 
+  userNativeSessionManager: false
+  sessionManager: 
+    sessionIdUrlRewritingEnabled: false
+    globalSessionTimeout: 3600000       
+  loginUrl: /login                     # 登陆地址
+  successUrl: /index                   # 登陆成功后的地址
+  unauthorizedUrl: /unauthorized       # 未授权重定向地址
+  web: 
+    enabled: true  #是否为 web环境
