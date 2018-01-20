@@ -41,8 +41,7 @@ public class IterableNestedExcelWriteTest {
 				int index = 0;
 				while(iterator.hasNext()) {
 					iterator.next();
-					String nestedPropertyName = String.format(propertyName, index);
-					System.out.println(beanWrapper.getPropertyValue(nestedPropertyName));
+					System.out.println(beanWrapper.getPropertyValue(String.format(propertyName, index)));
 					index++;
 				}
 			} else {
@@ -50,6 +49,19 @@ public class IterableNestedExcelWriteTest {
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Test
 	public void writeTo2003() throws FileNotFoundException {
@@ -75,7 +87,7 @@ public class IterableNestedExcelWriteTest {
 						return super.getCommentText(obj, propertyName, propertyType);
 					}
 				});
-		writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/sjq-278/Desktop/excel.xls")));
+		writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/huangkai/Desktop/excel.xls")));
 	}
 
 	// @Test
