@@ -5,6 +5,7 @@ package com.hk.example3;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.hk.commons.poi.excel.annotations.NestedProperty;
 import com.hk.commons.poi.excel.annotations.ReadExcel;
 import com.hk.commons.poi.excel.annotations.WriteExcel;
@@ -20,6 +21,14 @@ public class IterableNestedExcelVo {
 	@ReadExcel(start = 5)
 	private String id;
 
+	@WriteExcel(index = 6, value = "名称")
+	@ReadExcel(start = 6)
+	private String name;
+
+	@WriteExcel(index = 7, value = "Value",isStatistics = true)
+	@ReadExcel(start = 7)
+	private Integer value;
+
 	@NestedProperty
 	private List<ExcelVo> userList;
 
@@ -31,12 +40,57 @@ public class IterableNestedExcelVo {
 	}
 
 	/**
+	 * 
+	 */
+	public IterableNestedExcelVo(String id, String name, Integer value, ExcelVo excelVos) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		if(null != excelVos) {
+			this.userList = Lists.newArrayList(excelVos);
+		}
+
+	}
+
+	/**
 	 * @param id
 	 * @param userList
 	 */
-	public IterableNestedExcelVo(String id, List<ExcelVo> userList) {
+	public IterableNestedExcelVo(String id, String name, Integer value, List<ExcelVo> userList) {
 		this.id = id;
+		this.name = name;
+		this.value = value;
 		this.userList = userList;
+	}
+	
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the value
+	 */
+	public Integer getValue() {
+		return value;
+	}
+
+	/**
+	 * @param value
+	 *            the value to set
+	 */
+	public void setValue(Integer value) {
+		this.value = value;
 	}
 
 	/**
