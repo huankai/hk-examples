@@ -46,7 +46,7 @@ public class FileController {
 	@ResponseBody
 	public JsonResult upload(@RequestParam("files") MultipartFile[] fileList) throws IOException {
 		if (ArrayUtils.isEmpty(fileList)) {
-			return JsonResult.error("请至少选择一个文件！");
+			return JsonResult.failure("请至少选择一个文件！");
 		}
 		List<FileInfo> resultData = Lists.newArrayList();
 		for (MultipartFile file : fileList) {

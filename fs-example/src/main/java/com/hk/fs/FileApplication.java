@@ -31,7 +31,6 @@ public class FileApplication {
 		SpringApplication.run(FileApplication.class, args);
 	}
 	
-
 	/**
 	 * 本地文件处理器
 	 * 
