@@ -12,10 +12,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<hk.commons.version>1.0.0.RELEASE</hk.commons.version>
+		<hk.commons.util.version>1.1.0.RELEASE</hk.commons.util.version>
 		<weixin.java.version>2.9.0</weixin.java.version>
 		<spring.boot.version>1.5.8.RELEASE</spring.boot.version>
 		<hk.core.version>1.0.0.RELEASE</hk.core.version>
+		<hk.pms.version>1.0.0.RELEASE</hk.pms.version>
 	</properties>
 
 	<dependencyManagement>
@@ -34,7 +35,7 @@
 		<dependency>
 			<groupId>com.hk</groupId>
 			<artifactId>hk-commons-util</artifactId>
-			<version>${hk.commons.version}</version>
+			<version>${hk.commons.util.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.hk</groupId>
@@ -43,8 +44,15 @@
 		</dependency>
 		<dependency>
 			<groupId>com.hk</groupId>
-			<artifactId>hk-core-authentication-shiro</artifactId>
+			<artifactId>hk-core-authentication-security</artifactId>
 			<version>${hk.core.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.hk</groupId>
+			<artifactId>hk-pms-api</artifactId>
+			<version>${hk.pms.version}</version>
 		</dependency>
 
 		<dependency>
@@ -62,6 +70,11 @@
 					<artifactId>jackson-databind</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
 		<dependency>

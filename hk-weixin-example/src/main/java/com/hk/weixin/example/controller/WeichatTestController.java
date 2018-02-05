@@ -108,15 +108,15 @@ public class WeichatTestController {
 		return wxMpService.getTemplateMsgService().sendTemplateMsg(templateMessage);
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	@GetMapping("/login")
-	public String login() {
-		String authorizationUrl = wxMpService.oauth2buildAuthorizationUrl("http%3a%2f%2f5984d62b.ngrok.io%2fauth", "snsapi_base", "123");
-		return "redirect:" + authorizationUrl;
-	}
+//	/**
+//	 * 
+//	 * @return
+//	 */
+//	@GetMapping("/login")
+//	public String login() {
+//		String authorizationUrl = wxMpService.oauth2buildAuthorizationUrl("http%3a%2f%2f5984d62b.ngrok.io%2fauth", "snsapi_base", "123");
+//		return "redirect:" + authorizationUrl;
+//	}
 
 	@GetMapping("/auth")
 	public Object auth(String code, String state) throws WxErrorException {
