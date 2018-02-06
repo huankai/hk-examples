@@ -5,6 +5,7 @@ package com.hk.weixin.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,8 +26,9 @@ public class HomeController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/")
-	public String index() {
+	@GetMapping({"/","/index"})
+	public String index(ModelMap modelMap) {
+		modelMap.put("user", securityContext.getPrincipal());
 		return "index";
 	}
 
@@ -36,9 +38,6 @@ public class HomeController {
 	 */
 	@GetMapping("/login")
 	public String login() {
-		if (securityContext.isAuthenticated()) {
-			return "redirect:/";
-		}
 		return "login";
 	}
 
