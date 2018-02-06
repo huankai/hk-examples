@@ -14,7 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hk.commons.util.version>1.0.0.RELEASE</hk.commons.util.version>
 		<hk.commons.poi.version>1.1.0.RELEASE</hk.commons.poi.version>
-		<spring.boot.version>1.5.8.RELEASE</spring.boot.version>
+		<spring.boot.version>1.5.9.RELEASE</spring.boot.version>
 	</properties>
 
 	<dependencies>

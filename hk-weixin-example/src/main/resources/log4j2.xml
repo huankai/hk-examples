@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+	<Properties>
+        <Property name="projectName">emi-web</Property>
+    </Properties>
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36}.%M() @%L - %msg%n}{STYLE=Logback}" />
+		</Console>
+		<RollingFile name="RollingFile" fileName="${sys:user.home}/.hk/logs/${projectName}/app.log" filePattern="${sys:user.home}/.hk/logs/${projectName}/app-%d{yyyyMMdd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d{%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}.%M() @%L - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+	</appenders>
+	<loggers>
+		<root level="error">
+			<appender-ref ref="Console" />
+		</root>
+		<logger name="com.hk" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+        </logger>
+		<logger name="org.springframework.jdbc.core" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+        </logger>
+		
+	</loggers>
+</configuration>

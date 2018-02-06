@@ -15,8 +15,6 @@ spring:
     generate-ddl: false
     properties:
       hibernate: 
-#        hbm2ddl:
-#         auto: upload
          dialect: org.hibernate.dialect.MySQL57InnoDBDialect
 ################################################################### datasource
   datasource:
@@ -49,11 +47,10 @@ spring:
 #        druid.stat.slowSqlMillis: 5000
   
 logging:
-  level:
-    org.springframework.web: DEBUG
-    com.github.binarywang.demo.wechat: DEBUG
-wechat:
-  mp:
+  config: classpath:log4j2.xml
+  
+wechat: 
+  mp: 
     appId: wxeb90fbc4967a11b1
     secret: 7fbd0b68cf003238306745446bf0bf16
     token: hk9060
