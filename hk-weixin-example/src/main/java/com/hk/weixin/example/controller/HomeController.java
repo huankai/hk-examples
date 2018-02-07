@@ -3,13 +3,10 @@
  */
 package com.hk.weixin.example.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.hk.core.authentication.api.SecurityContext;
 
 /**
  * @author kally
@@ -18,9 +15,6 @@ import com.hk.core.authentication.api.SecurityContext;
 @Controller
 public class HomeController {
 
-	@Autowired
-	private SecurityContext securityContext;
-
 	/**
 	 * 首页
 	 * 
@@ -28,7 +22,6 @@ public class HomeController {
 	 */
 	@GetMapping({"/","/index"})
 	public String index(ModelMap modelMap) {
-		modelMap.put("user", securityContext.getPrincipal());
 		return "index";
 	}
 

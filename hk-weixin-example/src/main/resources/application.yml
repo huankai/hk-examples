@@ -2,7 +2,15 @@ server:
   port: 80
   context-path: /
 spring:
-  thymeleaf:
+  #国际化配置
+  #encoding:文件编码
+  #basename: 注意:这里不需要写 classpath: 前缀，也不需要写 .properties后缀，多个文件使用英文逗号(,)分隔
+  #       自定义的需要写在spring定义的前面，否则有相同的key可能会覆盖
+  messages: 
+    encoding: UTF-8
+    basename: org/springframework/security/messages_zh_CN  
+    
+  thymeleaf: 
     cache: false
     enabled: true
     encoding: UTF-8
@@ -51,10 +59,8 @@ logging:
   
 wechat: 
   mp: 
-    appId: wxeb90fbc4967a11b1
-    secret: 7fbd0b68cf003238306745446bf0bf16
-    token: hk9060
-    aesKey: null
+    appId: wx72303d4d8b1f0d00
+    secret: 19175e5d7111969a1dcc86048d338f86
     
     
     

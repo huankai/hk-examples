@@ -40,6 +40,11 @@
 			<artifactId>hk-core-authentication-security</artifactId>
 			<version>${hk.core.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.hk</groupId>
+			<artifactId>hk-core-webmvc</artifactId>
+			<version>${hk.core.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -47,6 +52,7 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- 微信公众平台 -->
 		<dependency>
 			<groupId>com.github.binarywang</groupId>
 			<artifactId>weixin-java-mp</artifactId>

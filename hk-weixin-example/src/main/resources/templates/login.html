@@ -2,31 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="format-detection" content="telephone=no" />
-<title>登 陆</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>登 陆</title>
+	<style type="text/css">
+		.error-info{
+			color: red;
+		}
+		.weixin-icon {
+			width: 24px;
+			height: 23px;
+			display: block;
+			background: url("/resources/images/icon24_appwx_logo.png");
+			margin: 0 auto;
+			position: absolute;
+			left: 100px;
+		}
+	</style>
 </head>
 <body>
-	<div class="layui-layout layui-layout-login">
+	<div>
 		<h1>
 			<em>Management System</em>
 		</h1>
+		<span class="error-info" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION  != null}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
 		<form th:action="@{/login}" th:method="post">
-			<div class="layui-user-icon larry-login">
-				<input type="text" name="username" th:autocomplete="off"
-					required="required" placeholder="请输入账号" class="login_txtbx" />
+			<div>
+				<label >用户名：</label><input type="text" name="username" th:autocomplete="off" required="required" placeholder="请输入账号" />
 			</div>
-			<div class="layui-pwd-icon larry-login">
+			<div style="margin-top: 10px;">
+				<label>密码:</label>
 				<input type="password" name="password" th:autocomplete="off"
-					required="required" placeholder="请输入密码" class="login_txtbx" />
+					required="required" placeholder="请输入密码" />
 			</div>
-			<div class="layui-submit larry-login">
-				<input type="submit" value="登陆" class="submit_btn" />
+			<div style="margin-top: 10px;float: left;">
+				<input type="submit" value="登陆" />
+			</div>
+			<div style="height: 32px;margin-top: 10px;">
+				<a th:href="@{/wechat/login}" >
+					<b class="weixin-icon"></b>
+					<span style="margin-left: 75px">微信</span>
+				</a>
 			</div>
 		</form>
 	</div>
