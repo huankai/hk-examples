@@ -29,7 +29,7 @@ public class UserDetailServcieImpl extends UserDetailServiceImpl {
 		User user = optional.get();
 		SecurityUserPrincipal userPrincipal = new SecurityUserPrincipal(user.getId(), user.getUserName(),
 				user.getPassWord(), user.getNickName(), user.getUserType(), user.getPhone(), user.getEmail(),
-				user.getSex());
+				user.getSex(),user.getIconPath(),user.getUserStatus());
 		return userPrincipal;
 	}
 	
