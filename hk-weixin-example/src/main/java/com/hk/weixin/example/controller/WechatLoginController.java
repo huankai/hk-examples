@@ -40,7 +40,7 @@ public class WechatLoginController {
 	public void wechatLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		final String callbackUrl = String.format("%s%s", config.getCallHost(), config.getCallbackUrl());
 		String connectUrl = wxMpService.buildQrConnectUrl(callbackUrl, "snsapi_login",
-				"3d6be0a4685d839573b04816624a415e");
+				config.getState());
 		response.sendRedirect(connectUrl);
 	}
 }

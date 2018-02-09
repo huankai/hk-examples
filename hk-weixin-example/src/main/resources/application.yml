@@ -66,8 +66,9 @@ wechat:
 # 微信二维码参数配置    
 wx: 
   qrcode:
-    call-host: http://cef00c48.ngrok.io
+    call-host: http://55c275f8.ngrok.io
     callback-url: /wechat/callback
+    state: 3d6be0a4685d839573b04816624a415e
   
     
     

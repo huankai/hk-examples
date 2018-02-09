@@ -42,12 +42,15 @@ public class WechatQrCodeCallbackAuthenticationFilter extends AbstractAuthentica
 	 */
 	private final WxMpService wxService;
 	
+	private final WechatQrCodeConfig config;
+	
 	public WechatQrCodeCallbackAuthenticationFilter(WxMpService wxMpService,WechatQrCodeConfig config) {
 		/*
 		 * 处理 微信回调的url请求
 		 */
 		super(new AntPathRequestMatcher(config.getCallbackUrl()));
 		this.wxService = wxMpService;
+		this.config = config;
 	}
 
 	/*
@@ -66,7 +69,11 @@ public class WechatQrCodeCallbackAuthenticationFilter extends AbstractAuthentica
 		 * 查看文档 ：https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=b2aec2aaa65154f7df33d39101e4aedb61d8fef3&lang=zh_CN
 		 */
 		final String code = request.getParameter(CODE_PARAM_NAME);
-		request.getParameter(STATE_PARAM_NAME);
+		final String state = request.getParameter(STATE_PARAM_NAME);
+		if(StringUtils.isNotEmpty(config.getState()) && StringUtils.notEquals(config.getState(), state)) {
+			//csrf攻击（跨站请求伪造攻击）
+			throw new AuthenticationServiceException("登录失败！");
+		}
 		if(StringUtils.isNotEmpty(code)) { // 用户同意授权
 			try {
 				WxMpOAuth2AccessToken accessToken = wxService.oauth2getAccessToken(code);

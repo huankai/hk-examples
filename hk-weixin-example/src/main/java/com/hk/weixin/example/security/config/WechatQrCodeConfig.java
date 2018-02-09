@@ -29,6 +29,11 @@ public class WechatQrCodeConfig {
 	private String callHost;
 
 	/**
+	 * 一个随机的字符串，非必填，微信扫码回调的时候会带回此参数，此参数可用于防止csrf攻击（跨站请求伪造攻击）
+	 */
+	private String state;
+
+	/**
 	 * @return the callbackUrl
 	 */
 	public String getCallbackUrl() {
@@ -59,6 +64,21 @@ public class WechatQrCodeConfig {
 	 */
 	public void setCallHost(String callHost) {
 		this.callHost = callHost;
+	}
+
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+
+	/**
+	 * @param state
+	 *            the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }
