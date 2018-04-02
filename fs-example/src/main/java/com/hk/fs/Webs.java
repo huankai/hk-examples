@@ -2,6 +2,7 @@ package com.hk.fs;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -154,16 +155,60 @@ public abstract class Webs {
 	}
 
 	/**
-	 * 
+	 *  下载文件
 	 * @param fileName
 	 * @param body
 	 * @return
 	 */
 	public static ResponseEntity<byte[]> toDownResponseEntity(String fileName, byte[] body) {
+		return toResponseEntity(fileName, MediaType.APPLICATION_OCTET_STREAM, body.length, body);
+	}
+
+	/**
+	 * 图片预览
+	 * @param body
+	 * @return
+	 */
+	public static ResponseEntity<byte[]> toImageResponseEntity(byte[] body) {
+		return toResponseEntity(null, MediaType.IMAGE_JPEG, body.length, body);
+	}
+
+	/**
+	 * 
+	 * @param fileName
+	 * @param contentType
+	 * @param contentLength
+	 * @param body
+	 * @return
+	 */
+	private static ResponseEntity<byte[]> toResponseEntity(String fileName, MediaType contentType, int contentLength,
+			byte[] body) {
 		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setContentDispositionFormData("attachment", fileName);
-		httpHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		return new ResponseEntity<byte[]>(body, httpHeaders, HttpStatus.OK);
+		if (StringUtils.isNotBlank(fileName)) {
+			String downloadFileName = getAttachFileName(getHttpServletRequest(), fileName);
+			httpHeaders.setContentDispositionFormData("attachment", downloadFileName);
+		}
+		httpHeaders.setContentType(contentType);
+		httpHeaders.setContentLength(contentLength);
+		return new ResponseEntity<>(body, httpHeaders, HttpStatus.OK);
+	}
+
+	public static String getAttachFileName(HttpServletRequest request, String fileName) {
+		String encodeFileName = fileName;
+		try {
+			String agent = request.getHeader("User-Agent");
+			if (null != agent) {
+				if (agent.contains("MSIE") || agent.contains("Trident")) {// IE
+					encodeFileName = URLEncoder.encode(fileName, "UTF-8");
+				} /*
+					 * else if (agent.contains("Mozilla")) {//火狐,谷歌 encodeFileName =
+					 * StringUtils.newStringIso8859(StringUtils.get)); }
+					 */
+			}
+		} catch (Exception e) {
+
+		}
+		return encodeFileName;
 	}
 
 	/**

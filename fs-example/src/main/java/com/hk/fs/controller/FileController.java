@@ -1,7 +1,6 @@
 package com.hk.fs.controller;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -69,7 +68,7 @@ public class FileController {
 	 */
 	@GetMapping("/down")
 	public ResponseEntity<byte[]> down(@RequestParam String filePath) {
-		byte[] dataByte = fileHandler.getDownData(filePath);
+		byte[] dataByte = fileHandler.getFileData(filePath);
 		return Webs.toDownResponseEntity(filePath, dataByte);
 	}
 
@@ -81,12 +80,8 @@ public class FileController {
 	 * @throws IOException
 	 */
 	@GetMapping("/{yyyy}/{mm}/{dd}/{fileName:.+}")
-	public void view(@PathVariable String yyyy, @PathVariable String mm, @PathVariable String dd,
+	public ResponseEntity<byte[]> view(@PathVariable String yyyy, @PathVariable String mm, @PathVariable String dd,
 			@PathVariable String fileName, HttpServletResponse response) throws IOException {
-		String absPath = String.format("%s/%s/%s/%s", yyyy, mm, dd, fileName);
-		OutputStream out = response.getOutputStream();
-		response.setContentType("image/jpeg");
-		out.write(fileHandler.getDownData(absPath));
-		out.close();
+		return Webs.toImageResponseEntity(fileHandler.getFileData(String.format("%s/%s/%s/%s", yyyy, mm, dd, fileName)));
 	}
 }
