@@ -2,48 +2,39 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.hk</groupId>
 	<artifactId>hk-weixin-example</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>hk-weixin-example</name>
 	<url>http://maven.apache.org</url>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.9.RELEASE</version>
+		<groupId>com.hk</groupId>
+		<artifactId>hk-examples</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<hk.commons.util.version>1.1.0.RELEASE</hk.commons.util.version>
 		<weixin.java.version>2.9.0</weixin.java.version>
-		<spring.boot.version>1.5.9.RELEASE</spring.boot.version>
-		<hk.core.version>1.0.0.RELEASE</hk.core.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.hk</groupId>
 			<artifactId>hk-commons-util</artifactId>
-			<version>${hk.commons.util.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.hk</groupId>
 			<artifactId>hk-core-authentication-api</artifactId>
-			<version>${hk.core.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.hk</groupId>
 			<artifactId>hk-core-authentication-security</artifactId>
-			<version>${hk.core.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.hk</groupId>
 			<artifactId>hk-core-webmvc</artifactId>
-			<version>${hk.core.version}</version>
 		</dependency>
 
 		<dependency>
