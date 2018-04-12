@@ -1,15 +1,12 @@
 package com.hk.weixin.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hk.core.authentication.security.DefaultUserDetailServiceImpl;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetailsService;
-
-import com.hk.weixin.example.config.UserDetailServcieImpl;
-import com.hk.weixin.example.repository.UserRepository;
 
 /**
  * 
@@ -26,14 +23,15 @@ public class WxMpDemoApplication {
 		application.run(args);
 	}
 
-	@Autowired
-	private UserRepository userRepository;
+//	@Autowired
+//	private UserRepository userRepository;
 
 	@Bean
 	public UserDetailsService userDetailsService() {
-		UserDetailServcieImpl userDetailServcie = new UserDetailServcieImpl();
-		userDetailServcie.setUserRepository(userRepository);
-		return userDetailServcie;
+		return new DefaultUserDetailServiceImpl();
+//		UserDetailServcieImpl userDetailServcie = new UserDetailServcieImpl();
+//		userDetailServcie.setUserRepository(userRepository);
+//		return userDetailServcie;
 	}
 
 }

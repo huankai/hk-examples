@@ -49,6 +49,7 @@
         <module>hk-rocketmq-example</module>
         <module>hk-util-example</module>
         <module>hk-weixin-example</module>
+        <module>netty-example</module>
     </modules>
 
     <dependencyManagement>

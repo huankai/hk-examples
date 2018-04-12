@@ -56,11 +56,13 @@ spring:
   
 logging:
   config: classpath:log4j2.xml
-  
+
 wechat: 
   mp: 
-    appId: wx72303d4d8b1f0d00
-    secret: 19175e5d7111969a1dcc86048d338f86
+#    appId: wx72303d4d8b1f0d00
+#    secret: 19175e5d7111969a1dcc86048d338f86
+    appId: wxeb90fbc4967a11b1
+    secret: 7fbd0b68cf003238306745446bf0bf16
 
 
 # 微信二维码参数配置    
