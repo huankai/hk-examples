@@ -3,20 +3,19 @@
  */
 package com.hk.weixin.example.config;
 
-import java.util.Optional;
-
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
+import com.hk.core.authentication.security.AbstractUserDetailService;
 import com.hk.core.authentication.security.SecurityUserPrincipal;
-import com.hk.core.authentication.security.UserDetailServiceImpl;
 import com.hk.weixin.example.domain.User;
 import com.hk.weixin.example.repository.UserRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.Optional;
 
 /**
  * @author kally
  * @date 2018年2月5日下午3:03:07
  */
-public class UserDetailServcieImpl extends UserDetailServiceImpl {
+public class UserDetailServcieImpl extends AbstractUserDetailService {
 
 	private UserRepository userRepository;
 

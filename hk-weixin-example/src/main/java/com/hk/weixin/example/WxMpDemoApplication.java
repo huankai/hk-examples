@@ -1,6 +1,5 @@
 package com.hk.weixin.example;
 
-import com.hk.core.authentication.security.DefaultUserDetailServiceImpl;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
