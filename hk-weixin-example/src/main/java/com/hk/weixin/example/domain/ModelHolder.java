@@ -1,18 +1,15 @@
 package com.hk.weixin.example.domain;
 
-import java.time.LocalDate;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.hk.core.domain.AbstractAuditable;
+import com.hk.core.domain.AbstractUUIDPersistable;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
-
-import com.alibaba.fastjson.annotation.JSONField;
-import com.hk.core.domain.AbstractAuditable;
-import com.hk.core.domain.AbstractUUIDPersistable;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.time.LocalDate;
 
 /**
  * @author huangkai
@@ -26,7 +23,6 @@ public class ModelHolder {
 	}
 
 	@Data
-	@EqualsAndHashCode(callSuper = false)
 	@MappedSuperclass
 	public static class SysUserThirdBase extends AbstractUUIDPersistable {
 
@@ -51,7 +47,6 @@ public class ModelHolder {
 	}
 
 	@Data
-	@EqualsAndHashCode(callSuper = false)
 	@MappedSuperclass
 	public static class SysLoginLogBase extends AbstractUUIDPersistable {
 
@@ -78,7 +73,6 @@ public class ModelHolder {
 	
 
 	@Data
-	@EqualsAndHashCode(callSuper = false)
 	@MappedSuperclass
 	public static class RolePermissionBase extends AbstractUUIDPersistable {
 
@@ -91,7 +85,6 @@ public class ModelHolder {
 	}
 
 	@Data
-	@EqualsAndHashCode(callSuper = false)
 	@MappedSuperclass
 	public static class UserRoleBase extends AbstractUUIDPersistable {
 
@@ -104,7 +97,6 @@ public class ModelHolder {
 	}
 
 	@Data
-	@EqualsAndHashCode(callSuper = false)
 	@MappedSuperclass
 	public static class RoleBase extends AbstractUUIDPersistable {
 
@@ -120,7 +112,6 @@ public class ModelHolder {
 	}
 
 	@Data
-	@EqualsAndHashCode(callSuper = false)
 	@MappedSuperclass
 	public static class PermissionBase extends AbstractUUIDPersistable {
 
@@ -136,7 +127,6 @@ public class ModelHolder {
 	}
 
 	@Data
-	@EqualsAndHashCode(callSuper = false)
 	@MappedSuperclass
 	public static class UserBase extends AbstractAuditable {
 

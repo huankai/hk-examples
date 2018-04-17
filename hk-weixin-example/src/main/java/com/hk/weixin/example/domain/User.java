@@ -17,7 +17,6 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "sys_user")
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class User extends ModelHolder.UserBase {
 
 	/**
