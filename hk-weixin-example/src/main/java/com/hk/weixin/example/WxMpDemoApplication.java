@@ -27,7 +27,8 @@ public class WxMpDemoApplication {
 
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return new DefaultUserDetailServiceImpl();
+//		return new DefaultUserDetailServiceImpl();
+		return null;
 //		UserDetailServcieImpl userDetailServcie = new UserDetailServcieImpl();
 //		userDetailServcie.setUserRepository(userRepository);
 //		return userDetailServcie;

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.hk.weixin.example.config;
 
@@ -17,23 +17,23 @@ import java.util.Optional;
  */
 public class UserDetailServcieImpl extends AbstractUserDetailService {
 
-	private UserRepository userRepository;
+    private UserRepository userRepository;
 
-	@Override
-	protected SecurityUserPrincipal loadUserByLoginUsername(String username) {
-		Optional<User> optional = userRepository.findUniqueByLoginName(username);
-		if (!optional.isPresent()) {
-			throw new UsernameNotFoundException("不存在的用户:" + username);
-		}
-		User user = optional.get();
-		SecurityUserPrincipal userPrincipal = new SecurityUserPrincipal(user.getId(), user.getUserName(),
-				user.getPassWord(), user.getNickName(), user.getUserType(), user.getPhone(), user.getEmail(),
-				user.getSex(),user.getIconPath(),user.getUserStatus());
-		return userPrincipal;
-	}
-	
-	public void setUserRepository(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+    @Override
+    protected SecurityUserPrincipal loadUserByLoginUsername(String username) {
+        Optional<User> optional = userRepository.findUniqueByLoginName(username);
+        if (!optional.isPresent()) {
+            throw new UsernameNotFoundException("不存在的用户:" + username);
+        }
+        User user = optional.get();
+        SecurityUserPrincipal userPrincipal = new SecurityUserPrincipal(false, user.getId(), user.getUserName(),
+                user.getPassWord(), user.getNickName(), user.getUserType().byteValue(), user.getPhone(), user.getEmail(),
+                user.getSex().byteValue(), user.getIconPath(), user.getUserStatus().byteValue());
+        return userPrincipal;
+    }
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 }

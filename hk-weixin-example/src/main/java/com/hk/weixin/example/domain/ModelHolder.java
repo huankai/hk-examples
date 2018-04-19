@@ -18,178 +18,186 @@ import java.time.LocalDate;
 @SuppressWarnings("serial")
 public class ModelHolder {
 
-	private ModelHolder() {
+    private ModelHolder() {
 
-	}
+    }
 
-	@Data
-	@MappedSuperclass
-	public static class SysUserThirdBase extends AbstractUUIDPersistable {
+    @Data
+    @MappedSuperclass
+    public static class SysUserThirdBase extends AbstractUUIDPersistable {
 
-		@OneToOne
-		private User user;
+        @OneToOne
+        private User user;
 
-		@Column(name = "user_third_name")
-		private String userThirdName;
+        @Column(name = "user_third_name")
+        private String userThirdName;
 
-		@Column(name = "image_url")
-		private String imageUrl;
+        @Column(name = "image_url")
+        private String imageUrl;
 
-		@Column(name = "account_type")
-		private Integer accountType;
+        @Column(name = "account_type")
+        private Integer accountType;
 
-		@Column(name = "access_token")
-		private String accessToken;
+        @Column(name = "access_token")
+        private String accessToken;
 
-		@Column(name = "refresh_token")
-		private String refreshToken;
+        @Column(name = "refresh_token")
+        private String refreshToken;
 
-	}
+    }
 
-	@Data
-	@MappedSuperclass
-	public static class SysLoginLogBase extends AbstractUUIDPersistable {
+    @Data
+    @MappedSuperclass
+    public static class SysLoginLogBase extends AbstractUUIDPersistable {
 
-		@ManyToOne(optional = false)
-		private User user;
+        @ManyToOne(optional = false)
+        private User user;
 
-		@Column(name = "ip_address")
-		private String ipAddress;
+        @Column(name = "ip_address")
+        private String ipAddress;
 
-		/**
-		 * <pre>
-		 * false:登陆失败
-		 * true：登陆成功
-		 * </pre>
-		 */
-		@Column(name = "log_type")
-		private Boolean logType;
+        /**
+         * <pre>
+         * false:登陆失败
+         * true：登陆成功
+         * </pre>
+         */
+        @Column(name = "log_type")
+        private Boolean logType;
 
-		@Column(name = "log_message")
-		private String logMessage;
+        @Column(name = "log_message")
+        private String logMessage;
 
-	}
+    }
 
-	
 
-	@Data
-	@MappedSuperclass
-	public static class RolePermissionBase extends AbstractUUIDPersistable {
+    @Data
+    @MappedSuperclass
+    public static class RolePermissionBase extends AbstractUUIDPersistable {
 
-		@Column(name = "role_id")
-		private String roleId;
+        @Column(name = "role_id")
+        private String roleId;
 
-		@Column(name = "permission_id")
-		private String permissionId;
+        @Column(name = "permission_id")
+        private String permissionId;
 
-	}
+    }
 
-	@Data
-	@MappedSuperclass
-	public static class UserRoleBase extends AbstractUUIDPersistable {
+    @Data
+    @MappedSuperclass
+    public static class UserRoleBase extends AbstractUUIDPersistable {
 
-		@Column(name = "user_id")
-		private String userId;
+        @Column(name = "user_id")
+        private String userId;
 
-		@Column(name = "role_id")
-		private String roleId;
+        @Column(name = "role_id")
+        private String roleId;
 
-	}
+    }
 
-	@Data
-	@MappedSuperclass
-	public static class RoleBase extends AbstractUUIDPersistable {
+    @Data
+    @MappedSuperclass
+    public static class RoleBase extends AbstractUUIDPersistable {
 
-		@Column(name = "app_id")
-		private String appId;
+        @Column(name = "app_id")
+        private String appId;
 
-		@Column(name = "role_name")
-		private String roleName;
+        @Column(name = "role_name")
+        private String roleName;
 
-		@Column(name = "show_name")
-		private String showName;
+        @Column(name = "show_name")
+        private String showName;
 
-	}
+    }
 
-	@Data
-	@MappedSuperclass
-	public static class PermissionBase extends AbstractUUIDPersistable {
+    @Data
+    @MappedSuperclass
+    public static class PermissionBase extends AbstractUUIDPersistable {
 
-		@Column(name = "app_id")
-		private String appId;
+        /**
+         *
+         */
+        @Column(name = "app_id")
+        private String appId;
 
-		@Column(name = "permission")
-		private String permission;
+        @Column(name = "permission")
+        private String permission;
 
-		@Column(name = "show_name")
-		private String showName;
+        @Column(name = "show_name")
+        private String showName;
 
-	}
+    }
 
-	@Data
-	@MappedSuperclass
-	public static class UserBase extends AbstractAuditable {
+    @Data
+    @MappedSuperclass
+    public static class UserBase extends AbstractAuditable {
 
-		@Column(name = "user_name")
-		private String userName;
+        @Column(name = "user_name")
+        private String userName;
 
-		@JSONField(serialize = false, deserialize = false)
-		@Column(name = "pass_word")
-		private String passWord;
+        @JSONField(serialize = false, deserialize = false)
+        @Column(name = "pass_word")
+        private String passWord;
 
-		@Column(name = "nick_name")
-		private String nickName;
+        @Column(name = "nick_name")
+        private String nickName;
 
-		@Column(name = "email")
-		private String email;
+        @Column(name = "email")
+        private String email;
 
-		@Column(name = "phone")
-		private String phone;
+        @Column(name = "phone")
+        private String phone;
 
-		@Column(name = "icon_path")
-		private String iconPath;
+        @Column(name = "icon_path")
+        private String iconPath;
 
-		/**
-		 * <pre>
-		 *     用户性别：
-		 *     1：男
-		 *     2：女
-		 *     9：未知
-		 * </pre>
-		 */
-		@Column(name = "sex")
-		private Integer sex;
+        /**
+         * <pre>
+         *     用户性别：
+         *     1：男
+         *     2：女
+         *     9：未知
+         * </pre>
+         */
+        @Column(name = "sex")
+        private Integer sex;
 
-		@Column(name = "brithday")
-		private LocalDate brithday;
+        /**
+         * 生日
+         */
+        @Column(name = "brithday")
+        private LocalDate brithday;
 
-		/**
-		 * <pre>
-		 *   用户类型：
-		 *   1:系统管理员
-		 * </pre>
-		 */
-		@Column(name = "user_type")
-		private Integer userType;
+        /**
+         * <pre>
+         *   用户类型：
+         *   1:系统管理员
+         * </pre>
+         */
+        @Column(name = "user_type")
+        private Integer userType;
 
-		/**
-		 *
-		 */
-		@Column(name = "is_protected")
-		private Boolean isProtected;
+        /**
+         * 是否保护的账号
+         */
+        @Column(name = "is_protected")
+        private Boolean isProtected;
 
-		/**
-		 * <pre>
-		 *     用户状态：
-		 *     0：禁用
-		 *     1：启用
-		 * </pre>
-		 */
-		@Column(name = "user_status")
-		private Integer userStatus;
+        /**
+         * <pre>
+         *     用户状态：
+         *     0：禁用
+         *     1：启用
+         * </pre>
+         */
+        @Column(name = "user_status")
+        private Integer userStatus;
 
-		@Column(name = "remark")
-		private String remark;
+        /**
+         * 备注
+         */
+        @Column(name = "remark")
+        private String remark;
 
-	}
+    }
 }
