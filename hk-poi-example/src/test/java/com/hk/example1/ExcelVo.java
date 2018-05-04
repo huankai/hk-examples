@@ -1,16 +1,14 @@
 package com.hk.example1;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
-
 import com.alibaba.fastjson.annotation.JSONField;
 import com.hk.commons.poi.excel.annotations.ReadExcel;
 import com.hk.commons.poi.excel.annotations.WriteExcel;
 import com.hk.commons.util.BooleanUtils;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ExcelVo {
 

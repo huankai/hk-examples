@@ -1,12 +1,11 @@
 package com.hk.weixin.example.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import com.hk.commons.annotations.EnumDisplay;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * 用户基本信息
@@ -17,6 +16,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "sys_user")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class User extends ModelHolder.UserBase {
 
 	/**

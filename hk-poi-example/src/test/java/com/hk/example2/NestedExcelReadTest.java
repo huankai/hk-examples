@@ -1,17 +1,16 @@
 package com.hk.example2;
 
-import java.io.File;
-
-import org.junit.Test;
-
 import com.google.common.collect.Lists;
 import com.hk.commons.fastjson.JsonUtils;
+import com.hk.commons.poi.excel.model.ReadParam;
 import com.hk.commons.poi.excel.model.ReadResult;
-import com.hk.commons.poi.excel.model.ReadableParam;
-import com.hk.commons.poi.excel.read.ReadableExcel;
-import com.hk.commons.poi.excel.read.SimpleDomReadableExcel;
-import com.hk.commons.poi.excel.read.SimpleSaxReadableExcel;
+import com.hk.commons.poi.excel.read.ReadExcel;
+import com.hk.commons.poi.excel.read.SimpleDomReadExcel;
+import com.hk.commons.poi.excel.read.SimpleSaxReadExcel;
 import com.hk.commons.poi.excel.read.validation.JSRValidation;
+import org.junit.Test;
+
+import java.io.File;
 
 /**
  * <pre>
@@ -20,67 +19,53 @@ import com.hk.commons.poi.excel.read.validation.JSRValidation;
  * 支持自定义样式
  * 支持自定义批注
  * </pre>
- * 
- * @author huangkai
  *
+ * @author huangkai
  */
 public class NestedExcelReadTest {
 
-	@Test
-	public void read2003ByDom() {
-		ReadableParam<NestedExcelVo> readableParam = new ReadableParam<>();
-		readableParam.setBeanClazz(NestedExcelVo.class);
-		readableParam.setTitleRow(0);
-		readableParam.setDataStartRow(1);
-		ReadableExcel<NestedExcelVo> readableExcel = new SimpleDomReadableExcel<>(readableParam);
-		ReadResult<NestedExcelVo> readResult = readableExcel.read(new File("C:/Users/huangkai/Desktop/excel.xls"));
-		print(readResult);
-	}
+    @Test
+    public void read2003ByDom() {
+        ReadParam<NestedExcelVo> readParam = ReadParam.<NestedExcelVo>builder().beanClazz(NestedExcelVo.class).build();
+        ReadExcel<NestedExcelVo> readExcel = new SimpleDomReadExcel<>(readParam);
+        ReadResult<NestedExcelVo> readResult = readExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xls"));
+        print(readResult);
+    }
 
-	@Test
-	public void read2007ByDom() {
-		ReadableParam<NestedExcelVo> readableParam = new ReadableParam<>();
-		readableParam.setBeanClazz(NestedExcelVo.class);
-		readableParam.setTitleRow(0);
-		readableParam.setDataStartRow(1);
-		readableParam.setValidationList(Lists.newArrayList(new JSRValidation<>()));
-		ReadableExcel<NestedExcelVo> readableExcel = new SimpleDomReadableExcel<>(readableParam);
-		ReadResult<NestedExcelVo> readResult = readableExcel.read(new File("C:/Users/huangkai/Desktop/excel.xlsx"));
-		print(readResult);
-	}
+    @Test
+    public void read2007ByDom() {
+        ReadParam<NestedExcelVo> readParam = ReadParam.<NestedExcelVo>builder().beanClazz(NestedExcelVo.class).validationList(Lists.newArrayList(new JSRValidation<>())).build();
+        ReadExcel<NestedExcelVo> readExcel = new SimpleDomReadExcel<>(readParam);
+        ReadResult<NestedExcelVo> readResult = readExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xlsx"));
+        print(readResult);
+    }
 
-	@Test
-	public void read2003BySax() {
-		ReadableParam<NestedExcelVo> readableParam = new ReadableParam<>();
-		readableParam.setBeanClazz(NestedExcelVo.class);
-		readableParam.setTitleRow(0);
-		readableParam.setDataStartRow(1);
-		ReadableExcel<NestedExcelVo> readableExcel = new SimpleSaxReadableExcel<>(readableParam);
-		ReadResult<NestedExcelVo> readResult = readableExcel.read(new File("C:/Users/huangkai/Desktop/excel.xls"));
-		print(readResult);
-	}
+    @Test
+    public void read2003BySax() {
+        ReadParam<NestedExcelVo> readParam = ReadParam.<NestedExcelVo>builder().beanClazz(NestedExcelVo.class).build();
+        ReadExcel<NestedExcelVo> readExcel = new SimpleSaxReadExcel<>(readParam);
+        ReadResult<NestedExcelVo> readResult = readExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xls"));
+        print(readResult);
+    }
 
-	@Test
-	public void read2007BySax() {
-		ReadableParam<NestedExcelVo> readableParam = new ReadableParam<>();
-		readableParam.setBeanClazz(NestedExcelVo.class);
-		readableParam.setTitleRow(0);
-		readableParam.setDataStartRow(1);
-		ReadableExcel<NestedExcelVo> readableExcel = new SimpleSaxReadableExcel<>(readableParam);
-		ReadResult<NestedExcelVo> readResult = readableExcel.read(new File("C:/Users/huangkai/Desktop/excel.xlsx"));
-		print(readResult);
-	}
+    @Test
+    public void read2007BySax() {
+        ReadParam<NestedExcelVo> readParam = ReadParam.<NestedExcelVo>builder().beanClazz(NestedExcelVo.class).build();
+        ReadExcel<NestedExcelVo> readExcel = new SimpleSaxReadExcel<>(readParam);
+        ReadResult<NestedExcelVo> readResult = readExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xlsx"));
+        print(readResult);
+    }
 
-	/* ***** print ************* */
-	private <T> void print(ReadResult<T> result) {
-		System.out.println("解析的数据：");
-		result.getAllSheetData().forEach(item -> System.out.println(JsonUtils.toJSONString(item)));
+    /* ***** print ************* */
+    private <T> void print(ReadResult<T> result) {
+        System.out.println("解析的数据：");
+        result.getAllSheetData().forEach(item -> System.out.println(JsonUtils.toJSONString(item)));
 
-		System.err.println("----------------------------------------");
-		System.out.println("标题行：" + JsonUtils.toJSONString(result.getTitleList()));
+        System.err.println("----------------------------------------");
+        System.out.println("标题行：" + JsonUtils.toJSONString(result.getTitleList()));
 
-		System.err.println("------------------------------");
-		System.out.println("验证错误数据：" + JsonUtils.toJSONString(result.getErrorLogList()));
-	}
+        System.err.println("------------------------------");
+        System.out.println("验证错误数据：" + JsonUtils.toJSONString(result.getErrorLogList()));
+    }
 
 }

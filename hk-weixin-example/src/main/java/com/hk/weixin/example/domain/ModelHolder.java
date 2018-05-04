@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.hk.core.domain.AbstractAuditable;
 import com.hk.core.domain.AbstractUUIDPersistable;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
@@ -24,6 +25,7 @@ public class ModelHolder {
 
     @Data
     @MappedSuperclass
+    @EqualsAndHashCode(callSuper = true)
     public static class SysUserThirdBase extends AbstractUUIDPersistable {
 
         @OneToOne
@@ -48,6 +50,7 @@ public class ModelHolder {
 
     @Data
     @MappedSuperclass
+    @EqualsAndHashCode(callSuper = true)
     public static class SysLoginLogBase extends AbstractUUIDPersistable {
 
         @ManyToOne(optional = false)
@@ -73,6 +76,7 @@ public class ModelHolder {
 
     @Data
     @MappedSuperclass
+    @EqualsAndHashCode(callSuper = true)
     public static class RolePermissionBase extends AbstractUUIDPersistable {
 
         @Column(name = "role_id")
@@ -85,6 +89,7 @@ public class ModelHolder {
 
     @Data
     @MappedSuperclass
+    @EqualsAndHashCode(callSuper = true)
     public static class UserRoleBase extends AbstractUUIDPersistable {
 
         @Column(name = "user_id")
@@ -97,6 +102,7 @@ public class ModelHolder {
 
     @Data
     @MappedSuperclass
+    @EqualsAndHashCode(callSuper = true)
     public static class RoleBase extends AbstractUUIDPersistable {
 
         @Column(name = "app_id")
@@ -112,6 +118,7 @@ public class ModelHolder {
 
     @Data
     @MappedSuperclass
+    @EqualsAndHashCode(callSuper = true)
     public static class PermissionBase extends AbstractUUIDPersistable {
 
         /**
@@ -130,6 +137,7 @@ public class ModelHolder {
 
     @Data
     @MappedSuperclass
+    @EqualsAndHashCode(callSuper = true)
     public static class UserBase extends AbstractAuditable {
 
         @Column(name = "user_name")
