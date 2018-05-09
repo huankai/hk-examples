@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.hk.commons.fastjson.JsonUtils;
 import com.hk.commons.poi.excel.model.ReadParam;
 import com.hk.commons.poi.excel.model.ReadResult;
-import com.hk.commons.poi.excel.read.ReadExcel;
+import com.hk.commons.poi.excel.read.ReadableExcel;
 import com.hk.commons.poi.excel.read.SimpleDomReadExcel;
 import com.hk.commons.poi.excel.read.SimpleSaxReadExcel;
 import com.hk.commons.poi.excel.read.validation.JSRValidation;
@@ -27,7 +27,7 @@ public class NestedExcelReadTest {
     @Test
     public void read2003ByDom() {
         ReadParam<NestedExcelVo> readParam = ReadParam.<NestedExcelVo>builder().beanClazz(NestedExcelVo.class).build();
-        ReadExcel<NestedExcelVo> readExcel = new SimpleDomReadExcel<>(readParam);
+        ReadableExcel<NestedExcelVo> readExcel = new SimpleDomReadExcel<>(readParam);
         ReadResult<NestedExcelVo> readResult = readExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xls"));
         print(readResult);
     }
@@ -35,7 +35,7 @@ public class NestedExcelReadTest {
     @Test
     public void read2007ByDom() {
         ReadParam<NestedExcelVo> readParam = ReadParam.<NestedExcelVo>builder().beanClazz(NestedExcelVo.class).validationList(Lists.newArrayList(new JSRValidation<>())).build();
-        ReadExcel<NestedExcelVo> readExcel = new SimpleDomReadExcel<>(readParam);
+        ReadableExcel<NestedExcelVo> readExcel = new SimpleDomReadExcel<>(readParam);
         ReadResult<NestedExcelVo> readResult = readExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xlsx"));
         print(readResult);
     }
@@ -43,7 +43,7 @@ public class NestedExcelReadTest {
     @Test
     public void read2003BySax() {
         ReadParam<NestedExcelVo> readParam = ReadParam.<NestedExcelVo>builder().beanClazz(NestedExcelVo.class).build();
-        ReadExcel<NestedExcelVo> readExcel = new SimpleSaxReadExcel<>(readParam);
+        ReadableExcel<NestedExcelVo> readExcel = new SimpleSaxReadExcel<>(readParam);
         ReadResult<NestedExcelVo> readResult = readExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xls"));
         print(readResult);
     }
@@ -51,7 +51,7 @@ public class NestedExcelReadTest {
     @Test
     public void read2007BySax() {
         ReadParam<NestedExcelVo> readParam = ReadParam.<NestedExcelVo>builder().beanClazz(NestedExcelVo.class).build();
-        ReadExcel<NestedExcelVo> readExcel = new SimpleSaxReadExcel<>(readParam);
+        ReadableExcel<NestedExcelVo> readExcel = new SimpleSaxReadExcel<>(readParam);
         ReadResult<NestedExcelVo> readResult = readExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xlsx"));
         print(readResult);
     }

@@ -23,7 +23,7 @@ public class ExcelReadTest {
     @Test
     public void read2003ByDom() {
         ReadParam<ExcelVo> readParam = ReadParam.<ExcelVo>builder().beanClazz(ExcelVo.class).build();
-        ReadExcel<ExcelVo> readableExcel = new SimpleDomReadExcel<>(readParam);
+        ReadableExcel<ExcelVo> readableExcel = new SimpleDomReadExcel<>(readParam);
         ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xls"));
         print(readResult);
     }
@@ -31,7 +31,7 @@ public class ExcelReadTest {
     @Test
     public void read2007ByDom() {
         ReadParam<ExcelVo> readParam = ReadParam.<ExcelVo>builder().beanClazz(ExcelVo.class).build();
-        ReadExcel<ExcelVo> readableExcel = new SimpleDomReadExcel<>(readParam);
+        ReadableExcel<ExcelVo> readableExcel = new SimpleDomReadExcel<>(readParam);
         ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xlsx"));
         print(readResult);
     }
@@ -39,7 +39,7 @@ public class ExcelReadTest {
     @Test
     public void read2003BySax() {
         ReadParam<ExcelVo> readParam = ReadParam.<ExcelVo>builder().beanClazz(ExcelVo.class).build();
-        ReadExcel<ExcelVo> readableExcel = new SimpleSaxReadExcel<>(readParam);
+        ReadableExcel<ExcelVo> readableExcel = new SimpleSaxReadExcel<>(readParam);
         ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xls"));
         print(readResult);
     }
@@ -47,7 +47,7 @@ public class ExcelReadTest {
     @Test
     public void read2007BySax() {
         ReadParam<ExcelVo> readParam = ReadParam.<ExcelVo>builder().beanClazz(ExcelVo.class).build();
-        ReadExcel<ExcelVo> readableExcel = new SimpleSaxReadExcel<>(readParam);
+        ReadableExcel<ExcelVo> readableExcel = new SimpleSaxReadExcel<>(readParam);
         ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xlsx"));
         print(readResult);
     }
@@ -58,7 +58,7 @@ public class ExcelReadTest {
         result.getAllSheetData().forEach(item -> System.out.println(JsonUtils.toJSONString(item)));
 
         System.err.println("----------------------------------------");
-        System.out.println("标题行：" + JsonUtils.toJSONString(result.getTitleList()));
+        System.out.println("标题行：" + JsonUtils.toFormatJSONString(result.getTitleList()));
 
         System.err.println("------------------------------");
         System.out.println("验证错误数据：" + JsonUtils.toJSONString(result.getErrorLogList()));

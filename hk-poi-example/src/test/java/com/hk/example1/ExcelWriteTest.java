@@ -20,12 +20,6 @@ import java.util.List;
 public class ExcelWriteTest {
 
     @Test
-    public void test(){
-        System.out.println(org.joda.time.YearMonth.now().toString());
-
-    }
-
-    @Test
     public void writeTo2003() throws FileNotFoundException {
         List<ExcelVo> data = Lists.newArrayList();
         for (int i = 0; i < 20; i++) {
