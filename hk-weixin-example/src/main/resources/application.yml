@@ -50,6 +50,8 @@ spring:
       - stat
       - wall
       - log4j2
+  application:
+    name: hk-weixin-example
 #      connect-properties: 
 #        druid.stat.mergeSql: true
 #        druid.stat.slowSqlMillis: 5000
@@ -59,16 +61,19 @@ logging:
 
 wechat: 
   mp: 
-#    appId: wx72303d4d8b1f0d00
-#    secret: 19175e5d7111969a1dcc86048d338f86
-    appId: wxeb90fbc4967a11b1
-    secret: 7fbd0b68cf003238306745446bf0bf16
+    appId: wxaed8cd46b56a4d21
+    secret: 719dcd05cfceabcfb32380be86c7f79e
+#    appId: wxeb90fbc4967a11b1
+#    secret: 7fbd0b68cf003238306745446bf0bf16
+    token: hk9060
+#    appId: wxaed8cd46b56a4d21
+#    secret: 0869b086c9bd69d4c550ad4370442c62
 
 
 # 微信二维码参数配置    
 wx: 
   qrcode:
-    call-host: http://55c275f8.ngrok.io
+    call-host: http://3d16b003.ngrok.io
     callback-url: /wechat/callback
     state: 3d6be0a4685d839573b04816624a415e
   

@@ -1,12 +1,18 @@
 /**
- * 
+ *
  */
 package com.hk.weixin.example.controller;
 
+import me.chanjar.weixin.common.bean.WxJsapiSignature;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author kally
@@ -15,34 +21,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-	/**
-	 * 首页
-	 * 
-	 * @return
-	 */
-	@GetMapping({"/","/index"})
-	public String index(ModelMap modelMap) {
-		return "index";
-	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
+    @Autowired
+    private WxMpService wxMpService;
 
-	/**
-	 * 回调
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/callback")
-	public String callback() {
+    /**
+     * 首页
+     *
+     * @return
+     */
+    @GetMapping({"/", "/index"})
+    public String index(ModelMap modelMap) {
+        return "index";
+    }
 
-		return null;
-	}
+    /**
+     * @return
+     */
+    @GetMapping("/login")
+    public String login(ModelMap modelMap, HttpServletRequest request) throws WxErrorException {
+        String url = "http://r6wqkt.natappfree.cc" + request.getRequestURI();
+        System.out.println(url);
+        WxJsapiSignature jsapiSignature = wxMpService.createJsapiSignature(url);
+        modelMap.put("jsapiTicket", jsapiSignature);
+        return "login";
+    }
+
+    /**
+     * 回调
+     *
+     * @return
+     */
+    @RequestMapping("/callback")
+    public String callback() {
+
+        return null;
+    }
 
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.hk.weixin.example.config;
 
@@ -14,29 +14,30 @@ import com.hk.weixin.example.security.config.WechatQrcodeAuthenticationSecurityC
 
 /**
  * 微信二维码配置
+ *
  * @author kally
  * @date 2018年2月8日下午3:07:41
  */
 @Order(4)//此order必须小于 父类的order值，否则父类会覆盖子类配置
 @Configuration
 public class WeixinSecurityWebAutoConfiguration extends SecurityWebAutoConfiguration {
-	
-	@Autowired
-	private WechatQrcodeAuthenticationSecurityConfigurer wechatQrcodeAuthenticationSecurityConfigurer;
-	
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		super.configure(web);//必须调用super定义的配置
-		web.ignoring().antMatchers("/wechat/login");
-	}
-	
-	/**
-	 * 将配置信息添加到 HttpSecurity 对象中
-	 */
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		super.configure(http);//必须调用super定义的配置
-		http.apply(wechatQrcodeAuthenticationSecurityConfigurer);
-	}
+
+    @Autowired
+    private WechatQrcodeAuthenticationSecurityConfigurer wechatQrcodeAuthenticationSecurityConfigurer;
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        super.configure(web);//必须调用super定义的配置
+        web.ignoring().antMatchers("/wechat/login").antMatchers("/wechat/portal");
+    }
+
+    /**
+     * 将配置信息添加到 HttpSecurity 对象中
+     */
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        super.configure(http);//必须调用super定义的配置
+        http.apply(wechatQrcodeAuthenticationSecurityConfigurer);
+    }
 
 }
