@@ -29,7 +29,7 @@ public class WxMpDemoApplication {
         return new AbstractUserDetailService() {
             @Override
             protected SecurityUserPrincipal loadUserByLoginUsername(String username) {
-                return new SecurityUserPrincipal(true, "1", "admin", "admin", "admin",
+                return new SecurityUserPrincipal(true, "1", "admin", "$2a$10$KgOArE6QpbY2iTQC0WGGS.hP72PQsHpToqbNVEEmUrd5LcEqrbzAG", "admin",
                         ByteConstants.ONE, "18800000000", "18800000000@xx.com", ByteConstants.ZERO, null, ByteConstants.ONE);
             }
         };

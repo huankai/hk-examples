@@ -100,9 +100,9 @@ public class WeichatTestController {
 	 */
 	@GetMapping("send_template_message")
 	public Object sendTemplateMessage() throws WxErrorException {
-		WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder().toUser("oNvZtvwPE09B8xFflXi7dySmsd9U")
+		WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder().toUser("oNvZtv__To1bNI5clj3-oB05OO4U")
 				.url("https://www.baidu.com").templateId("RniEogUuXy0RyTg5zkPaQBl4exR1SQXhKN761H7TSk0")
-				.data(Lists.newArrayList(new WxMpTemplateData("first", "黄老板"), new WxMpTemplateData("spmc", "美德*不想畫"),
+				.data(Lists.newArrayList(new WxMpTemplateData("first", "testad"), new WxMpTemplateData("spmc", "testtest"),
 						new WxMpTemplateData("spPrice", "10000")))
 				.build();
 		return wxMpService.getTemplateMsgService().sendTemplateMsg(templateMessage);
