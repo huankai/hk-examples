@@ -1,13 +1,7 @@
 package com.hk.fs;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URLEncoder;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.hk.commons.fastjson.JsonUtils;
+import com.hk.commons.util.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,8 +10,12 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.hk.commons.fastjson.JsonUtils;
-import com.hk.commons.util.StringUtils;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 /**
  * web相关的工具类
@@ -250,20 +248,13 @@ public abstract class Webs {
 	public static void writeJson(HttpServletResponse response, int status, JsonResult result) {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json;charset=UTF-8");
-		PrintWriter writer = null;
-		try {
-			writer = response.getWriter();
+		try(PrintWriter writer = response.getWriter()) {
 			response.setStatus(status);
 			writer.write(JsonUtils.toJSONString(result));
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
-		} finally {
-			if (null != writer) {
-				writer.close();
-			}
 		}
-
 	}
 
 }

@@ -40,9 +40,7 @@ public class HomeController {
      */
     @GetMapping("/login")
     public String login(ModelMap modelMap, HttpServletRequest request) throws WxErrorException {
-        String url = "http://r6wqkt.natappfree.cc" + request.getRequestURI();
-        System.out.println(url);
-        WxJsapiSignature jsapiSignature = wxMpService.createJsapiSignature(url);
+        WxJsapiSignature jsapiSignature = wxMpService.createJsapiSignature(request.getRequestURL().toString());
         modelMap.put("jsapiTicket", jsapiSignature);
         return "login";
     }

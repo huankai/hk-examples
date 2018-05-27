@@ -9,15 +9,16 @@ spring:
   messages: 
     encoding: UTF-8
     basename: org/springframework/security/messages_zh_CN  
-    
-  thymeleaf: 
-    cache: false
-    enabled: true
-    encoding: UTF-8
-    prefix: classpath:/templates/
-    suffix: .html
-    mode: HTML5
-    content-type: text/html; charset=utf-8
+
+
+#  thymeleaf:
+#    cache: false
+#    enabled: true
+#    encoding: UTF-8
+#    prefix: classpath:/templates/
+#    suffix: .html
+#    mode: HTML5
+#    content-type: text/html; charset=utf-8
   jpa: 
     show-sql: true
     generate-ddl: false
@@ -29,7 +30,7 @@ spring:
     name: druid
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.76:3306/hk_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true
+    url: jdbc:mysql://127.0.0.1:3306/hk_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true
     username: root
     password: root
 ################################################################### druid
@@ -52,6 +53,17 @@ spring:
       - log4j2
   application:
     name: hk-weixin-example
+  freemarker:
+    allow-request-override: false
+    cache: false
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+#    prefix: classpath:/templates/
+    suffix: .ftl
+    template-loader-path: classpath:/templates/
+
 #      connect-properties: 
 #        druid.stat.mergeSql: true
 #        druid.stat.slowSqlMillis: 5000
