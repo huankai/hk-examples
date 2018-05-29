@@ -95,7 +95,7 @@ public abstract class TemplateGenerator {
         String baseEntityClassName = BASE_ENTITY_PACKAGE_NAME + "." + BASE_ENTITY_SIMPLE_NAME;
         Set<ServiceTemplate> sets = new HashSet<>();
         tables.forEach(table -> sets.add(new ServiceTemplate(buildOutputFile(SERVICE_OUTPUTPPATH, table.getClassName() + SERVICE_SUFFIX),
-                SERVICE_PACKAGE, table.getClassName() + SERVICE_SUFFIX, SERVICE_PACKAGE + "." + table.getClassName(), baseEntityClassName, table.getComment(), author)));
+                SERVICE_PACKAGE, table.getClassName() + SERVICE_SUFFIX, ENTITY_PACKAGE + "." + table.getClassName(), baseEntityClassName, table.getComment(), author)));
         return sets;
     }
 

@@ -3,6 +3,7 @@ package ${packageName};
 #set($useLombok = ${config.useLombok})
 
 import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 import ${baseEntityClassName};
 #foreach($imp in $imports)
 import $imp;
