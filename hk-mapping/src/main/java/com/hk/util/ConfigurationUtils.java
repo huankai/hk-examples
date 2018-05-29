@@ -26,6 +26,10 @@ public class ConfigurationUtils {
         return configuration;
     }
 
+    public static void setConfiguration(Configuration configuration) {
+        ConfigurationUtils.configuration = configuration;
+    }
+
     private static void init() {
         Properties properties = new Properties();
         try (InputStream in = ClassLoader.getSystemResourceAsStream(CONFIG_PROPERTIES)) {
@@ -36,7 +40,6 @@ public class ConfigurationUtils {
                 configuration.setUsername(properties.getProperty("jdbc.username"));
                 configuration.setPassword(properties.getProperty("jdbc.password"));
                 configuration.setDriverName(properties.getProperty("jdbc.driver"));
-                Class.forName(configuration.getDriverName());
 
                 configuration.setTemplateTypePathPrefix(properties.getProperty("template.type"));
                 configuration.setUseLombok(BooleanUtils.toBoolean(properties.getProperty("useLombok")));

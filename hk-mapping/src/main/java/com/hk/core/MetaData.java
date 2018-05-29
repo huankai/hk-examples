@@ -1,15 +1,17 @@
 package com.hk.core;
 
 import com.hk.commons.util.ArrayUtils;
+import com.hk.commons.util.CollectionUtils;
 import com.hk.commons.util.StringUtils;
 import com.hk.entity.Column;
 import com.hk.entity.Table;
+import com.hk.util.ConfigurationUtils;
 import com.hk.util.ImportVar;
-import com.hk.util.TableAssistant;
 
 import java.sql.*;
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author: huangkai
@@ -30,12 +32,12 @@ public class MetaData {
     public List<Table> getTables() {
         ResultSet rs;
         List<Table> tables = new ArrayList<>();
-        List<String> ingoreTables = TableAssistant.ingoreTables();
+        List<String> ingoreTables = ConfigurationUtils.getConfiguration().getIngoreTables();
         try {
             rs = metaData.getTables(null, "%", "%", new String[]{"TABLE"});
             while (rs.next()) {
                 String tableName = rs.getString("TABLE_NAME");
-                if (!ingoreTables.contains(tableName)) {
+                if (!CollectionUtils.contains(ingoreTables, tableName)) {
                     String comment = rs.getString("REMARKS");
                     String primaryKey = getPrimaryKey(tableName);
                     tables.add(new Table(tableName, primaryKey, comment, StringUtils.lineToBigHump(tableName), StringUtils.lineToSmallHump(primaryKey), getColumns(tableName, primaryKey)));
@@ -48,9 +50,16 @@ public class MetaData {
     }
 
     public List<Table> getTables(String... tableNames) {
-        List<Table> result = new ArrayList<>();
         if (ArrayUtils.isNotEmpty(tableNames)) {
-            Stream.of(tableNames).forEach(item -> {
+            return getTables(Arrays.asList(tableNames));
+        }
+        return getTables();
+    }
+
+    public List<Table> getTables(List<String> tableNames) {
+        if (CollectionUtils.isNotEmpty(tableNames)) {
+            List<Table> result = new ArrayList<>();
+            tableNames.forEach(item -> {
                 try {
                     ResultSet rs = metaData.getTables(null, "%", item, new String[]{"TABLE"});
                     if (rs.next()) {
@@ -63,10 +72,11 @@ public class MetaData {
                     throw new RuntimeException(e);
                 }
             });
+            return result;
+        } else {
+            return getTables();
         }
-        return result;
     }
-
 
     private String getPrimaryKey(String tableName) throws SQLException {
         ResultSet rs = metaData.getPrimaryKeys(null, null, tableName);

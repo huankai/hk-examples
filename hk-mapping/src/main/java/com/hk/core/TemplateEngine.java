@@ -26,20 +26,25 @@ public class TemplateEngine {
 
     private static final String CLASSPATH_RESOURCE_LOADER = "classpath.resource.loader.class";
 
-    public static String parseTemplate(Template template) {
+    private Configuration configuration;
+
+    public TemplateEngine(){
+        this.configuration = ConfigurationUtils.getConfiguration();
+    }
+
+    public String parseTemplate(Template template) {
         StringWriter writer = new StringWriter();
         String templatePath = getTemplatePath(template);
         try {
             VelocityEngine engine = getVelocityEngine();
-            engine.getTemplate(templatePath).merge(buildContext(template), writer);
+            engine.getTemplate(templatePath,"UTF-8").merge(buildContext(template), writer);
             return writer.toString();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static Context buildContext(Template template) {
-        Configuration configuration = ConfigurationUtils.getConfiguration();
+    private Context buildContext(Template template) {
         VelocityContext context = new VelocityContext();
         BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(template);
         for (PropertyDescriptor descriptor : beanWrapper.getPropertyDescriptors()) {
@@ -51,7 +56,7 @@ public class TemplateEngine {
         return context;
     }
 
-    private static VelocityEngine getVelocityEngine() throws Exception {
+    private VelocityEngine getVelocityEngine() throws Exception {
         Properties prop = new Properties();
         prop.put(RuntimeConstants.RESOURCE_LOADER, CLASS_PATH);
         prop.put(CLASSPATH_RESOURCE_LOADER, ClasspathResourceLoader.class.getName());
@@ -61,9 +66,9 @@ public class TemplateEngine {
     }
 
 
-    private static String getTemplatePath(Template template) {
+    private String getTemplatePath(Template template) {
         String templateClass = template.getClass().getSimpleName();
         String templateName = templateClass.substring(0, templateClass.indexOf("Template"));
-        return ConfigurationUtils.getConfiguration().getTemplateTypePathPrefix() + "/" + templateName + ".vm";
+        return configuration.getTemplateTypePathPrefix() + "/" + templateName + ".vm";
     }
 }

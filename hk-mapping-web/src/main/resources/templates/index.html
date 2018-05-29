@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        div label {
+            width: 30%;
+        }
+
+        div input {
+            width: 70%;
+        }
+        div input[type='submit']{
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<form th:method="POST" th:action="@{/gengrate}">
+    <div>
+        <label>数据库URL:</label>
+        <input type="text" th:name="jdbcUrl" th:value="${configuration.jdbcUrl}"/>
+    </div>
+    <div>
+        <label>数据库用户名:</label>
+        <input type="text" th:name="username" th:value="${configuration.username}"/>
+    </div>
+    <div>
+        <label>数据库密码:</label>
+        <input type="password" th:name="password" th:value="${configuration.password}"/>
+    </div>
+    <div>
+        <label>数据库驱动:</label>
+        <input type="text" th:name="driverName" th:value="${configuration.driverName}"/>
+    </div>
+    <div>
+        <label>模块类型:</label>
+        <input type="text" th:name="templateTypePathPrefix" th:value="${configuration.templateTypePathPrefix}"/>
+    </div>
+    <div>
+        <label>生成get/set方法:</label>
+        <select th:name="useLombok">
+            <option th:value="1">是</option>
+            <option th:value="0">否</option>
+        </select>
+    </div>
+    <div>
+        <label>字段添加Column注解:</label>
+        <select th:name="writeColumnAnnotation">
+            <option th:value="1">是</option>
+            <option th:value="0">否</option>
+        </select>
+    </div>
+    <div>
+        <label>注释(作者):</label>
+        <input type="text" th:name="author" th:value="${configuration.author}"/>
+    </div>
+    <div>
+        <label>生成根目录:</label>
+        <input type="text" th:name="rootPath" th:value="${configuration.rootPath}"/>
+    </div>
+    <div>
+        <label>BaseEntity包名:</label>
+        <input type="text" th:name="baseEntityPackage" th:value="${configuration.baseEntityPackage}"/>
+    </div>
+    <div>
+        <label>BaseEntity名:</label>
+        <input type="text" th:name="baseEntityName" th:value="${configuration.baseEntityName}"/>
+    </div>
+    <div>
+        <label>Entity包名:</label>
+        <input type="text" th:name="entityPackage" th:value="${configuration.entityPackage}"/>
+    </div>
+    <div>
+        <label>Entity忽略字段(继承于BaseEntity):</label>
+        <input type="text" th:name="entityIngoreFields" th:value="${configuration.entityIngoreFields}"/>
+    </div>
+    <div>
+        <label>Dao包名:</label>
+        <input type="text" th:name="repositoryPackage" th:value="${configuration.repositoryPackage}"/>
+    </div>
+    <div>
+        <label>Dao类包后缀:</label>
+        <input type="text" th:name="repositoryClassnameSuffix" th:value="${configuration.repositoryClassnameSuffix}"/>
+    </div>
+    <div>
+        <label>自定义Dao包名后缀:</label>
+        <input type="text" th:name="customRepositoryPackageSuffix" th:value="${configuration.customRepositoryPackageSuffix}"/>
+    </div>
+    <div>
+        <label>自定义Dao类名前缀:</label>
+        <input type="text" th:name="customRepositoryClassnamePrefix" th:value="${configuration.customRepositoryClassnamePrefix}"/>
+    </div>
+    <div>
+        <label>自定义DaoImpl包名后缀:</label>
+        <input type="text" th:name="customRepositoryImplPackageSuffix" th:value="${configuration.customRepositoryImplPackageSuffix}"/>
+    </div>
+    <div>
+        <label>自定义DaoImpl类名后缀:</label>
+        <input type="text" th:name="customRepositoryImplClassnameSuffix" th:value="${configuration.customRepositoryImplClassnameSuffix}"/>
+    </div>
+    <div>
+        <label>Service包名:</label>
+        <input type="text" th:name="servicePackage" th:value="${configuration.servicePackage}"/>
+    </div>
+    <div>
+        <label>Service类名后缀:</label>
+        <input type="text" th:name="serviceClassnameSuffix" th:value="${configuration.serviceClassnameSuffix}"/>
+    </div>
+    <div>
+        <label>Controller包名:</label>
+        <input type="text" th:name="controllerPackage" th:value="${configuration.controllerPackage}"/>
+    </div>
+    <div>
+        <label>controller类名后缀:</label>
+        <input type="text" th:name="controllerClassnameSuffix" th:value="${configuration.controllerClassnameSuffix}"/>
+    </div>
+    <div>
+        <input type="submit" th:value="生成" />
+    </div>
+</form>
+</body>
+</html>

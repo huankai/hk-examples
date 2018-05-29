@@ -15,10 +15,12 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Connection connection = ConnectionUtils.getConnection();
-        List<Table> tables = new MetaData(connection).getTables(); // 生成所有表
+        try (Connection connection = ConnectionUtils.getConnection()) {
+            List<Table> tables = new MetaData(connection).getTables(); // 生成所有表
 //        List<Table> tables = new MetaData(connection).getTables("scm_semester","scm_schoolyear"); //生成指定的表名
-        TemplateGenerator.generate(tables);
-        ConnectionUtils.close(connection);
+            new TemplateGenerator().generate(tables);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

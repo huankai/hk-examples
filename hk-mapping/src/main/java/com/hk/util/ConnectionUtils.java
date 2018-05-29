@@ -1,5 +1,7 @@
 package com.hk.util;
 
+import com.hk.config.Configuration;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -44,10 +46,11 @@ public class ConnectionUtils {
     }
 
     private static void init() {
-        url = PropertyUtils.get("jdbc.url");
-        username = PropertyUtils.get("jdbc.username");
-        password = PropertyUtils.get("jdbc.password");
-        String driver = PropertyUtils.get("jdbc.driver");
+        Configuration configuration = ConfigurationUtils.getConfiguration();
+        url = configuration.getJdbcUrl();
+        username = configuration.getUsername();
+        password = configuration.getPassword();
+        String driver = configuration.getDriverName();
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {

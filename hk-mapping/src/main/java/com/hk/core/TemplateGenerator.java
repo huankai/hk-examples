@@ -1,5 +1,6 @@
 package com.hk.core;
 
+import com.hk.config.Configuration;
 import com.hk.entity.Table;
 import com.hk.template.one.*;
 import com.hk.util.ConfigurationUtils;
@@ -13,91 +14,144 @@ import java.util.List;
  * @author: huangkai
  * @date 2018-05-29 15:04
  */
-public abstract class TemplateGenerator {
+public class TemplateGenerator {
 
-    private static final String JAVA_DIR = "./src/main/java/";
-
-    private static final String author = ConfigurationUtils.getConfiguration().getAuthor();
-
-    protected static final String ROOT_DIR = ConfigurationUtils.getConfiguration().getRootPath();
+    private final String JAVA_DIR = "./src/main/java/";
 
     /* BaseEntity package */
-    protected static final String BASE_ENTITY_PACKAGE_NAME = ConfigurationUtils.getConfiguration().getBaseEntityPackage();
 
     /*  BaseEntity Name  */
-    protected static final String BASE_ENTITY_SIMPLE_NAME = ConfigurationUtils.getConfiguration().getBaseEntityName();
 
-    protected static final String BASE_ENTITY_OUTPUTP_PATH = getOutputPath(ROOT_DIR, BASE_ENTITY_PACKAGE_NAME);
+    protected final String BASE_ENTITY_OUTPUTP_PATH;
 
-    protected static final String ENTITY_PACKAGE = ConfigurationUtils.getConfiguration().getEntityPackage();
 
-    protected static final String ENTITY_OUTPUTPPATH = getOutputPath(ROOT_DIR, ENTITY_PACKAGE);
+    protected final String ENTITY_OUTPUTPPATH;
 
     /* *************** Repository ******************* */
-    protected static final String REPOSITORY_PACKAGE = ConfigurationUtils.getConfiguration().getRepositoryPackage();
 
-    protected static final String REPOSITORY_SUFFIX = ConfigurationUtils.getConfiguration().getRepositoryClassnameSuffix();
+    protected final String REPOSITORY_OUTPUTPPATH;
 
-    protected static final String REPOSITORY_OUTPUTPPATH = getOutputPath(ROOT_DIR, REPOSITORY_PACKAGE);
+    protected final String CUSTOM_REPOSITORY_OUTPUTPPATH;
+
+    protected final String REPOSITORY_IMPL_OUTPUTPPATH;
 
     /* *************** Service ******************* */
-    protected static final String SERVICE_PACKAGE = ConfigurationUtils.getConfiguration().getServicePackage();
 
-    protected static final String SERVICE_SUFFIX = ConfigurationUtils.getConfiguration().getServiceClassnameSuffix();
-
-    protected static final String SERVICE_OUTPUTPPATH = getOutputPath(ROOT_DIR, SERVICE_PACKAGE);
-
+    protected final String SERVICE_OUTPUTPPATH;
 
     /* *************** Controller ******************* */
-    protected static final String CONTROLLER_PACKAGE = ConfigurationUtils.getConfiguration().getControllerPackage();
 
-    protected static final String CONTROLLER_SUFFIX = ConfigurationUtils.getConfiguration().getControllerClassnameSuffix();
+    protected final String CONTROLLER_OUTPUTPPATH;
 
-    protected static final String CONTROLLER_OUTPUTPPATH = getOutputPath(ROOT_DIR, CONTROLLER_PACKAGE);
+    private final TemplateEngine engine;
 
+    private final Configuration configuration;
 
-    public static void generate(List<Table> tables) {
+    public TemplateGenerator() {
+        configuration = ConfigurationUtils.getConfiguration();
+        engine = new TemplateEngine();
+        BASE_ENTITY_OUTPUTP_PATH = getOutputPath(configuration.getRootPath(), configuration.getBaseEntityPackage());
+        ENTITY_OUTPUTPPATH = getOutputPath(configuration.getRootPath(), configuration.getEntityPackage());
+        REPOSITORY_OUTPUTPPATH = getOutputPath(configuration.getRootPath(), configuration.getRepositoryPackage());
+        CUSTOM_REPOSITORY_OUTPUTPPATH = getOutputPath(configuration.getRootPath(), configuration.getRepositoryPackage() + "." + configuration.getCustomRepositoryPackageSuffix());
+        REPOSITORY_IMPL_OUTPUTPPATH = getOutputPath(configuration.getRootPath(), configuration.getRepositoryPackage() + "." + configuration.getCustomRepositoryImplPackageSuffix());
+        SERVICE_OUTPUTPPATH = getOutputPath(configuration.getRootPath(), configuration.getServicePackage());
+        CONTROLLER_OUTPUTPPATH = getOutputPath(configuration.getRootPath(), configuration.getControllerPackage());
+    }
+
+    public void generate(List<Table> tables) {
         entityBaseTemplateToQueue(tables);
         entityTemplateToQueue(tables);
+
         repositoryTemplateToQueue(tables);
+        customRepositoryTemplateToQueue(tables);
+        repositoryImplTemplateToQueue(tables);
+
         serviceTemplateToQueue(tables);
+
         controllerTemplateToQueue(tables);
+
         execute();
     }
 
-    private static void entityBaseTemplateToQueue(List<Table> tables) {
-        new EntityBaseTemplate(buildOutputFile(BASE_ENTITY_OUTPUTP_PATH, BASE_ENTITY_SIMPLE_NAME), BASE_ENTITY_PACKAGE_NAME, BASE_ENTITY_SIMPLE_NAME, null, author)
-                .parseAndaddFileQueue();
+    private void entityBaseTemplateToQueue(List<Table> tables) {
+        new EntityBaseTemplate(buildOutputFile(BASE_ENTITY_OUTPUTP_PATH, configuration.getBaseEntityName()),
+                configuration.getBaseEntityPackage(),
+                configuration.getBaseEntityName(),
+                null,
+                configuration.getAuthor())
+                .parseAndaddFileQueue(engine);
     }
 
-    private static void entityTemplateToQueue(List<Table> tables) {
-        String baseEntityClassName = BASE_ENTITY_PACKAGE_NAME + "." + BASE_ENTITY_SIMPLE_NAME;
-        tables.forEach(table -> new EntityTemplate(table, buildOutputFile(ENTITY_OUTPUTPPATH, table.getClassName()),
-                ENTITY_PACKAGE, baseEntityClassName, author).parseAndaddFileQueue());
+    private void entityTemplateToQueue(List<Table> tables) {
+        String baseEntityClassName = configuration.getBaseEntityPackage() + "." + configuration.getBaseEntityName();
+        tables.forEach(table -> new EntityTemplate(table,
+                buildOutputFile(ENTITY_OUTPUTPPATH, table.getClassName()),
+                configuration.getEntityPackage(),
+                baseEntityClassName,
+                configuration.getAuthor()).parseAndaddFileQueue(engine));
     }
 
-    private static void repositoryTemplateToQueue(List<Table> tables) {
-        String baseEntityClassName = BASE_ENTITY_PACKAGE_NAME + "." + BASE_ENTITY_SIMPLE_NAME;
-        tables.forEach(table -> new RepositoryTemplate(buildOutputFile(REPOSITORY_OUTPUTPPATH, table.getClassName() + REPOSITORY_SUFFIX),
-                REPOSITORY_PACKAGE, table.getClassName() + REPOSITORY_SUFFIX, ENTITY_PACKAGE + "." + table.getClassName(), baseEntityClassName, table.getComment(), author)
-                .parseAndaddFileQueue());
+    private void repositoryTemplateToQueue(List<Table> tables) {
+        String baseEntityClassName = configuration.getBaseEntityPackage() + "." + configuration.getBaseEntityName();
+        tables.forEach(table -> new RepositoryTemplate(buildOutputFile(REPOSITORY_OUTPUTPPATH, table.getClassName() + configuration.getRepositoryClassnameSuffix()),
+                configuration.getRepositoryPackage(),
+                table.getClassName() + configuration.getRepositoryClassnameSuffix(),
+                configuration.getEntityPackage() + "." + table.getClassName(),
+                baseEntityClassName,
+                table.getComment(),
+                configuration.getAuthor())
+                .parseAndaddFileQueue(engine));
     }
 
-    private static void serviceTemplateToQueue(List<Table> tables) {
-        String baseEntityClassName = BASE_ENTITY_PACKAGE_NAME + "." + BASE_ENTITY_SIMPLE_NAME;
-        tables.forEach(table -> new ServiceTemplate(buildOutputFile(SERVICE_OUTPUTPPATH, table.getClassName() + SERVICE_SUFFIX),
-                SERVICE_PACKAGE, table.getClassName() + SERVICE_SUFFIX, ENTITY_PACKAGE + "." + table.getClassName(), baseEntityClassName, table.getComment(), author)
-                .parseAndaddFileQueue());
+    private void repositoryImplTemplateToQueue(List<Table> tables) {
+        String baseEntityClassName = configuration.getBaseEntityPackage() + "." + configuration.getBaseEntityName();
+        tables.forEach(table -> new RepositoryImplTemplate(buildOutputFile(REPOSITORY_IMPL_OUTPUTPPATH,table.getClassName() + configuration.getCustomRepositoryImplClassnameSuffix()),
+                configuration.getRepositoryPackage() + "." + configuration.getCustomRepositoryImplPackageSuffix(),
+                table.getClassName() + configuration.getRepositoryClassnameSuffix() + configuration.getCustomRepositoryImplClassnameSuffix(),
+                configuration.getEntityPackage() + "." + table.getClassName(),
+                baseEntityClassName, table.getComment(),
+                configuration.getAuthor())
+                .parseAndaddFileQueue(engine));
     }
 
-    private static void controllerTemplateToQueue(List<Table> tables) {
-        String baseEntityClassName = BASE_ENTITY_PACKAGE_NAME + "." + BASE_ENTITY_SIMPLE_NAME;
-        tables.forEach(table -> new ControllerTemplate(buildOutputFile(CONTROLLER_OUTPUTPPATH, table.getClassName() + CONTROLLER_SUFFIX),
-                CONTROLLER_PACKAGE, table.getClassName() + CONTROLLER_SUFFIX, SERVICE_PACKAGE + "." + table.getClassName() + SERVICE_SUFFIX, baseEntityClassName, table.getComment(), author)
-                .parseAndaddFileQueue());
+    private void customRepositoryTemplateToQueue(List<Table> tables) {
+        String baseEntityClassName = configuration.getBaseEntityPackage() + "." + configuration.getBaseEntityName();
+        tables.forEach(table -> new CustomRepositoryTemplate(buildOutputFile(CUSTOM_REPOSITORY_OUTPUTPPATH, table.getClassName() + configuration.getRepositoryClassnameSuffix()),
+                configuration.getRepositoryPackage() + "." + configuration.getCustomRepositoryPackageSuffix(),
+                table.getClassName() + configuration.getRepositoryClassnameSuffix() + configuration.getCustomRepositoryClassnamePrefix(),
+                configuration.getEntityPackage() + "." + table.getClassName(),
+                baseEntityClassName,
+                table.getComment(),
+                configuration.getAuthor())
+                .parseAndaddFileQueue(engine));
     }
 
-    private static void execute() {
+    private void serviceTemplateToQueue(List<Table> tables) {
+        String baseEntityClassName = configuration.getBaseEntityPackage() + "." + configuration.getBaseEntityName();
+        tables.forEach(table -> new ServiceTemplate(buildOutputFile(SERVICE_OUTPUTPPATH, table.getClassName() + configuration.getServiceClassnameSuffix()),
+                configuration.getServicePackage(),
+                table.getClassName() + configuration.getServiceClassnameSuffix(),
+                configuration.getEntityPackage() + "." + table.getClassName(),
+                baseEntityClassName,
+                table.getComment(),
+                configuration.getAuthor())
+                .parseAndaddFileQueue(engine));
+    }
+
+    private void controllerTemplateToQueue(List<Table> tables) {
+        String baseEntityClassName = configuration.getBaseEntityPackage() + "." + configuration.getBaseEntityName();
+        tables.forEach(table -> new ControllerTemplate(buildOutputFile(CONTROLLER_OUTPUTPPATH, table.getClassName() + configuration.getControllerClassnameSuffix()),
+                configuration.getControllerPackage(),
+                table.getClassName() + configuration.getControllerClassnameSuffix(),
+                configuration.getServicePackage() + "." + table.getClassName() + configuration.getServiceClassnameSuffix(),
+                baseEntityClassName,
+                table.getComment(),
+                configuration.getAuthor())
+                .parseAndaddFileQueue(engine));
+    }
+
+    private void execute() {
         while (FileQueue.hasNext()) {
             FileQueue.Entry entry = FileQueue.pop();
             FileAssistant.write(entry.getContent(), entry.getFile());
@@ -105,7 +159,7 @@ public abstract class TemplateGenerator {
         }
     }
 
-    private static void print(FileQueue.Entry entry) {
+    private void print(FileQueue.Entry entry) {
         String path = entry.getFile().getAbsolutePath();
         path = path.replace("\\", "/");
         while (path.indexOf("/..") != -1) {
@@ -118,21 +172,16 @@ public abstract class TemplateGenerator {
         System.out.println(String.format("%s %s %s", "[C]", path, "\n"));
     }
 
-    private static File buildOutputFile(String outputDir, String fileName) {
+    private File buildOutputFile(String outputDir, String fileName) {
         return buildOutputFile(outputDir, fileName, "java");
     }
 
-    private static File buildOutputFile(String outputDir, String fileName, String ext) {
+    private File buildOutputFile(String outputDir, String fileName, String ext) {
         fileName += "." + ext;
         return new File(outputDir, fileName);
     }
 
-//
-//    private static String get(String suffix) {
-//        return ConfigurationUtils.getConfiguration().get(suffix);
-//    }
-
-    private static String getOutputPath(String rootDir, String suffix) {
+    private String getOutputPath(String rootDir, String suffix) {
         String outputDir = JAVA_DIR + suffix.replace(".", "/");
         outputDir = rootDir == null ? outputDir : rootDir + outputDir;
         File file = new File(outputDir);

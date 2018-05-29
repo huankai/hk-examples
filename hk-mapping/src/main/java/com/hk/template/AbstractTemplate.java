@@ -47,10 +47,10 @@ public abstract class AbstractTemplate implements Template {
         return baseEntityClassName.substring(baseEntityClassName.lastIndexOf(".") + 1);
     }
 
-    public void parseAndaddFileQueue() {
+    public void parseAndaddFileQueue(TemplateEngine engine) {
         File outputFile = getOutputFile();
         if (forceCover() || !outputFile.exists()) {
-            FileQueue.add(new FileQueue.Entry(outputFile, TemplateEngine.parseTemplate(this)));
+            FileQueue.add(new FileQueue.Entry(outputFile, engine.parseTemplate(this)));
         }
     }
 }
