@@ -50,6 +50,7 @@
         <module>hk-util-example</module>
         <module>hk-weixin-example</module>
         <module>netty-example</module>
+        <module>hk-mapping</module>
     </modules>
 
     <dependencyManagement>

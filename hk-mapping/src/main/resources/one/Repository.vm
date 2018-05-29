@@ -1,0 +1,13 @@
+package $packageName;
+
+import com.sjq.core.dao.BaseDao;
+import ${entityClassName};
+
+/**
+ *
+ * @Description : $className
+ * @author : ${author}
+ */
+public interface $className extends BaseDao<$entityClassSimpleName,String> {
+
+}
