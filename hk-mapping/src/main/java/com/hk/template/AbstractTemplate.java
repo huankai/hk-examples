@@ -1,5 +1,7 @@
 package com.hk.template;
 
+import com.hk.core.TemplateEngine;
+import com.hk.util.FileQueue;
 import lombok.Data;
 
 import java.io.File;
@@ -43,5 +45,12 @@ public abstract class AbstractTemplate implements Template {
 
     public String getBaseEntityClassSimpleName() {
         return baseEntityClassName.substring(baseEntityClassName.lastIndexOf(".") + 1);
+    }
+
+    public void parseAndaddFileQueue() {
+        File outputFile = getOutputFile();
+        if (forceCover() || !outputFile.exists()) {
+            FileQueue.add(new FileQueue.Entry(outputFile, TemplateEngine.parseTemplate(this)));
+        }
     }
 }

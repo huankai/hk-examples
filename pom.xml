@@ -51,6 +51,7 @@
         <module>hk-weixin-example</module>
         <module>netty-example</module>
         <module>hk-mapping</module>
+        <module>hk-mapping-web</module>
     </modules>
 
     <dependencyManagement>

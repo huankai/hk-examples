@@ -1,14 +1,12 @@
 package com.hk.template.one;
 
-import com.hk.commons.util.StringUtils;
 import com.hk.entity.Table;
 import com.hk.template.AbstractTemplate;
-import com.hk.util.PropertyUtils;
+import com.hk.util.ConfigurationUtils;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,10 +33,7 @@ public class EntityTemplate extends AbstractTemplate {
      * @param author
      */
     public EntityTemplate(Table table, File outputFile, String packageName, String baseEntityClassName, String author) {
-        String ingoreColumn = PropertyUtils.get("entity.ingore.columns");
-        if (StringUtils.isNotEmpty(ingoreColumn)) {
-            excludeColumn.addAll(Arrays.asList(StringUtils.splitByComma(ingoreColumn)));
-        }
+        excludeColumn.addAll(ConfigurationUtils.getConfiguration().getEntityIngoreFields());
         this.table = table;
         setOutputFile(outputFile);
         setClassName(table.getClassName());

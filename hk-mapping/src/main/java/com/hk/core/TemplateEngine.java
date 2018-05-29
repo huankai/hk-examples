@@ -1,8 +1,9 @@
 package com.hk.core;
 
+import com.hk.config.Configuration;
 import com.hk.template.Template;
+import com.hk.util.ConfigurationUtils;
 import com.hk.util.ImportVar;
-import com.hk.util.PropertyUtils;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
@@ -38,14 +39,15 @@ public class TemplateEngine {
     }
 
     private static Context buildContext(Template template) {
+        Configuration configuration = ConfigurationUtils.getConfiguration();
         VelocityContext context = new VelocityContext();
         BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(template);
         for (PropertyDescriptor descriptor : beanWrapper.getPropertyDescriptors()) {
             context.put(descriptor.getName(), beanWrapper.getPropertyValue(descriptor.getName()));
         }
         context.put("imports", ImportVar.getVars());
-        context.put("useLombok", PropertyUtils.get("useLombok"));
-        context.put("writeColumnAnnotation", PropertyUtils.getOrDefault("writeColumnAnnotation", "true"));
+        context.put("useLombok", configuration.isUseLombok());
+        context.put("writeColumnAnnotation", configuration.isWriteColumnAnnotation());
         return context;
     }
 
@@ -62,6 +64,6 @@ public class TemplateEngine {
     private static String getTemplatePath(Template template) {
         String templateClass = template.getClass().getSimpleName();
         String templateName = templateClass.substring(0, templateClass.indexOf("Template"));
-        return PropertyUtils.get("template.type") + "/" + templateName + ".vm";
+        return ConfigurationUtils.getConfiguration().getTemplateTypePathPrefix() + "/" + templateName + ".vm";
     }
 }

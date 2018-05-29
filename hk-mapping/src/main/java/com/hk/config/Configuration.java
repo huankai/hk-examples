@@ -1,141 +1,170 @@
 package com.hk.config;
 
-import com.hk.commons.util.StringUtils;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author: huangkai
  * @date 2018-05-29 11:50
  */
+@Data
 public class Configuration {
 
-    private static final String CUSTOM_REPOSITORY_CLASSNAME_PREFIX = "Custom";
+    /**
+     * JDBC URL
+     */
+    private String jdbcUrl;
 
     /**
-     * 根目录
+     * JDBC password
      */
-    @Setter
-    @Getter
-    private String rootPath = "/";
+
+    private String password;
 
     /**
-     * entity 包名
+     * JDBC username
      */
-    @Setter
-    private String entityPackage;
-
-    public String getEntityPackage() {
-        if (!StringUtils.startsWith(entityPackage, "/")) {
-            entityPackage = "/" + entityPackage;
-        }
-        return rootPath + entityPackage;
-    }
+    private String username;
 
     /**
-     * repository 包名
+     * JDBC DRIVER NAME
      */
-    @Setter
-    private String repositoryPackage;
-
-    public String getRepositoryPackage() {
-        if (!StringUtils.startsWith(repositoryPackage, "/")) {
-            repositoryPackage = "/" + repositoryPackage;
-        }
-        return rootPath + repositoryPackage;
-    }
-
-    /**
-     * 自定义的Custom 包名
-     */
-    @Setter
-    @Getter
-    private String customRepositoryPackageSuffix = "custom";
-
-    public String getCustomRepositoryPackage() {
-        return getRepositoryPackage() + "/" + customRepositoryPackageSuffix;
-    }
-
-    /**
-     *
-     */
-    @Setter
-    @Getter
-    private String repositoryImplPackageSuffix = "impl";
-
-    public String getRepositoryImplPackage() {
-        return getRepositoryPackage() + "/" + repositoryImplPackageSuffix;
-    }
-
-    /**
-     *
-     */
-    @Setter
-    @Getter
-    private String repositoryImplClassNameSuffix = "Impl";
-
-    /**
-     * Service 包名
-     */
-    @Setter
-    @Getter
-    private String servicePackage;
-
-    /**
-     * ServiceImpl 包名
-     */
-    @Setter
-    @Getter
-    private String serviceImplPackageSuffix = "impl";
-
-    public String getServiceImplPackage() {
-        return servicePackage + "/" + serviceImplPackageSuffix;
-    }
-
-    /**
-     *
-     */
-    @Setter
-    @Getter
-    private String seviceImplClassNameSuffix = "Impl";
-
-    /**
-     * Controller包名
-     */
-    @Setter
-    @Getter
-    private String controllerPackage;
-
-    /**
-     * 指定需要忽略的表名
-     */
-    @Setter
-    @Getter
-    private String ingoreTables;
+    private String driverName;
 
     /**
      * <p>
-     * 如果此参数有设置，只会构建这些表，ingoreTables 属性不生效
-     * 否则，会生成全部并过滤 ingoreTables 这些表
+     * <p>
+     * 使用指定模板的前缀
+     * </p>
+     * <p>
+     * <p>
+     * classpath下的目录名，如 one
      * </p>
      */
-    @Setter
-    @Getter
-    private String includeTables;
+    private String templateTypePathPrefix;
 
     /**
      * 是否使用 lombok自动生成get | set 方法
      */
-    @Setter
-    @Getter
-    private boolean useLombok;
+    private boolean useLombok = true;
 
     /**
      * 是否添加 @Column注解，如果使用驼峰全命名，可以省略此注解.
      */
-    @Setter
-    @Getter
     private boolean writeColumnAnnotation = false;
+
+    /**
+     * 注释中的作者名
+     */
+    private String author;
+
+    /**
+     * 根目录
+     */
+    private String rootPath = "/";
+
+    /**
+     * BaseEntity的包名
+     */
+    private String baseEntityPackage;
+
+    /**
+     * BaseEntity 类名
+     */
+    private String baseEntityName;
+
+    /* **********************************  */
+
+    /**
+     * entity 包名
+     */
+    private String entityPackage;
+
+    /**
+     * 实体要忽略的字段，直接从 BaseEntity继承
+     */
+    private List<String> entityIngoreFields;
+
+     /* *****************Repository*****************  */
+
+    /**
+     * Dao包名
+     */
+    private String repositoryPackage;
+
+    /**
+     * Dao 后缀，由表名的驼峰式加此后缀组成Repository名
+     */
+    private String repositoryClassnameSuffix = "Repository";
+
+    /**
+     * 自定义Repository 包的后缀
+     */
+    private String customRepositoryPackageSuffix = "custom";
+
+    /**
+     * 自定义Repository 类名前缀
+     */
+    private String customRepositoryClassnamePrefix = "Custom";
+
+    /**
+     * 自定义Repository 实现包的后缀
+     */
+    private String customRepositoryImplPackageSuffix = "impl";
+
+    /**
+     * 自定义Repository 实现类名后缀
+     */
+    private String customRepositoryImplClassnameSuffix = "Impl";
+
+
+    /* ***************** Service *****************  */
+
+    /**
+     * Service包名
+     */
+    private String servicePackage;
+
+    /**
+     * Service 后缀，由表名的驼峰式加此后缀组成Service名
+     */
+    private String serviceClassnameSuffix = "Service";
+
+    /**
+     * ServiceImpl包名
+     */
+    private String serviceImplPackage;
+
+    /**
+     * ServiceImpl 后缀，由表名的驼峰式加此后缀组成Service名
+     */
+    private String serviceImplClassnameSuffix = "Impl";
+
+
+    /* ***************** Controller *****************  */
+
+    /**
+     * controller 包名
+     */
+    private String controllerPackage;
+
+    /**
+     * Service 后缀，由表名的驼峰式加此后缀组成Service名
+     */
+    private String controllerClassnameSuffix = "Controller";
+
+    /**
+     * 要忽略的表名
+     */
+    private List<String> ingoreTables;
+
+    /**
+     * <p>
+     * 指定的表名，如果指定了，只生成指定的表名
+     * </p>
+     */
+    private List<String> includeTables;
 
 
 }

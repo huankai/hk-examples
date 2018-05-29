@@ -14,7 +14,8 @@ public interface Template {
      * @return
      */
     default boolean forceCover() {
-        return true;
+        return false;
     }
+
 
 }
