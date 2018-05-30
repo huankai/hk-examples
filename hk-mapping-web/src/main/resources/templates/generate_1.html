@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/generate_2}">
+    <div>
+        <label>JDBC地址</label>
+        <input type="text" name="jdbcUrl">
+    </div>
+    <div>
+        <label>用户名</label>
+        <input type="text" name="username">
+    </div>
+    <div>
+        <label>密码</label>
+        <input type="password" name="password">
+    </div>
+    <div>
+        <label>Driver名</label>
+        <input type="text" name="driver" value="com.mysql.jdbc.Driver">
+    </div>
+    <div>
+        <input type="submit" value="下一步"/>
+    </div>
+</form>
+</body>
+</html>
