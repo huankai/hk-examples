@@ -11,20 +11,13 @@ import java.io.File;
 
 public class EntityBaseTemplate extends AbstractTemplate {
 
-    public EntityBaseTemplate() {
-
-    }
-
-    public EntityBaseTemplate(File outputFile, String packageName,String className, String comment, String author) {
+    public EntityBaseTemplate(File outputFile, String packageName, String className,String baseEntityClassName, String comment, String author) {
         setOutputFile(outputFile);
         setPackageName(packageName);
         setBaseEntityClassName(className);
+        setBaseEntityClassName(baseEntityClassName);
         setComment(comment);
         setAuthor(author);
     }
 
-    @Override
-    public boolean forceCover() {
-        return true;
-    }
 }

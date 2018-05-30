@@ -2,7 +2,6 @@ package com.hk.template.one;
 
 import com.hk.entity.Table;
 import com.hk.template.AbstractTemplate;
-import com.hk.util.ConfigurationUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,7 +32,6 @@ public class EntityTemplate extends AbstractTemplate {
      * @param author
      */
     public EntityTemplate(Table table, File outputFile, String packageName, String baseEntityClassName, String author) {
-        excludeColumn.addAll(ConfigurationUtils.getConfiguration().getEntityIngoreFields());
         this.table = table;
         setOutputFile(outputFile);
         setClassName(table.getClassName());

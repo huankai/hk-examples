@@ -1,0 +1,13 @@
+package $packageName;
+
+import com.sjq.core.dao.impl.BaseDaoImpl;
+import $customReposirotyClassName;
+
+/**
+*
+* @Description : $className
+* @author : ${author}
+*/
+public class $className extends BaseDaoImpl implements $customReposirotySimpleClassName {
+
+}

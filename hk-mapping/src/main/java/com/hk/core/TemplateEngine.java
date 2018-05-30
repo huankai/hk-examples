@@ -1,8 +1,8 @@
 package com.hk.core;
 
+import com.hk.commons.util.Contants;
 import com.hk.config.Configuration;
 import com.hk.template.Template;
-import com.hk.util.ConfigurationUtils;
 import com.hk.util.ImportVar;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -28,8 +28,8 @@ public class TemplateEngine {
 
     private Configuration configuration;
 
-    public TemplateEngine(){
-        this.configuration = ConfigurationUtils.getConfiguration();
+    public TemplateEngine(Configuration configuration) {
+        this.configuration = configuration;
     }
 
     public String parseTemplate(Template template) {
@@ -37,7 +37,7 @@ public class TemplateEngine {
         String templatePath = getTemplatePath(template);
         try {
             VelocityEngine engine = getVelocityEngine();
-            engine.getTemplate(templatePath,"UTF-8").merge(buildContext(template), writer);
+            engine.getTemplate(templatePath, Contants.UTF_8).merge(buildContext(template), writer);
             return writer.toString();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -65,10 +65,9 @@ public class TemplateEngine {
         return engine;
     }
 
-
     private String getTemplatePath(Template template) {
         String templateClass = template.getClass().getSimpleName();
         String templateName = templateClass.substring(0, templateClass.indexOf("Template"));
-        return configuration.getTemplateTypePathPrefix() + "/" + templateName + ".vm";
+        return String.format("%s/%s.vm",configuration.getTemplateTypePathPrefix(),templateName);
     }
 }

@@ -12,12 +12,10 @@ public class FileAssistant {
 
     private static final int BUFFER_SIZE = 1024 * 1024 / 2;
 
-    public static void write(String text, File file) {
-        BufferedReader reader = null;
-        BufferedWriter writer = null;
-        try {
-            reader = new BufferedReader(new StringReader(text));
-            writer = new BufferedWriter(new FileWriter(file));
+    public static void write(FileQueue.Entry entry) {
+        try (BufferedReader reader = new BufferedReader(new StringReader(entry.getContent()));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(entry.getFile()))) {
+
             char[] buffer = new char[BUFFER_SIZE];
             int read;
             while ((read = reader.read(buffer)) != EOF) {
@@ -25,18 +23,6 @@ public class FileAssistant {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-                if(writer != null) {
-                    writer.close();
-                }
-
-            } catch (Exception e) {
-
-            }
         }
     }
 }

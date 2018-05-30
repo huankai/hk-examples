@@ -9,6 +9,6 @@ import java.io.File;
 public class CustomRepositoryTemplate extends RepositoryTemplate {
 
     public CustomRepositoryTemplate(File outputFile, String packageName, String className, String entityClassName, String baseEntityClassName, String comment, String author) {
-        super(outputFile, packageName, className, entityClassName, baseEntityClassName, comment, author);
+        super(outputFile, packageName, className, className, entityClassName, baseEntityClassName, comment, author);
     }
 }

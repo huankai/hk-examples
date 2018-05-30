@@ -1,7 +1,5 @@
 package com.hk.util;
 
-import com.hk.config.Configuration;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,49 +12,22 @@ import java.sql.SQLException;
  */
 public class ConnectionUtils {
 
-    private static String url;
-
-    private static String username;
-
-    private static String password;
-
-    static {
-        init();
-    }
-
     /**
      * 获取连接
      *
+     * @param url
+     * @param username
+     * @param password
+     * @param driver
      * @return
      */
-    public static Connection getConnection() {
-        try {
-            return DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void close(Connection connection){
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void init() {
-        Configuration configuration = ConfigurationUtils.getConfiguration();
-        url = configuration.getJdbcUrl();
-        username = configuration.getUsername();
-        password = configuration.getPassword();
-        String driver = configuration.getDriverName();
+    public static Connection getConnection(String url, String username, String password, String driver) {
         try {
             Class.forName(driver);
-        } catch (ClassNotFoundException e) {
+            return DriverManager.getConnection(url, username, password);
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
-
 
 }

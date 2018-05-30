@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-
         div label {
             width: 30%;
         }
@@ -13,13 +12,13 @@
             width: 70%;
         }
         div input[type='submit']{
-            width: 50px;
+            width: 80px;
             text-align: center;
         }
     </style>
 </head>
 <body>
-<form th:method="POST" th:action="@{/gengrate}">
+<form th:method="POST" th:action="@{/generateanddown}">
     <div>
         <label>数据库URL:</label>
         <input type="text" th:name="jdbcUrl" th:value="${configuration.jdbcUrl}"/>
@@ -34,24 +33,24 @@
     </div>
     <div>
         <label>数据库驱动:</label>
-        <input type="text" th:name="driverName" th:value="${configuration.driverName}"/>
+        <input type="text" th:name="driverName" th:readonly="readonly" th:value="${configuration.driverName}"/>
     </div>
     <div>
         <label>模块类型:</label>
-        <input type="text" th:name="templateTypePathPrefix" th:value="${configuration.templateTypePathPrefix}"/>
+        <input type="text" th:name="templateTypePathPrefix" th:readonly="readonly" th:value="${configuration.templateTypePathPrefix}"/>
     </div>
     <div>
-        <label>生成get/set方法:</label>
+        <label>使用Lombok（实体不会生成get/set方法）:</label>
         <select th:name="useLombok">
-            <option th:value="1">是</option>
-            <option th:value="0">否</option>
+            <option th:value="1" th:selected="${configuration.useLombok}">是</option>
+            <option th:value="0" th:selected="${!configuration.useLombok}">否</option>
         </select>
     </div>
     <div>
         <label>字段添加Column注解:</label>
         <select th:name="writeColumnAnnotation">
-            <option th:value="1">是</option>
-            <option th:value="0">否</option>
+            <option th:value="1" th:selected="${configuration.writeColumnAnnotation}">是</option>
+            <option th:value="0" th:selected="${!configuration.writeColumnAnnotation}">否</option>
         </select>
     </div>
     <div>
@@ -60,7 +59,7 @@
     </div>
     <div>
         <label>生成根目录:</label>
-        <input type="text" th:name="rootPath" th:value="${configuration.rootPath}"/>
+        <input type="text" th:name="rootPath" th:readonly="readonly" th:value="${configuration.rootPath}"/>
     </div>
     <div>
         <label>BaseEntity包名:</label>
@@ -75,8 +74,8 @@
         <input type="text" th:name="entityPackage" th:value="${configuration.entityPackage}"/>
     </div>
     <div>
-        <label>Entity忽略字段(继承于BaseEntity):</label>
-        <input type="text" th:name="entityIngoreFields" th:value="${configuration.entityIngoreFields}"/>
+        <label>Entity忽略字段(多个以英文逗号分隔，继承于BaseEntity名):</label>
+        <input type="text" th:name="entityIngoreFields" th:value="${#strings.listJoin(configuration.entityIngoreFields,',')}"/>
     </div>
     <div>
         <label>Dao包名:</label>
@@ -118,8 +117,18 @@
         <label>controller类名后缀:</label>
         <input type="text" th:name="controllerClassnameSuffix" th:value="${configuration.controllerClassnameSuffix}"/>
     </div>
+
     <div>
-        <input type="submit" th:value="生成" />
+        <label>要忽略的表名(多个以英文逗号分隔):</label>
+        <input type="text" th:name="ingoreTables" th:value="${#strings.listJoin(configuration.ingoreTables,',')}"/>
+    </div>
+
+    <div>
+        <label>只包含的表名(多个以英文逗号分隔，设置后，忽略的表名将无效):</label>
+        <input type="text" th:name="includeTables" th:value="${#strings.listJoin(configuration.includeTables,',')}"/>
+    </div>
+    <div>
+        <input type="submit" th:value="生成并下载" />
     </div>
 </form>
 </body>

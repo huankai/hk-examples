@@ -1,5 +1,6 @@
 package com.hk.config;
 
+import com.hk.commons.util.StringUtils;
 import lombok.Data;
 
 import java.util.List;
@@ -62,7 +63,7 @@ public class Configuration {
     /**
      * 根目录
      */
-    private String rootPath = "/";
+    private String rootPath = System.getProperty("user.home");
 
     /**
      * BaseEntity的包名
@@ -166,5 +167,10 @@ public class Configuration {
      */
     private List<String> includeTables;
 
-
+    public void setRootPath(String rootPath) {
+        if(!StringUtils.endsWith(rootPath,"/")){
+            rootPath += "/";
+        }
+        this.rootPath = rootPath;
+    }
 }

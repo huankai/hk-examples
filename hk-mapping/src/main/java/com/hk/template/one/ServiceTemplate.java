@@ -10,6 +10,6 @@ public class ServiceTemplate extends RepositoryTemplate {
 
 
     public ServiceTemplate(File outputFile, String packageName, String className, String entityClassName, String baseEntityClassName, String comment, String author) {
-        super(outputFile, packageName, className, entityClassName, baseEntityClassName, comment, author);
+        super(outputFile, packageName, "", className, entityClassName, baseEntityClassName, comment, author);
     }
 }

@@ -16,18 +16,27 @@ public class RepositoryTemplate extends AbstractTemplate {
     @Setter
     private String entityClassName;
 
-    public RepositoryTemplate(File outputFile, String packageName, String className, String entityClassName,String baseEntityClassName, String comment, String author) {
+    @Getter
+    @Setter
+    private String customReposirotyClassName;
+
+    public RepositoryTemplate(File outputFile, String packageName, String customReposirotyClassName, String className, String entityClassName, String baseEntityClassName, String comment, String author) {
         setOutputFile(outputFile);
         setPackageName(packageName);
         setClassName(className);
-        this.entityClassName = entityClassName;
         setBaseEntityClassName(baseEntityClassName);
         setComment(comment);
         setAuthor(author);
+        this.entityClassName = entityClassName;
+        this.customReposirotyClassName = customReposirotyClassName;
     }
 
-    public String getEntityClassSimpleName() {
+    public String getEntitySimpleClassName() {
         return entityClassName.substring(entityClassName.lastIndexOf(".") + 1);
+    }
+
+    public String getCustomReposirotySimpleClassName() {
+        return customReposirotyClassName.substring(customReposirotyClassName.lastIndexOf(".") + 1);
     }
 
 }

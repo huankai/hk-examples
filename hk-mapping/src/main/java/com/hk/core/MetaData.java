@@ -1,14 +1,18 @@
 package com.hk.core;
 
+import com.google.common.collect.Lists;
 import com.hk.commons.util.ArrayUtils;
 import com.hk.commons.util.CollectionUtils;
 import com.hk.commons.util.StringUtils;
 import com.hk.entity.Column;
 import com.hk.entity.Table;
-import com.hk.util.ConfigurationUtils;
+import com.hk.util.ConnectionUtils;
 import com.hk.util.ImportVar;
 
-import java.sql.*;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,23 +25,48 @@ public class MetaData {
 
     private DatabaseMetaData metaData;
 
-    public MetaData(Connection connection) {
+    public MetaData(String url, String username, String password, String driver) {
         try {
-            this.metaData = connection.getMetaData();
+            this.metaData = ConnectionUtils.getConnection(url, username,
+                    password, driver).getMetaData();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public List<Table> getTables() {
+    /**
+     * 返回所有表名
+     *
+     * @return
+     */
+    public List<String> getTableNameList() {
+        List<String> result = Lists.newArrayList();
+        try {
+            ResultSet rs = metaData.getTables(null, "%", "%", new String[]{"TABLE"});
+            while (rs.next()) {
+                String tableName = rs.getString("TABLE_NAME");
+                result.add(tableName);
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 返回要忽略的表
+     *
+     * @param ingoreTableNames
+     * @return
+     */
+    public List<Table> getAllTablesIngore(String... ingoreTableNames) {
         ResultSet rs;
         List<Table> tables = new ArrayList<>();
-        List<String> ingoreTables = ConfigurationUtils.getConfiguration().getIngoreTables();
         try {
             rs = metaData.getTables(null, "%", "%", new String[]{"TABLE"});
             while (rs.next()) {
                 String tableName = rs.getString("TABLE_NAME");
-                if (!CollectionUtils.contains(ingoreTables, tableName)) {
+                if (!ArrayUtils.contains(ingoreTableNames, tableName)) {
                     String comment = rs.getString("REMARKS");
                     String primaryKey = getPrimaryKey(tableName);
                     tables.add(new Table(tableName, primaryKey, comment, StringUtils.lineToBigHump(tableName), StringUtils.lineToSmallHump(primaryKey), getColumns(tableName, primaryKey)));
@@ -49,13 +78,25 @@ public class MetaData {
         }
     }
 
+    /**
+     * 返回指定的表
+     *
+     * @param tableNames
+     * @return
+     */
     public List<Table> getTables(String... tableNames) {
         if (ArrayUtils.isNotEmpty(tableNames)) {
             return getTables(Arrays.asList(tableNames));
         }
-        return getTables();
+        return getAllTablesIngore();
     }
 
+    /**
+     * 返回指定的表
+     *
+     * @param tableNames
+     * @return
+     */
     public List<Table> getTables(List<String> tableNames) {
         if (CollectionUtils.isNotEmpty(tableNames)) {
             List<Table> result = new ArrayList<>();
@@ -78,11 +119,26 @@ public class MetaData {
         }
     }
 
+    /**
+     * 获取表主键名
+     *
+     * @param tableName
+     * @return
+     * @throws SQLException
+     */
     private String getPrimaryKey(String tableName) throws SQLException {
         ResultSet rs = metaData.getPrimaryKeys(null, null, tableName);
         return rs.next() ? rs.getString("COLUMN_NAME") : null;
     }
 
+    /**
+     * 获取表的所有列
+     *
+     * @param tableName
+     * @param primaryKey
+     * @return
+     * @throws SQLException
+     */
     private List<Column> getColumns(String tableName, String primaryKey) throws SQLException {
         List<Column> columns = new ArrayList<>();
         ResultSet rs = metaData.getColumns(null, "%", tableName, "%");

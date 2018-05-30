@@ -1,5 +1,6 @@
 package com.hk.entity;
 
+import com.hk.commons.util.StringUtils;
 import lombok.Data;
 
 /**
@@ -54,5 +55,9 @@ public class Column {
         this.type = type;
         this.fieldType = fieldType;
         this.comment = comment;
+    }
+
+    public String getCapitalizeFileName() {
+        return StringUtils.capitalize(fieldName);
     }
 }
