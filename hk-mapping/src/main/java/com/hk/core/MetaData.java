@@ -5,6 +5,7 @@ import com.hk.commons.util.ArrayUtils;
 import com.hk.commons.util.CollectionUtils;
 import com.hk.commons.util.StringUtils;
 import com.hk.entity.Column;
+import com.hk.entity.ConnectionModel;
 import com.hk.entity.Table;
 import com.hk.util.ConnectionUtils;
 import com.hk.util.ImportVar;
@@ -25,10 +26,10 @@ public class MetaData {
 
     private DatabaseMetaData metaData;
 
-    public MetaData(String url, String username, String password, String driver) {
+    public MetaData(ConnectionModel connectionModel) {
         try {
-            this.metaData = ConnectionUtils.getConnection(url, username,
-                    password, driver).getMetaData();
+            this.metaData = ConnectionUtils.getConnection(connectionModel.getJdbcUrl(), connectionModel.getUsername(),
+                    connectionModel.getPassword(), connectionModel.getDriverName()).getMetaData();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
