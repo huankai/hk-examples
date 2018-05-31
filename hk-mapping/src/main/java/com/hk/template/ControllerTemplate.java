@@ -7,4 +7,6 @@ package com.hk.template;
 public interface ControllerTemplate extends Template {
 
     ServiceTemplate getServiceTemplate();
+
+    void setServiceTemplate(ServiceTemplate serviceTemplate);
 }

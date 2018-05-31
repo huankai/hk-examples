@@ -13,10 +13,14 @@ public interface RepositoryTemplate extends Template {
      */
     EntityTemplate getEntityTemplate();
 
+    void setEntityTemplate(EntityTemplate entityTemplate);
+
     /**
      * CustomRepositoryTemplate
      *
      * @return
      */
     CustomRepositoryTemplate getCustomRepositoryTemplate();
+
+    void setCustomRepositoryTemplate(CustomRepositoryTemplate customRepositoryTemplate);
 }

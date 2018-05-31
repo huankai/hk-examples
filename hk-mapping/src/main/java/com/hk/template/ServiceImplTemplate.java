@@ -8,5 +8,9 @@ public interface ServiceImplTemplate extends Template {
 
     RepositoryTemplate getRepositoryTemplate();
 
+    void setRepositoryTemplate(RepositoryTemplate repositoryTemplate);
+
     ServiceTemplate getServiceTemplate();
+
+    void setServiceTemplate(ServiceTemplate serviceTemplate);
 }

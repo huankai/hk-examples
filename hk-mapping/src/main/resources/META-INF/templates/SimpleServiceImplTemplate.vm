@@ -1,0 +1,15 @@
+package $packageName;
+
+import com.sjq.core.service.JpaService;
+import org.springframework.stereotype.Service;
+import ${entityClassName};
+
+/**
+ *
+ * @Description : $className
+ * @author : ${author}
+ */
+@Service
+public class $className extends JpaService<$entitySimpleClassName,String> {
+
+}

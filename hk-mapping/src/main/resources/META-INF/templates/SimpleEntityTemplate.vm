@@ -1,0 +1,69 @@
+package ${packageName};
+
+#set($useLombok = ${useLombok})
+
+import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+import ${baseEntityClassName};
+#foreach($imp in $imports)
+import $imp;
+#end
+
+#if($useLombok)
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+#end
+
+/**
+ *
+ * @Description : ${table.comment}
+ * @author : ${author}
+ */
+@Entity
+@Table(name = "${table.tableName}")
+#if($useLombok)
+@Data
+@EqualsAndHashCode(callSuper = true)
+#end
+public class ${table.className} extends $baseEntityClassSimpleName<String> {
+    #foreach($column in $table.columns)
+    #if(!$excludeColumn.contains($column.name))
+
+    /**
+     *
+     * ${column.comment}
+     */
+    #if(${column.primaryKey})@Id
+    @GeneratedValue(generator = "generator")
+    @GenericGenerator(name = "generator", strategy = "uuid2")
+    #end#if(${writeColumnAnnotation})@Column(name = "${column.name}")
+    #end
+private ${column.fieldType} ${column.fieldName};
+    #end
+    #end
+
+#if(!$useLombok)
+#foreach($column in $table.columns)
+#if(!$excludeColumn.contains($column.name))
+    public void set${column.capitalizeFileName}(${column.fieldType} ${column.fieldName}){
+        this.${column.fieldName} = ${column.fieldName};
+    }
+
+    public ${column.fieldType} get${column.capitalizeFileName}(){
+        return ${column.fieldName};
+    }
+
+#end
+#end
+#end
+    @Override
+    public void setId(String id) {
+        this.${table.classPrimaryKeyField} = id;
+    }
+
+    @Override
+    public String getId() {
+        return ${table.classPrimaryKeyField};
+    }
+}
+

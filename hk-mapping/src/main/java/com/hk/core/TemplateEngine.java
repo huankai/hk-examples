@@ -8,6 +8,8 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
 
@@ -21,16 +23,16 @@ import java.util.Properties;
  */
 public class TemplateEngine {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(TemplateEngine.class);
+
     private static final String CLASS_PATH = "classpath";
 
     private static final String CLASSPATH_RESOURCE_LOADER = "classpath.resource.loader.class";
 
     public static String parseTemplate(Template template) {
-        StringWriter writer = new StringWriter();
-        String templatePath = template.getTemplatePath();
-        try {
+        try (StringWriter writer = new StringWriter()) {
             VelocityEngine engine = getVelocityEngine();
-            engine.getTemplate(templatePath, Contants.UTF_8).merge(buildContext(template), writer);
+            engine.mergeTemplate(template.getTemplatePath(), Contants.UTF_8, buildContext(template), writer);
             return writer.toString();
         } catch (Exception e) {
             throw new RuntimeException(e);

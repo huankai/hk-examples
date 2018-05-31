@@ -1,0 +1,11 @@
+package $packageName;
+
+
+/**
+*
+* @Description : $className
+* @author : ${author}
+*/
+public interface $className {
+
+}

@@ -1,11 +1,8 @@
 package com.hk.template;
 
 import com.hk.commons.util.StringUtils;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 
 import java.io.File;
-import java.net.URL;
 
 /**
  * @author: huangkai
@@ -50,7 +47,7 @@ public abstract class AbstractTemplate implements Template {
     /**
      * 模板所在路径
      */
-    private Resource templateResource;
+    private String templatePath;
 
     @Override
     public File getOutputFile() {
@@ -88,21 +85,16 @@ public abstract class AbstractTemplate implements Template {
     }
 
     @Override
-    public void setTemplateResource(Resource resource) {
-        this.templateResource = resource;
+    public void setTemplatePath(String templatePath) {
+        this.templatePath = templatePath;
     }
 
     @Override
-    public Resource getTemplateResource() {
-        if (null == templateResource) {
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            String simpleName = getClass().getSimpleName();
-            URL url = classLoader.getResource(String.format("%s%s.%s", FACTORIES_RESOURCE_PREFIX, simpleName, TEMPLATE_EXT));
-            if (null != url) {
-                templateResource = new UrlResource(url);
-            }
+    public String getTemplatePath() {
+        if (null == templatePath) {
+            templatePath = String.format("%s/%s.%s", FACTORIES_RESOURCE_PREFIX, getClass().getSimpleName(), TEMPLATE_EXT);
         }
-        return templateResource;
+        return templatePath;
     }
 
     @Override

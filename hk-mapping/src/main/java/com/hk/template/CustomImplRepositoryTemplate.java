@@ -7,4 +7,6 @@ package com.hk.template;
 public interface CustomImplRepositoryTemplate extends Template {
 
     CustomRepositoryTemplate getCustomRepositoryTemplate();
+
+    void setCustomRepositoryTemplate(CustomRepositoryTemplate customRepositoryTemplate);
 }

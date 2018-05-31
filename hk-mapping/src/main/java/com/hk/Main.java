@@ -1,12 +1,7 @@
 package com.hk;
 
-import com.hk.core.MetaData;
-import com.hk.entity.ConnectionModel;
-import com.hk.entity.Table;
+import com.hk.core.TemplateGenerate;
 import com.hk.entity.TemplateParam;
-import com.hk.template.BaseEntityTemplate;
-
-import java.util.List;
 
 /**
  * @author: huangkai
@@ -22,12 +17,15 @@ public class Main {
 ////        List<Table> tables = metaData.getTables("scm_semester", "scm_schoolyear"); //生成指定的表名
 //        new TemplateGenerator(storage).generate(tables, true);
 
-        ConnectionModel connectionModel = new ConnectionModel();
-        MetaData metaData = new MetaData(connectionModel);
-        List<Table> tables = metaData.getTables();
-        TemplateParam prarm = new TemplateParam();
-        BaseEntityTemplate entityTemplate = prarm.toBaseEntityTemplate("", null);
-        entityTemplate.genreate();
-        tables.forEach(table -> prarm.toEntityTemplate(table, entityTemplate, "").genreate());
+//        ConnectionModel connectionModel = new ConnectionModel();
+//        MetaData metaData = new MetaData(connectionModel);
+//        List<Table> tables = metaData.getTables();
+//        TemplateParam prarm = new TemplateParam();
+//        BaseEntityTemplate entityTemplate = prarm.toBaseEntityTemplate("", null);
+//        entityTemplate.genreate();
+//        tables.forEach(table -> prarm.toEntityTemplate(table, entityTemplate, "").genreate());
+        TemplateParam param = new TemplateParam();
+        param.setBaseEntityClassName("com.hk.core.BaseEntity");
+        TemplateGenerate.generateBaseEntityTemplate(param);
     }
 }

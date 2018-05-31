@@ -4,7 +4,6 @@ import com.hk.commons.util.StringUtils;
 import com.hk.commons.util.date.DatePattern;
 import com.hk.core.TemplateEngine;
 import com.hk.util.FileAssistant;
-import org.springframework.core.io.Resource;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -107,12 +106,12 @@ public interface Template {
      *
      * @return
      */
-    Resource getTemplateResource();
+    String getTemplatePath();
 
     /**
-     * @param resource
+     * @param templatePath
      */
-    void setTemplateResource(Resource resource);
+    void setTemplatePath(String templatePath);
 
     /**
      * 版本号
@@ -140,7 +139,9 @@ public interface Template {
      */
     default void genreate() {
         String template = TemplateEngine.parseTemplate(this);
-        FileAssistant.write(template, getOutputFile());
+        if (null != template) {
+            FileAssistant.write(template, getOutputFile());
+        }
     }
 
 
