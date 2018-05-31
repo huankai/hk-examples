@@ -1,15 +1,21 @@
 package com.hk.template;
 
-import com.hk.commons.util.AssertUtils;
 import com.hk.commons.util.StringUtils;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 
 import java.io.File;
+import java.net.URL;
 
 /**
  * @author: huangkai
  * @date 2018-05-29 13:12
  */
 public abstract class AbstractTemplate implements Template {
+
+    private static final String FACTORIES_RESOURCE_PREFIX = "META-INF/templates/";
+
+    private static final String TEMPLATE_EXT = "vm";
 
     /**
      * 输出文件
@@ -37,24 +43,14 @@ public abstract class AbstractTemplate implements Template {
     private String version;
 
     /**
+     * string format date
+     */
+    private String dateAsString;
+
+    /**
      * 模板所在路径
      */
-    private String templatePath;
-
-    public AbstractTemplate(File outputFile, String className,String templatePath) {
-        this(outputFile, className,templatePath, null, null, null);
-    }
-
-    protected AbstractTemplate(File outputFile, String className,String templatePath, String comment, String author, String version) {
-        AssertUtils.notNull(outputFile, "outputFile must not be null");
-        AssertUtils.notNull(className, "className must not be null");
-        this.outputFile = outputFile;
-        this.className = className;
-        this.templatePath = templatePath;
-        this.comment = comment;
-        this.author = author;
-        this.version = version;
-    }
+    private Resource templateResource;
 
     @Override
     public File getOutputFile() {
@@ -77,23 +73,60 @@ public abstract class AbstractTemplate implements Template {
     }
 
     @Override
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    @Override
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    @Override
     public String getVersion() {
         return version;
     }
 
     @Override
-    public String getTemplatePath() {
-        return templatePath;
+    public void setTemplateResource(Resource resource) {
+        this.templateResource = resource;
     }
 
-    //    public String getBaseEntityClassSimpleName() {
-//        return baseEntityClassName.substring(baseEntityClassName.lastIndexOf(".") + 1);
-//    }
-//
-//    public void parseAndaddFileQueue(TemplateEngine engine) {
-//        File outputFile = getOutputFile();
-//        if (forceCover() || !outputFile.exists()) {
-//            FileQueue.add(new FileQueue.Entry(outputFile, engine.parseTemplate(this)));
-//        }
-//    }
+    @Override
+    public Resource getTemplateResource() {
+        if (null == templateResource) {
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            String simpleName = getClass().getSimpleName();
+            URL url = classLoader.getResource(String.format("%s%s.%s", FACTORIES_RESOURCE_PREFIX, simpleName, TEMPLATE_EXT));
+            if (null != url) {
+                templateResource = new UrlResource(url);
+            }
+        }
+        return templateResource;
+    }
+
+    @Override
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    @Override
+    public void setOutputFile(File outputFile) {
+        this.outputFile = outputFile;
+    }
+
+    @Override
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    @Override
+    public void setDateAsString(String date) {
+        this.dateAsString = date;
+    }
+
+    @Override
+    public String getDateAsString() {
+        return StringUtils.isEmpty(dateAsString) ? Template.super.getDateAsString() : dateAsString;
+    }
 }

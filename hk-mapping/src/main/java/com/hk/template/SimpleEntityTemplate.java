@@ -2,7 +2,6 @@ package com.hk.template;
 
 import com.hk.entity.Table;
 
-import java.io.File;
 import java.util.Set;
 
 /**
@@ -14,7 +13,7 @@ public class SimpleEntityTemplate extends AbstractTemplate implements EntityTemp
     /**
      * 是否使用lombok框架,如果为true,会使用 Lombok 注解自动生成相关方法
      */
-    private boolean useLombok = true;
+    private boolean useLombokFramework = true;
 
     private Table table;
 
@@ -22,52 +21,12 @@ public class SimpleEntityTemplate extends AbstractTemplate implements EntityTemp
 
     private BaseEntityTemplate baseEntityTemplate;
 
-    public SimpleEntityTemplate(Table table, BaseEntityTemplate baseEntityTemplate,
-                                File outputFile, String className, String templatePath) {
-        super(outputFile, className, templatePath);
-        this.table = table;
-        this.baseEntityTemplate = baseEntityTemplate;
-    }
-
-    public SimpleEntityTemplate(Table table, BaseEntityTemplate baseEntityTemplate,
-                                File outputFile, String className, String templatePath,
-                                String comment, String author, String version) {
-        super(outputFile, className, templatePath, comment, author, version);
-        this.table = table;
-        this.baseEntityTemplate = baseEntityTemplate;
-    }
-
-    @Override
-    public Set<String> getIngoreColumns() {
-        return ingoreColumns;
-    }
-
-    public void setUseLombok(boolean useLombok) {
-        this.useLombok = useLombok;
-    }
-
-    public boolean isUseLombok() {
-        return useLombok;
-    }
-
-    @Override
-    public boolean getUseLombokFramework() {
-        return useLombok;
-    }
-
-    public void setIngoreColumns(Set<String> ingoreColumns) {
-        this.ingoreColumns = ingoreColumns;
-    }
-
-    public void setTable(Table table) {
-        this.table = table;
-    }
-
     @Override
     public BaseEntityTemplate getBaseEntityTemplate() {
         return baseEntityTemplate;
     }
 
+    @Override
     public void setBaseEntityTemplate(BaseEntityTemplate baseEntityTemplate) {
         this.baseEntityTemplate = baseEntityTemplate;
     }
@@ -75,5 +34,30 @@ public class SimpleEntityTemplate extends AbstractTemplate implements EntityTemp
     @Override
     public Table getTable() {
         return table;
+    }
+
+    @Override
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    @Override
+    public Set<String> getIngoreColumns() {
+        return ingoreColumns;
+    }
+
+    @Override
+    public void setIngoreColumns(Set<String> ingoreColumns) {
+        this.ingoreColumns = ingoreColumns;
+    }
+
+    @Override
+    public boolean getUseLombokFramework() {
+        return useLombokFramework;
+    }
+
+    @Override
+    public void setUseLombokFramework(boolean useLombokFramework) {
+        this.useLombokFramework = useLombokFramework;
     }
 }

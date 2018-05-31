@@ -4,6 +4,7 @@ import com.hk.commons.util.StringUtils;
 import com.hk.commons.util.date.DatePattern;
 import com.hk.core.TemplateEngine;
 import com.hk.util.FileAssistant;
+import org.springframework.core.io.Resource;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -25,9 +26,16 @@ public interface Template {
     String getClassName();
 
     /**
+     * The class name is set.
+     *
+     * @param className className
+     */
+    void setClassName(String className);
+
+    /**
      * SimpleClassName
      *
-     * @return
+     * @return simpleClassName
      */
     default String getSimpleClassName() {
         return StringUtils.substringAfterLast(getClassName(), ".");
@@ -36,16 +44,21 @@ public interface Template {
     /**
      * package Name
      *
-     * @return
+     * @return packageName
      */
     default String getPackageName() {
         return StringUtils.substringBeforeLast(getClassName(), ".");
     }
 
     /**
-     * @return
+     * @return outputFile
      */
     File getOutputFile();
+
+    /**
+     * @param outputFile
+     */
+    void setOutputFile(File outputFile);
 
     /**
      * 获取注释
@@ -53,6 +66,11 @@ public interface Template {
      * @return
      */
     String getComment();
+
+    /**
+     * @param comment
+     */
+    void setComment(String comment);
 
     /**
      * 日期
@@ -64,6 +82,13 @@ public interface Template {
     }
 
     /**
+     * string format date
+     *
+     * @param date
+     */
+    void setDateAsString(String date);
+
+    /**
      * 作者
      *
      * @return
@@ -72,7 +97,22 @@ public interface Template {
         return System.getProperty("user.name");
     }
 
-    String getTemplatePath();
+    /**
+     * @param author
+     */
+    void setAuthor(String author);
+
+    /**
+     * Template resource
+     *
+     * @return
+     */
+    Resource getTemplateResource();
+
+    /**
+     * @param resource
+     */
+    void setTemplateResource(Resource resource);
 
     /**
      * 版本号
@@ -80,6 +120,11 @@ public interface Template {
      * @return
      */
     String getVersion();
+
+    /**
+     * @param version
+     */
+    void setVersion(String version);
 
     /**
      * 如果文件存在，是否强制覆盖
@@ -90,9 +135,12 @@ public interface Template {
         return true;
     }
 
+    /**
+     *
+     */
     default void genreate() {
         String template = TemplateEngine.parseTemplate(this);
-        FileAssistant.write(template,getOutputFile());
+        FileAssistant.write(template, getOutputFile());
     }
 
 

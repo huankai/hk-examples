@@ -6,7 +6,17 @@ package com.hk.template;
  */
 public interface RepositoryTemplate extends Template {
 
+    /**
+     * Entity Template
+     *
+     * @return
+     */
     EntityTemplate getEntityTemplate();
 
+    /**
+     * CustomRepositoryTemplate
+     *
+     * @return
+     */
     CustomRepositoryTemplate getCustomRepositoryTemplate();
 }

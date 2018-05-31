@@ -1,10 +1,8 @@
 package com.hk.entity;
 
 import com.hk.commons.util.StringUtils;
-import com.hk.template.*;
 import lombok.Data;
 
-import java.io.File;
 import java.util.Set;
 
 /**
@@ -14,7 +12,7 @@ import java.util.Set;
 @Data
 public class TemplateParam {
 
-    private static final String JAVA_DIR = "./src/main/java/";
+
 
     private String author;
 
@@ -186,49 +184,20 @@ public class TemplateParam {
                 controllerClassNameSuffix);
     }
 
-    /**
-     * @param table
-     * @param baseEntityTemplate
-     * @param templatePath
-     * @return
-     */
-    public EntityTemplate toEntityTemplate(Table table, BaseEntityTemplate baseEntityTemplate, String templatePath) {
-        File file = new File(getOutputFile(getEntityPackageName()), formatJavaFileName(table.getClassName()));
-        SimpleEntityTemplate entityTemplate = new SimpleEntityTemplate(table, baseEntityTemplate, file,
-                table.getClassName(), templatePath, table.getComment(), author, version);
-        entityTemplate.setIngoreColumns(ingoreColumns);
-        entityTemplate.setUseLombok(useLombok);
-        return entityTemplate;
-    }
 
-    public CustomRepositoryTemplate toCustomRepositoryTemplate(Table table, String templatePath) {
-        File file = new File(getOutputFile(String.format("%s.%s", repositoryPackageName, customRepositoryPackageSuffix)),
-                formatJavaFileName(String.format("%s%s", table.getClassName(), repositoryClassNameSuffix)));
-        return new SimpleCustomReopsitoryTemplate(file, table.getClassName(), templatePath, table.getComment(), author, version);
-    }
+//
+//    public CustomRepositoryTemplate toCustomRepositoryTemplate(Table table, String templatePath) {
+//        File file = new File(getOutputFile(String.format("%s.%s", repositoryPackageName, customRepositoryPackageSuffix)),
+//                formatJavaFileName(String.format("%s%s", table.getClassName(), repositoryClassNameSuffix)));
+//        return new SimpleCustomReopsitoryTemplate(file, table.getClassName(), templatePath, table.getComment(), author, version);
+//    }
+//
+//    public RepositoryTemplate toRepositoryTemplate(String templatePath) {
+//        return null;
+//
+//    }
 
-    public RepositoryTemplate toRepositoryTemplate(String templatePath) {
-        return null;
 
-    }
-
-    private String formatJavaFileName(String fileName) {
-        return fileName + ".java";
-    }
-
-    private String getOutputFile(String packageName) {
-        String classNamePath = StringUtils.replaceAll(packageName, ".", "/");
-        String folder = getRootPath() + JAVA_DIR + classNamePath;
-        File file = new File(folder);
-        if (!file.exists()) {
-            boolean mkdirs = file.mkdirs();
-            if (!mkdirs) {
-                throw new RuntimeException("can not create folder by :" + file.getName());
-            }
-        }
-        return file.getAbsolutePath();
-
-    }
 
 
 }
