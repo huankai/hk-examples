@@ -61,7 +61,7 @@ spring:
     expose-request-attributes: false
     expose-session-attributes: false
 #    prefix: classpath:/templates/
-    suffix: .ftl
+    suffix: .html
     template-loader-path: classpath:/templates/
 
 #      connect-properties: 

@@ -8,7 +8,6 @@ import com.hk.entity.Column;
 import com.hk.entity.ConnectionModel;
 import com.hk.entity.Table;
 import com.hk.util.ConnectionUtils;
-import com.hk.util.ImportVar;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -178,7 +177,7 @@ public class MetaData {
 
             case Types.DECIMAL:
             case Types.NUMERIC:
-                ImportVar.put("java.math.BigDecimal");
+//                ImportVar.put("java.math.BigDecimal");
                 return "BigDecimal";
 
             case Types.REAL:
@@ -197,13 +196,13 @@ public class MetaData {
                 return "String";
 
             case Types.DATE:
-                ImportVar.put("java.time.LocalDate");
+//                ImportVar.put("java.time.LocalDate");
                 return "LocalDate";
             case Types.TIME:
-                ImportVar.put("java.time.LocalTime");
+//                ImportVar.put("java.time.LocalTime");
                 return "LocalTime";
             case Types.TIMESTAMP:
-                ImportVar.put("java.time.LocalDateTime");
+//                ImportVar.put("java.time.LocalDateTime");
                 return "LocalDateTime";
             default:
                 return "Object";

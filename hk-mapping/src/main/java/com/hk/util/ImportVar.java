@@ -9,13 +9,13 @@ import java.util.Set;
  */
 public class ImportVar {
 
-    private static Set<String> vars = new HashSet<>();
+    private Set<String> vars = new HashSet<>();
 
-    public static void put(String value){
+    public void put(String value){
         vars.add(value);
     }
 
-    public static Set<String> getVars() {
+    public Set<String> getVars() {
         return vars;
     }
 }

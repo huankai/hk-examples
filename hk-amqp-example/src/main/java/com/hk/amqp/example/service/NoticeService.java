@@ -3,12 +3,11 @@
  */
 package com.hk.amqp.example.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.hk.amqp.example.SenderService;
 import com.hk.amqp.example.domain.Notice;
-import com.hk.commons.fastjson.JsonUtils;
+import com.hk.commons.util.JsonUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author kally

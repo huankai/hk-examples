@@ -16,6 +16,12 @@ public class TemplateGenerate {
 
     private static final String JAVA_DIR = "./src/main/java/";
 
+    /**
+     * 生成所有
+     *
+     * @param tableList
+     * @param param
+     */
     public static void generate(List<Table> tableList, TemplateParam param) {
         BaseEntityTemplate baseEntityTemplate = generateBaseEntityTemplate(param);
         tableList.forEach(table -> {
@@ -27,10 +33,16 @@ public class TemplateGenerate {
             ServiceTemplate serviceTemplate = generateServiceTemplate(table, param);
             generateServiceImplTemplate(table, repositoryTemplate, serviceTemplate, param);
             generateControllerTemplate(table, serviceTemplate, param);
-
         });
     }
 
+    /**
+     * 生成Controller
+     *
+     * @param table
+     * @param serviceTemplate
+     * @param param
+     */
     public static void generateControllerTemplate(Table table,
                                                   ServiceTemplate serviceTemplate,
                                                   TemplateParam param) {
@@ -48,6 +60,14 @@ public class TemplateGenerate {
     }
 
 
+    /**
+     * 生成ServiceImpl
+     *
+     * @param table
+     * @param repositoryTemplate
+     * @param serviceTemplate
+     * @param param
+     */
     public static void generateServiceImplTemplate(Table table,
                                                    RepositoryTemplate repositoryTemplate,
                                                    ServiceTemplate serviceTemplate,

@@ -3,13 +3,12 @@
  */
 package com.hk.amqp.example.controllers;
 
+import com.hk.amqp.example.SenderService;
+import com.hk.amqp.example.domain.Notice;
+import com.hk.commons.util.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.hk.amqp.example.SenderService;
-import com.hk.amqp.example.domain.Notice;
-import com.hk.commons.fastjson.JsonUtils;
 
 /**
  * @author kally

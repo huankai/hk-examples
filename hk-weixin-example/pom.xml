@@ -34,7 +34,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.hk</groupId>
-			<artifactId>hk-core-webmvc</artifactId>
+			<artifactId>hk-core-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.hk</groupId>
+			<artifactId>hk-core-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -93,13 +97,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 
 		</plugins>

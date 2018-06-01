@@ -3,14 +3,13 @@
  */
 package com.hk.weixin.example.config;
 
+import com.hk.core.autoconfigure.authentication.security.SecurityWebAutoConfiguration;
+import com.hk.weixin.example.security.config.WechatQrcodeAuthenticationSecurityConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-
-import com.hk.core.authentication.security.config.SecurityWebAutoConfiguration;
-import com.hk.weixin.example.security.config.WechatQrcodeAuthenticationSecurityConfigurer;
 
 /**
  * 微信二维码配置

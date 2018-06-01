@@ -2,7 +2,6 @@ package com.hk.core;
 
 import com.hk.commons.util.Contants;
 import com.hk.template.Template;
-import com.hk.util.ImportVar;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
@@ -41,7 +40,6 @@ public class TemplateEngine {
 
     private static Context buildContext(Template template) {
         VelocityContext context = new VelocityContext();
-        context.put("imports", ImportVar.getVars());
         BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(template);
         for (PropertyDescriptor descriptor : beanWrapper.getPropertyDescriptors()) {
             context.put(descriptor.getName(), beanWrapper.getPropertyValue(descriptor.getName()));

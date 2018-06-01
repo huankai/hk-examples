@@ -1,8 +1,10 @@
 package com.hk.template;
 
+import com.google.common.collect.Sets;
 import com.hk.commons.util.StringUtils;
 
 import java.io.File;
+import java.util.Set;
 
 /**
  * @author: huangkai
@@ -49,6 +51,11 @@ public abstract class AbstractTemplate implements Template {
      */
     private String templatePath;
 
+    /**
+     * 模板需要导入的变量
+     */
+    private Set<String> importVars = Sets.newHashSet();
+
     @Override
     public File getOutputFile() {
         return outputFile;
@@ -82,6 +89,11 @@ public abstract class AbstractTemplate implements Template {
     @Override
     public String getVersion() {
         return version;
+    }
+
+    @Override
+    public Set<String> getImportVar() {
+        return importVars;
     }
 
     @Override

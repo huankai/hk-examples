@@ -1,5 +1,6 @@
 package com.hk.template;
 
+import com.hk.commons.util.CollectionUtils;
 import com.hk.commons.util.StringUtils;
 import com.hk.commons.util.date.DatePattern;
 import com.hk.core.TemplateEngine;
@@ -8,6 +9,7 @@ import com.hk.util.FileAssistant;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 /**
  * 模板标记接口
@@ -78,6 +80,22 @@ public interface Template {
      */
     default String getDateAsString() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern(DatePattern.YYYY_MM_DD_HH_MM_SS.getPattern()));
+    }
+
+    /**
+     * 模板需要导入的变量值
+     *
+     * @return
+     */
+    Set<String> getImportVar();
+
+    /**
+     * import var
+     *
+     * @param vars
+     */
+    default void importVar(String... vars) {
+        CollectionUtils.addAll(getImportVar(), vars);
     }
 
     /**

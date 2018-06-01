@@ -1,15 +1,13 @@
 package com.hk.weixin.example.handler;
 
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
-
-import com.hk.commons.fastjson.JsonUtils;
-
+import com.hk.commons.util.JsonUtils;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * @author Binary Wang(https://github.com/binarywang)

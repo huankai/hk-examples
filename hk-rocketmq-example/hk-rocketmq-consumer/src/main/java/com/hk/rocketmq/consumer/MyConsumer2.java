@@ -1,11 +1,10 @@
 package com.hk.rocketmq.consumer;
 
+import com.hk.commons.util.JsonUtils;
+import com.hk.rocketmq.consumer.domain.OrderPaidEvent;
 import org.apache.rocketmq.spring.starter.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.starter.core.RocketMQListener;
 import org.springframework.stereotype.Service;
-
-import com.hk.commons.fastjson.JsonUtils;
-import com.hk.rocketmq.consumer.domain.OrderPaidEvent;
 
 /**
  * 消息消费

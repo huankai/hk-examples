@@ -12,8 +12,6 @@ import java.util.Set;
 @Data
 public class TemplateParam {
 
-
-
     private String author;
 
     private String version;
@@ -45,7 +43,12 @@ public class TemplateParam {
         return StringUtils.substringBeforeLast(baseEntityClassName, ".");
     }
 
-
+    /**
+     * <p>
+     * Entity Package name<br/>
+     * example: com.hk.emi.entity
+     * </p>
+     */
     private String entityPackageName;
 
     private boolean useLombok = true;
@@ -64,8 +67,21 @@ public class TemplateParam {
         return String.format("%s.%s", entityPackageName, entitySimpleName);
     }
 
+    /**
+     * <p>
+     * repository package name<br/>
+     * example : com.hk.emi.repository
+     * </p>
+     */
     private String repositoryPackageName;
 
+    /**
+     * <p>
+     * repository class name suffix<br/>
+     * example : Repository
+     * generate class name is ({@link StringUtils#lineToBigHump(tableName)} + Repository)
+     * </p>
+     */
     private String repositoryClassNameSuffix;
 
     /**
@@ -196,8 +212,6 @@ public class TemplateParam {
 //        return null;
 //
 //    }
-
-
 
 
 }
