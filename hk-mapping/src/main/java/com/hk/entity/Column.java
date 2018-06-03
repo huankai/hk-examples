@@ -38,7 +38,7 @@ public class Column {
     private String type;
 
     /**
-     * 列字段类型
+     * 列字段对应Java类型名
      */
     private String fieldType;
 
@@ -47,7 +47,8 @@ public class Column {
      */
     private String comment;
 
-    public Column(String name, String fieldName, boolean primaryKey, boolean nullable, String type, String fieldType, String comment) {
+    public Column(String name, String fieldName, boolean primaryKey, boolean nullable,
+                  String type, String fieldType, String comment) {
         this.name = name;
         this.fieldName = fieldName;
         this.primaryKey = primaryKey;

@@ -23,12 +23,6 @@
         <dependency>
             <groupId>com.hk</groupId>
             <artifactId>hk-commons-util</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.commons</groupId>
-                    <artifactId>commons-math3</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>

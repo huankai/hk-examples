@@ -1,5 +1,8 @@
 package $packageName;
 
+#foreach($imp in $importVar)
+import $imp;
+#end
 
 /**
 *

@@ -1,5 +1,7 @@
 package com.hk.util;
 
+import com.hk.entity.ConnectionModel;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,16 +17,14 @@ public class ConnectionUtils {
     /**
      * 获取连接
      *
-     * @param url
-     * @param username
-     * @param password
-     * @param driver
+     * @param connectionModel
      * @return
      */
-    public static Connection getConnection(String url, String username, String password, String driver) {
+    public static Connection getConnection(ConnectionModel connectionModel) {
         try {
-            Class.forName(driver);
-            return DriverManager.getConnection(url, username, password);
+            Class.forName(connectionModel.getDriverName());
+            return DriverManager.getConnection(connectionModel.getJdbcUrl(),
+                    connectionModel.getUsername(), connectionModel.getPassword());
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

@@ -1,6 +1,7 @@
 package com.hk.core;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.hk.commons.util.ArrayUtils;
 import com.hk.commons.util.CollectionUtils;
 import com.hk.commons.util.StringUtils;
@@ -8,14 +9,13 @@ import com.hk.entity.Column;
 import com.hk.entity.ConnectionModel;
 import com.hk.entity.Table;
 import com.hk.util.ConnectionUtils;
+import lombok.AllArgsConstructor;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: huangkai
@@ -23,12 +23,78 @@ import java.util.List;
  */
 public class MetaData {
 
+    interface ColumFunction<R, T> {
+
+        Set<String> getImportVars();
+
+        R convert(T t);
+
+    }
+
+    public static class HmpColumnFunction implements ColumFunction<String, Integer> {
+
+        protected static final List<MappingModel> TYPE_CLASS_NAME_MAPPING;
+
+        @AllArgsConstructor
+        private static class MappingModel {
+
+            private List<Integer> typeList;
+
+            private String className;
+
+            private String importPackage;
+
+        }
+
+        static {
+            TYPE_CLASS_NAME_MAPPING = Lists.newArrayList();
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.BIT, Types.BOOLEAN),
+                    "Boolean", null));
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.TINYINT, Types.SMALLINT, Types.INTEGER),
+                    "Integer", null));
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.BIGINT), "Long", null));
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.DECIMAL, Types.NUMERIC),
+                    "BigDecimal", "java.math.BigDecimal"));
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.REAL), "Float", null));
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.FLOAT, Types.DOUBLE), "Double", null));
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.CHAR, Types.VARCHAR,
+                    Types.LONGVARCHAR, Types.BINARY, Types.VARBINARY, Types.LONGVARBINARY),
+                    "String", null));
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.DATE),
+                    "LocalDate", "java.time.LocalDate"));
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.TIME),
+                    "LocalTime", "java.time.LocalTime"));
+            TYPE_CLASS_NAME_MAPPING.add(new MappingModel(Lists.newArrayList(Types.TIMESTAMP),
+                    "LocalDateTime", "java.time.LocalDateTime"));
+        }
+
+        private Set<String> importVars = Sets.newHashSet();
+
+        @Override
+        public Set<String> getImportVars() {
+            return importVars;
+        }
+
+        @Override
+        public String convert(Integer type) {
+            Optional<MappingModel> optional = TYPE_CLASS_NAME_MAPPING.stream()
+                    .filter(item -> item.typeList.contains(type)).findFirst();
+            if (optional.isPresent()) {
+                MappingModel model = optional.get();
+                if (null != model.importPackage) {
+                    importVars.add(model.importPackage);
+                }
+                importVars.add(model.className);
+            }
+            return "Object";
+        }
+    }
+
     private DatabaseMetaData metaData;
 
     public MetaData(ConnectionModel connectionModel) {
         try {
-            this.metaData = ConnectionUtils.getConnection(connectionModel.getJdbcUrl(), connectionModel.getUsername(),
-                    connectionModel.getPassword(), connectionModel.getDriverName()).getMetaData();
+            this.metaData = ConnectionUtils.getConnection(connectionModel).getMetaData();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -170,14 +236,8 @@ public class MetaData {
 
             case Types.BIGINT:
                 return "Long";
-
-            //		case Types.INTEGER:
-            //			ImportVar.put("java.math.BigInteger");
-            //			return "BigInteger";
-
             case Types.DECIMAL:
             case Types.NUMERIC:
-//                ImportVar.put("java.math.BigDecimal");
                 return "BigDecimal";
 
             case Types.REAL:
@@ -196,13 +256,10 @@ public class MetaData {
                 return "String";
 
             case Types.DATE:
-//                ImportVar.put("java.time.LocalDate");
                 return "LocalDate";
             case Types.TIME:
-//                ImportVar.put("java.time.LocalTime");
                 return "LocalTime";
             case Types.TIMESTAMP:
-//                ImportVar.put("java.time.LocalDateTime");
                 return "LocalDateTime";
             default:
                 return "Object";

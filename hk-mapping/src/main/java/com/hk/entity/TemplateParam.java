@@ -79,7 +79,7 @@ public class TemplateParam {
      * <p>
      * repository class name suffix<br/>
      * example : Repository
-     * generate class name is ({@link StringUtils#lineToBigHump(tableName)} + Repository)
+     * generate class name is
      * </p>
      */
     private String repositoryClassNameSuffix;
@@ -105,6 +105,13 @@ public class TemplateParam {
      */
     private String customRepositoryClassNamePrefix;
 
+    public String formatCustomRepositoryPackageName(){
+        return repositoryPackageName + "." + customRepositoryPackageSuffix;
+    }
+
+    public String formatCustomRepositorySimpleClassNameByEntitySimpleName(String entitySimpleName) {
+        return String.format("%s%s%s",customRepositoryClassNamePrefix, entitySimpleName, repositoryClassNameSuffix);
+    }
 
     /**
      * 表名转CustomRepositoryClassName

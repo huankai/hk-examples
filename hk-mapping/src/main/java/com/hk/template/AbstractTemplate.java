@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public abstract class AbstractTemplate implements Template {
 
-    private static final String FACTORIES_RESOURCE_PREFIX = "META-INF/templates/";
+    private static final String FACTORIES_RESOURCE_PREFIX = "META-INF/templates";
 
     private static final String TEMPLATE_EXT = "vm";
 

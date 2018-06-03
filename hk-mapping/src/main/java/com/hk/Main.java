@@ -1,7 +1,13 @@
 package com.hk;
 
+import com.google.common.collect.Sets;
+import com.hk.core.MetaData;
 import com.hk.core.TemplateGenerate;
+import com.hk.entity.ConnectionModel;
+import com.hk.entity.Table;
 import com.hk.entity.TemplateParam;
+
+import java.util.List;
 
 /**
  * @author: huangkai
@@ -10,22 +16,22 @@ import com.hk.entity.TemplateParam;
 public class Main {
 
     public static void main(String[] args) {
-//        ConfigurationStorage storage = new DefaultConfigurationStorage();
-//        Configuration configuration = storage.getConfiguration();
-//        MetaData metaData = new MetaData(configuration.getJdbcUrl(), configuration.getUsername(), configuration.getPassword(), configuration.getDriverName());
-//        List<Table> tables = metaData.getTables();// 生成所有表
-////        List<Table> tables = metaData.getTables("scm_semester", "scm_schoolyear"); //生成指定的表名
-//        new TemplateGenerator(storage).generate(tables, true);
-
-//        ConnectionModel connectionModel = new ConnectionModel();
-//        MetaData metaData = new MetaData(connectionModel);
-//        List<Table> tables = metaData.getTables();
-//        TemplateParam prarm = new TemplateParam();
-//        BaseEntityTemplate entityTemplate = prarm.toBaseEntityTemplate("", null);
-//        entityTemplate.genreate();
-//        tables.forEach(table -> prarm.toEntityTemplate(table, entityTemplate, "").genreate());
         TemplateParam param = new TemplateParam();
         param.setBaseEntityClassName("com.hk.core.BaseEntity");
-        TemplateGenerate.generateBaseEntityTemplate(param);
+        param.setEntityPackageName("com.hk.core.emi.entity");
+        param.setIngoreColumns(Sets.newHashSet("id","createdBy","createdDate","lastModifiedBy","lastModifiedDate"));
+
+        param.setRepositoryPackageName("com.hk.core.emi.repository");
+        param.setRepositoryClassNameSuffix("Repository");
+        param.setCustomRepositoryPackageSuffix("custom");
+        param.setCustomRepositoryClassNamePrefix("Custom");
+
+        ConnectionModel connectionModel = new ConnectionModel();
+        connectionModel.setDriverName("com.mysql.jdbc.Driver");
+        connectionModel.setJdbcUrl("jdbc:mysql://localhost:3306/hk_emi?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true");
+        connectionModel.setUsername("root");
+        connectionModel.setPassword("root");
+        List<Table> tables = new MetaData(connectionModel).getTables("sys_app");
+        TemplateGenerate.generate(tables, param);
     }
 }

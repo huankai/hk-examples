@@ -29,7 +29,7 @@ public class Table {
     private String comment;
 
     /**
-     * 实体名
+     * 实体名 simpleName
      */
     private String className;
 
@@ -44,7 +44,8 @@ public class Table {
     private List<Column> columns;
 
 
-    public Table(String tableName, String primaryKey, String comment, String className, String classPrimaryKeyField, List<Column> columns) {
+    public Table(String tableName, String primaryKey, String comment,
+                 String className, String classPrimaryKeyField, List<Column> columns) {
         this.tableName = tableName;
         this.primaryKey = primaryKey;
         this.comment = comment;

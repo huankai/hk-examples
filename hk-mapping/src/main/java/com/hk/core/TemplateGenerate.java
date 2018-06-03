@@ -27,12 +27,12 @@ public class TemplateGenerate {
         tableList.forEach(table -> {
             EntityTemplate entityTemplate = generateEntityTemplate(table, param, baseEntityTemplate);
             CustomRepositoryTemplate customRrepositoryTemplate = generateCustomRepositoryTemplate(table, param);
-            CustomImplRepositoryTemplate customImplRepositoryTemplate = generateCustomRepositoryImplTemplate(table,
-                    customRrepositoryTemplate, param);
-            RepositoryTemplate repositoryTemplate = generateRepositoryTemplate(table, entityTemplate, customRrepositoryTemplate, param);
-            ServiceTemplate serviceTemplate = generateServiceTemplate(table, param);
-            generateServiceImplTemplate(table, repositoryTemplate, serviceTemplate, param);
-            generateControllerTemplate(table, serviceTemplate, param);
+//            CustomImplRepositoryTemplate customImplRepositoryTemplate = generateCustomRepositoryImplTemplate(table,
+//                    customRrepositoryTemplate, param);
+//            RepositoryTemplate repositoryTemplate = generateRepositoryTemplate(table, entityTemplate, customRrepositoryTemplate, param);
+//            ServiceTemplate serviceTemplate = generateServiceTemplate(table, param);
+//            generateServiceImplTemplate(table, repositoryTemplate, serviceTemplate, param);
+//            generateControllerTemplate(table, serviceTemplate, param);
         });
     }
 
@@ -134,10 +134,13 @@ public class TemplateGenerate {
     }
 
     public static CustomRepositoryTemplate generateCustomRepositoryTemplate(Table table, TemplateParam param) {
-        CustomRepositoryTemplate customRepositoryTemplate = new SimpleCustomReopsitoryTemplate();
-        File file = new File(getOutputFile(param.getRootPath(), param.formatCustomRepositoryNameByEntitySimpleName(table.getClassName())), formatJavaFileName(table.getClassName()));
+        String className = param.formatCustomRepositorySimpleClassNameByEntitySimpleName(table.getClassName());
+
+        CustomRepositoryTemplate customRepositoryTemplate = new SimpleCustomRepositoryTemplate();
+        File file = new File(getOutputFile(param.getRootPath(), param.formatCustomRepositoryPackageName()),
+                formatJavaFileName(className));
         customRepositoryTemplate.setOutputFile(file);
-        customRepositoryTemplate.setClassName(table.getClassName());
+        customRepositoryTemplate.setClassName(className);
         customRepositoryTemplate.setComment(table.getComment());
         customRepositoryTemplate.setAuthor(param.getAuthor());
         customRepositoryTemplate.setVersion(param.getVersion());
