@@ -1,5 +1,6 @@
 package com.hk.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -7,7 +8,8 @@ import lombok.Data;
  * @date 2018-5-30 20:35
  */
 @Data
-public class ConnectionModel {
+@AllArgsConstructor
+public abstract class ConnectionModel {
 
     private String jdbcUrl;
 
@@ -15,5 +17,20 @@ public class ConnectionModel {
 
     private String password;
 
-    private String driverName;
+    public abstract String getDriverName();
+
+    public static class MySql5Connection extends ConnectionModel {
+
+
+        public MySql5Connection(String jdbcUrl, String username, String password) {
+            super(jdbcUrl, username, password);
+        }
+
+        @Override
+        public String getDriverName() {
+            return "com.mysql.jdbc.Driver";
+        }
+    }
+
+
 }

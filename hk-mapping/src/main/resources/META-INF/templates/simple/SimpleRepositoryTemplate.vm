@@ -1,0 +1,16 @@
+package $packageName;
+
+#foreach($imp in $importClassNames)
+import $imp;
+#end
+import $entityTemplate.className;
+import $customRepositoryTemplate.className;
+
+/**
+ *
+ * @Description : $simpleClassName
+ * @author : ${author}
+ */
+public interface $simpleClassName extends BaseDao<$entityTemplate.simpleClassName,String>,$customRepositoryTemplate.simpleClassName {
+
+}

@@ -1,0 +1,32 @@
+package $packageName;
+
+#foreach($imp in $importClassNames)
+import $imp;
+#end
+import org.springframework.stereotype.Service;
+import $serviceTemplate.className;
+import $serviceTemplate.entityTemplate.className,
+import com.hk.core.service.impl.BaseServiceImpl;
+import com.hk.core.repository.BaseRepository;
+import $repositoryTemplate.className;
+
+/**
+ *
+ * @Description : $simpleClassName
+ * @author : ${author}
+ */
+@Service
+public class $simpleClassName extends BaseServiceImpl<$serviceTemplate.entityTemplate.simpleClassName,String> implements <$serviceTemplate.simpleClassName,String> {
+
+    @Autowired
+    private $repositoryTemplate.simpleClassName $repositoryTemplate.unSimpleClassName;
+
+    /**
+    *
+    * @return BaseRepository
+    */
+    @Override
+    protected BaseRepository<$serviceTemplate.entityTemplate.simpleClassName, String> getBaseRepository() {
+        return $repositoryTemplate.unSimpleClassName;
+    }
+}

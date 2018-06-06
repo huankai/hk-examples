@@ -27,12 +27,12 @@ public class TemplateGenerate {
         tableList.forEach(table -> {
             EntityTemplate entityTemplate = generateEntityTemplate(table, param, baseEntityTemplate);
             CustomRepositoryTemplate customRrepositoryTemplate = generateCustomRepositoryTemplate(table, param);
-//            CustomImplRepositoryTemplate customImplRepositoryTemplate = generateCustomRepositoryImplTemplate(table,
-//                    customRrepositoryTemplate, param);
-//            RepositoryTemplate repositoryTemplate = generateRepositoryTemplate(table, entityTemplate, customRrepositoryTemplate, param);
-//            ServiceTemplate serviceTemplate = generateServiceTemplate(table, param);
-//            generateServiceImplTemplate(table, repositoryTemplate, serviceTemplate, param);
-//            generateControllerTemplate(table, serviceTemplate, param);
+            CustomImplRepositoryTemplate customImplRepositoryTemplate = generateCustomRepositoryImplTemplate(table,
+                    customRrepositoryTemplate, param);
+            RepositoryTemplate repositoryTemplate = generateRepositoryTemplate(table, entityTemplate, customRrepositoryTemplate, param);
+            ServiceTemplate serviceTemplate = generateServiceTemplate(table, entityTemplate, param);
+            generateServiceImplTemplate(table, repositoryTemplate, serviceTemplate, param);
+            generateControllerTemplate(table, serviceTemplate, param);
         });
     }
 
@@ -49,13 +49,14 @@ public class TemplateGenerate {
         ControllerTemplate controllerTemplate = new SimpleControllerTemplate();
         controllerTemplate.setServiceTemplate(serviceTemplate);
         File file = new File(getOutputFile(param.getRootPath(),
-                param.formatControllerNameByEntitySimpleName(table.getClassName())),
-                formatJavaFileName(table.getClassName()));
+                param.getControllerPackage()),
+                formatJavaFileName(param.formatControllerSimpleNameByEntitySimpleName(table.getClassName())));
         controllerTemplate.setOutputFile(file);
-        controllerTemplate.setClassName(table.getClassName());
+        controllerTemplate.setClassName(param.formatControllerNameByTableName(table.getClassName()));
         controllerTemplate.setComment(table.getComment());
         controllerTemplate.setAuthor(param.getAuthor());
         controllerTemplate.setVersion(param.getVersion());
+        controllerTemplate.setTemplatePath(param.getControllerPath());
         controllerTemplate.genreate();
     }
 
@@ -75,25 +76,28 @@ public class TemplateGenerate {
         ServiceImplTemplate serviceImplTemplate = new SimpleServiceImplTemplate();
         serviceImplTemplate.setRepositoryTemplate(repositoryTemplate);
         serviceImplTemplate.setServiceTemplate(serviceTemplate);
-        File file = new File(getOutputFile(param.getRootPath(), param.formatServiceImplNameByEntitySimpleName(table.getClassName())),
-                formatJavaFileName(table.getClassName()));
+        File file = new File(getOutputFile(param.getRootPath(), param.formatServiceImplPackage()),
+                formatJavaFileName(param.formatServiceImplSimpleNameByEntitySimpleName(table.getClassName())));
         serviceImplTemplate.setOutputFile(file);
-        serviceImplTemplate.setClassName(table.getClassName());
+        serviceImplTemplate.setClassName(param.formatServiceImplNameByTableName(table.getClassName()));
         serviceImplTemplate.setComment(table.getComment());
         serviceImplTemplate.setAuthor(param.getAuthor());
         serviceImplTemplate.setVersion(param.getVersion());
+        serviceImplTemplate.setTemplatePath(param.getServiceImplPath());
         serviceImplTemplate.genreate();
     }
 
-    public static ServiceTemplate generateServiceTemplate(Table table, TemplateParam param) {
+    public static ServiceTemplate generateServiceTemplate(Table table, EntityTemplate entityTemplate, TemplateParam param) {
         ServiceTemplate serviceTemplate = new SimpleServiceTemplate();
-        File file = new File(getOutputFile(param.getRootPath(), param.formatServiceNameByEntitySimpleName(table.getClassName())),
-                formatJavaFileName(table.getClassName()));
+        File file = new File(getOutputFile(param.getRootPath(), param.getServicePackage()),
+                formatJavaFileName(param.formatServiceSimpleNameByEntitySimpleName(table.getClassName())));
         serviceTemplate.setOutputFile(file);
-        serviceTemplate.setClassName(table.getClassName());
+        serviceTemplate.setEntityTemplate(entityTemplate);
+        serviceTemplate.setClassName(param.formatServiceNameByTableName(table.getClassName()));
         serviceTemplate.setComment(table.getComment());
         serviceTemplate.setAuthor(param.getAuthor());
         serviceTemplate.setVersion(param.getVersion());
+        serviceTemplate.setTemplatePath(param.getServicePath());
         serviceTemplate.genreate();
         return serviceTemplate;
     }
@@ -105,13 +109,14 @@ public class TemplateGenerate {
         RepositoryTemplate repositoryTemplate = new SimpleRepositoryTemplate();
         repositoryTemplate.setEntityTemplate(entityTemplate);
         repositoryTemplate.setCustomRepositoryTemplate(customRepositoryTemplate);
-        File file = new File(getOutputFile(param.getRootPath(), param.formatRepositoryNameByEntitySimpleName(table.getClassName())),
-                formatJavaFileName(table.getClassName()));
+        File file = new File(getOutputFile(param.getRootPath(), param.getRepositoryPackageName()),
+                formatJavaFileName(param.formatRepositorySimpleNameByEntitySimpleName(table.getClassName())));
         repositoryTemplate.setOutputFile(file);
-        repositoryTemplate.setClassName(table.getClassName());
+        repositoryTemplate.setClassName(param.formatRepositoryNameByTableName(table.getClassName()));
         repositoryTemplate.setComment(table.getComment());
         repositoryTemplate.setAuthor(param.getAuthor());
         repositoryTemplate.setVersion(param.getVersion());
+        repositoryTemplate.setTemplatePath(param.getRepositoryPath());
         repositoryTemplate.genreate();
         return repositoryTemplate;
     }
@@ -122,13 +127,14 @@ public class TemplateGenerate {
         CustomImplRepositoryTemplate template = new SimpleCustomImplReopsitoryTemplate();
         template.setCustomRepositoryTemplate(repositoryTemplate);
 
-        File file = new File(getOutputFile(param.getRootPath(), param.formatCustomRepositoryImplNameByEntitySimpleName(table.getClassName())),
-                formatJavaFileName(table.getClassName()));
+        File file = new File(getOutputFile(param.getRootPath(), param.formatCustomRepositoryImplPackageName()),
+                formatJavaFileName(param.formatCustomRepositoryImplClassName(table.getClassName())));
         template.setOutputFile(file);
-        template.setClassName(table.getClassName());
+        template.setClassName(param.formatCustomRepositoryImplNameByTableName(table.getTableName()));
         template.setComment(table.getComment());
         template.setAuthor(param.getAuthor());
         template.setVersion(param.getVersion());
+        template.setTemplatePath(param.getCustomImplResositoryPath());
         template.genreate();
         return template;
     }
@@ -140,10 +146,11 @@ public class TemplateGenerate {
         File file = new File(getOutputFile(param.getRootPath(), param.formatCustomRepositoryPackageName()),
                 formatJavaFileName(className));
         customRepositoryTemplate.setOutputFile(file);
-        customRepositoryTemplate.setClassName(className);
+        customRepositoryTemplate.setClassName(param.formatCustomRepositoryNameByTableName(table.getTableName()));
         customRepositoryTemplate.setComment(table.getComment());
         customRepositoryTemplate.setAuthor(param.getAuthor());
         customRepositoryTemplate.setVersion(param.getVersion());
+        customRepositoryTemplate.setTemplatePath(param.getCustomRepositoryPath());
         customRepositoryTemplate.genreate();
         return customRepositoryTemplate;
     }
@@ -157,15 +164,16 @@ public class TemplateGenerate {
                                                         BaseEntityTemplate baseEntityTemplate) {
         File file = new File(getOutputFile(param.getRootPath(), param.getEntityPackageName()), formatJavaFileName(table.getClassName()));
         EntityTemplate entityTemplate = new SimpleEntityTemplate();
+        entityTemplate.setIngoreColumns(param.getIngoreColumns());
         entityTemplate.setTable(table);
         entityTemplate.setOutputFile(file);
         entityTemplate.setBaseEntityTemplate(baseEntityTemplate);
-        entityTemplate.setClassName(table.getClassName());
+        entityTemplate.setClassName(param.formatEntityNameByTableName(table.getClassName()));
         entityTemplate.setComment(table.getComment());
         entityTemplate.setAuthor(param.getAuthor());
         entityTemplate.setVersion(param.getVersion());
-        entityTemplate.setIngoreColumns(param.getIngoreColumns());
         entityTemplate.setUseLombokFramework(param.isUseLombok());
+        entityTemplate.setTemplatePath(param.getEntityPath());
         entityTemplate.genreate();
         return entityTemplate;
     }
@@ -175,9 +183,10 @@ public class TemplateGenerate {
         entityTemplate.setAuthor(param.getAuthor());
         entityTemplate.setClassName(param.getBaseEntityClassName());
         entityTemplate.setVersion(param.getVersion());
-        entityTemplate.setOutputFile(new File(String.format("%s/%s",
-                getOutputFile(param.getRootPath(), param.getBaseEntityPackage()), formatJavaFileName(param.getBaseEntitySimpleName()))));
+        entityTemplate.setOutputFile(new File(getOutputFile(param.getRootPath(), param.getBaseEntityPackage()), formatJavaFileName(param.getBaseEntitySimpleName())));
+        entityTemplate.setTemplatePath(param.getBaseEntityPath());
         entityTemplate.genreate();
+
         return entityTemplate;
     }
 

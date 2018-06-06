@@ -6,5 +6,16 @@ package com.hk.template;
  */
 public class SimpleServiceTemplate extends AbstractTemplate implements ServiceTemplate {
 
+    private EntityTemplate entityTemplate;
 
+
+    @Override
+    public EntityTemplate getEntityTemplate() {
+        return entityTemplate;
+    }
+
+    @Override
+    public void setEntityTemplate(EntityTemplate entityTemplate) {
+        this.entityTemplate = entityTemplate;
+    }
 }

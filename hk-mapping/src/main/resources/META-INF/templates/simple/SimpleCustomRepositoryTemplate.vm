@@ -1,0 +1,14 @@
+package $packageName;
+
+#foreach($imp in $importClassNames)
+import $imp;
+#end
+
+/**
+*
+* @Description : $simpleClassName
+* @author : ${author}
+*/
+public interface $simpleClassName {
+
+}

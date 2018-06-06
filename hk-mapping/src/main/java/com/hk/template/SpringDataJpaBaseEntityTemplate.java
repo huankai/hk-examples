@@ -10,14 +10,20 @@ package com.hk.template;
  */
 public class SpringDataJpaBaseEntityTemplate extends AbstractTemplate implements BaseEntityTemplate {
 
+    /**
+     * @see org.springframework.data.jpa.domain.AbstractPersistable
+     */
+    public static final String[] JPA_TEMPLATE_CLASSNAME = new String[]{
+            "org.hibernate.annotations.GenericGenerator",
+            "org.springframework.data.domain.Persistable",
+            "org.springframework.data.jpa.domain.AbstractPersistable",
+            "org.springframework.util.ClassUtils",
+            "javax.persistence.GeneratedValue",
+            "javax.persistence.Id",
+            "javax.persistence.MappedSuperclass",
+            "javax.persistence.Transient"};
+
     public SpringDataJpaBaseEntityTemplate() {
-        importVar("org.hibernate.annotations.GenericGenerator",
-                "org.springframework.data.domain.Persistable",
-                "org.springframework.data.jpa.domain.AbstractPersistable",
-                "org.springframework.util.ClassUtils",
-                "javax.persistence.GeneratedValue",
-                "javax.persistence.Id",
-                "javax.persistence.MappedSuperclass",
-                "javax.persistence.Transient");
+        importClassNames(JPA_TEMPLATE_CLASSNAME);
     }
 }

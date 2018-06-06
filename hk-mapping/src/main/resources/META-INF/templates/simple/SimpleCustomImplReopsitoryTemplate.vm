@@ -1,0 +1,16 @@
+package $packageName;
+
+#foreach($imp in $importClassNames)
+import $imp;
+#end
+
+import $customRepositoryTemplate.className;
+
+/**
+*
+* @Description : $simpleClassName
+* @author : ${author}
+*/
+public class $simpleClassName implements $customRepositoryTemplate.simpleClassName {
+
+}

@@ -1,8 +1,12 @@
 package com.hk.template;
 
 import com.google.common.collect.Sets;
+import com.hk.commons.util.CollectionUtils;
+import com.hk.commons.util.StringUtils;
+import com.hk.entity.Column;
 import com.hk.entity.Table;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -11,7 +15,7 @@ import java.util.Set;
  */
 public class SimpleEntityTemplate extends AbstractTemplate implements EntityTemplate {
 
-    private static final Set<String> lombokPackage = Sets.newHashSet("lombok.Data", "lombok.EqualsAndHashCode");
+    private static final Collection<String> lombokPackage = Sets.newHashSet("lombok.Data", "lombok.EqualsAndHashCode");
 
     /**
      * 是否使用lombok框架,如果为true,会使用 Lombok 注解自动生成相关方法
@@ -25,7 +29,7 @@ public class SimpleEntityTemplate extends AbstractTemplate implements EntityTemp
     private BaseEntityTemplate baseEntityTemplate;
 
     public SimpleEntityTemplate() {
-        importVar("javax.persistence.*",
+        importClassNames("javax.persistence.*",
                 "org.hibernate.annotations.GenericGenerator");
 
     }
@@ -48,6 +52,9 @@ public class SimpleEntityTemplate extends AbstractTemplate implements EntityTemp
     @Override
     public void setTable(Table table) {
         this.table = table;
+        importClassNames(table.getColumns().stream().filter(column -> !CollectionUtils.contains(getIngoreColumns(),column.getFieldName())
+                && StringUtils.notEquals(column.getFieldType(), column.getFieldSimpleType()))
+                .map(Column::getFieldType).toArray(String[]::new));
     }
 
     @Override
@@ -69,9 +76,9 @@ public class SimpleEntityTemplate extends AbstractTemplate implements EntityTemp
     public void setUseLombokFramework(boolean useLombokFramework) {
         this.useLombokFramework = useLombokFramework;
         if (useLombokFramework) {
-            importVar(lombokPackage.toArray(new String[]{}));
+            importClassNames(lombokPackage.toArray(new String[]{}));
         } else {
-            getImportVar().removeAll(lombokPackage);
+            getImportClassNames().removeAll(lombokPackage);
         }
     }
 }

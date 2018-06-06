@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public abstract class AbstractTemplate implements Template {
 
-    private static final String FACTORIES_RESOURCE_PREFIX = "META-INF/templates";
+    private static final String FACTORIES_RESOURCE_PREFIX = "META-INF/templates/simple/";
 
     private static final String TEMPLATE_EXT = "vm";
 
@@ -54,7 +54,7 @@ public abstract class AbstractTemplate implements Template {
     /**
      * 模板需要导入的变量
      */
-    private Set<String> importVars = Sets.newHashSet();
+    private Set<String> importClassNameSet = Sets.newHashSet();
 
     @Override
     public File getOutputFile() {
@@ -92,8 +92,8 @@ public abstract class AbstractTemplate implements Template {
     }
 
     @Override
-    public Set<String> getImportVar() {
-        return importVars;
+    public Set<String> getImportClassNames() {
+        return importClassNameSet;
     }
 
     @Override

@@ -4,18 +4,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.sjq.core.controller.BaseController;
-import $serviceClassName;
+import $serviceTemplate.className;
 
 /**
  *
- * @Description : $className
+ * @Description :$simpleClassName
  * @author : ${author}
+ * @version : ${version}
  */
 @RestController
 @RequestMapping()
-public class $className extends BaseController {
+public class $simpleClassName extends BaseController {
 
     @Autowired
-    private $serviceClassSimpleName $serviceVar;
+    private $serviceTemplate.simpleClassName $serviceTemplate.unSimpleClassName;
 
 }

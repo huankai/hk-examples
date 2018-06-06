@@ -1,5 +1,6 @@
 package com.hk.entity;
 
+import com.hk.commons.util.StringUtils;
 import lombok.Data;
 
 import java.util.List;
@@ -44,13 +45,12 @@ public class Table {
     private List<Column> columns;
 
 
-    public Table(String tableName, String primaryKey, String comment,
-                 String className, String classPrimaryKeyField, List<Column> columns) {
+    public Table(String tableName, String primaryKey, String comment, List<Column> columns) {
         this.tableName = tableName;
         this.primaryKey = primaryKey;
         this.comment = comment;
-        this.className = className;
-        this.classPrimaryKeyField = classPrimaryKeyField;
+        this.className = StringUtils.lineToBigHump(tableName);
+        this.classPrimaryKeyField = StringUtils.lineToSmallHump(primaryKey);
         this.columns = columns;
     }
 }

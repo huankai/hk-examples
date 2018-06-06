@@ -28,6 +28,23 @@ public class TemplateEngine {
 
     private static final String CLASSPATH_RESOURCE_LOADER = "classpath.resource.loader.class";
 
+//    public enum ResourceLoaderEnum {
+//
+//        CLASSPATH,
+//
+//        STRING,
+//
+//        URL,
+//
+//        FILE,
+//
+//        JAR
+//    }
+
+//    public static String parseTemplate(Template template) {
+//        return parseTemplate(template, ResourceLoaderEnum.CLASSPATH);
+//    }
+
     public static String parseTemplate(Template template) {
         try (StringWriter writer = new StringWriter()) {
             VelocityEngine engine = getVelocityEngine();
@@ -49,7 +66,7 @@ public class TemplateEngine {
 
     private static VelocityEngine getVelocityEngine() throws Exception {
         Properties prop = new Properties();
-        prop.put(RuntimeConstants.RESOURCE_LOADER, CLASS_PATH);
+        prop.put(RuntimeConstants.RESOURCE_LOADER, "classpath");
         prop.put(CLASSPATH_RESOURCE_LOADER, ClasspathResourceLoader.class.getName());
         VelocityEngine engine = new VelocityEngine();
         engine.init(prop);

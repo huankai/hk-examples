@@ -1,7 +1,7 @@
-package ${packageName};
+package $packageName;
 
 import ${baseEntityTemplate.className};
-#foreach($imp in $importVar)
+#foreach($imp in $importClassNames)
 import $imp;
 #end
 

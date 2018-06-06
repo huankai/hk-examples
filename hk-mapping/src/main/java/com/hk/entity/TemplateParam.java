@@ -82,7 +82,7 @@ public class TemplateParam {
      * generate class name is
      * </p>
      */
-    private String repositoryClassNameSuffix;
+    private String repositoryClassNameSuffix = "Repository";
 
     /**
      * 表名转RepositoryClassName
@@ -98,19 +98,23 @@ public class TemplateParam {
         return String.format("%s.%s%s", repositoryPackageName, entitySimpleName, repositoryClassNameSuffix);
     }
 
-    private String customRepositoryPackageSuffix;
+    public String formatRepositorySimpleNameByEntitySimpleName(String entitySimpleName) {
+        return String.format("%s%s", entitySimpleName, repositoryClassNameSuffix);
+    }
+
+    private String customRepositoryPackageSuffix = "custom";
 
     /**
      * 前缀
      */
-    private String customRepositoryClassNamePrefix;
+    private String customRepositoryClassNamePrefix = "Custom";
 
-    public String formatCustomRepositoryPackageName(){
+    public String formatCustomRepositoryPackageName() {
         return repositoryPackageName + "." + customRepositoryPackageSuffix;
     }
 
     public String formatCustomRepositorySimpleClassNameByEntitySimpleName(String entitySimpleName) {
-        return String.format("%s%s%s",customRepositoryClassNamePrefix, entitySimpleName, repositoryClassNameSuffix);
+        return String.format("%s%s%s", customRepositoryClassNamePrefix, entitySimpleName, repositoryClassNameSuffix);
     }
 
     /**
@@ -128,12 +132,12 @@ public class TemplateParam {
                 customRepositoryPackageSuffix, customRepositoryClassNamePrefix, entitySimpleName, repositoryClassNameSuffix);
     }
 
-    private String customRepositoryImplPackageSuffix;
+    private String customRepositoryImplPackageSuffix = "impl";
 
     /**
      * 后缀
      */
-    private String customRepositoryImplClassNameSuffix;
+    private String customRepositoryImplClassNameSuffix = "Impl";
 
     /**
      * 表名转CustomRepositoryImplClassName
@@ -150,9 +154,17 @@ public class TemplateParam {
                 customRepositoryImplPackageSuffix, entitySimpleName, repositoryClassNameSuffix, customRepositoryImplClassNameSuffix);
     }
 
+    public String formatCustomRepositoryImplPackageName() {
+        return repositoryPackageName + "." + customRepositoryImplPackageSuffix;
+    }
+
+    public String formatCustomRepositoryImplClassName(String entitySimpleName) {
+        return String.format("%s%s%s", entitySimpleName, repositoryClassNameSuffix, customRepositoryImplClassNameSuffix);
+    }
+
     private String servicePackage;
 
-    private String serviceClassNameSuffix;
+    private String serviceClassNameSuffix = "Service";
 
     /**
      * 表名转ServiceClassName
@@ -169,9 +181,13 @@ public class TemplateParam {
                 entitySimpleName, serviceClassNameSuffix);
     }
 
-    private String serviceImplPackageSuffix;
+    public String formatServiceSimpleNameByEntitySimpleName(String entitySimpleName) {
+        return String.format("%s%s", entitySimpleName, serviceClassNameSuffix);
+    }
 
-    private String serviceImplClassNameSuffix;
+    private String serviceImplPackageSuffix = "impl";
+
+    private String serviceImplClassNameSuffix = "ServiceImpl";
 
     /**
      * 表名转ServiceClassName
@@ -188,9 +204,17 @@ public class TemplateParam {
                 entitySimpleName, serviceImplClassNameSuffix);
     }
 
+    public String formatServiceImplSimpleNameByEntitySimpleName(String entitySimpleName) {
+        return String.format("%s%s", entitySimpleName, serviceImplClassNameSuffix);
+    }
+
+    public String formatServiceImplPackage() {
+        return String.format("%s.%s", servicePackage, serviceImplPackageSuffix);
+    }
+
     private String controllerPackage;
 
-    private String controllerClassNameSuffix;
+    private String controllerClassNameSuffix = "Controller";
 
     /**
      * 表名转ControllerClassName
@@ -207,18 +231,25 @@ public class TemplateParam {
                 controllerClassNameSuffix);
     }
 
+    public String formatControllerSimpleNameByEntitySimpleName(String entitySimpleName) {
+        return String.format("%s%s", entitySimpleName, controllerClassNameSuffix);
+    }
 
-//
-//    public CustomRepositoryTemplate toCustomRepositoryTemplate(Table table, String templatePath) {
-//        File file = new File(getOutputFile(String.format("%s.%s", repositoryPackageName, customRepositoryPackageSuffix)),
-//                formatJavaFileName(String.format("%s%s", table.getClassName(), repositoryClassNameSuffix)));
-//        return new SimpleCustomReopsitoryTemplate(file, table.getClassName(), templatePath, table.getComment(), author, version);
-//    }
-//
-//    public RepositoryTemplate toRepositoryTemplate(String templatePath) {
-//        return null;
-//
-//    }
 
+    private String baseEntityPath;
+
+    private String entityPath;
+
+    private String repositoryPath;
+
+    private String customRepositoryPath;
+
+    private String customImplResositoryPath;
+
+    private String servicePath;
+
+    private String serviceImplPath;
+
+    private String controllerPath;
 
 }

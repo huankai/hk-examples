@@ -3,12 +3,14 @@ package com.hk.template;
 import com.hk.commons.util.CollectionUtils;
 import com.hk.commons.util.StringUtils;
 import com.hk.commons.util.date.DatePattern;
+import com.hk.commons.util.date.DateTimeUtils;
 import com.hk.core.TemplateEngine;
 import com.hk.util.FileAssistant;
 
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -40,6 +42,10 @@ public interface Template {
      */
     default String getSimpleClassName() {
         return StringUtils.substringAfterLast(getClassName(), ".");
+    }
+
+    default String getUnSimpleClassName(){
+        return StringUtils.uncapitalize(getSimpleClassName());
     }
 
     /**
@@ -74,7 +80,7 @@ public interface Template {
     void setComment(String comment);
 
     /**
-     * 日期
+     * 注释日期
      *
      * @return
      */
@@ -83,27 +89,45 @@ public interface Template {
     }
 
     /**
-     * 模板需要导入的变量值
+     * string format date
+     *
+     * @param date
+     */
+    void setDateAsString(String date);
+
+    /**
+     * @param date
+     * @param pattern
+     */
+    default void setDateAsString(Date date, DatePattern pattern) {
+        setDateAsString(DateTimeUtils.dateToString(date, pattern));
+    }
+
+    /**
+     * @param localDateTime
+     * @param pattern
+     */
+    default void setDateAsString(LocalDateTime localDateTime, DatePattern pattern) {
+        setDateAsString(DateTimeUtils.localDateTimeToString(localDateTime, pattern));
+    }
+
+    /**
+     * <p>
+     * 模板需要导入的包
+     * </p>
      *
      * @return
      */
-    Set<String> getImportVar();
+    Set<String> getImportClassNames();
 
     /**
      * import var
      *
      * @param vars
      */
-    default void importVar(String... vars) {
-        CollectionUtils.addAll(getImportVar(), vars);
+    default void importClassNames(String... vars) {
+        CollectionUtils.addAll(getImportClassNames(), vars);
     }
-
-    /**
-     * string format date
-     *
-     * @param date
-     */
-    void setDateAsString(String date);
 
     /**
      * 作者

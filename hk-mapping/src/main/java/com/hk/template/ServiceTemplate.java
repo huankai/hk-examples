@@ -7,4 +7,7 @@ package com.hk.template;
 public interface ServiceTemplate extends Template {
 
 
+    EntityTemplate getEntityTemplate();
+
+    void setEntityTemplate(EntityTemplate entityTemplate);
 }
