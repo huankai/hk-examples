@@ -1,8 +1,8 @@
 package com.hk.weixin.example.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.hk.core.domain.AbstractAuditable;
-import com.hk.core.domain.AbstractUUIDPersistable;
+import com.hk.core.data.jpa.domain.AbstractAuditable;
+import com.hk.core.data.jpa.domain.AbstractUUIDPersistable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,104 +1,109 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>hk-weixin-example</artifactId>
-	<packaging>jar</packaging>
+    <artifactId>hk-weixin-example</artifactId>
+    <packaging>jar</packaging>
 
-	<name>hk-weixin-example</name>
-	<url>http://maven.apache.org</url>
+    <name>hk-weixin-example</name>
+    <url>http://maven.apache.org</url>
 
-	<parent>
-		<groupId>com.hk</groupId>
-		<artifactId>hk-examples</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>com.hk</groupId>
+        <artifactId>hk-examples</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<weixin.java.version>2.9.0</weixin.java.version>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <weixin.java.version>2.9.0</weixin.java.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.hk</groupId>
-			<artifactId>hk-commons-util</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.hk</groupId>
-			<artifactId>hk-core-authentication-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.hk</groupId>
-			<artifactId>hk-core-authentication-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.hk</groupId>
-			<artifactId>hk-core-autoconfigure</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.hk</groupId>
-			<artifactId>hk-core-web</artifactId>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-commons-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-core-authentication-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-core-authentication-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-core-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-core-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-core-web</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
 
-		<!-- 微信公众平台 -->
-		<dependency>
-			<groupId>com.github.binarywang</groupId>
-			<artifactId>weixin-java-mp</artifactId>
-			<version>${weixin.java.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-databind</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+        <!-- 微信公众平台 -->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>${weixin.java.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
-		<!--</dependency>-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-freemarker</artifactId>
-			<version>1.5.9.RELEASE</version>
-		</dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+        <!--</dependency>-->
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <version>1.5.9.RELEASE</version>
+        </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>

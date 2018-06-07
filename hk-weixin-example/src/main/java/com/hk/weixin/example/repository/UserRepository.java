@@ -1,11 +1,10 @@
 package com.hk.weixin.example.repository;
 
-import java.util.Optional;
-
+import com.hk.core.data.jpa.repository.StringRepository;
+import com.hk.weixin.example.domain.User;
 import org.springframework.data.jpa.repository.Query;
 
-import com.hk.core.repository.StringRepository;
-import com.hk.weixin.example.domain.User;
+import java.util.Optional;
 
 /**
  * 
