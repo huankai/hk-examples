@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
- * @author huangkai
+ * @author: kevin
  * @date 2017年12月19日上午10:57:48
  */
 @ServletComponentScan(basePackages = {"com.hk.core"})

@@ -11,7 +11,7 @@ import com.hk.commons.util.ConverterUtils;
 /**
  * 转换工具类测试
  * 
- * @author huangkai
+ * @author: kevin
  *
  */
 public class ConverterTest {

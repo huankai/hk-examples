@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * 数据库连接工具类
  *
- * @author: huangkai
+ * @author: kevin
  * @date 2018-05-29 11:07
  */
 public class ConnectionUtils {

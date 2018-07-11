@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * 消息消费者
  * 
- * @author kally
+ * @author: kevin
  * @date 2018年4月3日下午2:16:20
  */
 @SpringBootApplication

@@ -38,6 +38,7 @@
         <module>netty-example</module>
         <module>hk-mapping</module>
         <module>hk-mapping-web</module>
+        <module>hk-solr-example</module>
     </modules>
 
     <dependencyManagement>

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 /**
  * 消息消费
  * 
- * @author kally
+ * @author: kevin
  * @date 2018年4月3日下午2:17:23
  */
 @Service

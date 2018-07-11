@@ -5,7 +5,7 @@ import com.hk.entity.Table;
 import java.util.Set;
 
 /**
- * @author huangkai
+ * @author: kevin
  * @date 2018-5-30 20:46
  */
 public interface EntityTemplate extends Template {

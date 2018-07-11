@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 表实体
  *
- * @author: huangkai
+ * @author: kevin
  * @date 2018-05-29 10:59
  */
 @Data

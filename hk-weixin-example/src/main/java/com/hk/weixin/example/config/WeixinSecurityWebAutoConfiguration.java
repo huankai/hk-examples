@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 /**
  * 微信二维码配置
  *
- * @author kally
+ * @author: kevin
  * @date 2018年2月8日下午3:07:41
  */
 @Order(4)//此order必须小于 父类的order值，否则父类会覆盖子类配置

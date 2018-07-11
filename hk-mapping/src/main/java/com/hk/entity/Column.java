@@ -13,7 +13,7 @@ import static com.hk.entity.Column.MappingModel.STRING_MAPPING;
 /**
  * 列实体
  *
- * @author: huangkai
+ * @author: kevin
  * @date 2018-05-29 11:03
  */
 @Data

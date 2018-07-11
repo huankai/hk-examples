@@ -6,7 +6,7 @@ import com.hk.commons.util.FileUtils;
 import java.io.*;
 
 /**
- * @author: huangkai
+ * @author: kevin
  * @date 2018-05-29 15:19
  */
 public class FileAssistant {

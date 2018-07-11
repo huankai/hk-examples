@@ -10,13 +10,14 @@ import com.hk.util.FileAssistant;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Set;
 
 /**
  * 模板标记接口
  *
- * @author: huangkai
+ * @author: kevin
  * @date 2018-05-29 13:11
  */
 public interface Template {
@@ -44,7 +45,7 @@ public interface Template {
         return StringUtils.substringAfterLast(getClassName(), ".");
     }
 
-    default String getUnSimpleClassName(){
+    default String getUnSimpleClassName() {
         return StringUtils.uncapitalize(getSimpleClassName());
     }
 
@@ -126,7 +127,7 @@ public interface Template {
      * @param vars
      */
     default void importClassNames(String... vars) {
-        CollectionUtils.addAll(getImportClassNames(), vars);
+        CollectionUtils.addAll(getImportClassNames(), Arrays.asList(vars));
     }
 
     /**

@@ -3,7 +3,7 @@ package com.hk.amqp.example.domain;
 /**
  * 通知附件信息
  * 
- * @author kally
+ * @author kevin
  * @date 2018年3月5日下午1:28:02
  */
 public class NoticeAttachment {

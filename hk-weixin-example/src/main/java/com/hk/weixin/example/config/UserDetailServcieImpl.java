@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.Optional;
 
 /**
- * @author kally
+ * @author: kevin
  * @date 2018年2月5日下午3:03:07
  */
 public class UserDetailServcieImpl extends AbstractUserDetailService {

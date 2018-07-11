@@ -11,7 +11,7 @@ import com.hk.weixin.example.security.token.WechatQrCodeAuthenticationToken;
 
 /**
  * 微信二维码认证提供者
- * @author kally
+ * @author: kevin
  * @date 2018年2月8日上午11:25:39
  */
 public class WechatQrCodeAuthenticationProvider implements AuthenticationProvider {

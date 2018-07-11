@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 通知
  * 
- * @author kally
+ * @author kevin
  * @date 2018年3月5日下午1:27:32
  */
 public class Notice {

@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 /**
- * @author huangkai
+ * @author: kevin
  * @date 2017年10月31日下午1:08:08
  */
 @SuppressWarnings("serial")

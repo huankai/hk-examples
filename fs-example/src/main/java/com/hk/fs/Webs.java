@@ -20,7 +20,7 @@ import java.net.URLEncoder;
 /**
  * web相关的工具类
  * 
- * @author huangkai
+ * @author: kevin
  * @date 2017年9月22日下午2:51:02
  */
 public abstract class Webs {

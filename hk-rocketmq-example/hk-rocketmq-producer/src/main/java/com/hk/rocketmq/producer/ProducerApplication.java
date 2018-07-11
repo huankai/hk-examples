@@ -16,7 +16,7 @@ import org.springframework.messaging.support.MessageBuilder;
 /**
  * 生产者
  * 
- * @author kally
+ * @author: kevin
  * @date 2018年4月3日下午1:11:56
  */
 @SpringBootApplication

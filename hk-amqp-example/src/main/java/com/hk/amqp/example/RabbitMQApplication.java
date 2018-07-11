@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * 
- * @author kally
+ * @author kevin
  * @date 2018年3月2日上午11:18:14
  */
 @SpringBootApplication

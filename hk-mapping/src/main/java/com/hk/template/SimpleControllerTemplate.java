@@ -2,7 +2,7 @@ package com.hk.template;
 
 
 /**
- * @author huangkai
+ * @author: kevin
  * @date 2018-5-30 21:23
  */
 public class SimpleControllerTemplate extends AbstractTemplate implements ControllerTemplate {

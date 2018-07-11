@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * 微信二维码回调过滤器
  *
- * @author kally
+ * @author: kevin
  * @date 2018年2月8日上午11:18:31
  */
 public class WechatQrCodeCallbackAuthenticationFilter extends AbstractAuthenticationProcessingFilter {

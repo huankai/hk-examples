@@ -10,7 +10,7 @@ import javax.persistence.Table;
 /**
  * 用户基本信息
  * 
- * @author huangkai
+ * @author: kevin
  * @date 2017年9月22日下午3:05:36
  */
 @Entity

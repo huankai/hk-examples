@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 /**
  * 发送
  * 
- * @author kally
+ * @author kevin
  * @date 2018年3月5日下午1:35:30
  */
 @Service

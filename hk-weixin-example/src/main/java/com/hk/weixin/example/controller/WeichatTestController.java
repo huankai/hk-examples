@@ -16,7 +16,7 @@ import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 /**
  * weixin 测试类
  * 
- * @author huangkai
+ * @author: kevin
  * @date 2017年12月19日下午1:38:04
  */
 @RestController

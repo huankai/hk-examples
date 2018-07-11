@@ -6,7 +6,7 @@ package com.hk.amqp.example.domain;
 /**
  * 发送通知的用户
  * 
- * @author kally
+ * @author kevin
  * @date 2018年3月5日下午1:30:36
  */
 public class NoticeUser {
