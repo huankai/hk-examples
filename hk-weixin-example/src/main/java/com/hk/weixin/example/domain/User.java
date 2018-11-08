@@ -11,7 +11,7 @@ import javax.persistence.Table;
  * 用户基本信息
  * 
  * @author: kevin
- * @date 2017年9月22日下午3:05:36
+ * @date: 2017年9月22日下午3:05:36
  */
 @Entity
 @Table(name = "sys_user")

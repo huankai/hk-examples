@@ -1,6 +1,5 @@
 package com.hk.solr.example;
 
-import com.google.common.collect.Maps;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
@@ -13,11 +12,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author: kevin
- * @date 2018-06-27 09:05
+ * @date: 2018-06-27 09:05
  */
 
 public class SolrTest {
@@ -26,12 +26,12 @@ public class SolrTest {
 
     @Before
     public void init() {
-        solrClient = new HttpSolrClient("http://192.168.64.128:8983/solr/test/");
+        solrClient = new HttpSolrClient.Builder().withBaseSolrUrl("http://192.168.64.128:8983/solr/test/").build();
     }
 
     @Test
     public void query() throws IOException, SolrServerException {
-        Map<String, String> map = Maps.newHashMap();
+        Map<String, String> map = new HashMap<>();
         map.put("q", "*:*");// 查询条件
         SolrParams params = new MapSolrParams(map);
         QueryResponse response = solrClient.query(params);
@@ -43,7 +43,7 @@ public class SolrTest {
     }
 
     @After
-    public void distory() {
+    public void destroy() {
         if (null != solrClient) {
             try {
                 solrClient.close();

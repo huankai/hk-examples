@@ -9,7 +9,7 @@ import $serviceClassName;
 /**
  *
  * @Description : $className
- * @author : ${author}
+ * @author: : ${author}
  */
 @RestController
 @RequestMapping()

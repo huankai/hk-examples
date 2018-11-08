@@ -9,7 +9,7 @@ import $customRepositoryTemplate.className;
 /**
  *
  * @Description : $simpleClassName
- * @author : ${author}
+ * @author: : ${author}
  */
 public interface $simpleClassName extends BaseDao<$entityTemplate.simpleClassName,String>,$customRepositoryTemplate.simpleClassName {
 

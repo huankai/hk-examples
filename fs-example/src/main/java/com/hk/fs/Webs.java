@@ -21,7 +21,7 @@ import java.net.URLEncoder;
  * web相关的工具类
  * 
  * @author: kevin
- * @date 2017年9月22日下午2:51:02
+ * @date: 2017年9月22日下午2:51:02
  */
 public abstract class Webs {
 
@@ -250,7 +250,7 @@ public abstract class Webs {
 		response.setContentType("application/json;charset=UTF-8");
 		try(PrintWriter writer = response.getWriter()) {
 			response.setStatus(status);
-			writer.write(JsonUtils.toJSONString(result));
+			writer.write(JsonUtils.serialize(result));
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());

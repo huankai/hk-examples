@@ -2,7 +2,7 @@ package com.hk.template;
 
 /**
  * @author: kevin
- * @date 2018-5-30 20:52
+ * @date: 2018-5-30 20:52
  */
 public interface RepositoryTemplate extends Template {
 

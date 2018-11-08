@@ -1,15 +1,8 @@
-/**
- * 
- */
 package com.hk.fs;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import com.hk.commons.files.FileHandler;
-import com.hk.commons.files.LocalFileHandler;
 
 /**
  * @author: kevin
@@ -30,15 +23,15 @@ public class FileApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FileApplication.class, args);
 	}
-	
-	/**
-	 * 本地文件处理器
-	 * 
-	 * @return
-	 */
-	@Bean
-	public FileHandler fileHandler() {
-		return new LocalFileHandler(basePath);
-	}
+//
+//	/**
+//	 * 本地文件处理器
+//	 *
+//	 * @return
+//	 */
+//	@Bean
+//	public FileHandler fileHandler() {
+//		return new LocalFileHandler(basePath);
+//	}
 
 }

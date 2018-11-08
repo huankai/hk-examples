@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author: kevin
- * @date 2018-05-29 20:07
+ * @date: 2018-05-29 20:07
  */
 @Controller
 @RequestMapping

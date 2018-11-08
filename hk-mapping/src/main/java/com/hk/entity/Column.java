@@ -14,7 +14,7 @@ import static com.hk.entity.Column.MappingModel.STRING_MAPPING;
  * 列实体
  *
  * @author: kevin
- * @date 2018-05-29 11:03
+ * @date: 2018-05-29 11:03
  */
 @Data
 public class Column {

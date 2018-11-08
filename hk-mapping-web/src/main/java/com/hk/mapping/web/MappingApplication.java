@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author: kevin
- * @date 2018-05-29 20:08
+ * @date: 2018-05-29 20:08
  */
 @SpringBootApplication
 public class MappingApplication {

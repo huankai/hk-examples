@@ -1,6 +1,5 @@
 package com.hk.core;
 
-import com.google.common.collect.Lists;
 import com.hk.commons.util.ArrayUtils;
 import com.hk.commons.util.CollectionUtils;
 import com.hk.commons.util.StringUtils;
@@ -18,7 +17,7 @@ import java.util.List;
 
 /**
  * @author: kevin
- * @date 2018-05-29 13:32
+ * @date: 2018-05-29 13:32
  */
 public class MetaData {
 
@@ -38,7 +37,7 @@ public class MetaData {
      * @return
      */
     public List<String> getTableNameList() {
-        List<String> result = Lists.newArrayList();
+        List<String> result = new ArrayList<>();
         try {
             ResultSet rs = metaData.getTables(null, "%", "%", new String[]{"TABLE"});
             while (rs.next()) {

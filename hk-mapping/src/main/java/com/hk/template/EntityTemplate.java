@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * @author: kevin
- * @date 2018-5-30 20:46
+ * @date: 2018-5-30 20:46
  */
 public interface EntityTemplate extends Template {
 

@@ -9,7 +9,7 @@ import $customRepositoryTemplate.className;
 /**
 *
 * @Description : $simpleClassName
-* @author : ${author}
+* @author: : ${author}
 */
 public class $simpleClassName implements $customRepositoryTemplate.simpleClassName {
 

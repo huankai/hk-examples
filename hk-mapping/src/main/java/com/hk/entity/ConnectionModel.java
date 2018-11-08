@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @author: kevin
- * @date 2018-5-30 20:35
+ * @date: 2018-5-30 20:35
  */
 @Data
 @AllArgsConstructor

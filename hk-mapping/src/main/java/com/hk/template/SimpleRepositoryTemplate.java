@@ -2,7 +2,7 @@ package com.hk.template;
 
 /**
  * @author: kevin
- * @date 2018-5-30 21:35
+ * @date: 2018-5-30 21:35
  */
 public class SimpleRepositoryTemplate extends AbstractTemplate implements RepositoryTemplate {
 

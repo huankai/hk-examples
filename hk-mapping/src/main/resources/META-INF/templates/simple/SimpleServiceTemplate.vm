@@ -8,7 +8,7 @@ import $entityTemplate.className;
 /**
  *
  * @Description : $simpleClassName
- * @author : ${author}
+ * @author: : ${author}
  */
 public interface $simpleClassName extends BaseService<$entityTemplate.simpleClassName,String> {
 

@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 /**
  *
  * @Description : ${table.comment}
- * @author : ${author}
+ * @author: : ${author}
  */
 @Entity
 @Table(name = "${table.tableName}")

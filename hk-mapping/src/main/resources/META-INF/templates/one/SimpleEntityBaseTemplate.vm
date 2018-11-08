@@ -28,10 +28,10 @@ public abstract class BaseEntity<PK extends Serializable> implements Persistable
     @Transient
     private String searchValue;
     @Transient
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @date:TimeFormat(pattern = "yyyy-MM-dd")
     private Date searchDateStartValue;
     @Transient
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @date:TimeFormat(pattern = "yyyy-MM-dd")
     private Date searchDateEndValue;
 
     public abstract void setId(final PK id);

@@ -7,7 +7,7 @@ import $imp;
 /**
 *
 * @Description : $simpleClassName
-* @author : ${author}
+* @author: : ${author}
 */
 public interface $simpleClassName {
 

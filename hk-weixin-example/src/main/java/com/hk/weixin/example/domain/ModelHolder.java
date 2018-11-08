@@ -1,6 +1,6 @@
 package com.hk.weixin.example.domain;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hk.core.data.jpa.domain.AbstractAuditable;
 import com.hk.core.data.jpa.domain.AbstractUUIDPersistable;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 /**
  * @author: kevin
- * @date 2017年10月31日下午1:08:08
+ * @date: 2017年10月31日下午1:08:08
  */
 @SuppressWarnings("serial")
 public class ModelHolder {
@@ -143,7 +143,7 @@ public class ModelHolder {
         @Column(name = "user_name")
         private String userName;
 
-        @JSONField(serialize = false, deserialize = false)
+        @JsonIgnore
         @Column(name = "pass_word")
         private String passWord;
 

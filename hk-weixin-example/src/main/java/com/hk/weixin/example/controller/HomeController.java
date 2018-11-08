@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author: kevin
- * @date 2018年2月5日下午2:40:18
+ * @date: 2018年2月5日下午2:40:18
  */
 @Controller
 public class HomeController {

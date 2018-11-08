@@ -13,7 +13,7 @@ import $repositoryTemplate.className;
 /**
  *
  * @Description : $simpleClassName
- * @author : ${author}
+ * @author: : ${author}
  */
 @Service
 public class $simpleClassName extends BaseServiceImpl<$serviceTemplate.entityTemplate.simpleClassName,String> implements <$serviceTemplate.simpleClassName,String> {

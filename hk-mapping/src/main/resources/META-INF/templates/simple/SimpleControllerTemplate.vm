@@ -9,7 +9,7 @@ import $serviceTemplate.className;
 /**
  *
  * @Description :$simpleClassName
- * @author : ${author}
+ * @author: : ${author}
  * @version : ${version}
  */
 @RestController

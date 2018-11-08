@@ -7,7 +7,7 @@ import java.io.*;
 
 /**
  * @author: kevin
- * @date 2018-05-29 15:19
+ * @date: 2018-05-29 15:19
  */
 public class FileAssistant {
 

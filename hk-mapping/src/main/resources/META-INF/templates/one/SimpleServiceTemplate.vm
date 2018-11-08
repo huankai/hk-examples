@@ -7,7 +7,7 @@ import ${entityClassName};
 /**
  *
  * @Description : $className
- * @author : ${author}
+ * @author: : ${author}
  */
 @Service
 public class $className extends JpaService<$entitySimpleClassName,String> {

@@ -57,13 +57,13 @@ public class ExcelReadTest {
     /* ***** print ************* */
     private <T> void print(ReadResult<T> result) {
         System.out.println("解析的数据：");
-        result.getAllSheetData().forEach(item -> System.out.println(JsonUtils.toJSONString(item)));
+        result.getAllSheetData().forEach(item -> System.out.println(JsonUtils.serialize(item)));
 
         System.err.println("----------------------------------------");
-        System.out.println("标题行：" + JsonUtils.toFormatJSONString(result.getTitleList()));
+        System.out.println("标题行：" + JsonUtils.serialize(result.getTitleList(), true));
 
         System.err.println("------------------------------");
-        System.out.println("验证错误数据：" + JsonUtils.toJSONString(result.getErrorLogList()));
+        System.out.println("验证错误数据：" + JsonUtils.serialize(result.getErrorLogList()));
     }
 
 }

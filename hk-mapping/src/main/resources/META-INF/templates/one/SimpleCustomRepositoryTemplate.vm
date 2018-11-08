@@ -4,7 +4,7 @@ package $packageName;
 /**
 *
 * @Description : $className
-* @author : ${author}
+* @author: : ${author}
 */
 public interface $className {
 

@@ -6,7 +6,7 @@ import $customReposirotyClassName;
 /**
 *
 * @Description : $className
-* @author : ${author}
+* @author: : ${author}
 */
 public class $className extends BaseDaoImpl implements $customReposirotySimpleClassName {
 

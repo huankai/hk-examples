@@ -2,7 +2,7 @@ package com.hk.template;
 
 /**
  * @author: kevin
- * @date 2018-5-30 20:54
+ * @date: 2018-5-30 20:54
  */
 public interface ServiceImplTemplate extends Template {
 

@@ -23,7 +23,7 @@ import me.chanjar.weixin.mp.bean.menu.WxMpMenu;
  *      实际项目中无需这样，根据自己需要添加对应接口即可
  * </pre>
  *
- * @author Binary Wang(https://github.com/binarywang)
+ * @author: Binary Wang(https://github.com/binarywang)
  */
 @RestController
 @RequestMapping("/wechat/menu")

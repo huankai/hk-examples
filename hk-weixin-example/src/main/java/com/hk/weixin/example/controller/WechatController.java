@@ -17,7 +17,7 @@ import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 
 /**
- * @author Binary Wang(https://github.com/binarywang)
+ * @author: Binary Wang(https://github.com/binarywang)
  */
 @RestController
 @RequestMapping("/wechat/portal")

@@ -1,164 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.hk</groupId>
     <artifactId>hk-examples</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>2.1.0.RELEASE</version>
     <packaging>pom</packaging>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
-    </parent>
-
-    <name>hk-examples</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-
-        <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
-        <thymeleaf.version>3.0.5.RELEASE</thymeleaf.version>
-        <thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
-
-        <hk.commons.version>1.0.0.RELEASE</hk.commons.version>
-        <hk.core.version>1.0.0.RELEASE</hk.core.version>
     </properties>
 
     <modules>
         <module>fs-example</module>
-        <module>hk-amqp-example</module>
-        <module>hk-poi-example</module>
-        <module>hk-rocketmq-example</module>
-        <module>hk-util-example</module>
-        <module>hk-weixin-example</module>
-        <module>netty-example</module>
         <module>hk-mapping</module>
         <module>hk-mapping-web</module>
+        <module>hk-poi-example</module>
         <module>hk-solr-example</module>
+        <module>hk-util-example</module>
+        <module>hk-weixin-example</module>
+        <module>hk-kafka-example</module>
+        <module>hk-oracle-example</module>
+        <module>hk-messsage-websocket-example</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
                 <groupId>com.hk</groupId>
-                <artifactId>hk-commons-util</artifactId>
-                <version>${hk.commons.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-commons-poi</artifactId>
-                <version>${hk.commons.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-commons-httpclient</artifactId>
-                <version>${hk.commons.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-core-data</artifactId>
-                <version>${hk.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-core-web</artifactId>
-                <version>${hk.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-core-authentication-api</artifactId>
-                <version>${hk.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-core-autoconfigure</artifactId>
-                <version>${hk.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-core-authentication-security</artifactId>
-                <version>${hk.core.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-core-data-jdbc</artifactId>
-                <version>${hk.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-core-data-jpa</artifactId>
-                <version>${hk.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-core-data-mybatis</artifactId>
-                <version>${hk.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter</artifactId>
-                <version>${spring.boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <!-- Spring boot log4j2 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-log4j2</artifactId>
-                <version>${spring.boot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-amqp</artifactId>
-                <version>${spring.boot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <version>${spring.boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-databind</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-amqp</artifactId>
-                <version>${spring.boot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-mail</artifactId>
-                <version>${spring.boot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>${spring.boot.version}</version>
+                <artifactId>hk-core-spring-boot-dependencies</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -201,7 +76,7 @@
 
                 <!-- 运行Maven 单元测试 -->
                 <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20.1</version> </plugin> -->
+                <version>2.20.1</version> </plugin> -->
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -209,25 +84,12 @@
                     <version>3.0.2</version>
                 </plugin>
 
-                <!-- maven war -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.0</version>
-                </plugin>
-
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring.boot.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <version>2.1.0.RELEASE</version>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
