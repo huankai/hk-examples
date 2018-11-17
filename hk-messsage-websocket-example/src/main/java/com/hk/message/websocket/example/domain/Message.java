@@ -3,7 +3,7 @@ package com.hk.message.websocket.example.domain;
 import lombok.Data;
 
 /**
- * @author: sjq-278
+ * @author: huangkai
  * @date: 2018-09-21 12:31
  */
 @Data

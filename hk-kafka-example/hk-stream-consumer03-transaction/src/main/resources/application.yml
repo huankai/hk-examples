@@ -1,0 +1,80 @@
+server:
+  port: 7773
+
+spring:
+  application:
+    name: hk-stream-consumer03-transaction
+  main:
+    banner-mode: 'off'
+    allow-bean-definition-overriding: true
+  datasource:
+      name: druid
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.64.150:3306/hk_emi?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      druid:
+        initial-size: 1
+        max-active: 20
+        min-idle: 1
+        max-wait: 6000
+        time-between-eviction-runs-millis: 60000
+        test-on-borrow: true
+        test-on-return: false
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        filters: stat,wall,log4j2
+        filter:
+          stat:
+            slow-sql-millis: 5000
+        connection-properties: druid.stat.mergeSql=true,druid.stat.slowSqlMillis=5000
+        stat-view-servlet:
+          enabled: true
+          url-pattern: /druid/*
+          # 禁用HTML页面上的“Reset All”功能
+          reset-enable: false
+          allow: 127.0.0.1
+          login-username: druidAdmin
+          login-password: druidAdmin@%*
+        web-stat-filter:
+          enabled: true
+          url-pattern: /**
+          exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+  cloud:
+########################################################################### spring cloud stream 配置
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          transaction:
+            # 如果不配置此参数，kafka 不会事物
+            # 如果配置了transaction-id-prefix,kafka会开启事务，开启事务需要开启幂等性(enable.idempotence 设置为true)，但开启幂等性可以不需要开启事物。
+            # 如果开启了事务，Kafka也会自动 的开启幂等性,见代码 org.springframework.kafka.core.DefaultKafkaProducerFactory#enableIdempotentBehaviour()
+            transaction-id-prefix: transaction-
+
+            #开启事物后，所有生产者参数都在这里指定.
+            producer:
+              configuration:
+                #失败重试参数
+                retries: 1
+                #
+                acks: all
+          brokers:
+            - sjq-01:9092
+            - sjq-02:9092
+            - sjq-03:9092
+      bindings:
+        input:
+          destination: destination-01
+          group: group2
+        output:
+          destination: test-event
+logging:
+  level:
+    root: error
+    org.apache.kafka.clients.producer: info
+    org.apache.kafka.clients.consumer: info
+    org.apache.kafka.clients.admin: info
+    org.springframework.cloud.stream: debug
+    com.hk: debug

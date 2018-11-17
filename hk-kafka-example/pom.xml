@@ -17,12 +17,13 @@
         <module>hk-kafka-producer</module>
         <module>hk-kafka-consumer</module>
         <module>hk-kafka-streams</module>
-        <module>hk-kafka-spring-cloud-stream-consumer01</module>
-        <module>hk-kafka-spring-cloud-stream-consumer02</module>
+        <module>hk-stream-consumer01</module>
+        <module>hk-stream-consumer02</module>
+        <module>hk-stream-consumer03-transaction</module>
     </modules>
 
     <properties>
-        <kafka.version>1.0.2</kafka.version>
+        <kafka.version>2.0.0</kafka.version>
     </properties>
     <dependencyManagement>
         <dependencies>
