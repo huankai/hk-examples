@@ -1,12 +1,11 @@
 package com.hk.kafka.producer.example;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.clients.producer.internals.DefaultPartitioner;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sun.rmi.runtime.Log;
 
 import java.util.Properties;
 
@@ -18,11 +17,11 @@ public class SimpleProducer {
 
     private static final Logger Logger = LoggerFactory.getLogger(SimpleProducer.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.64.128:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "sjq-01:9092,sjq-02:9092,sjq-03:9092");
         props.put(ProducerConfig.ACKS_CONFIG, "all");//等待分区的所有副本应答，才表示此消息发送成功
-        props.put(ProducerConfig.RETRIES_CONFIG, 0); //消息发送最大尝试次数
+        props.put(ProducerConfig.RETRIES_CONFIG, 5); // 生产者从服务器收到临时性错误时，生产者重发消息的次数
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);// 一批消息处理大小
         props.put(ProducerConfig.LINGER_MS_CONFIG, 1); // 请求延时
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432); // 发送缓存区内存大小
@@ -33,8 +32,23 @@ public class SimpleProducer {
 //        props.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, DefaultPartitioner.class);
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
-        for (int i = 0; i < 50; i++) {
-            producer.send(new ProducerRecord<>("test", "luck", "luck dog---"));
+        boolean running = true;
+        int index = 1;
+        while (running) {
+            Thread.sleep(800);
+            String message = "Send message " + (index++);
+            Logger.info("Send message {}...", message);
+            producer.send(new ProducerRecord<>("test3", "luck", message), new Callback() {
+                @Override
+                public void onCompletion(RecordMetadata metadata, Exception exception) {
+                    if (exception != null) {
+                        Logger.error("--------------------->" + exception.getMessage());
+                    } else {
+                        Logger.info("Send success ,partition is {},", metadata.partition());
+                    }
+                }
+            });
+//            producer.send(new ProducerRecord<>("test3", "luck", message));
         }
         Logger.info("finish");
         producer.close();

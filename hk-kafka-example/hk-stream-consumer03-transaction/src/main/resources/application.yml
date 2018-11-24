@@ -47,19 +47,19 @@ spring:
       default-binder: kafka
       kafka:
         binder:
-          transaction:
+#          transaction:
             # 如果不配置此参数，kafka 不会事物
             # 如果配置了transaction-id-prefix,kafka会开启事务，开启事务需要开启幂等性(enable.idempotence 设置为true)，但开启幂等性可以不需要开启事物。
             # 如果开启了事务，Kafka也会自动 的开启幂等性,见代码 org.springframework.kafka.core.DefaultKafkaProducerFactory#enableIdempotentBehaviour()
-            transaction-id-prefix: transaction-
+#            transaction-id-prefix: transaction-
 
             #开启事物后，所有生产者参数都在这里指定.
-            producer:
-              configuration:
-                #失败重试参数
-                retries: 1
-                #
-                acks: all
+#            producer:
+#              configuration:
+#                #失败重试参数
+#                retries: 1
+#                #
+#                acks: all
           brokers:
             - sjq-01:9092
             - sjq-02:9092

@@ -13,24 +13,24 @@ import java.util.Collections;
 import java.util.Properties;
 
 /**
- * @author: kevin
- * @date: 2018-08-30 16:17
+ * @author: sjq-278
+ * @date: 2018-11-19 16:43
  */
-public class SimpleConsumer {
+public class TransactionConsumer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SimpleConsumer.class);
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionConsumer.class);
 
     public static void main(String[] args) {
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "sjq-01:9092,sjq-02:9092,sjq-03:9092");
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group");
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true); // 是否自动确认offset
-        props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 1000); // 自动确认offset的时间间隔
-//        props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false); //事务需要将消费者的 auto commit 设置为 false
+        props.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Collections.singletonList("test3"));
+        consumer.subscribe(Collections.singletonList("transaction-topic"));
         LOGGER.info("等待消费...");
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
@@ -40,5 +40,4 @@ public class SimpleConsumer {
             }
         }
     }
-
 }

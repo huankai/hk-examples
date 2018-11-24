@@ -24,6 +24,7 @@
         <module>hk-kafka-example</module>
         <module>hk-oracle-example</module>
         <module>hk-messsage-websocket-example</module>
+        <module>hk-hadoop-example</module>
     </modules>
 
     <dependencyManagement>
