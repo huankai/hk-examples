@@ -11,4 +11,5 @@
 ## hk-weixin-example ##
  微信开发的一些功能实现 、如  微信扫码登陆(与 spring security 整合)、微信菜单操作等
  使用 spring boot 与 spring security集成登陆认证
+ --test
 
