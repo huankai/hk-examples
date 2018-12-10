@@ -1,11 +1,11 @@
 server:
-  context-path: /
   port: 80
+  servlet:
+    context-path: /
 spring:
   thymeleaf:
     cache: false
     encoding: UTF-8
-    content-type: text/html
     prefix: classpath:/templates/
     suffix: .html
     mode: HTML5

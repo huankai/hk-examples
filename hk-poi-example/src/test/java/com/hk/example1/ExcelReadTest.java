@@ -2,9 +2,9 @@ package com.hk.example1;
 
 import com.hk.commons.poi.excel.model.ReadParam;
 import com.hk.commons.poi.excel.model.ReadResult;
+import com.hk.commons.poi.excel.read.DomReadExcel;
 import com.hk.commons.poi.excel.read.ReadableExcel;
-import com.hk.commons.poi.excel.read.SimpleDomReadExcel;
-import com.hk.commons.poi.excel.read.SimpleSaxReadExcel;
+import com.hk.commons.poi.excel.read.SaxReadExcel;
 import com.hk.commons.util.JsonUtils;
 import org.junit.Test;
 
@@ -25,7 +25,7 @@ public class ExcelReadTest {
     @Test
     public void read2003ByDom() {
         ReadParam<ExcelVo> readParam = ReadParam.<ExcelVo>builder().beanClazz(ExcelVo.class).build();
-        ReadableExcel<ExcelVo> readableExcel = new SimpleDomReadExcel<>(readParam);
+        ReadableExcel<ExcelVo> readableExcel = new DomReadExcel<>(readParam);
         ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xls"));
         print(readResult);
     }
@@ -33,7 +33,7 @@ public class ExcelReadTest {
     @Test
     public void read2007ByDom() {
         ReadParam<ExcelVo> readParam = ReadParam.<ExcelVo>builder().beanClazz(ExcelVo.class).build();
-        ReadableExcel<ExcelVo> readableExcel = new SimpleDomReadExcel<>(readParam);
+        ReadableExcel<ExcelVo> readableExcel = new DomReadExcel<>(readParam);
         ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xlsx"));
         print(readResult);
     }
@@ -41,7 +41,7 @@ public class ExcelReadTest {
     @Test
     public void read2003BySax() {
         ReadParam<ExcelVo> readParam = ReadParam.<ExcelVo>builder().beanClazz(ExcelVo.class).build();
-        ReadableExcel<ExcelVo> readableExcel = new SimpleSaxReadExcel<>(readParam);
+        ReadableExcel<ExcelVo> readableExcel = new SaxReadExcel<>(readParam);
         ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xls"));
         print(readResult);
     }
@@ -49,7 +49,7 @@ public class ExcelReadTest {
     @Test
     public void read2007BySax() {
         ReadParam<ExcelVo> readParam = ReadParam.<ExcelVo>builder().beanClazz(ExcelVo.class).build();
-        ReadableExcel<ExcelVo> readableExcel = new SimpleSaxReadExcel<>(readParam);
+        ReadableExcel<ExcelVo> readableExcel = new SaxReadExcel<>(readParam);
         ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xlsx"));
         print(readResult);
     }

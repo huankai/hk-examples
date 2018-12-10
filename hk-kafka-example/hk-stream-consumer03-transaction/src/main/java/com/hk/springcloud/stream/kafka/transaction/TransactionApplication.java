@@ -2,6 +2,7 @@ package com.hk.springcloud.stream.kafka.transaction;
 
 import java.time.LocalDateTime;
 
+import com.hk.commons.JsonResult;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,6 @@ import com.hk.commons.util.ByteConstants;
 import com.hk.commons.util.JsonUtils;
 import com.hk.core.authentication.api.SecurityContext;
 import com.hk.core.authentication.api.UserPrincipal;
-import com.hk.core.web.JsonResult;
 import com.hk.springcloud.stream.kafka.transaction.domain.City;
 import com.hk.springcloud.stream.kafka.transaction.repository.jdbc.CityRepository;
 

@@ -1,7 +1,9 @@
 server:
   port: 80
-  context-path: /
-  
+  servlet:
+    context-path: /
+
+
 spring:
 ################################################################### thymeleaf
   thymeleaf:
@@ -10,12 +12,11 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     mode: HTML5
-    content-type: text/html; charset=utf-8
 
-logging: 
+logging:
   config: classpath:log4j2.xml   #日志文件配置路径
-  
-  
-fs: 
-  upload:  
+
+
+fs:
+  upload:
     basepath: D:/qianduan

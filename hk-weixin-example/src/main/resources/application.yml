@@ -1,6 +1,7 @@
 server:
   port: 8086
-  context-path: /
+  servlet:
+    context-path: /
 spring:
   #国际化配置
   #encoding:文件编码

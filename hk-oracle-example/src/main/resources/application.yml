@@ -1,6 +1,7 @@
 server:
   port: 8080
-  context-path: /
+  servlet:
+    context-path: /
 spring:
   application:
     name: hk-oracle-example
