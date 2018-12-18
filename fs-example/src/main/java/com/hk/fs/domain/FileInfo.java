@@ -6,7 +6,7 @@ package com.hk.fs.domain;
 import java.io.Serializable;
 
 /**
- * @author: kevin
+ * @author kevin
  */
 @SuppressWarnings("serial")
 public class FileInfo implements Serializable {

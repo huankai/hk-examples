@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Properties;
 
 /**
- * @author: sjq-278
- * @date: 2018-11-19 16:36
+ * @author sjq-278
+ * @date 2018-11-19 16:36
  */
 public class TransactionProducer {
 

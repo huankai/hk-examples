@@ -18,8 +18,8 @@ import me.chanjar.weixin.mp.api.WxMpService;
 
 /**
  * 微信二维码配置
- * @author: kevin
- * @date: 2018年2月8日上午11:38:35
+ * @author kevin
+ * @date 2018年2月8日上午11:38:35
  */
 @Configuration
 public class WechatQrcodeAuthenticationSecurityConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilterChain,HttpSecurity> {

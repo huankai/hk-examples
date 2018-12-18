@@ -18,7 +18,7 @@ import java.io.File;
  * 支持自定义批注
  * </pre>
  *
- * @author: kevin
+ * @author kevin
  */
 public class ExcelReadTest {
 
@@ -26,7 +26,7 @@ public class ExcelReadTest {
     public void read2003ByDom() {
         ReadParam<ExcelVo> readParam = ReadParam.<ExcelVo>builder().beanClazz(ExcelVo.class).build();
         ReadableExcel<ExcelVo> readableExcel = new DomReadExcel<>(readParam);
-        ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel.xls"));
+        ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/excel_test.xls"));
         print(readResult);
     }
 
@@ -59,10 +59,10 @@ public class ExcelReadTest {
         System.out.println("解析的数据：");
         result.getAllSheetData().forEach(item -> System.out.println(JsonUtils.serialize(item)));
 
-        System.err.println("----------------------------------------");
+        System.out.println("----------------------------------------");
         System.out.println("标题行：" + JsonUtils.serialize(result.getTitleList(), true));
 
-        System.err.println("------------------------------");
+        System.out.println("------------------------------");
         System.out.println("验证错误数据：" + JsonUtils.serialize(result.getErrorLogList()));
     }
 

@@ -12,8 +12,8 @@ import javax.validation.constraints.NotEmpty;
 /**
  * 城市表
  *
- * @author: kevin
- * @date: 2017年12月24日下午8:14:32
+ * @author kevin
+ * @date 2017年12月24日下午8:14:32
  */
 @Data
 @Table(value = "sys_city")

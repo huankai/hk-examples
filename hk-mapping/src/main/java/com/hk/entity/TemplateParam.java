@@ -6,8 +6,8 @@ import lombok.Data;
 import java.util.Set;
 
 /**
- * @author: kevin
- * @date: 2018-5-30 22:20
+ * @author kevin
+ * @date 2018-5-30 22:20
  */
 @Data
 public class TemplateParam {

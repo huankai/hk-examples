@@ -17,8 +17,8 @@ import java.util.Set;
 /**
  * 模板标记接口
  *
- * @author: kevin
- * @date: 2018-05-29 13:11
+ * @author kevin
+ * @date 2018-05-29 13:11
  */
 public interface Template {
 

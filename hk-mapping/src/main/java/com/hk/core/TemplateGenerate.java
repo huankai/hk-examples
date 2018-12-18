@@ -9,8 +9,8 @@ import java.io.File;
 import java.util.List;
 
 /**
- * @author: kevin
- * @date: 2018-5-30 23:58
+ * @author kevin
+ * @date 2018-5-30 23:58
  */
 public class TemplateGenerate {
 

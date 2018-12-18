@@ -3,8 +3,8 @@ package com.hk.fs.controller;
 import org.springframework.stereotype.Controller;
 
 /**
- * @author: kevin
- * @date: 2018年1月26日下午12:48:54
+ * @author kevin
+ * @date 2018年1月26日下午12:48:54
  */
 @Controller
 public class FileController {

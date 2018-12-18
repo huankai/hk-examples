@@ -20,6 +20,10 @@
     <dependencies>
         <dependency>
             <groupId>com.hk</groupId>
+            <artifactId>hk-commons-poi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hk</groupId>
             <artifactId>hk-core-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
@@ -35,6 +39,10 @@
             <artifactId>hk-core-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
@@ -46,15 +54,9 @@
         </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -70,10 +72,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.hk</groupId>
-            <artifactId>hk-commons-poi</artifactId>
         </dependency>
     </dependencies>
 

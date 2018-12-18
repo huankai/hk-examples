@@ -11,8 +11,8 @@ import javax.persistence.Table;
 /**
  * 卡交易视图
  *
- * @author: kevin
- * @date: 2018-09-10 11:38
+ * @author kevin
+ * @date 2018-09-10 11:38
  */
 @Data
 @Entity

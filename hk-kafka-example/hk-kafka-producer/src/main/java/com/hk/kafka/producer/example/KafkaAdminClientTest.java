@@ -11,8 +11,8 @@ import java.util.concurrent.ExecutionException;
 /**
  * kafka 管理测试
  *
- * @author: kevin
- * @date: 2018-09-05 13:52
+ * @author kevin
+ * @date 2018-09-05 13:52
  */
 public class KafkaAdminClientTest {
 

@@ -29,6 +29,7 @@ public class ExcelWriteTest {
                 .beanClazz(ExcelVo.class)
                 .data(data)
                 .build();
+//        writeParam.addClassFormat(LocalDate.class, DataFormat.DATE_FORMAT_CN);
         WriteableExcel<ExcelVo> writeableExcel = new HSSFWriteableExcel<>(new SimpleWriteableHandler<ExcelVo>() {
             @Override
             protected String getCommentText(ExcelVo obj, String propertyName, Class<?> propertyType) {
@@ -38,7 +39,7 @@ public class ExcelWriteTest {
                 return super.getCommentText(obj, propertyName, propertyType);
             }
         });
-        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/sjq-278/Desktop/excel.xls")));
+        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/sjq-278/Desktop/excel_test.xls")));
     }
 
     @Test

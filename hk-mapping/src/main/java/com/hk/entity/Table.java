@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * 表实体
  *
- * @author: kevin
- * @date: 2018-05-29 10:59
+ * @author kevin
+ * @date 2018-05-29 10:59
  */
 @Data
 public class Table {

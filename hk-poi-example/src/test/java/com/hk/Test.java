@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * @author: sjq-278
- * @date: 2018-12-07 14:45
+ * @author sjq-278
+ * @date 2018-12-07 14:45
  */
 public class Test {
 

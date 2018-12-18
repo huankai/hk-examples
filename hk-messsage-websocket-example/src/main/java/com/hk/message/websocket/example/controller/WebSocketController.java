@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author: huangkai
- * @date: 2018-09-21 12:32
+ * @author huangkai
+ * @date 2018-09-21 12:32
  */
 @Controller
 public class WebSocketController {

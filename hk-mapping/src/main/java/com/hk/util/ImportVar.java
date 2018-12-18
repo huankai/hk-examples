@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author: kevin
- * @date: 2018-05-29 14:07
+ * @author kevin
+ * @date 2018-05-29 14:07
  */
 public class ImportVar {
 

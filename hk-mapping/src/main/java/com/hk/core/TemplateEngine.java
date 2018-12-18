@@ -17,8 +17,8 @@ import java.io.StringWriter;
 import java.util.Properties;
 
 /**
- * @author: kevin
- * @date: 2018-05-29 14:43
+ * @author kevin
+ * @date 2018-05-29 14:43
  */
 public class TemplateEngine {
 

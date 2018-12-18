@@ -12,7 +12,7 @@ import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 /**
  * 门店审核事件处理
  *
- * @author: Binary Wang(https://github.com/binarywang)
+ * @author Binary Wang(https://github.com/binarywang)
  */
 @Component
 public class StoreCheckNotifyHandler extends AbstractHandler {

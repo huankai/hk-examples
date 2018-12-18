@@ -1,8 +1,8 @@
 package com.hk;
 
 /**
- * @author: kevin
- * @date: 2018-05-29 10:55
+ * @author kevin
+ * @date 2018-05-29 10:55
  */
 public class Main {
 

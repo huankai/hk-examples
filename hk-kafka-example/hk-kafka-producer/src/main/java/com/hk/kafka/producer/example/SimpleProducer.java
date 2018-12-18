@@ -10,8 +10,8 @@ import sun.rmi.runtime.Log;
 import java.util.Properties;
 
 /**
- * @author: kevin
- * @date: 2018-08-30 15:58
+ * @author kevin
+ * @date 2018-08-30 15:58
  */
 public class SimpleProducer {
 

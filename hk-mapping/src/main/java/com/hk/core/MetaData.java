@@ -16,8 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author: kevin
- * @date: 2018-05-29 13:32
+ * @author kevin
+ * @date 2018-05-29 13:32
  */
 public class MetaData {
 

@@ -5,8 +5,8 @@ package com.hk.template;
  * Spring Data Jpa Base Entity Template
  * </p>
  *
- * @author: kevin
- * @date: 2018-5-30 21:02
+ * @author kevin
+ * @date 2018-5-30 21:02
  */
 public class SpringDataJpaBaseEntityTemplate extends AbstractTemplate implements BaseEntityTemplate {
 

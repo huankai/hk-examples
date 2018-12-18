@@ -29,8 +29,8 @@ import com.hk.springcloud.stream.kafka.transaction.repository.jdbc.CityRepositor
 import lombok.Data;
 
 /**
- * @author: huangkai
- * @date: 2018-11-09 10:45
+ * @author huangkai
+ * @date 2018-11-09 10:45
  */
 @SpringBootApplication
 @EnableBinding(Processor.class)

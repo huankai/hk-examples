@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author: kevin
- * @date: 2018-06-27 09:05
+ * @author kevin
+ * @date 2018-06-27 09:05
  */
 
 public class SolrTest {

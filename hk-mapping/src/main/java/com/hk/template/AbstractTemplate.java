@@ -7,8 +7,8 @@ import java.io.File;
 import java.util.Set;
 
 /**
- * @author: kevin
- * @date: 2018-05-29 13:12
+ * @author kevin
+ * @date 2018-05-29 13:12
  */
 public abstract class AbstractTemplate implements Template {
 

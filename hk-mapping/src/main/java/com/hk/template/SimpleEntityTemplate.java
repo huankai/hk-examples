@@ -10,8 +10,8 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
- * @author: kevin
- * @date: 2018-5-30 21:23
+ * @author kevin
+ * @date 2018-5-30 21:23
  */
 public class SimpleEntityTemplate extends AbstractTemplate implements EntityTemplate {
 

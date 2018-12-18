@@ -8,8 +8,8 @@ import java.util.Optional;
 
 /**
  * 
- * @author: kevin
- * @date: 2017年9月27日下午2:22:58
+ * @author kevin
+ * @date 2017年9月27日下午2:22:58
  */
 public interface UserRepository extends StringIdJpaRepository<User> {
 

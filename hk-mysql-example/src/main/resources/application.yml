@@ -42,9 +42,9 @@ spring:
     name: druid
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.1.244:3306/sjq_ygpj_2018?useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: root
+    url: jdbc:mysql://182.61.40.18:3705/hk_pms?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: pms
+    password: pmsadmin
     druid:
       initial-size: 1
       max-active: 20
@@ -76,7 +76,7 @@ spring:
   cache:
     type: redis
   redis:
-    host: 192.168.64.150
+    host: 12.0.0.1
     password:
     port: 6379
     database: 2

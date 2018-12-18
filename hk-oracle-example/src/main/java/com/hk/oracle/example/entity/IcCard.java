@@ -11,8 +11,8 @@ import javax.persistence.Table;
 /**
  * 卡资料
  *
- * @author: kevin
- * @date: 2018-09-10 10:54
+ * @author kevin
+ * @date 2018-09-10 10:54
  */
 @Data
 @Entity

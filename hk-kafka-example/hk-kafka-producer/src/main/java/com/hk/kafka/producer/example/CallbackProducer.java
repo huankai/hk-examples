@@ -12,8 +12,8 @@ import java.util.Properties;
 /**
  * 有回调方法的生产者
  *
- * @author: kevin
- * @date: 2018-08-30 15:58
+ * @author kevin
+ * @date 2018-08-30 15:58
  */
 public class CallbackProducer {
 

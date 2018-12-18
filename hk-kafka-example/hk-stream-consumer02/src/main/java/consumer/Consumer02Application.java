@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * @author: huangkai
- * @date: 2018-11-10 14:53
+ * @author huangkai
+ * @date 2018-11-10 14:53
  */
 @SpringBootApplication
 @EnableBinding(Sink.class)

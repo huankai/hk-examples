@@ -13,8 +13,8 @@ import java.util.Collections;
 import java.util.Properties;
 
 /**
- * @author: kevin
- * @date: 2018-08-30 16:17
+ * @author kevin
+ * @date 2018-08-30 16:17
  */
 public class SimpleConsumer {
 

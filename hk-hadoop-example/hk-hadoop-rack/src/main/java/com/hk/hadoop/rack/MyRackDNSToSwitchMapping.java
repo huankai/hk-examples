@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * Hadoop 机架感知（DataNode 副本节点选择）
  *
- * @author: sjq-278
- * @date: 2018-11-21 11:43
+ * @author sjq-278
+ * @date 2018-11-21 11:43
  */
 public class MyRackDNSToSwitchMapping implements DNSToSwitchMapping {
     @Override

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
 
 /**
- * @author: kevin
+ * @author kevin
  */
 @Configuration
 public class FsConfiguration implements WebMvcConfigurer {

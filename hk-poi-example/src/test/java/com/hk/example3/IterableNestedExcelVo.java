@@ -12,8 +12,8 @@ import com.hk.commons.poi.excel.annotations.WriteExcel;
 import com.hk.example1.ExcelVo;
 
 /**
- * @author: kevin
- * @date: 2018年1月16日上午10:48:15
+ * @author kevin
+ * @date 2018年1月16日上午10:48:15
  */
 public class IterableNestedExcelVo {
 

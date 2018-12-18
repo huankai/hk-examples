@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 
 /**
- * @author: Binary Wang(https://github.com/binarywang)
+ * @author Binary Wang(https://github.com/binarywang)
  */
 public abstract class AbstractHandler implements WxMpMessageHandler {
 	

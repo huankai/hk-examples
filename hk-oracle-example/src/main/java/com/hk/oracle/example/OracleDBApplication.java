@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * @author: kevin
- * @date: 2018-09-10 10:36
+ * @author kevin
+ * @date 2018-09-10 10:36
  */
 @SpringBootApplication
 public class OracleDBApplication {

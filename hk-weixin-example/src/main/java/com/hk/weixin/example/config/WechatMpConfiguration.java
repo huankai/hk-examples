@@ -30,7 +30,7 @@ import me.chanjar.weixin.mp.constant.WxMpEventConstants;
 /**
  * wechat mp configuration
  *
- * @author: Binary Wang(https://github.com/binarywang)
+ * @author Binary Wang(https://github.com/binarywang)
  */
 @Configuration
 @ConditionalOnClass(WxMpService.class)

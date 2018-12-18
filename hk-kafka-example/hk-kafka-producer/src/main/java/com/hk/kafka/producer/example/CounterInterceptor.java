@@ -12,8 +12,8 @@ import java.util.Map;
 /**
  * 生产者拦截器
  *
- * @author: kevin
- * @date: 2018-09-05 15:17
+ * @author kevin
+ * @date 2018-09-05 15:17
  */
 public class CounterInterceptor implements ProducerInterceptor<String, String> {
 

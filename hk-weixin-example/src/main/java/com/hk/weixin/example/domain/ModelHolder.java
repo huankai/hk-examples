@@ -13,8 +13,8 @@ import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 /**
- * @author: kevin
- * @date: 2017年10月31日下午1:08:08
+ * @author kevin
+ * @date 2017年10月31日下午1:08:08
  */
 @SuppressWarnings("serial")
 public class ModelHolder {

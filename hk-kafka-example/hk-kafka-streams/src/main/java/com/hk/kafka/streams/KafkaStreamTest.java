@@ -9,8 +9,8 @@ import org.apache.kafka.streams.processor.ProcessorSupplier;
 import java.util.Properties;
 
 /**
- * @author: kevin
- * @date: 2018-09-05 15:38
+ * @author kevin
+ * @date 2018-09-05 15:38
  */
 public class KafkaStreamTest {
 

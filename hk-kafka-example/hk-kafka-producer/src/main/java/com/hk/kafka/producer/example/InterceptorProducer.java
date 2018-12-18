@@ -12,8 +12,8 @@ import java.util.Properties;
 /**
  * 拦截器 Producer
  *
- * @author: kevin
- * @date: 2018-09-05 15:21
+ * @author kevin
+ * @date 2018-09-05 15:21
  */
 public class InterceptorProducer {
 
