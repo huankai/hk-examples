@@ -1,7 +1,7 @@
 package com.hk.mysql.example.test;
 
-import com.hk.commons.poi.excel.annotations.ReadExcel;
-import com.hk.commons.poi.excel.annotations.WriteExcel;
+import com.hk.commons.poi.excel.annotations.ReadExcelField;
+import com.hk.commons.poi.excel.annotations.WriteExcelField;
 import com.hk.commons.poi.excel.model.ReadParam;
 import com.hk.commons.poi.excel.model.ReadResult;
 import com.hk.commons.poi.excel.model.WriteParam;
@@ -42,12 +42,12 @@ public class SchoolTest extends BaseTest {
 
     public static class SchoolExcel {
 
-        @WriteExcel(index = 0, value = "2018届学校名称", width = 50)
-        @ReadExcel(start = 0)
+        @WriteExcelField(index = 0, value = "2018届学校名称", width = 50)
+        @ReadExcelField(start = 0)
         private String orgName;
 
-        @WriteExcel(index = 1, value = "2019届学校名称", width = 100)
-        @ReadExcel(start = 1)
+        @WriteExcelField(index = 1, value = "2019届学校名称", width = 100)
+        @ReadExcelField(start = 1)
         private String exportNewNames;
 
         public SchoolExcel() {
@@ -163,16 +163,16 @@ public class SchoolTest extends BaseTest {
     @Data
     public static class School {
 
-        @ReadExcel(start = 0)
+        @ReadExcelField(start = 0)
         private String area;
 
-        @ReadExcel(start = 1)
+        @ReadExcelField(start = 1)
         private String schoolName;
 
-        @ReadExcel(start = 2)
+        @ReadExcelField(start = 2)
         private String schoolCode;
 
-        @ReadExcel(start = 3)
+        @ReadExcelField(start = 3)
         private String period;
 
     }

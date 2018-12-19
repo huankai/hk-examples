@@ -1,6 +1,6 @@
 package com.hk.mysql.example.test;
 
-import com.hk.commons.poi.excel.annotations.ReadExcel;
+import com.hk.commons.poi.excel.annotations.ReadExcelField;
 import com.hk.commons.poi.excel.model.ReadParam;
 import com.hk.commons.poi.excel.model.ReadResult;
 import com.hk.commons.poi.excel.read.DomReadExcel;
@@ -30,7 +30,7 @@ public class ThirdAccountTest extends BaseTest {
 
     public static class ThirdAccount {
 
-        @ReadExcel(start = 2)
+        @ReadExcelField(start = 2)
         private String account;
 
         public String getAccount() {

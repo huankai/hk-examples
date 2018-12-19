@@ -1,7 +1,7 @@
 package com.hk.mysql.example.test;
 
-import com.hk.commons.poi.excel.annotations.ReadExcel;
-import com.hk.commons.poi.excel.annotations.WriteExcel;
+import com.hk.commons.poi.excel.annotations.ReadExcelField;
+import com.hk.commons.poi.excel.annotations.WriteExcelField;
 import com.hk.commons.poi.excel.model.ReadParam;
 import com.hk.commons.poi.excel.model.ReadResult;
 import com.hk.commons.poi.excel.model.WriteParam;
@@ -28,28 +28,28 @@ public class HrStaffTest {
     @Data
     public static class HrStaff {
 
-        @ReadExcel(start = 0)
-        @WriteExcel(index = 0, value = "学校名称(必填)")
+        @ReadExcelField(start = 0)
+        @WriteExcelField(index = 0, value = "学校名称(必填)")
         private String schoolName;
 
-        @ReadExcel(start = 1)
-        @WriteExcel(index = 1, value = "姓名（必录）")
+        @ReadExcelField(start = 1)
+        @WriteExcelField(index = 1, value = "姓名（必录）")
         private String userName;
 
-        @ReadExcel(start = 2)
-        @WriteExcel(index = 2, value = "工号（必录）")
+        @ReadExcelField(start = 2)
+        @WriteExcelField(index = 2, value = "工号（必录）")
         private String jobNo;
 
-        @ReadExcel(start = 3)
-        @WriteExcel(index = 3, value = "性别（必录）")
+        @ReadExcelField(start = 3)
+        @WriteExcelField(index = 3, value = "性别（必录）")
         private String sex;
 
-        @ReadExcel(start = 4)
-        @WriteExcel(index = 4, value = "手机号")
+        @ReadExcelField(start = 4)
+        @WriteExcelField(index = 4, value = "手机号")
         private String phone;
 
-        @ReadExcel(start = 5)
-        @WriteExcel(index = 5, value = "证件号码")
+        @ReadExcelField(start = 5)
+        @WriteExcelField(index = 5, value = "证件号码")
         private String idCard;
     }
 

@@ -1,16 +1,12 @@
-/**
- * 
- */
 package com.hk.example2;
 
-import javax.validation.Valid;
-
-import org.hibernate.validator.constraints.NotBlank;
-
 import com.hk.commons.poi.excel.annotations.NestedProperty;
-import com.hk.commons.poi.excel.annotations.ReadExcel;
-import com.hk.commons.poi.excel.annotations.WriteExcel;
+import com.hk.commons.poi.excel.annotations.ReadExcelField;
+import com.hk.commons.poi.excel.annotations.WriteExcelField;
 import com.hk.example1.ExcelVo;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author kevin
@@ -18,8 +14,8 @@ import com.hk.example1.ExcelVo;
  */
 public class NestedExcelVo {
 
-	@WriteExcel(index = 5, value = "id")
-	@ReadExcel(start = 5)
+	@WriteExcelField(index = 5, value = "id")
+	@ReadExcelField(start = 5)
 	@NotBlank(message = "id不能为空")
 	private String id;
 

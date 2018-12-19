@@ -1,6 +1,6 @@
 package com.hk;
 
-import com.hk.commons.poi.excel.annotations.WriteExcel;
+import com.hk.commons.poi.excel.annotations.WriteExcelField;
 import com.hk.commons.poi.excel.model.WriteParam;
 import com.hk.commons.poi.excel.write.SXSSFWriteableExcel;
 import com.hk.commons.poi.excel.write.WriteableExcel;
@@ -19,12 +19,12 @@ public class Test {
 
     private static class Model {
 
-        @WriteExcel(index = 0, value = "2018届学校名称", width = 50)
+        @WriteExcelField(index = 0, value = "2018届学校名称", width = 50)
         private String orgName;
 
         private String newName;
 
-        @WriteExcel(index = 1, value = "2019届学校名称", width = 100)
+        @WriteExcelField(index = 1, value = "2019届学校名称", width = 100)
         private String exportNewNames;
 
         public Model(String orgName, String newName) {
