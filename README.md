@@ -1,9 +1,22 @@
 # hk-examples
+
 ## hk-util-example ##
  hk-commons-util 工具类测试
  
 ## hk-poi-example ##
  hk-commons-poi 测试
+
+## hk-mysql-example ##
+mysql 测试
+
+## hk-oracle-example ##
+oracle 测试
+
+## hk-shiro-example ##
+shiro 登陆测试
+
+## hk-security-example ##
+spring security 登陆测试
 
 ## fs-example ##
   一个简单的文件上传、下载、图片预览项目，给公司前端们写的

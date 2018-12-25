@@ -1,10 +1,10 @@
 server:
-  port: 6001
+  port: 6002
   servlet:
     context-path: /
 spring:
   application:
-    name: shiro-example
+    name: security-example
   main:
     allow-bean-definition-overriding: true
     banner-mode: 'off'
@@ -42,6 +42,18 @@ spring:
         enabled: true
         url-pattern: /**
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+
+######################################################### security 配置
+hk:
+  authentication:
+    browser:
+      login-url: /login
+      login-processing-url: /login
+      logout-url: /logout
+      logout-success-url: ${server.servlet.context-path}
+      username-parameter: username
+      password-parameter: password
+      maximum-sessions: 2
 ######################################################### thymeleaf 配置
   thymeleaf:
     enabled: true
@@ -52,27 +64,6 @@ spring:
     suffix: .html
     servlet:
       content-type: text/html; charset=utf-8
-########################################################## shiro 配置
-shiro:
-  enabled: true
-  annotations:
-    enable: true
-  loginUrl: "/login"
-  successUrl: ${server.servlet.context-path}
-  userNativeSessionManager: false
-  unauthorizedUrl: "/unauthorized"
-  sessionManager:
-    deleteInvalidSessions: true
-    sessionIdUrlRewritingEnabled: false
-  filter-chain-definition:
-    anon:
-     - "/favicon.ico"
-     - "/resources/**"
-     - ${shiro.unauthorizedUrl}
-    authc:
-      - "/**"
-    logout:
-      - "/logout"
 ######################################################### log 配置
 logging:
   config: classpath:log4j2.xml
