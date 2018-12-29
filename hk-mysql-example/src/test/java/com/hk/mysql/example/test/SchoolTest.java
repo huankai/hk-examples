@@ -9,7 +9,6 @@ import com.hk.commons.poi.excel.read.DomReadExcel;
 import com.hk.commons.poi.excel.read.ReadableExcel;
 import com.hk.commons.poi.excel.write.WriteableExcel;
 import com.hk.commons.poi.excel.write.XSSFWriteableExcel;
-import com.hk.commons.util.BeanWrapperUtils;
 import com.hk.commons.util.JsonUtils;
 import com.hk.commons.util.ListResult;
 import com.hk.commons.util.StringUtils;
@@ -17,13 +16,13 @@ import com.hk.core.data.jdbc.JdbcSession;
 import com.hk.core.data.jdbc.SelectArguments;
 import com.hk.core.test.BaseTest;
 import com.hk.mysql.examples.MysqlExampleApplication;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.junit.Test;
-import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.beans.PropertyDescriptor;
 import java.io.*;
 import java.util.*;
 
@@ -76,16 +75,50 @@ public class SchoolTest extends BaseTest {
         }
     }
 
-    public static void main(String[] args) {
-        SchoolExcel schoolExcel = new SchoolExcel();
-        BeanWrapper beanWrapper = BeanWrapperUtils.createBeanWrapper(schoolExcel);
-        for (PropertyDescriptor propertyDescriptor : beanWrapper.getPropertyDescriptors()) {
-            if (propertyDescriptor.getWriteMethod() != null) {
-                System.out.println(propertyDescriptor.getName());
+    public static void main(String[] args) throws IOException {
+//        SchoolExcel schoolExcel = new SchoolExcel();
+//        BeanWrapper beanWrapper = BeanWrapperUtils.createBeanWrapper(schoolExcel);
+//        for (PropertyDescriptor propertyDescriptor : beanWrapper.getPropertyDescriptors()) {
+//            if (propertyDescriptor.getWriteMethod() != null) {
+//                System.out.println(propertyDescriptor.getName());
+//
+//            }
+//        }
 
-            }
+        test5();
+    }
+
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    private class SeOrgParams {
+
+        private String id;
+
+        private String orgId;
+
+        private String level;
+
+        private String cvType;
+
+        private String dataSetType;
+    }
+
+    @Test
+    public void testParamTable() {
+        SelectArguments arguments = new SelectArguments();
+        arguments.setFrom("scm_school");
+        List<School> result = jdbcSession.queryForList(arguments, false, School.class).getResult();
+        List<SeOrgParams> list = new ArrayList<>();
+        list.add(new SeOrgParams(UUID.randomUUID().toString(), "489f5a60-556a-11e7-a16d-408d5cf00021", "1", null, null));
+        list.add(new SeOrgParams(UUID.randomUUID().toString(), "2758cadb-40c8-45a8-93dd-bb0988bc0673", "2", null, null));
+        list.add(new SeOrgParams(UUID.randomUUID().toString(), "a021336c-6d8b-4da1-ab1e-2b42409a9bd0", "2", null, null));
+        for (School school : result) {
+            list.add(new SeOrgParams(UUID.randomUUID().toString(), school.getSchoolId(), "3", "1", null));
         }
-
+        jdbcSession.batchUpdate("INSERT INTO `se_org_params`(`param_id`, `org_id`, `level`, `cvtype`, `datasettype`) " +
+                "VALUES (:id, :orgId, :level, :cvType, :dataSetType)", list);
     }
 
     @Test
@@ -163,6 +196,8 @@ public class SchoolTest extends BaseTest {
     @Data
     public static class School {
 
+        private String schoolId;
+
         @ReadExcelField(start = 0)
         private String area;
 
@@ -175,6 +210,30 @@ public class SchoolTest extends BaseTest {
         @ReadExcelField(start = 3)
         private String period;
 
+    }
+
+
+    public static void test5() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("C:/Users/sjq-278/Desktop/1.txt"));
+        List<String> dataList = new ArrayList<>();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            dataList.add(line);
+        }
+        bufferedReader.close();
+
+        bufferedReader = new BufferedReader(new FileReader("C:/Users/sjq-278/Desktop/2.txt"));
+        List<String> dataList2 = new ArrayList<>();
+        while ((line = bufferedReader.readLine()) != null) {
+            dataList2.add(line);
+        }
+        bufferedReader.close();
+
+        for (String item : dataList) {
+            if (!dataList2.contains(item)) {
+                System.out.println(item + "=========");
+            }
+        }
     }
 
     @Test
