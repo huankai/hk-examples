@@ -46,13 +46,6 @@
             <artifactId>hk-core-web</artifactId>
         </dependency>
 
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- 微信公众平台 -->
         <dependency>
             <groupId>com.github.binarywang</groupId>

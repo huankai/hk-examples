@@ -46,7 +46,7 @@ spring:
 ######################################################### security 配置
 hk:
   authentication:
-    browser:
+    login:
       login-url: /login
       login-processing-url: /login
       logout-url: /logout

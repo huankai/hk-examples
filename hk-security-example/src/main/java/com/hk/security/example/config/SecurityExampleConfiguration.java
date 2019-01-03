@@ -58,7 +58,7 @@ public class SecurityExampleConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        AuthenticationProperties.BrowserProperties browser = properties.getBrowser();
+        AuthenticationProperties.LoginProperties browser = properties.getLogin();
         http
                 .csrf().disable()
 
