@@ -16,8 +16,8 @@ import java.util.List;
  * @author huangkai
  * @date 2018-11-10 14:53
  */
-@SpringBootApplication
 @EnableBinding(Sink.class)
+@SpringBootApplication
 public class Consumer02Application {
 
     private Logger logger = LoggerFactory.getLogger(Consumer02Application.class);
