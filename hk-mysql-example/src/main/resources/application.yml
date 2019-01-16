@@ -4,6 +4,8 @@ server:
     context-path: /
 ############################ spring configuration ##############################
 spring:
+  main:
+    banner-mode: 'off'
   servlet:
     multipart:
       enabled: false # 禁用文件上传功能
@@ -42,7 +44,9 @@ spring:
     name: druid
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.1.244:3306/sjq_ygpj_2019?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://182.61.40.18:3705/hk_emi?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://192.168.1.244:3306/sjq_ygpj_2019?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.1.244:3306/sjq_ygpj_2018?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: root
     druid:
