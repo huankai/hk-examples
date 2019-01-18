@@ -1,0 +1,22 @@
+server:
+  port: 6609
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: hk-stream-consumner01
+  main:
+    banner-mode: 'off'
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: 182.61.40.18
+    username: guest
+    password: guest#root
+    virtual-host: /
+  cloud:
+########################################################################### spring cloud stream 配置
+    stream:
+      default-binder: rabbit
+      bindings:
+        output:
+          destination: output

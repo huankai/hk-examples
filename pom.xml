@@ -21,6 +21,7 @@
         <module>hk-solr-example</module>
         <module>hk-util-example</module>
         <module>hk-weixin-example</module>
+        <module>hk-rabbitmq-example</module>
         <module>hk-kafka-example</module>
         <module>hk-oracle-example</module>
         <module>hk-mysql-example</module>

@@ -38,10 +38,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.hk</groupId>
             <artifactId>hk-core-stream-kafka</artifactId>
         </dependency>
