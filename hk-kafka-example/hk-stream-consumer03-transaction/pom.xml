@@ -27,10 +27,6 @@
         </dependency>
         <dependency>
             <groupId>com.hk</groupId>
-            <artifactId>hk-core-exception</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.hk</groupId>
             <artifactId>hk-core-authentication-api</artifactId>
         </dependency>
         <dependency>

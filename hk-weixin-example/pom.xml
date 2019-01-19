@@ -13,7 +13,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <weixin.java.version>2.9.0</weixin.java.version>
     </properties>
 
     <dependencies>
@@ -35,10 +34,6 @@
         </dependency>
         <dependency>
             <groupId>com.hk</groupId>
-            <artifactId>hk-core-exception</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.hk</groupId>
             <artifactId>hk-core-data-jpa</artifactId>
         </dependency>
         <dependency>
@@ -50,7 +45,6 @@
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-mp</artifactId>
-            <version>${weixin.java.version}</version>
         </dependency>
 
         <dependency>

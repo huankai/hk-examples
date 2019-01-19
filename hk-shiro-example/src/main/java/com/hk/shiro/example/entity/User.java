@@ -18,6 +18,7 @@ import java.time.LocalDate;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Table(value = "sys_user")
+@SuppressWarnings("serial")
 public class User extends AbstractAuditable {
 
     @NotEmpty

@@ -5,7 +5,7 @@ import com.hk.commons.util.StringUtils;
 import com.hk.core.authentication.security.SecurityUserPrincipal;
 import com.hk.weixin.example.security.config.WechatQrCodeConfig;
 import com.hk.weixin.example.security.token.WechatQrCodeAuthenticationToken;
-import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
