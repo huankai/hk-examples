@@ -24,9 +24,9 @@ public class Recver1 {
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
         //绑定队列到交换机，接收 routeKey 为 key1 和 key2 的消息
-        channel.queueBind(QUEUE_NAME, Sender.EXCHANGE_NAME, "key1");
+//        channel.queueBind(QUEUE_NAME, Sender.HANGE_NAME, "key1");
         //如果要接收多个routeKey标记,只需要再执行一次即可
-        channel.queueBind(QUEUE_NAME, Sender.EXCHANGE_NAME, "key2");
+//        channel.queueBind(QUEUE_NAME, Sender.EXCHANGE_NAME, "key2");
 
         channel.basicQos(1);
 

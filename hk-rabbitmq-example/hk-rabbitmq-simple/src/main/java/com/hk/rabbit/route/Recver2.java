@@ -24,9 +24,9 @@ public class Recver2 {
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
         //绑定队列到交换机，接收 routeKey 为 key1 和 key3 的消息
-        channel.queueBind(QUEUE_NAME, Sender.EXCHANGE_NAME, "key1");
-        channel.queueBind(QUEUE_NAME, Sender.EXCHANGE_NAME, "key3");
-        channel.basicQos(1);
+//        channel.queueBind(QUEUE_NAME, Sender.EXCHANGE_NAME, "key1");
+//        channel.queueBind(QUEUE_NAME, Sender.EXCHANGE_NAME, "key3");
+//        channel.basicQos(1);
 
         /*
          * 第二个参数 表示是否自动确定，这里设置为 false
