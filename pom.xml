@@ -17,6 +17,7 @@
         <module>fs-example</module>
         <module>hk-mapping</module>
         <module>hk-mapping-web</module>
+        <module>hk-flowable-example</module>
         <module>hk-poi-example</module>
         <module>hk-solr-example</module>
         <module>hk-util-example</module>
