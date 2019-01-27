@@ -50,7 +50,8 @@ public class CasWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutSuccessUrl("/logout")
                 .and()
-                .addFilterBefore(singleSignOutFilter, CasAuthenticationFilter.class).addFilterBefore(logoutFilter, LogoutFilter.class);
+                .addFilterBefore(singleSignOutFilter, CasAuthenticationFilter.class)
+                .addFilterBefore(logoutFilter, LogoutFilter.class);
     }
 
     @Override
@@ -60,14 +61,11 @@ public class CasWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected AuthenticationManager authenticationManager() {
-        //设置cas认证提供
         return new ProviderManager(Collections.singletonList(authenticationProvider));
     }
 
     @Bean
-    public CasAuthenticationFilter casAuthenticationFilter(ServiceProperties sp)
-            throws Exception {
-        //cas认证过滤器，当触发本filter时，对ticket进行认证
+    public CasAuthenticationFilter casAuthenticationFilter(ServiceProperties sp) {
         CasAuthenticationFilter filter = new CasAuthenticationFilter();
         filter.setServiceProperties(sp);
         filter.setAuthenticationManager(authenticationManager());

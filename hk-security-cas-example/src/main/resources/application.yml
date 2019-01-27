@@ -23,9 +23,9 @@ spring:
     name: hikari
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/hk_pms?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-    password: root
+    url: jdbc:mysql://182.61.40.18:3705/hk_pms?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: pms
+    password: pmsadmin
 ######################################################### hikari datasource 配置
     hikari:
       maximum-pool-size: 50
@@ -36,6 +36,18 @@ spring:
       connection-test-query: SELECT 1 FROM DUAL
 
 ######################################################### security 配置
+hk:
+  authentication:
+    cas:
+      key: xxxxxx
+      cas-login-url: http://127.0.0.1:8888/cas/login
+      send-renew: false
+      cas-server-url-prefix: http://192.168.1.76:8888/cas
+      service: http://127.0.0.1:${server.port}/login/cas
+      ticket-validator-url: http://127.0.0.1:8888/cas
+      cas-server-logout-url: http://127.0.0.1:8888/cas/logout
+    login:
+      logout-url: /logout/cas
 #hk:
 #  authentication:
 #    login:
