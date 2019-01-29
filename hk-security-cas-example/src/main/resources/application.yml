@@ -47,7 +47,7 @@ hk:
       ticket-validator-url: http://127.0.0.1:8888/cas
       cas-server-logout-url: http://127.0.0.1:8888/cas/logout
     login:
-      logout-url: /logout/cas
+      logout-url: /logout
 #hk:
 #  authentication:
 #    login:

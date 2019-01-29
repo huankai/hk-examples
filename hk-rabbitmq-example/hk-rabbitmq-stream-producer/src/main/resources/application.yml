@@ -20,3 +20,5 @@ spring:
       bindings:
         output:
           destination: output
+      rabbit:
+        bindings:
