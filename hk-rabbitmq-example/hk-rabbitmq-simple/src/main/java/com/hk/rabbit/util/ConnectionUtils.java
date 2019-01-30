@@ -22,7 +22,7 @@ public class ConnectionUtils {
      */
     public static Connection getConnection() throws IOException, TimeoutException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("182.61.40.18:5672");
+        connectionFactory.setHost("182.61.40.18");
         connectionFactory.setPort(5672);
         connectionFactory.setUsername("guest");
         connectionFactory.setPassword("guest#root");
