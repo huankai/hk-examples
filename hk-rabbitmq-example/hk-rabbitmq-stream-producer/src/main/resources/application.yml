@@ -10,15 +10,39 @@ spring:
     allow-bean-definition-overriding: true
   rabbitmq:
     host: 182.61.40.18
-    username: guest
-    password: guest#root
-    virtual-host: /
+    username: test
+    password: test
+    virtual-host: /test
+#    是否开启发送确认，默认为false
+    publisher-confirms: false
+#    是否开启发送失败退回，默认为false
+    publisher-returns: false
   cloud:
 ########################################################################### spring cloud stream 配置
     stream:
       default-binder: rabbit
       bindings:
-        output:
-          destination: output
+      # 发布、订阅模式
+        publish_output:
+          destination: publish_stream
+        routekey_output:
+          destination: routekey_stream
+        topic_output:
+          destination: topic_stream
       rabbit:
         bindings:
+          publish_output:
+            producer:
+              exchange-type: fanout
+          routekey_output:
+            producer:
+#            生产者指定 routeKey
+              routing-key-expression: '''key1'''
+              #指定交换机类型，在发布、订阅模式中，只能是 direct
+              exchange-type: direct
+          topic_output:
+            producer:
+              routing-key-expression: '''topicKey2.xxx.xxxx'''
+#              消息是否持久化，默认为true
+              exchange-durable: true
+              exchange-type: topic

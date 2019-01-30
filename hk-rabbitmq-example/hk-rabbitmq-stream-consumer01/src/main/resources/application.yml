@@ -10,20 +10,40 @@ spring:
     allow-bean-definition-overriding: true
   rabbitmq:
     host: 182.61.40.18
-    username: guest
-    password: guest#root
-    virtual-host: /
+    username: test
+    password: test
+    virtual-host: /test
   cloud:
 ########################################################################### spring cloud stream 配置
     stream:
       default-binder: rabbit
       bindings:
-        input:
-          destination: output
-#
-#      bindings:
-#        input:
-#          # 消息接收的主题，见生产者 （hk-sso-server） 配置文件中的 spring.cloud.stream.bindings.output.destination 参数值
-#          destination: destination-01
-#          # 组名，如果不指定组名，会生成一个匿名组名，在kafka中，不同组的实例都会消费生产者发送的消息
-#          group: group2
+      # rabbitmq 指定队列名称，如果不指定 group，会随机生成，队列名是 以 bindings 的 mapKey + . + group 值组成，如这里是 input.group
+        publish_input:
+          # rabbitmq 中指定交换机名称
+          destination: publish_stream
+          group: publish01
+        routekey_input:
+          destination: routekey_stream
+          group: routekey01
+        topic_input:
+          destination: topic_stream
+          group: topic01
+      rabbit:
+        bindings:
+          publish_input:
+            consumer:
+              exchange-type: fanout
+          routekey_input:
+            consumer:
+              # 配置 routeKey
+              binding-routing-key: "key1"
+              exchange-type: direct
+          topic_input:
+            consumer:
+#            使用通配符的 routeKey , * 只能单机级匹配
+              binding-routing-key: "topicKey1.*"
+#              指定类型，默认就是 topic
+              exchange-type: topic
+
+

@@ -10,16 +10,39 @@ spring:
     allow-bean-definition-overriding: true
   rabbitmq:
     host: 182.61.40.18
-    username: guest
-    password: guest#root
-    virtual-host: /
+    username: test
+    password: test
+    virtual-host: /test
   cloud:
 ########################################################################### spring cloud stream 配置
     stream:
       default-binder: rabbit
       bindings:
-        input:
-          destination: output
+        publish_input:
+          destination: publish_stream
+          group: publish02
+        routekey_input:
+          destination: routekey_stream
+          group: routekey02
+        topic_input:
+          destination: topic_stream
+          group: topic02
+      rabbit:
+        bindings:
+          publish_input:
+            consumer:
+              exchange-type: fanout
+          routekey_input:
+            consumer:
+              # 配置 routeKey
+              binding-routing-key: key2
+              exchange-type: direct
+          topic_input:
+            consumer:
+#            使用通配符的 routeKey ,# 能多级匹配
+              binding-routing-key: "topicKey2.#"
+#              指定类型，默认就是 topic
+              exchange-type: topic
 #
 #      bindings:
 #        input:

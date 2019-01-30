@@ -24,9 +24,9 @@ public class ConnectionUtils {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setHost("182.61.40.18");
         connectionFactory.setPort(5672);
-        connectionFactory.setUsername("guest");
-        connectionFactory.setPassword("guest#root");
-        connectionFactory.setVirtualHost("/");
+        connectionFactory.setUsername("test");
+        connectionFactory.setPassword("test");
+        connectionFactory.setVirtualHost("/test");
         return connectionFactory.newConnection();
     }
 

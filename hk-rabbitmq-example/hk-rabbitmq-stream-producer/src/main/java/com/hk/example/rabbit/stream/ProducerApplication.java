@@ -1,57 +1,57 @@
 package com.hk.example.rabbit.stream;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.InboundChannelAdapter;
+import org.springframework.integration.annotation.Poller;
 import org.springframework.integration.core.MessageSource;
 import org.springframework.messaging.support.GenericMessage;
 
-import com.hk.commons.JsonResult;
-import com.hk.commons.util.IDGenerator;
-
-import lombok.Builder;
-import lombok.Data;
+import java.util.Date;
 
 /**
  * @author huangkai
  * @date 2019-01-17 14:27
  */
 @SpringBootApplication
-@EnableBinding(value = {Source.class})
+@EnableBinding(value = {PublishOutput.class, RouteKeyOutput.class, TopicOutput.class})
 public class ProducerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProducerApplication.class, args);
     }
 
-    @Data
-    @Builder
-    private static class MessageBody {
+//    /**
+//     * 发布、订阅模式 发送消息
+//     *
+//     * @return
+//     */
+//    @Bean
+//    @InboundChannelAdapter(value = PublishOutput.OUTPUT, poller = @Poller(fixedRate = "4000", maxMessagesPerPoll = "1"))
+//    public MessageSource<Date> send() {
+//        return () -> new GenericMessage<>(new Date());
+//    }
 
-        private String id;
 
-        private String name;
-
-        private String content;
-    }
+//    /**
+//     * RouteKey 发送消息
+//     */
+//    @Bean
+//    @InboundChannelAdapter(value = RouteKeyOutput.OUTPUT, poller = @Poller(fixedRate = "4000", maxMessagesPerPoll = "1"))
+//    public MessageSource<Date> routeKeySend() {
+//        System.out.println("sendMessage...");
+//        return () -> new GenericMessage<>(new Date());
+//    }
 
     /**
-     * 发送消息
-     *
-     * @return
+     * topic 发送消息
      */
     @Bean
-    @InboundChannelAdapter(value = Source.OUTPUT)
-    public MessageSource<JsonResult<MessageBody>> send() {
-        JsonResult<MessageBody> body = JsonResult.success(MessageBody.builder()
-                .id(IDGenerator.STRING_UUID.generate())
-                .name("xx")
-                .content(RandomStringUtils.randomAlphabetic(10))
-                .build());
-        return () -> new GenericMessage<>(body);
+    @InboundChannelAdapter(value = TopicOutput.OUTPUT, poller = @Poller(fixedRate = "4000", maxMessagesPerPoll = "1"))
+    public MessageSource<Date> topicSend() {
+        System.out.println("topicSend sendMessage...");
+        return () -> new GenericMessage<>(new Date());
     }
 }
