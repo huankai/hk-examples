@@ -37,11 +37,18 @@ public class NIOServer {
                     }
                     if (selectionKey.isReadable()) {
                         SocketChannel channel = (SocketChannel) selectionKey.channel();
-                        channel.read(byteBuffer);
-                        String request = new String(byteBuffer.array()).trim();
-                        byteBuffer.clear();
-                        System.out.println("From " + channel.getRemoteAddress() + " : " + request);
-                        channel.write(ByteBuffer.wrap(request.getBytes()));
+
+                        int read = channel.read(byteBuffer);
+                        if (read > 0) {
+                            String request = new String(byteBuffer.array()).trim();
+                            byteBuffer.clear();
+                            System.out.println("From " + channel.getRemoteAddress() + " : " + request);
+                            channel.write(ByteBuffer.wrap(request.getBytes()));
+
+                        } else {
+                            System.out.println("客户端关闭连接");
+                            selectionKey.cancel();
+                        }
                     }
                     iterator.remove();
                 }
