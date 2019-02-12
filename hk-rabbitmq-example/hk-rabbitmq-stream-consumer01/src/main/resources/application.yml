@@ -29,6 +29,8 @@ spring:
         topic_input:
           destination: topic_stream
           group: topic01
+        delayed_input:
+          destination: delayed_stream
       rabbit:
         bindings:
           publish_input:
@@ -45,5 +47,6 @@ spring:
               binding-routing-key: "topicKey1.*"
 #              指定类型，默认就是 topic
               exchange-type: topic
-
-
+          delayed_input:
+            consumer:
+              delayed-exchange: true

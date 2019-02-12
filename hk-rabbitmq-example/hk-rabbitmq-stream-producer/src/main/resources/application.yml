@@ -29,6 +29,8 @@ spring:
           destination: routekey_stream
         topic_output:
           destination: topic_stream
+        delayed_output:
+          destination: delayed_stream
       rabbit:
         bindings:
           publish_output:
@@ -46,3 +48,7 @@ spring:
 #              消息是否持久化，默认为true
               exchange-durable: true
               exchange-type: topic
+          delayed_output:
+            producer:
+#            配置是延时队列
+              delayed-exchange: true

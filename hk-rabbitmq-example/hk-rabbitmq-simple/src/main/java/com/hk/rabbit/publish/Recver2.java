@@ -16,9 +16,8 @@ import java.util.concurrent.TimeoutException;
  */
 public class Recver2 {
 
-    static String QUEUE_NAME = "pub_queue_2";
-
     public static void main(String[] args) throws IOException, TimeoutException {
+        String QUEUE_NAME = "pub_queue_2";
         Connection connection = ConnectionUtils.getConnection();
         Channel channel = connection.createChannel();
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);

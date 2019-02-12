@@ -8,6 +8,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Date;
  * @date 2019-01-17 14:39
  */
 @SpringBootApplication
-@EnableBinding(value = {PublishInput.class, RouteKeyInput.class, TopicInput.class})
+@EnableBinding(value = {PublishInput.class, RouteKeyInput.class, TopicInput.class, DelayedInput.class})
 public class Consumer01Application {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Consumer01Application.class);
@@ -37,5 +38,14 @@ public class Consumer01Application {
     @StreamListener(TopicInput.INPUT)
     public void topicReceive(@Payload Date date) {
         LOGGER.info("Consumer01Application topicReceive message : {}", date);
+    }
+
+    /**
+     * 延时队列消费
+     */
+    @StreamListener(DelayedInput.INPUT)
+    public void delayedReceive(@Payload Date date) {
+        LOGGER.info("消息接收时间 : {}", LocalDateTime.now());
+        LOGGER.info("Consumer01Application delayedReceive message : {}", date);
     }
 }
