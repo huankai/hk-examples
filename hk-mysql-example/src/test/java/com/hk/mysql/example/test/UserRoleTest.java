@@ -125,4 +125,27 @@ public class UserRoleTest extends BaseTest {
     }
 
 
+    /**
+     * 初始化用户角色权限
+     */
+    @Test
+    public void test6() {
+        SelectArguments arguments = new SelectArguments();
+        arguments.setFrom("sp_role");
+        arguments.getConditions().addCondition(new SimpleCondition("role_name", "教管人员"));
+        List<Map<String, Object>> roleResult = jdbcSession.queryForList(arguments, false).getResult();
+        System.out.println(roleResult.size());
+        List<Object[]> list = new ArrayList<>();
+        for (Map<String, Object> map : roleResult) {
+            String roleId = (String) map.get("roleId");
+            if (!StringUtils.equalsAnyIgnoreCase(roleId, "c41bb722-5b14-4f70-847e-eaa537f03aec", "ad2baed2-f819-4d42-bcc6-df2883cf6acc")) {
+                list.add(new Object[]{UUID.randomUUID().toString(), roleId, "11663a88-d89c-475a-806d-2f1a4448ebc3", new Date(), new Date()});
+            }
+        }
+        jdbcSession.batchUpdate("INSERT INTO `sp_role_auth` (`role_auth_id`, `role_id`, `auth_id`, `last_up_time`, `create_time`) " +
+                "VALUES (?,?,?,?,?)", list);
+
+    }
+
+
 }

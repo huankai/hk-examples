@@ -4,6 +4,7 @@ package com.hk.rabbit.util;
 import com.rabbitmq.client.Address;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.impl.DefaultCredentialsProvider;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,8 +28,7 @@ public class ConnectionUtils {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setHost("182.61.40.18");
         connectionFactory.setPort(5672);
-        connectionFactory.setUsername("test");
-        connectionFactory.setPassword("test");
+        connectionFactory.setCredentialsProvider(new DefaultCredentialsProvider("test", "test"));
         connectionFactory.setVirtualHost("/test");
         return connectionFactory.newConnection();
     }
@@ -45,8 +45,8 @@ public class ConnectionUtils {
         List<Address> addresses = new ArrayList<>();
         addresses.add(new Address("192.168.64.128", 5672));
         addresses.add(new Address("192.168.64.129", 5672));
-        connectionFactory.setUsername("guest");
-        connectionFactory.setPassword("guest");
+        addresses.add(new Address("192.168.64.130", 5672));
+        connectionFactory.setCredentialsProvider(new DefaultCredentialsProvider("guest", "guest"));
         connectionFactory.setVirtualHost("/");
         return connectionFactory.newConnection(addresses);
     }

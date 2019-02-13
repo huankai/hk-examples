@@ -24,6 +24,10 @@
         </dependency>
         <dependency>
             <groupId>com.hk</groupId>
+            <artifactId>hk-core-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hk</groupId>
             <artifactId>hk-core-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
