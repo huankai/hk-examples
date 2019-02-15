@@ -1,0 +1,54 @@
+server:
+  port: 6620
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: hk-stream-cluster-producer
+  main:
+    banner-mode: 'off'
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: 192.168.64.128,192.168.64.129,192.168.64.130
+    username: guest
+    password: guest
+    virtual-host: /
+#    是否开启发送确认，默认为false
+    publisher-confirms: false
+#    是否开启发送失败退回，默认为false
+    publisher-returns: false
+  cloud:
+########################################################################### spring cloud stream 配置
+    stream:
+      default-binder: rabbit
+      bindings:
+      # 发布、订阅模式
+        cluster_publish_output:
+          destination: cluster_publish_output
+#        routekey_output:
+#          destination: routekey_stream
+#        topic_output:
+#          destination: topic_stream
+#        delayed_output:
+#          destination: delayed_stream
+      rabbit:
+        bindings:
+          cluster_publish_output:
+            producer:
+              exchange-type: fanout
+#          routekey_output:
+#            producer:
+##            生产者指定 routeKey
+#              routing-key-expression: '''key1'''
+#              #指定交换机类型，在发布、订阅模式中，只能是 direct
+#              exchange-type: direct
+#          topic_output:
+#            producer:
+#              routing-key-expression: '''topicKey2.xxx.xxxx'''
+##              消息是否持久化，默认为true
+#              exchange-durable: true
+#              exchange-type: topic
+#          delayed_output:
+#            producer:
+##            配置是延时队列
+#              delayed-exchange: true

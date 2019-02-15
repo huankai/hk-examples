@@ -46,9 +46,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://182.61.40.18:3705/hk_emi?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
 #    url: jdbc:mysql://192.168.1.244:3306/sjq_ygpj_2019?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    url: jdbc:mysql://120.25.121.159:3306/sjq_ygpj_2019?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.1.244:3306/sjq_ygpj_2019?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
-    password: sjq123&*(
+#    password: sjq123&*(
+    password: root
     hikari:
       maximum-pool-size: 50
       max-lifetime: 600000

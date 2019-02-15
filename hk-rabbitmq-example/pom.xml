@@ -18,6 +18,9 @@
         <module>hk-rabbitmq-stream-producer</module>
         <module>hk-rabbitmq-stream-consumer01</module>
         <module>hk-rabbitmq-stream-consumer02</module>
+        <module>hk-rabbitmq-stream-cluster-producer</module>
+        <module>hk-rabbitmq-stream-cluster-consumer01</module>
+        <module>hk-rabbitmq-stream-cluster-consumer02</module>
     </modules>
 
     <properties>
