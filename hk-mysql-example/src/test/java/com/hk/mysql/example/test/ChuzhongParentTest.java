@@ -5,12 +5,18 @@ import com.hk.commons.poi.excel.model.ReadParam;
 import com.hk.commons.poi.excel.model.ReadResult;
 import com.hk.commons.poi.excel.read.DomReadExcel;
 import com.hk.commons.poi.excel.read.ReadableExcel;
+import com.hk.commons.util.ArrayUtils;
 import com.hk.commons.util.JsonUtils;
 import com.hk.commons.util.StringUtils;
+import com.hk.core.data.commons.query.Operator;
 import com.hk.core.data.jdbc.JdbcSession;
+import com.hk.core.data.jdbc.SelectArguments;
+import com.hk.core.data.jdbc.query.SimpleCondition;
+import com.hk.core.query.Order;
 import com.hk.core.test.BaseTest;
 import com.hk.mysql.examples.MysqlExampleApplication;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.poi.xwpf.usermodel.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +39,89 @@ public class ChuzhongParentTest extends BaseTest {
 
     @Autowired
     private JdbcSession jdbcSession;
+
+    /**
+     * 指标
+     */
+    @Test
+    public void quotaTest() {
+        ReadParam<ScoringRules> readParam = ReadParam.<ScoringRules>builder()
+                .beanClazz(ScoringRules.class)
+                .build();
+        ReadableExcel<ScoringRules> readableExcel = new DomReadExcel<>(readParam);
+        ReadResult<ScoringRules> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/非学业测试修改3稿/【2】初中九年级/【2】初中家长问卷/初中家长问卷计分规则.xlsx"));
+        List<ScoringRules> data = readResult.getAllSheetData();
+        String questionnaireId = "51e55e3e-8c38-44e1-9a2a-0fc64ca614f9";
+        SelectArguments arguments = new SelectArguments();
+        arguments.fields("question_id,question_code");
+        arguments.setFrom("et_questionnaire_question");
+        arguments.getConditions().addCondition(new SimpleCondition("questionnaire_id", questionnaireId));
+        arguments.setOrders(ArrayUtils.asArrayList(Order.asc("question_code")));
+        List<Map<String, Object>> questionnaireQuestionresult = jdbcSession.queryForList(arguments, false).getResult();
+        List<Quota> list = new ArrayList<>();
+        for (ScoringRules item : data) {
+            Optional<Map<String, Object>> questionCodeMap = questionnaireQuestionresult.stream().filter(questionnaireItem -> StringUtils.equals(item.no, String.valueOf(questionnaireItem.get("questionCode")))).findFirst();
+            if (questionCodeMap.isPresent()) {
+                String questionId = String.valueOf(questionCodeMap.get().get("questionId"));
+                arguments = new SelectArguments();
+                arguments.fields("quota_id");
+                arguments.setFrom("et_quota");
+                arguments.getConditions().addCondition(new SimpleCondition("parent_id", "8600ff6a-e9ab-4df9-bac5-09fbabc3fb20"));
+                List<Map<String, Object>> quotaList = jdbcSession.queryForList(arguments, false).getResult();
+                List<Object> quotaIdList = new ArrayList<>();
+                for (Map<String, Object> map : quotaList) {
+                    quotaIdList.add(map.get("quotaId"));
+                }
+
+                arguments = new SelectArguments();
+                arguments.fields("quota_id,name");
+                arguments.setFrom("et_quota");
+                arguments.getConditions().addCondition(new SimpleCondition("parent_id", Operator.IN, quotaIdList));
+                List<Map<String, Object>> childQuotaList = jdbcSession.queryForList(arguments, false).getResult();
+
+                Optional<Map<String, Object>> objectMap = childQuotaList.stream().filter(resultItem -> StringUtils.equals(item.quota, String.valueOf(resultItem.get("name")))).findFirst();
+                if (objectMap.isPresent()) {
+                    String quotaId = String.valueOf(objectMap.get().get("quotaId"));
+                    list.add(new Quota(questionId, quotaId, questionnaireId));
+                } else {
+                    System.out.println(item.no + "quotaId is null");
+                }
+
+            } else {
+                System.out.println(item.no + "questionId is null.");
+            }
+
+        }
+        System.out.println(JsonUtils.serialize(list, true));
+        System.out.println(list.size());
+        jdbcSession.batchUpdate("INSERT INTO `et_questionnaire_quota`(`ques_quota_id`, `questionnaire_id`, `question_id`, `quota_id`, `last_up_time`, `create_time`) VALUES " +
+                "(:quesQuotaId,:questionnaireId,:questionId,:quotaId,:lastUpTime,:createTime)", list);
+
+    }
+
+    @Data
+    @NoArgsConstructor
+    private static class Quota {
+
+        private String quesQuotaId;
+
+        private String questionnaireId;
+
+        private String questionId;
+
+        private String quotaId;
+
+        public Quota(String quesQuotaId, String quotaId, String questionnaireId) {
+            this.quesQuotaId = UUID.randomUUID().toString();
+            this.questionId = quesQuotaId;
+            this.quotaId = quotaId;
+            this.questionnaireId = questionnaireId;
+        }
+
+        private Date lastUpTime = new Date();
+
+        private Date createTime = new Date();
+    }
 
     @Test
     public void chuzhongParent() throws IOException {
@@ -184,6 +273,9 @@ public class ChuzhongParentTest extends BaseTest {
      */
     @Data
     private static class ScoringRules {
+
+        @ReadExcelField(start = 1)
+        public String quota;
 
         @ReadExcelField(start = 2)
         private String no;

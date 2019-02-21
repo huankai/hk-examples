@@ -5,11 +5,18 @@ import com.hk.commons.poi.excel.model.ReadParam;
 import com.hk.commons.poi.excel.model.ReadResult;
 import com.hk.commons.poi.excel.read.DomReadExcel;
 import com.hk.commons.poi.excel.read.ReadableExcel;
+import com.hk.commons.util.ArrayUtils;
+import com.hk.commons.util.JsonUtils;
 import com.hk.commons.util.StringUtils;
+import com.hk.core.data.commons.query.Operator;
 import com.hk.core.data.jdbc.JdbcSession;
+import com.hk.core.data.jdbc.SelectArguments;
+import com.hk.core.data.jdbc.query.SimpleCondition;
+import com.hk.core.query.Order;
 import com.hk.core.test.BaseTest;
 import com.hk.mysql.examples.MysqlExampleApplication;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.junit.Test;
@@ -19,13 +26,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * 非学业测试修改3稿\【1】小学六年级\【1】小学学生问卷
+ *
  * @author huangkai
  * @date 2019-02-14 11:19
  */
@@ -35,6 +40,90 @@ public class XiaoxueStudentTest extends BaseTest {
     @Autowired
     private JdbcSession jdbcSession;
 
+
+    /**
+     * 指标
+     */
+    @Test
+    public void quotaTest() {
+        ReadParam<ScoringRules> readParam = ReadParam.<ScoringRules>builder()
+                .beanClazz(ScoringRules.class)
+                .build();
+        ReadableExcel<ScoringRules> readableExcel = new DomReadExcel<>(readParam);
+        ReadResult<ScoringRules> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/非学业测试修改3稿/【1】小学六年级/【1】小学学生问卷/小学学生问卷计分规则.xlsx"));
+        List<ScoringRules> data = readResult.getAllSheetData();
+        String questionnaireId = "7f7fe559-b5ed-4af6-8cd4-c608691d0ea6";
+        SelectArguments arguments = new SelectArguments();
+        arguments.fields("question_id,question_code");
+        arguments.setFrom("et_questionnaire_question");
+        arguments.getConditions().addCondition(new SimpleCondition("questionnaire_id", questionnaireId));
+        arguments.setOrders(ArrayUtils.asArrayList(Order.asc("question_code")));
+        List<Map<String, Object>> questionnaireQuestionresult = jdbcSession.queryForList(arguments, false).getResult();
+        List<Quota> list = new ArrayList<>();
+        for (ScoringRules item : data) {
+            Optional<Map<String, Object>> questionCodeMap = questionnaireQuestionresult.stream().filter(questionnaireItem -> StringUtils.equals(item.no, String.valueOf(questionnaireItem.get("questionCode")))).findFirst();
+            if (questionCodeMap.isPresent()) {
+                String questionId = String.valueOf(questionCodeMap.get().get("questionId"));
+                arguments = new SelectArguments();
+                arguments.fields("quota_id");
+                arguments.setFrom("et_quota");
+                arguments.getConditions().addCondition(new SimpleCondition("parent_id", "8bd90cbc-dbad-4681-8990-f0b9ee15e310"));
+                List<Map<String, Object>> quotaList = jdbcSession.queryForList(arguments, false).getResult();
+                List<Object> quotaIdList = new ArrayList<>();
+                for (Map<String, Object> map : quotaList) {
+                    quotaIdList.add(map.get("quotaId"));
+                }
+
+                arguments = new SelectArguments();
+                arguments.fields("quota_id,name");
+                arguments.setFrom("et_quota");
+                arguments.getConditions().addCondition(new SimpleCondition("parent_id", Operator.IN, quotaIdList));
+                List<Map<String, Object>> childQuotaList = jdbcSession.queryForList(arguments, false).getResult();
+
+                Optional<Map<String, Object>> objectMap = childQuotaList.stream().filter(resultItem -> StringUtils.equals(item.quota, String.valueOf(resultItem.get("name")))).findFirst();
+                if (objectMap.isPresent()) {
+                    String quotaId = String.valueOf(objectMap.get().get("quotaId"));
+                    list.add(new Quota(questionId, quotaId, questionnaireId));
+                } else {
+                    System.out.println(item.no + "quotaId is null");
+                }
+
+            } else {
+                System.out.println(item.no + "questionId is null.");
+            }
+
+        }
+        System.out.println(JsonUtils.serialize(list, true));
+        System.out.println(list.size());
+        jdbcSession.batchUpdate("INSERT INTO `et_questionnaire_quota`(`ques_quota_id`, `questionnaire_id`, `question_id`, `quota_id`, `last_up_time`, `create_time`) VALUES " +
+                "(:quesQuotaId,:questionnaireId,:questionId,:quotaId,:lastUpTime,:createTime)", list);
+
+    }
+
+    @Data
+    @NoArgsConstructor
+    private static class Quota {
+
+        private String quesQuotaId;
+
+        private String questionnaireId;
+
+        private String questionId;
+
+        private String quotaId;
+
+        public Quota(String quesQuotaId, String quotaId, String questionnaireId) {
+            this.quesQuotaId = UUID.randomUUID().toString();
+            this.questionId = quesQuotaId;
+            this.quotaId = quotaId;
+            this.questionnaireId = questionnaireId;
+        }
+
+        private Date lastUpTime = new Date();
+
+        private Date createTime = new Date();
+    }
+
     @Test
     public void xiaoxueStudent() throws IOException {
         ReadParam<ScoringRules> readParam = ReadParam.<ScoringRules>builder()
@@ -43,6 +132,7 @@ public class XiaoxueStudentTest extends BaseTest {
         ReadableExcel<ScoringRules> readableExcel = new DomReadExcel<>(readParam);
         ReadResult<ScoringRules> readResult = readableExcel.read(new File("C:/Users/sjq-278/Desktop/非学业测试修改3稿/【1】小学六年级/【1】小学学生问卷/小学学生问卷计分规则.xlsx"));
         List<ScoringRules> data = readResult.getAllSheetData();
+
 //        System.out.println(JsonUtils.serialize(data, true));
 //        System.exit(-1);
 
@@ -131,6 +221,12 @@ public class XiaoxueStudentTest extends BaseTest {
 
         @ReadExcelField(start = 0)
         private String no;
+
+        /**
+         * 二级维度
+         */
+        @ReadExcelField(start = 2)
+        private String quota;
 
         @ReadExcelField(start = 4)
         private String a;

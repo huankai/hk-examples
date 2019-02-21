@@ -33,11 +33,11 @@ public class UserServiceImpl extends JdbcServiceImpl<User, String> implements Us
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findOne(new CompositeCondition(new SimpleCondition("account", username)))
                 .orElseThrow(() -> new UsernameNotFoundException("不存在的用户:" + username));
-        SecurityUserPrincipal userPrincipal = new SecurityUserPrincipal(user.getId(), user.getAccount(), user.getIsProtect(), user.getRealName(),
-                user.getUserType(), user.getPhone(), user.getEmail(), user.getSex(), user.getIconPath(), user.getPassword(), user.getUserStatus());
-        userPrincipal.setOrgId(user.getOrgId());
-        userPrincipal.setDeptId(user.getDeptId());
-        return userPrincipal;
+        return new SecurityUserPrincipal(user.getId(), user.getOrgId(), null, user.getDeptId(), null, user.getAccount(), user.getIsProtect(), user.getRealName(),
+                user.getUserType(), user.getPhone(), user.getEmail(), user.getSex(), user.getIconPath(), user.getPassword(), user.getUserStatus(), null, null);
+//        userPrincipal.setOrgId(user.getOrgId());
+//        userPrincipal.setDeptId(user.getDeptId());
+//        return userPrincipal;
     }
 
 }
