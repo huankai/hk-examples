@@ -14,5 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = {RedisExampleApplication.class})
 public class ClusterTest extends BaseTest {
 
+    public static void main(String[] args) {
+
+    }
 
 }
