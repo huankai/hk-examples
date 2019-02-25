@@ -6,15 +6,18 @@ spring:
   cache:
     type: redis
   redis:
-    cluster:
-#     获取失败最大重定向次数
-      max-redirects: 2
-#      集群节点配置
-      nodes:
-        - "192.168.64.128:6379"
-        - "192.168.64.129:6379"
-        - "192.168.64.130:6379"
+#    cluster:
+##     获取失败最大重定向次数
+#      max-redirects: 2
+##      集群节点配置
+#      nodes:
+#        - "192.168.64.128:6379"
+#        - "192.168.64.129:6379"
+#        - "192.168.64.130:6379"
     timeout: 2000ms
+    host: 182.61.40.18
+    password: redisa$min302
+    port: 6350
 #    password:
     lettuce:
       pool:
