@@ -6,6 +6,7 @@ server:
 spring:
   main:
     banner-mode: 'off'
+    allow-bean-definition-overriding: true
   servlet:
     multipart:
       enabled: false # 禁用文件上传功能
@@ -44,12 +45,9 @@ spring:
     name: hikari
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://182.61.40.18:3705/hk_emi?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-#    url: jdbc:mysql://192.168.1.244:3306/sjq_ygpj_2019?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    url: jdbc:mysql://192.168.1.244:3306/sjq_ygpj_2019?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-#    password: sjq123&*(
-    password: root
+    url: jdbc:mysql://127.0.0.1：3306/hk_pms?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: pms
+    password: pmsadmin
     hikari:
       maximum-pool-size: 50
       max-lifetime: 600000
@@ -61,10 +59,10 @@ spring:
   cache:
     type: redis
   redis:
-    host: 12.0.0.1
+    host: 127.0.0.1
     password:
     port: 6379
-    database: 2
+    database: 3
     timeout: 3000ms
     lettuce:
       pool:
