@@ -50,7 +50,7 @@ public class TransactionApplication {
 
             @Override
             public UserPrincipal getPrincipal() {
-                return new UserPrincipal("0", "0", true, "0", ByteConstants.ZERO, "0", "0", ByteConstants.ZERO, "0");
+                return new UserPrincipal("0", "0", ByteConstants.ZERO);
             }
 
             @Override

@@ -1,5 +1,6 @@
 package com.hk.cache.redis.example;
 
+import com.hk.commons.util.ByteConstants;
 import com.hk.core.authentication.api.SecurityContext;
 import com.hk.core.authentication.api.UserPrincipal;
 import org.springframework.boot.SpringApplication;
@@ -22,12 +23,12 @@ public class RedisExampleApplication {
         return new SecurityContext() {
             @Override
             public UserPrincipal getPrincipal() {
-                return new UserPrincipal();
+                return new UserPrincipal("1", "1", ByteConstants.ZERO);
             }
 
             @Override
             public boolean isAuthenticated() {
-                return false;
+                return true;
             }
         };
     }

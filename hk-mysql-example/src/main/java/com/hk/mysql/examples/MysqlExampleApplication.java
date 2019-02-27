@@ -1,5 +1,6 @@
 package com.hk.mysql.examples;
 
+import com.hk.commons.util.ByteConstants;
 import com.hk.core.authentication.api.SecurityContext;
 import com.hk.core.authentication.api.UserPrincipal;
 import com.hk.mysql.examples.service.AccountService;
@@ -36,7 +37,7 @@ public class MysqlExampleApplication {
         return new SecurityContext() {
             @Override
             public UserPrincipal getPrincipal() {
-                return new UserPrincipal();
+                return new UserPrincipal("1", "1", ByteConstants.ZERO);
             }
 
             @Override

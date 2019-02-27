@@ -37,7 +37,7 @@ public class UserServiceImpl extends JdbcServiceImpl<User, String> implements Us
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             UserPrincipal userPrincipal = new UserPrincipal(user.getId(), user.getAccount(), user.getIsProtect(), user.getRealName(), user.getUserType()
-                    , user.getPhone(), user.getEmail(), user.getSex(), user.getIconPath());
+                    , user.getPhone(), user.getEmail(), user.getSex(), user.getIconPath(), null, null);
 //            userPrincipal.setRoleSet();配置角色与权限
 //            userPrincipal.setPermissionSet();
             account = new ShiroUserPrincipal(userPrincipal, user.getPassword());
