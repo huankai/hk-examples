@@ -28,8 +28,9 @@
         <module>hk-oracle-example</module>
         <module>hk-mysql-example</module>
         <module>hk-shiro-example</module>
-        <module>hk-security-cas-example</module>
         <module>hk-security-example</module>
+        <module>hk-security-token-example</module>
+        <module>hk-security-cas-example</module>
         <module>hk-messsage-websocket-example</module>
         <module>hk-hadoop-example</module>
     </modules>
