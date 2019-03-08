@@ -4,7 +4,7 @@ import com.hk.core.authentication.security.TokenSecurityContext;
 import com.hk.core.authentication.security.TokenSecurityContextImpl;
 import com.hk.core.authentication.security.accesstoken.AccessTokenAuthenticationSecurityConfigurer;
 import com.hk.core.authentication.security.accesstoken.AccessTokenContext;
-import com.hk.core.authentication.security.accesstoken.InMemoryAccessTokenContext;
+import com.hk.core.authentication.security.accesstoken.CacheAccessTokenContext;
 import com.hk.core.authentication.service.UserDetailServiceImpl;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +38,7 @@ public class SpringWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 
     @Bean
     public AccessTokenContext tokenContext() {
-        return new InMemoryAccessTokenContext();
+        return new CacheAccessTokenContext();
     }
 
     @Bean
@@ -54,7 +54,7 @@ public class SpringWebSecurityConfiguration extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.apply(new AccessTokenAuthenticationSecurityConfigurer(tokenContext(), tokenProperties.getTokenAuthorizationHeader(),
-                tokenProperties.getAuthorizationType(), tokenProperties.getTokenParameter()));
+                tokenProperties.getAuthorizationType(), tokenProperties.getTokenParameter(), tokenProperties.getExpire()));
     }
 
     @Override

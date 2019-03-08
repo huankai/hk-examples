@@ -39,13 +39,13 @@ public class ExcelWriteTest {
                 return super.getCommentText(obj, propertyName, propertyType);
             }
         });
-        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/sjq-278/Desktop/excel_test.xls")));
+        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/Administration/Desktop/excel_test.xls")));
     }
 
     @Test
     public void writeTo2007ByXSSF() throws FileNotFoundException {
         List<ExcelVo> data = Lists.newArrayList();
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 20; i++) {
             data.add(new ExcelVo("name" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()));
         }
         WriteParam<ExcelVo> writeParam = WriteParam.<ExcelVo>builder().beanClazz(ExcelVo.class).data(data).build();
@@ -60,7 +60,7 @@ public class ExcelWriteTest {
                 return super.getCommentText(obj, propertyName, propertyType);
             }
         });
-        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/sjq-278/Desktop/excel.xlsx")));
+        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/Administration/Desktop/excel.xlsx")));
     }
 
     @Test
@@ -80,7 +80,7 @@ public class ExcelWriteTest {
                 return super.getCommentText(obj, propertyName, propertyType);
             }
         });
-        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/sjq-278/Desktop/sxssf_excel.xlsx")));
+        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/Administration/Desktop/sxssf_excel.xlsx")));
     }
 
 }

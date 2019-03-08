@@ -137,7 +137,7 @@ public class CityImportTest extends BaseTest {
         ReadableExcel<ExcelVo> readableExcel = new DomReadExcel<>(readParam);
         ReadResult<ExcelVo> readResult = readableExcel.read(new File("C:\\Users\\sjq-278\\Desktop/1.xls"));
         List<ExcelVo> allSheetData = readResult.getAllSheetData();
-        JsonUtils.serializeToFile(allSheetData, true, new File("C:\\Users\\sjq-278\\Desktop/2.txt"));
+        JsonUtils.serializeToFile(allSheetData, new File("C:\\Users\\sjq-278\\Desktop/2.txt"));
 //        System.out.println(JsonUtils.serialize(allSheetData, true));
 //        System.out.println(allSheetData.size());
 

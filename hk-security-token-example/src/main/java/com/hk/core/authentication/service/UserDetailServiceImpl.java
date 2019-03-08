@@ -5,13 +5,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.time.Duration;
+
 /**
  * @author huangkai
  * @date 2019/3/7 13:58
  */
 public class UserDetailServiceImpl extends TokenAuthenticationProvider implements UserDetailsService {
 
-    public UserDetailServiceImpl(long expire) {
+    public UserDetailServiceImpl(Duration expire) {
         super(expire);
     }
 
