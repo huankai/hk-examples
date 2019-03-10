@@ -7,6 +7,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * <pre>
@@ -39,4 +40,16 @@ public class Commodity implements Serializable {
 	private String name;
 
 	private BigDecimal price;
+	
+	private List<CommodityFile> files;
+	
+	@Data
+	public static class CommodityFile {
+		
+		private String id;
+		
+		private String fileName;
+		
+		private String filePath;
+	}
 }

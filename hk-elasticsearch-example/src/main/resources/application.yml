@@ -13,5 +13,5 @@ spring:
     elasticsearch:
 #     名称：要和 $elasticsearch_home}/config/elasticsearch.yml 中的 cluster.name 参数一样
       cluster-name: docker-cluster
-      cluster-nodes: 192.168.1.50:9300,192.168.1.51:9300,192.168.1.90:9300
+      cluster-nodes: 192.168.1.50:9300
   
