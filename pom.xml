@@ -21,6 +21,7 @@
         <module>hk-poi-example</module>
         <module>hk-cache-redis-example</module>
         <module>hk-solr-example</module>
+        <module>hk-elasticsearch-example</module>
         <module>hk-util-example</module>
         <module>hk-weixin-example</module>
         <module>hk-rabbitmq-example</module>
