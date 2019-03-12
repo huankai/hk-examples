@@ -1,9 +1,9 @@
 package com.hk.mysql.examples.service.impl;
 
-import com.hk.core.cache.service.impl.EnableJdbcCacheServiceImpl;
-import com.hk.core.data.jdbc.repository.JdbcRepository;
+import com.hk.core.cache.service.impl.EnableJpaCacheServiceImpl;
+import com.hk.core.data.jpa.repository.BaseJpaRepository;
 import com.hk.mysql.examples.domain.Account;
-import com.hk.mysql.examples.repository.jdbc.AccountRepository;
+import com.hk.mysql.examples.repository.jpa.AccountRepository;
 import com.hk.mysql.examples.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @CacheConfig(cacheNames = {"Account"})
-public class AccountServiceImpl extends EnableJdbcCacheServiceImpl<Account, String> implements AccountService {
+public class AccountServiceImpl extends EnableJpaCacheServiceImpl<Account, String> implements AccountService {
 
     private final AccountRepository accountRepository;
 
@@ -25,7 +25,7 @@ public class AccountServiceImpl extends EnableJdbcCacheServiceImpl<Account, Stri
     }
 
     @Override
-    protected JdbcRepository<Account, String> getBaseRepository() {
+    protected BaseJpaRepository<Account, String> getBaseRepository() {
         return accountRepository;
     }
 }

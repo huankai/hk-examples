@@ -28,7 +28,7 @@ public class MysqlExampleApplication {
 
     @RequestMapping("/")
     public String index() {
-        System.out.println(accountService.getById("1"));
+        System.out.println(accountService.getOne("1"));
         return "success";
     }
 
