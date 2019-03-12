@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2019-03-09 16:10
  */
 @Data
-@Document(indexName = "hk-elasticsearch-example", type = "commodity")
+@Document(indexName = "hk-elasticsearch-example")
 public class Commodity implements Serializable {
 
     @Id

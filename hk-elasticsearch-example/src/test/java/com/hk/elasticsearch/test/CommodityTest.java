@@ -3,7 +3,6 @@ package com.hk.elasticsearch.test;
 import com.hk.commons.util.ArrayUtils;
 import com.hk.commons.util.IDGenerator;
 import com.hk.commons.util.JsonUtils;
-import com.hk.core.data.commons.query.Operator;
 import com.hk.core.elasticsearch.query.Condition;
 import com.hk.core.elasticsearch.query.SimpleCondition;
 import com.hk.core.page.QueryPage;
@@ -63,6 +62,7 @@ public class CommodityTest extends BaseTest {
      */
     @Test
     public void list() {
+//        commodityRepository.search(new MatchQueryBuilder("",""));
         Iterable<Commodity> result = commodityRepository.findAll();
         result.forEach(item -> System.out.println(JsonUtils.serialize(item, true)));
     }
@@ -96,10 +96,9 @@ public class CommodityTest extends BaseTest {
 
     @Test
     public void findByPage2() {
-        List<Condition> conditions = ArrayUtils.asArrayList(new SimpleCondition("price", Operator.GT, 5300));
+        List<Condition> conditions = ArrayUtils.asArrayList(new SimpleCondition("price", Criteria.OperationKey.GREATER, 5300));
         QueryPage<Commodity> page = commodityRepository.findByPage(conditions, 0, 10);
         System.out.println(JsonUtils.serialize(page, true));
     }
-
 
 }
