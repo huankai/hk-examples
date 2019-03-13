@@ -1,5 +1,6 @@
 package com.hk.mysql.examples.domain;
 
+import com.hk.core.data.commons.typedef.JsonTypeDef;
 import com.hk.core.data.jpa.domain.AbstractUUIDPersistable;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import lombok.Data;
@@ -22,7 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "t_account")
 @EqualsAndHashCode(callSuper = true)
-@TypeDef(name = "json", typeClass = JsonStringType.class)
+@TypeDef(name = JsonTypeDef.json, typeClass = JsonStringType.class)
 public class Account extends AbstractUUIDPersistable {
 
     @Column(name = "sheyuan_id")
@@ -30,6 +31,10 @@ public class Account extends AbstractUUIDPersistable {
 
     @Column(name = "nick_name")
     private String nickName;
+
+    @Type(type = "json")
+    @Column(name = "content_one")
+    private Content contentOne;
 
 
     /**
@@ -42,15 +47,6 @@ public class Account extends AbstractUUIDPersistable {
      * </pre>
      */
     @Column(name = "content")
-    @Type(type = "json")
+    @Type(type = JsonTypeDef.json)
     private List<Content> content;
-
-    @Data
-    public static class Content implements Serializable {
-
-        private String name;
-
-        private String value;
-
-    }
 }

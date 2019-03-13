@@ -7,6 +7,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -15,16 +16,18 @@ import java.util.List;
  * @date 2019-02-26 17:22
  */
 @Data
-@Table(value = "t_account")
+@Table(value = "test")
 @EqualsAndHashCode(callSuper = true)
 public class JdbcAccount extends AbstractUUIDPersistable {
 
-    @Column(value = "sheyuan_id")
-    private String sheyuanId;
+    @Column(value = "name_")
+    private String name;
 
-    @Column(value = "nick_name")
-    private String nickName;
+    @Column(value = "value_")
+    private String value;
 
+    @Column(value = "time_")
+    private LocalDateTime time;
 
     @Column(value = "content")
     private List<Content> content;

@@ -12,7 +12,7 @@ spring:
       enabled: false # 禁用文件上传功能
   autoconfigure:
     exclude:
-    # 默认情况下，spring boot web 应用会装配一些功能组件 bean,大多数情况下，可以选择性关闭自动装配的组件bean,以提升性能。
+      # 默认情况下，spring boot web 应用会装配一些功能组件 bean,大多数情况下，可以选择性关闭自动装配的组件bean,以提升性能。
       - org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration
       - org.springframework.boot.autoconfigure.jdbc.JndiDataSourceAutoConfiguration
       - org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration
@@ -25,12 +25,19 @@ spring:
     formcontent:
       filter:
         enabled: false
-######################################################### 国际化配置
+  ######################################################### 国际化配置
   messages:
     encoding: UTF-8
     basename: org/springframework/security/messages,com/hk/core/i18n/messages,messages
     cache-duration: -1ms
-######################################################### thymeleaf 配置
+  jpa:
+    show-sql: false
+    generate-ddl: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        enable_lazy_load_no_trans: true
+  ######################################################### thymeleaf 配置
   thymeleaf:
     enabled: true
     cache: false
@@ -40,14 +47,14 @@ spring:
     suffix: .html
     servlet:
       content-type: text/html; charset=utf-8
-######################################################### datasource 配置
+  ######################################################### datasource 配置
   datasource:
     name: hikari
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://182.61.40.18:3705/hk_pms?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: pms
-    password: pmsadmin
+    url: jdbc:mysql://127.0.0.1:3306/xls_mail?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root
     hikari:
       maximum-pool-size: 50
       max-lifetime: 600000
@@ -55,7 +62,7 @@ spring:
       connection-timeout: 30000
       read-only: false
       connection-test-query: SELECT 1 FROM DUAL
-################################################################### redis
+  ################################################################### redis
   cache:
     type: redis
   redis:
@@ -66,14 +73,24 @@ spring:
     timeout: 3000ms
     lettuce:
       pool:
-#       连接池最大连接数（使用负值表示没有限制）
+        # 连接池最大连接数（使用负值表示没有限制）
         max-active: 1000
-#       连接池中的最小空闲连接
+        # 连接池中的最小空闲连接
         min-idle: 5
-#       连接池中的最大空闲连接
+        # 连接池中的最大空闲连接
         max-idle: 10
-#       连接池最大阻塞等待时间（使用负值表示没有限制）
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1ms
+
+pagehelper:
+  reasonable: false
+  support-methods-arguments: true
+  params: count=countSql
+mybatis:
+  mapper-locations:
+    - classpath:mybatis/mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
 
 ######################################################### logging 配置
 logging:
@@ -82,7 +99,7 @@ logging:
     com.hk: info
     org.springframework.web.socket: debug
     org.apache.kafka: debug
-#    org.springframework.security: debug
+    #    org.springframework.security: debug
     org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: debug
     org.springframework.jdbc.core.JdbcTemplate: debug
     org.springframework.jdbc.core.StatementCreatorUtils: trace

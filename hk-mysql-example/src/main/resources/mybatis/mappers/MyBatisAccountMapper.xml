@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.hk.mysql.examples.mappers.MyBatisAccountMapper">
+
+    <resultMap id="account" type="com.hk.mysql.examples.domain.MyBatisAccount">
+        <id column="id" property="id"/>
+        <result column="sheyuan_id" property="sheyuanId"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="content_one" property="contentOne" typeHandler="com.hk.data.ibatis.type.JsonTypeHandler"
+                javaType="com.hk.mysql.examples.domain.Content"/>
+        <result column="content" property="content" typeHandler="com.hk.data.ibatis.type.ListJsonTypeHandler"
+                javaType="com.hk.mysql.examples.domain.Content"/>
+    </resultMap>
+
+    <select id="getById" parameterType="string" resultMap="account">
+      select * from t_account WHERE id = #{id}
+    </select>
+</mapper>
