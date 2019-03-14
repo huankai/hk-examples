@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+wechat:
+  cp:
+    agent-id: 
+    corp-id: 
+    corp-secret: 

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.websocket.OnClose;
+
 /**
  * @author huangkai
  * @date 2018-09-21 12:32
@@ -28,5 +30,10 @@ public class WebSocketController {
     @MessageMapping("chat2")
     public void handlerChat2(Message message) {
         messagingTemplate.convertAndSend("/queue/notifications", message.getName());
+    }
+
+    @OnClose
+    public void close() {
+        System.out.println("close.......");
     }
 }

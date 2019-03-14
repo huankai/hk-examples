@@ -34,6 +34,7 @@
         <module>hk-security-cas-example</module>
         <module>hk-messsage-websocket-example</module>
         <module>hk-hadoop-example</module>
+        <module>hk-weixin-cp-example</module>
     </modules>
 
     <dependencyManagement>
