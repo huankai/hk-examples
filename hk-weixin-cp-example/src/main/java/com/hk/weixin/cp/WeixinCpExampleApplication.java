@@ -1,5 +1,7 @@
 package com.hk.weixin.cp;
 
+import com.hk.commons.util.ArrayUtils;
+import com.hk.commons.util.IDGenerator;
 import me.chanjar.weixin.cp.api.WxCpService;
 import me.chanjar.weixin.cp.bean.WxCpMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ public class WeixinCpExampleApplication {
 
         @Override
         public void run(String... args) throws Exception {
+            cpService.getChatService().chatCreate("聊天室1","", ArrayUtils.asArrayList(""), IDGenerator.STRING_UUID.generate());
             WxCpMessage message = WxCpMessage.TEXT().content("测试消息").toUser("kevin").build();
             cpService.messageSend(message);
         }

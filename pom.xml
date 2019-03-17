@@ -15,6 +15,7 @@
 
     <modules>
         <module>fs-example</module>
+        <module>hk-netty-example</module>
         <module>hk-mapping</module>
         <module>hk-mapping-web</module>
         <module>hk-flowable-example</module>
