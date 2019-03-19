@@ -9,6 +9,11 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 /**
+ * 06: netty protobuf 示例:
+ * <pre>
+ *     1、启动 {@link ProtoBufTestServer}，再启动 {@link ProtoBufTestClient}
+ * </pre>
+ *
  * @author huangkai
  * @date 2019-03-18 21:50
  */

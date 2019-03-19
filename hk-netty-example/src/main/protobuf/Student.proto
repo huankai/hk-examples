@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package com.hk.proto;
+
+option optimize_for = SPEED;
+// 指定java 包名
+option java_package = "com.hk.protobuf";
+//指定 生成的类名
+option java_outer_classname = "DataInfo";
+
+message Student {
+    //    required 表示属性必须，否则会报错。 name = 1 表示顺序，而不是 name的值为 1
+    required string name = 1;
+    //    optional 表示属性可选
+    optional int32 age = 2;
+    optional string address = 3;
+}

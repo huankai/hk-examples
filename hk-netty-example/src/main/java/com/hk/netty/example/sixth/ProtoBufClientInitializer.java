@@ -13,7 +13,7 @@ import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
  * @author huangkai
  * @date 2019-03-18 21:51
  */
-public class ProtoBufServerInitializer extends ChannelInitializer<SocketChannel> {
+public class ProtoBufClientInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel ch) {
@@ -22,6 +22,6 @@ public class ProtoBufServerInitializer extends ChannelInitializer<SocketChannel>
                 new ProtobufDecoder(DataInfo.Student.getDefaultInstance()),//解码器，
                 new ProtobufVarint32LengthFieldPrepender(),
                 new ProtobufEncoder(),
-                new ProtoBufServerHandler());
+                new ProtoBufClientHandler());
     }
 }
