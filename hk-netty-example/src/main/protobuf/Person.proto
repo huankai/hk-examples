@@ -1,0 +1,47 @@
+syntax = "proto2";
+
+package com.hk.proto;
+
+option optimize_for = SPEED;
+// 指定java 包名
+option java_package = "com.hk.protobuf";
+//指定 生成的类名
+option java_outer_classname = "PersonInfo";
+
+// 此案例演示 ProtoBufServerHandler 类的泛型类型不是固定的，根据 proto 中的 oneof 关键字实现。
+
+message Person {
+
+    enum PersonType {
+        BOY = 1;
+        GIRL = 2;
+        YOUTH = 3;
+    }
+
+    required PersonType person_type = 1;
+
+// oneof 关键字
+    oneof dataBody {
+        Boy boy = 2;
+        Girl girl = 3;
+        Youth youth = 4;
+    }
+
+}
+
+message Boy {
+    required string name = 1;
+    optional int32 age = 2;
+    optional string address = 3;
+}
+
+message Girl {
+    required string name = 1;
+    optional int32 age = 2;
+    optional string height = 3;
+}
+
+message Youth {
+    required string name = 1;
+    optional int32 workYear = 3;
+}

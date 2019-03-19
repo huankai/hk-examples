@@ -1,6 +1,6 @@
 package com.hk.netty.example.sixth;
 
-import com.hk.protobuf.DataInfo;
+import com.hk.protobuf.PersonInfo;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -19,7 +19,7 @@ public class ProtoBufClientInitializer extends ChannelInitializer<SocketChannel>
     protected void initChannel(SocketChannel ch) {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast(new ProtobufVarint32FrameDecoder(),
-                new ProtobufDecoder(DataInfo.Student.getDefaultInstance()),//解码器，
+                new ProtobufDecoder(PersonInfo.Person.getDefaultInstance()),//解码器，
                 new ProtobufVarint32LengthFieldPrepender(),
                 new ProtobufEncoder(),
                 new ProtoBufClientHandler());

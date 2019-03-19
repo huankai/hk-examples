@@ -12,6 +12,9 @@ import io.netty.handler.logging.LoggingHandler;
  * 06: netty protobuf 示例:
  * <pre>
  *     1、启动 {@link ProtoBufTestServer}，再启动 {@link ProtoBufTestClient}
+ *
+ *     注意： client 与 server 使用 netty 通信，应该分别使用两个进程来启动，
+ *      所以 使用 protoc 生成的类需要单独打成包，以供 client 与 server 共同引用。
  * </pre>
  *
  * @author huangkai
