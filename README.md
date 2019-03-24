@@ -1,10 +1,10 @@
 # hk-examples
 
 ## hk-util-example ##
- hk-commons-util 工具类测试
+ hk-core-utils 工具类测试
  
 ## hk-poi-example ##
- hk-commons-poi 测试
+ hk-core-poi 测试
 
 ## hk-mysql-example ##
 mysql 测试
