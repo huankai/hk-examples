@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package com.hk.proto;
+
+// 指定java 包名
+option java_package = "com.hk.proto.grpc";
+//指定 生成的类名
+option java_outer_classname = "StudentProto";
+
+option java_multiple_files = true;
+
+service StudentService {
+
+    rpc getRealNameByName(StudentRequest) returns (StudentResponse){}
+}
+
+message StudentRequest {
+    string name = 1;
+}
+message StudentResponse {
+    string realName = 2;
+}
+
+
+
