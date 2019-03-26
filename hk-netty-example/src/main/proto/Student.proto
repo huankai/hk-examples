@@ -1,3 +1,4 @@
+// google grpc 基于 protobuf 之上,需要使用 proto3
 syntax = "proto3";
 
 package com.hk.proto;

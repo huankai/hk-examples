@@ -32,7 +32,7 @@ public final class StudentProto {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\rStudent.proto\022\014com.hk.proto\"\036\n\016Student" +
       "Request\022\014\n\004name\030\001 \001(\t\"#\n\017StudentResponse" +
       "\022\020\n\010realName\030\002 \001(\t2d\n\016StudentService\022R\n\021" +
@@ -58,13 +58,13 @@ public final class StudentProto {
     internal_static_com_hk_proto_StudentRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_hk_proto_StudentRequest_descriptor,
-        new java.lang.String[] { "Name", });
+        new String[] { "Name", });
     internal_static_com_hk_proto_StudentResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_hk_proto_StudentResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_hk_proto_StudentResponse_descriptor,
-        new java.lang.String[] { "RealName", });
+        new String[] { "RealName", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

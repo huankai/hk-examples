@@ -10,7 +10,7 @@ public interface StudentRequestOrBuilder extends
   /**
    * <code>string name = 1;</code>
    */
-  java.lang.String getName();
+  String getName();
   /**
    * <code>string name = 1;</code>
    */
