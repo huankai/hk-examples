@@ -3,8 +3,8 @@
 
 package com.hk.proto.grpc;
 
-public interface StudentRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:com.hk.proto.StudentRequest)
+public interface UserRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:com.hk.proto.UserRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

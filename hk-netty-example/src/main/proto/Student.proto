@@ -12,7 +12,27 @@ option java_multiple_files = true;
 
 service StudentService {
 
-    rpc getRealNameByName(StudentRequest) returns (StudentResponse){}
+    // GRCP 支持如下四种方式的数据传递：
+
+    //一、 客户端是单一结果，服务端返回单一结果
+    rpc getRealNameByName (StudentRequest) returns (StudentResponse) {
+    }
+
+    // 二、客户端是单一结果，服务端返回多结果(集合)
+    // 注意，这里请求参数不能为int32，即使只有一个参数，也要用 message 定义成对象，这是和 thrift 不同之处
+    //    rpc getUserByName2 (int32) returns (stream UserResponse) {}
+    rpc getUserByName (UserRequest) returns (stream UserResponse) {
+    }
+
+    // 三、客户端是流，服务端返回单一结果
+    rpc getUserWrapperByName (stream UserRequest) returns (UserResponseList) {
+    }
+
+    // 四、客户端和服务端都以流的方式将消息发送给对方
+    rpc biTalk (stream StreamRequest) returns (stream StreamResponse) {
+    }
+
+
 }
 
 message StudentRequest {
@@ -21,6 +41,31 @@ message StudentRequest {
 message StudentResponse {
     string realName = 2;
 }
+
+message UserRequest {
+    string name = 1;
+}
+
+message UserResponse {
+    string name = 1;
+    int32 age = 2;
+    string phone = 3;
+}
+
+message UserResponseList {
+    // 集合
+    repeated UserResponse userResponse = 1;
+}
+
+message StreamRequest {
+    string request_info = 1;
+}
+
+message StreamResponse {
+    string response_info = 2;
+}
+
+
 
 
 

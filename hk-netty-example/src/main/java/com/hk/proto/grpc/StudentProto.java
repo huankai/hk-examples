@@ -24,6 +24,31 @@ public final class StudentProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_hk_proto_StudentResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_hk_proto_UserRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_hk_proto_UserRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_hk_proto_UserResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_hk_proto_UserResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_hk_proto_UserResponseList_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_hk_proto_UserResponseList_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_hk_proto_StreamRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_hk_proto_StreamRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_hk_proto_StreamResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_hk_proto_StreamResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -32,14 +57,26 @@ public final class StudentProto {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\rStudent.proto\022\014com.hk.proto\"\036\n\016Student" +
       "Request\022\014\n\004name\030\001 \001(\t\"#\n\017StudentResponse" +
-      "\022\020\n\010realName\030\002 \001(\t2d\n\016StudentService\022R\n\021" +
-      "getRealNameByName\022\034.com.hk.proto.Student" +
-      "Request\032\035.com.hk.proto.StudentResponse\"\000" +
-      "B#\n\021com.hk.proto.grpcB\014StudentProtoP\001b\006p" +
-      "roto3"
+      "\022\020\n\010realName\030\002 \001(\t\"\033\n\013UserRequest\022\014\n\004nam" +
+      "e\030\001 \001(\t\"8\n\014UserResponse\022\014\n\004name\030\001 \001(\t\022\013\n" +
+      "\003age\030\002 \001(\005\022\r\n\005phone\030\003 \001(\t\"D\n\020UserRespons" +
+      "eList\0220\n\014userResponse\030\001 \003(\0132\032.com.hk.pro" +
+      "to.UserResponse\"%\n\rStreamRequest\022\024\n\014requ" +
+      "est_info\030\001 \001(\t\"\'\n\016StreamResponse\022\025\n\rresp" +
+      "onse_info\030\002 \001(\t2\322\002\n\016StudentService\022R\n\021ge" +
+      "tRealNameByName\022\034.com.hk.proto.StudentRe" +
+      "quest\032\035.com.hk.proto.StudentResponse\"\000\022J" +
+      "\n\rgetUserByName\022\031.com.hk.proto.UserReque" +
+      "st\032\032.com.hk.proto.UserResponse\"\0000\001\022U\n\024ge" +
+      "tUserWrapperByName\022\031.com.hk.proto.UserRe" +
+      "quest\032\036.com.hk.proto.UserResponseList\"\000(" +
+      "\001\022I\n\006biTalk\022\033.com.hk.proto.StreamRequest" +
+      "\032\034.com.hk.proto.StreamResponse\"\000(\0010\001B#\n\021" +
+      "com.hk.proto.grpcB\014StudentProtoP\001b\006proto" +
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -58,13 +95,43 @@ public final class StudentProto {
     internal_static_com_hk_proto_StudentRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_hk_proto_StudentRequest_descriptor,
-        new String[] { "Name", });
+        new java.lang.String[] { "Name", });
     internal_static_com_hk_proto_StudentResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_hk_proto_StudentResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_hk_proto_StudentResponse_descriptor,
-        new String[] { "RealName", });
+        new java.lang.String[] { "RealName", });
+    internal_static_com_hk_proto_UserRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_com_hk_proto_UserRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_hk_proto_UserRequest_descriptor,
+        new java.lang.String[] { "Name", });
+    internal_static_com_hk_proto_UserResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_com_hk_proto_UserResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_hk_proto_UserResponse_descriptor,
+        new java.lang.String[] { "Name", "Age", "Phone", });
+    internal_static_com_hk_proto_UserResponseList_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_com_hk_proto_UserResponseList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_hk_proto_UserResponseList_descriptor,
+        new java.lang.String[] { "UserResponse", });
+    internal_static_com_hk_proto_StreamRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_com_hk_proto_StreamRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_hk_proto_StreamRequest_descriptor,
+        new java.lang.String[] { "RequestInfo", });
+    internal_static_com_hk_proto_StreamResponse_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_com_hk_proto_StreamResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_hk_proto_StreamResponse_descriptor,
+        new java.lang.String[] { "ResponseInfo", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

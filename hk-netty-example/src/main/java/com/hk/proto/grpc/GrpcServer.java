@@ -21,7 +21,7 @@ public class GrpcServer {
         server.awaitTermination();
     }
 
-    public void start() throws IOException {
+    private void start() throws IOException {
         this.server = ServerBuilder.forPort(8899)
                 .addService(new StudentServiceImpl()).build().start();
         System.out.println("server start...");
@@ -36,7 +36,7 @@ public class GrpcServer {
         System.out.println(" 执行到这里...");
     }
 
-    public void stop() {
+    private void stop() {
         if (this.server != null) {
             this.server.shutdown();
         }
