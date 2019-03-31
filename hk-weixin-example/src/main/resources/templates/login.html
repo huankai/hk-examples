@@ -15,7 +15,7 @@
             width: 24px;
             height: 23px;
             display: block;
-            background: url("/resources/images/icon24_appwx_logo.png");
+            background: url("/wx/resources/images/icon24_appwx_logo.png");
             margin: 0 auto;
             position: absolute;
             left: 100px;
@@ -54,10 +54,16 @@
 <div>
     <button id="chooseImage">chooseImage</button>
     <button id="checkJsApi">checkJsApi</button>
+    <button id="updateAppMessageShareData">分享给朋友</button>
+    <button id="onMenuShareAppMessage">分享给朋友2</button>
+    <button id="updateTimelineShareData">分享到朋友圈</button>
+    <button id="onMenuShareTimeline">分享到朋友圈2</button>
+    <button id="onMenuShareQQ">分享到QQ</button>
+    <button id="onMenuShareQZone">分享到QQ空间</button>
     <button id="qucode">扫一扫</button>
 </div>
 
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 <script src="http://203.195.235.76/jssdk/js/zepto.min.js"></script>
 
 <script th:inline="javascript">
@@ -68,7 +74,14 @@
         timestamp: [[${jsapiTicket.timestamp}]], // 必填，生成签名的时间戳
         nonceStr: [[${jsapiTicket.nonceStr}]], // 必填，生成签名的随机串
         signature: [[${jsapiTicket.signature}]],// 必填，签名
-        jsApiList: ['chooseImage','scanQRCode']
+        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage',
+            'updateAppMessageShareData','updateTimelineShareData','onMenuShareQQ','onMenuShareQZone',
+            'chooseImage','scanQRCode']
+    });
+
+    wx.error(function(res){
+        console.log("error....");
+        alert(JSON.stringify(res));
     });
     wx.ready(function () {
         document.querySelector('#checkJsApi').onclick = function () {
@@ -85,7 +98,94 @@
                 }
             });
         };
+        document.querySelector('#updateAppMessageShareData').onclick = function () {
+            wx.updateAppMessageShareData({
+                title: '分享给朋友标题', //
+                link: [[${jsapiTicket.url}]],
+                desc:"desc2",
+                imgUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
+                success: function (res) {
+                    location.href = "https://www.baidu.com";
+                    // alert(JSON.stringify(res));
+                },
+                cancel: function(res){
+                    alert("用户取消分享");
+                },
+                fail: function (res) {
+                    alert("fail:" + JSON.stringify(res));
+                }
+            });
+        };
+        document.querySelector('#onMenuShareAppMessage').onclick = function () {
+            wx.onMenuShareAppMessage({
+                title: '分享给朋友标题2', //
+                desc:"desc2",
+                link: [[${jsapiTicket.url}]],
+                imgUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
+                success: function (res) {
+                    location.href = "https://www.baidu.com";
+                    // alert(JSON.stringify(res));
+                },
+                fail: function (res) {
+                    alert("fail:" + JSON.stringify(res));
+                }
+            });
+        };
+        document.querySelector('#updateTimelineShareData').onclick = function () {
+            wx.updateTimelineShareData({
+                title: '分享到朋友圈标题', //
+                link: [[${jsapiTicket.url}]],
+                imgUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
+                success: function (res) {
+                    location.href = "https://www.baidu.com";
+                    // alert(JSON.stringify(res));
+                },
+                fail: function (res) {
+                    alert("fail:" + JSON.stringify(res));
+                }
+            });
+        };
+        document.querySelector('#onMenuShareTimeline').onclick = function () {
+            wx.onMenuShareTimeline({
+                title: '分享到朋友圈2', //
+                link: [[${jsapiTicket.url}]],
+                imgUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
+                success: function (res) {
+                    location.href = "https://www.baidu.com";
+                },
+                fail: function (res) {
+                    alert("fail:" + JSON.stringify(res));
+                }
+            });
+        };
 
+        document.querySelector('#onMenuShareQQ').onclick = function () {
+            wx.onMenuShareQQ({
+                title: '分享到QQ', //
+                link: [[${jsapiTicket.url}]],
+                imgUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
+                success: function (res) {
+                    location.href = "https://www.baidu.com";
+                },
+                fail: function (res) {
+                    alert("fail:" + JSON.stringify(res));
+                }
+            });
+        };
+
+        document.querySelector('#onMenuShareQZone').onclick = function () {
+            wx.onMenuShareQZone({
+                title: '分享到QQ空间', //
+                link: [[${jsapiTicket.url}]],
+                imgUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
+                success: function (res) {
+                    location.href = "https://www.baidu.com";
+                },
+                fail: function (res) {
+                    alert("fail:" + JSON.stringify(res));
+                }
+            });
+        };
         document.querySelector('#chooseImage').onclick = function () {
             alert(1);
             wx.chooseImage({

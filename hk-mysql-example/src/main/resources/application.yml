@@ -52,9 +52,9 @@ spring:
     name: hikari
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/xls_mail?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-    password: root
+    url: jdbc:mysql://182.61.40.18:3705/hk_pms?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: pms
+    password: pmsadmin
     hikari:
       maximum-pool-size: 50
       max-lifetime: 600000
@@ -97,7 +97,7 @@ logging:
   level:
     root: error
     com.hk: info
-    org.springframework.web.socket: debug
+    org.springframework.web: debug
     org.apache.kafka: debug
     #    org.springframework.security: debug
     org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: debug

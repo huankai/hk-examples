@@ -1,7 +1,7 @@
 server:
   port: 8086
   servlet:
-    context-path: /
+    context-path: /wx
 spring:
   #国际化配置
   #encoding:文件编码
@@ -25,15 +25,15 @@ spring:
     generate-ddl: false
     properties:
       hibernate: 
-         dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+         dialect: org.hibernate.dialect.MySQL8Dialect
 ################################################################### datasource
   datasource:
     name: hikari
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/hk_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true
-    username: root
-    password: root
+    url: jdbc:mysql://182.61.40.18:3705/hk_pms?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: pms
+    password: pmsadmin
 ######################################################### hikari datasource 配置
     hikari:
       maximum-pool-size: 50
@@ -63,11 +63,7 @@ wechat:
   mp: 
     appId: wxeb90fbc4967a11b1
     secret: 7fbd0b68cf003238306745446bf0bf16
-#    appId: wxeb90fbc4967a11b1
-#    secret: 7fbd0b68cf003238306745446bf0bf16
     token: hk9060
-#    appId: wxaed8cd46b56a4d21
-#    secret: 0869b086c9bd69d4c550ad4370442c62
 
 
 # 微信二维码参数配置    

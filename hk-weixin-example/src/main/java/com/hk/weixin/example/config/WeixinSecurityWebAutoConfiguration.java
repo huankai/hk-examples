@@ -26,7 +26,7 @@ public class WeixinSecurityWebAutoConfiguration extends WebSecurityConfigurerAda
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/wechat/login").antMatchers("/wechat/portal");
+        web.ignoring().antMatchers("/**").antMatchers("/wechat/login").antMatchers("/wechat/portal");
     }
 
     /**
