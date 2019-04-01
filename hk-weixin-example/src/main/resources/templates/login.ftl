@@ -21,7 +21,7 @@
         }
     </style>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 
     <script>
         <!-- https://natapp.cn -->
@@ -33,7 +33,7 @@
                 timestamp: '${jsapiTicket.timestamp}', // 必填，生成签名的时间戳
                 nonceStr: '${jsapiTicket.nonceStr}', // 必填，生成签名的随机串
                 signature: '${jsapiTicket.signature}',// 必填，签名
-                jsApiList: [ 'checkJsApi','scanQRCode',
+                jsApiList: ['updateAppMessageShareData', 'checkJsApi','scanQRCode',
                     'openCard' ]
             });
             $("#qucode").bind("chick",function(){
@@ -82,6 +82,7 @@
 <div>
     <button id="chooseImage">chooseImage</button>
     <button id="checkJsApi">checkJsApi</button>
+    <button id="updateAppMessageShareData">updateAppMessageShareData</button>
     <button id="qucode">扫一扫</button>
 </div>
 

@@ -67,19 +67,18 @@
 <script src="http://203.195.235.76/jssdk/js/zepto.min.js"></script>
 
 <script th:inline="javascript">
-        <!-- https://natapp.cn -->
     wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: [[${jsapiTicket.appId}]], // 必填，公众号的唯一标识
         timestamp: [[${jsapiTicket.timestamp}]], // 必填，生成签名的时间戳
         nonceStr: [[${jsapiTicket.nonceStr}]], // 必填，生成签名的随机串
         signature: [[${jsapiTicket.signature}]],// 必填，签名
-        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage',
-            'updateAppMessageShareData','updateTimelineShareData','onMenuShareQQ','onMenuShareQZone',
-            'chooseImage','scanQRCode']
+        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage',
+            'updateAppMessageShareData', 'updateTimelineShareData', 'onMenuShareQQ', 'onMenuShareQZone',
+            'chooseImage', 'scanQRCode']
     });
 
-    wx.error(function(res){
+    wx.error(function (res) {
         console.log("error....");
         alert(JSON.stringify(res));
     });
@@ -102,13 +101,13 @@
             wx.updateAppMessageShareData({
                 title: '分享给朋友标题', //
                 link: [[${jsapiTicket.url}]],
-                desc:"desc2",
+                desc: "desc2",
                 imgUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
                 success: function (res) {
                     location.href = "https://www.baidu.com";
                     // alert(JSON.stringify(res));
                 },
-                cancel: function(res){
+                cancel: function (res) {
                     alert("用户取消分享");
                 },
                 fail: function (res) {
@@ -119,7 +118,7 @@
         document.querySelector('#onMenuShareAppMessage').onclick = function () {
             wx.onMenuShareAppMessage({
                 title: '分享给朋友标题2', //
-                desc:"desc2",
+                desc: "desc2",
                 link: [[${jsapiTicket.url}]],
                 imgUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
                 success: function (res) {
@@ -132,8 +131,12 @@
             });
         };
         document.querySelector('#updateTimelineShareData').onclick = function () {
+            wx.showMenuItems({
+                menuList: ["menuItem:share:timeline"]
+
+            });
             wx.updateTimelineShareData({
-                title: '分享到朋友圈标题', //
+                title: '分享到朋友圈标题',
                 link: [[${jsapiTicket.url}]],
                 imgUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
                 success: function (res) {
@@ -187,7 +190,6 @@
             });
         };
         document.querySelector('#chooseImage').onclick = function () {
-            alert(1);
             wx.chooseImage({
                 success: function (res) {
                     images.localId = res.localIds;
@@ -210,8 +212,7 @@
                 }
             });
         }
-    });
-    //
+    // });
     //    function qrcode() {
     //        wx.scanQRCode({
     //            needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
@@ -225,7 +226,7 @@
     //                alert(JSON.stringify(res));
     //            }
     //        });
-    //    }
+       });
 </script>
 </body>
 </html>
