@@ -28,9 +28,9 @@ public class IterableNestedExcelWriteTest {
                 data.add(new IterableNestedExcelVo("10", "name10", i, vo));
             } else if (i == 15) {
                 data.add(new IterableNestedExcelVo(String.valueOf(i), "name" + i, i,
-                        Lists.newArrayList(new ExcelVo("name" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()),
-                                new ExcelVo("N-a-M-e" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()),
-                                new ExcelVo("N-A-M-E" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()))));
+                        Lists.newArrayList(new ExcelVo("name" + i, 2 + i, LocalDate.now(), false, LocalDateTime.now()),
+                                new ExcelVo("N-a-M-e" + i, 2 + i, LocalDate.now(), false, LocalDateTime.now()),
+                                new ExcelVo("N-A-M-E" + i, 2 + i, LocalDate.now(), false, LocalDateTime.now()))));
             } else {
                 data.add(new IterableNestedExcelVo(String.valueOf(i), "name" + i, i,
                         Lists.newArrayList(new ExcelVo("name" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()),
@@ -65,9 +65,9 @@ public class IterableNestedExcelWriteTest {
                 data.add(new IterableNestedExcelVo("10", "name10", i, vo));
             } else if (i == 15) {
                 data.add(new IterableNestedExcelVo(String.valueOf(i), "name" + i, i,
-                        Lists.newArrayList(new ExcelVo("name" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()),
-                                new ExcelVo("N-a-M-e" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()),
-                                new ExcelVo("N-A-M-E" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()))));
+                        Lists.newArrayList(new ExcelVo("name" + i, 2 + i, LocalDate.now(), false, LocalDateTime.now()),
+                                new ExcelVo("N-a-M-e" + i, 2 + i, LocalDate.now(), false, LocalDateTime.now()),
+                                new ExcelVo("N-A-M-E" + i, 2 + i, LocalDate.now(), false, LocalDateTime.now()))));
             } else {
                 data.add(new IterableNestedExcelVo(String.valueOf(i), "name" + i, i,
                         Lists.newArrayList(new ExcelVo("name" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()),
@@ -89,7 +89,7 @@ public class IterableNestedExcelWriteTest {
                         return super.getCommentText(obj, propertyName, propertyType);
                     }
                 });
-        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/sjq-278/Desktop/excel.xlsx")));
+        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/Administration/Desktop/excel.xlsx")));
     }
 
 
@@ -102,9 +102,9 @@ public class IterableNestedExcelWriteTest {
                 data.add(new IterableNestedExcelVo("10", "name10", i, vo));
             } else if (i == 15) {
                 data.add(new IterableNestedExcelVo(String.valueOf(i), "name" + i, i,
-                        Lists.newArrayList(new ExcelVo("name" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()),
-                                new ExcelVo("N-a-M-e" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()),
-                                new ExcelVo("N-A-M-E" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()))));
+                        Lists.newArrayList(new ExcelVo("name" + i, 2 + i, LocalDate.now(), false, LocalDateTime.now()),
+                                new ExcelVo("N-a-M-e" + i, 2 + i, LocalDate.now(), false, LocalDateTime.now()),
+                                new ExcelVo("N-A-M-E" + i, 2 + i, LocalDate.now(), false, LocalDateTime.now()))));
             } else {
                 data.add(new IterableNestedExcelVo(String.valueOf(i), "name" + i, i,
                         Lists.newArrayList(new ExcelVo("name" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()),
