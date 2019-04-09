@@ -88,7 +88,7 @@ public class CommodityTest extends BaseTest {
         Commodity commodity = new Commodity();
         commodity.setName("苹果");
 //        queryModel.setPageSize(1);
-        queryModel.addOrders(Order.asc("price"));
+        queryModel.addOrders(Order.desc("price"));
         queryModel.setParam(commodity);
         QueryPage<Commodity> page = commodityRepository.findByPage(queryModel);
         System.out.println(JsonUtils.serialize(page, true));

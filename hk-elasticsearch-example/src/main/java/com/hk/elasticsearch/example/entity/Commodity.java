@@ -32,7 +32,7 @@ public class Commodity implements Serializable {
     /**
      * analyzer: 指定分词器类型
      */
-    @Field(analyzer = "ik_smart", type = FieldType.Text)
+    @Field(analyzer = "ik_smart", searchAnalyzer = "ik_max_word", type = FieldType.Text)
     private String name;
 
     @Field(type = FieldType.Double)
