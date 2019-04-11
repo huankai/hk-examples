@@ -1,5 +1,6 @@
 package com.hk.elasticsearch.example.entity;
 
+import com.hk.core.elasticsearch.analyzer.IKanalyzer;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -29,11 +30,20 @@ public class Commodity implements Serializable {
     @Id
     private String id;
 
+    @Field(type = FieldType.Keyword)
+    private String categoryId;
+
+    @Field(analyzer = "ik_smart", type = FieldType.Text)
+    private String categoryName;
+
     /**
      * analyzer: 指定分词器类型
      */
-    @Field(analyzer = "ik_smart", searchAnalyzer = "ik_max_word", type = FieldType.Text)
+    @Field(analyzer = IKanalyzer.IK_SMART_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
     private String name;
+
+    @Field(analyzer = IKanalyzer.IK_SMART_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
+    private String subTitle;
 
     @Field(type = FieldType.Double)
     private BigDecimal price;

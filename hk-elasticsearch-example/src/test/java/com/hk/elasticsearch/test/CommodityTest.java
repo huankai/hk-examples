@@ -12,7 +12,7 @@ import com.hk.core.test.BaseTest;
 import com.hk.elasticsearch.example.ElasticsearchExampleApplication;
 import com.hk.elasticsearch.example.entity.Commodity;
 import com.hk.elasticsearch.example.entity.CommodityFile;
-import com.hk.elasticsearch.example.repository.elasticsearch.CommodityRepository;
+import com.hk.elasticsearch.example.service.CommodityService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,7 +31,7 @@ import java.util.List;
 public class CommodityTest extends BaseTest {
 
     @Autowired
-    private CommodityRepository commodityRepository;
+    private CommodityService commodityService;
 
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
@@ -54,7 +54,7 @@ public class CommodityTest extends BaseTest {
             files.add(file);
         }
         commodity.setFiles(files);
-        commodityRepository.save(commodity);
+        commodityService.save(commodity);
     }
 
     /**
@@ -63,7 +63,7 @@ public class CommodityTest extends BaseTest {
     @Test
     public void list() {
 //        commodityRepository.search(new MatchQueryBuilder("",""));
-        Iterable<Commodity> result = commodityRepository.findAll();
+        Iterable<Commodity> result = commodityService.findAll();
         result.forEach(item -> System.out.println(JsonUtils.serialize(item, true)));
     }
 
@@ -79,7 +79,7 @@ public class CommodityTest extends BaseTest {
      */
     @Test
     public void delete() {
-        commodityRepository.deleteById("c93417f8a0644fe1a054fbad58f07f60");
+        commodityService.deleteById("c93417f8a0644fe1a054fbad58f07f60");
     }
 
     @Test
@@ -90,14 +90,14 @@ public class CommodityTest extends BaseTest {
 //        queryModel.setPageSize(1);
         queryModel.addOrders(Order.desc("price"));
         queryModel.setParam(commodity);
-        QueryPage<Commodity> page = commodityRepository.findByPage(queryModel);
+        QueryPage<Commodity> page = commodityService.findByPage(queryModel);
         System.out.println(JsonUtils.serialize(page, true));
     }
 
     @Test
     public void findByPage2() {
         List<Condition> conditions = ArrayUtils.asArrayList(new SimpleCondition("price", Criteria.OperationKey.GREATER, 5300));
-        QueryPage<Commodity> page = commodityRepository.findByPage(conditions, 0, 10);
+        QueryPage<Commodity> page = commodityService.findByPage(conditions, 0, 10);
         System.out.println(JsonUtils.serialize(page, true));
     }
 
