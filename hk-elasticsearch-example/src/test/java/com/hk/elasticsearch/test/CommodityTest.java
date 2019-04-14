@@ -12,6 +12,7 @@ import com.hk.core.test.BaseTest;
 import com.hk.elasticsearch.example.ElasticsearchExampleApplication;
 import com.hk.elasticsearch.example.entity.Commodity;
 import com.hk.elasticsearch.example.entity.CommodityFile;
+import com.hk.elasticsearch.example.repository.elasticsearch.CommodityRepository;
 import com.hk.elasticsearch.example.service.CommodityService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +36,9 @@ public class CommodityTest extends BaseTest {
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
 
+    @Autowired
+    private CommodityRepository commodityRepository;
+
     /**
      * 添加数据
      */
@@ -44,7 +47,7 @@ public class CommodityTest extends BaseTest {
         Commodity commodity = new Commodity();
         commodity.setId(IDGenerator.STRING_UUID.generate());
         commodity.setName("苹果7 Plus");
-        commodity.setPrice(BigDecimal.valueOf(5688));
+        commodity.setPrice(5888d);
         List<CommodityFile> files = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             CommodityFile file = new CommodityFile();
@@ -55,6 +58,15 @@ public class CommodityTest extends BaseTest {
         }
         commodity.setFiles(files);
         commodityService.save(commodity);
+    }
+
+    @Test
+    public void partialUpdate() {
+        Commodity commodity = new Commodity();
+        commodity.setId("9d822a476d5748288a770b4646530a48");
+        commodity.setPrice(4888d);
+        commodity.setCategoryId("sddfffd");
+        commodityRepository.partialUpdate(commodity);
     }
 
     /**

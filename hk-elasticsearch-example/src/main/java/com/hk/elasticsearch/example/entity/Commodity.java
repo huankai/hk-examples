@@ -1,15 +1,15 @@
 package com.hk.elasticsearch.example.entity;
 
 import com.hk.core.elasticsearch.analyzer.IKanalyzer;
+import com.hk.core.elasticsearch.domain.AbstractUUIDPersistable;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
+
 
 /**
  * <pre>
@@ -24,11 +24,9 @@ import java.util.List;
  * @date 2019-03-09 16:10
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Document(indexName = "hk-elasticsearch-example")
-public class Commodity implements Serializable {
-
-    @Id
-    private String id;
+public class Commodity extends AbstractUUIDPersistable {
 
     @Field(type = FieldType.Keyword)
     private String categoryId;
@@ -46,7 +44,7 @@ public class Commodity implements Serializable {
     private String subTitle;
 
     @Field(type = FieldType.Double)
-    private BigDecimal price;
+    private Double price;
 
     /**
      * 商品图片信息
