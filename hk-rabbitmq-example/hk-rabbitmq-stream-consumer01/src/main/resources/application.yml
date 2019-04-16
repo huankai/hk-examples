@@ -10,15 +10,15 @@ spring:
     allow-bean-definition-overriding: true
   rabbitmq:
     host: 182.61.40.18
-    username: test
-    password: test
-    virtual-host: /test
+    username: guest
+    password: huangkai#admin
+    virtual-host: /
   cloud:
-########################################################################### spring cloud stream 配置
+    ########################################################################### spring cloud stream 配置
     stream:
       default-binder: rabbit
       bindings:
-      # rabbitmq 指定队列名称，如果不指定 group，会随机生成，队列名是 以 bindings 的 mapKey + . + group 值组成，如这里是 input.group
+        # rabbitmq 指定队列名称，如果不指定 group，会随机生成，队列名是 以 bindings 的 mapKey + . + group 值组成，如这里是 input.group
         publish_input:
           # rabbitmq 中指定交换机名称
           destination: publish_stream
@@ -31,6 +31,16 @@ spring:
           group: topic01
         delayed_input:
           destination: delayed_stream
+          group: ${spring.application.name}
+        auto_bind_dlq_input:
+          destination: auto_bind_dlq
+          group: ${spring.application.name}
+          consumer:
+            #  配置失败重试次数，默认为 3
+            max-attempts: 3
+        acknowledge_mode_input:
+          destination: acknowledge_mode
+          group: ${spring.application.name}
       rabbit:
         bindings:
           publish_input:
@@ -43,10 +53,28 @@ spring:
               exchange-type: direct
           topic_input:
             consumer:
-#            使用通配符的 routeKey , * 只能单机级匹配
+              # 使用通配符的 routeKey , * 只能单机级匹配
               binding-routing-key: "topicKey1.*"
-#              指定类型，默认就是 topic
+              # 指定类型，默认就是 topic
               exchange-type: topic
           delayed_input:
             consumer:
               delayed-exchange: true
+          auto_bind_dlq_input:
+            consumer:
+              exchange-type: fanout
+              # 设置开启 死信队列，默认为 false
+              auto-bind-dlq: true
+              # 当消息消费失败后， 是否丢不弃该消息，默认为 false，当设置为 true 时，消息会重新入队
+              requeue-rejected: true
+              # 死信 队列名称，默认为 (当前队列名称 + .dlq)
+#              dead-letter-queue-name: aaa
+              # 配置进入死信队列的过期时间，单位为毫秒，可防止消息堆积
+              # dlq-ttl: 60000
+              # 告诉服务器,在我们没有确认当前消息完成之前,不要给我发新的消息，默认值就为 1
+              # prefetch: 1
+          acknowledge_mode_input:
+            consumer:
+              exchange-type: fanout
+              # 配置为手动确认，可以在Header 中获取当前 Channel
+              acknowledge-mode: MANUAL

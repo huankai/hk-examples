@@ -1,4 +1,4 @@
-  server:
+server:
   port: 6609
   servlet:
     context-path: /
@@ -10,19 +10,19 @@ spring:
     allow-bean-definition-overriding: true
   rabbitmq:
     host: 182.61.40.18
-    username: test
-    password: test
-    virtual-host: /test
-#    是否开启发送确认，默认为false
+    username: guest
+    password: huangkai#admin
+    virtual-host: /
+    #    是否开启发送确认，默认为false
     publisher-confirms: false
-#    是否开启发送失败退回，默认为false
+    #    是否开启发送失败退回，默认为false
     publisher-returns: false
   cloud:
-########################################################################### spring cloud stream 配置
+    ########################################################################### spring cloud stream 配置
     stream:
       default-binder: rabbit
       bindings:
-      # 发布、订阅模式
+        # 发布、订阅模式
         publish_output:
           destination: publish_stream
         routekey_output:
@@ -31,6 +31,10 @@ spring:
           destination: topic_stream
         delayed_output:
           destination: delayed_stream
+        auto_bind_dlq_output:
+          destination: auto_bind_dlq
+        acknowledge_mode_output:
+          destination: acknowledge_mode
       rabbit:
         bindings:
           publish_output:
@@ -38,17 +42,23 @@ spring:
               exchange-type: fanout
           routekey_output:
             producer:
-#            生产者指定 routeKey
+              #  生产者指定 routeKey
               routing-key-expression: '''key1'''
               #指定交换机类型，在发布、订阅模式中，只能是 direct
               exchange-type: direct
           topic_output:
             producer:
               routing-key-expression: '''topicKey2.xxx.xxxx'''
-#              消息是否持久化，默认为true
+              #  消息是否持久化，默认为true
               exchange-durable: true
               exchange-type: topic
           delayed_output:
             producer:
-#            配置是延时队列
+              #  配置为延时队列
               delayed-exchange: true
+          auto_bind_dlq_output:
+            producer:
+              exchange-type: fanout
+          acknowledge_mode_output:
+            producer:
+              exchange-type: fanout
