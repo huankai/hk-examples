@@ -36,6 +36,7 @@
         <module>hk-messsage-websocket-example</module>
         <module>hk-hadoop-example</module>
         <module>hk-weixin-cp-example</module>
+        <module>hk-springboot-webflux-example</module>
     </modules>
 
     <dependencyManagement>

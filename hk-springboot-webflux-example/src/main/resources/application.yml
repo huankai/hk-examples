@@ -1,0 +1,9 @@
+server:
+  port: 6090
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: info
+    hk.springboot.webflux: info

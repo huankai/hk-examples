@@ -61,8 +61,8 @@ logging:
 
 wechat: 
   mp: 
-    appId: wxeb90fbc4967a11b1
-    secret: 7fbd0b68cf003238306745446bf0bf16
+    appId: wxa49e73a00e958d9d
+    secret: a55a6019ba1d6a4ad93e8fc64df13596
     token: hk9060
 
 
