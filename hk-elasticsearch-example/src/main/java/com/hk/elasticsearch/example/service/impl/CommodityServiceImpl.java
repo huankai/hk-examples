@@ -2,6 +2,7 @@ package com.hk.elasticsearch.example.service.impl;
 
 import com.hk.commons.util.StringUtils;
 import com.hk.core.data.commons.utils.OrderUtils;
+import com.hk.core.elasticsearch.highlight.HighlightTag;
 import com.hk.core.elasticsearch.query.Condition;
 import com.hk.core.page.QueryPage;
 import com.hk.core.page.SimpleQueryPage;
@@ -11,6 +12,7 @@ import com.hk.elasticsearch.example.repository.elasticsearch.CommodityRepository
 import com.hk.elasticsearch.example.service.CommodityService;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +26,7 @@ import java.util.List;
  * @date 2019-4-11 13:45
  */
 @Service
-public class CommodityServiceImpl implements CommodityService {
+public class CommodityServiceImpl implements CommodityService, HighlightTag {
 
     @Autowired
     private CommodityRepository commodityRepository;
@@ -54,10 +56,16 @@ public class CommodityServiceImpl implements CommodityService {
             // 查询
             if (StringUtils.isNotEmpty(param.getSubTitle())) {
 //                @see: https://blog.csdn.net/u011730199/article/details/82386425
-                queryBuilder.withQuery(QueryBuilders.disMaxQuery().tieBreaker(0.3f).add(QueryBuilders.matchQuery("name", param.getSubTitle()))
+                queryBuilder.withQuery(QueryBuilders.disMaxQuery().tieBreaker(0.3f)
+                        .add(QueryBuilders.matchQuery("name", param.getSubTitle()))
                         .add(QueryBuilders.matchQuery("subTitle", param.getSubTitle())));
             }
+        } else {
+            queryBuilder.withQuery(QueryBuilders.matchAllQuery());
         }
+        //高亮查询
+        queryBuilder.withHighlightFields(new HighlightBuilder.Field("subTitle")
+                .preTags(PRE_TAG).postTags(POST_TAG));
         Page<Commodity> page = commodityRepository.search(queryBuilder.build());
         return new SimpleQueryPage<>(queryModel, page.getContent(), page.getTotalElements());
     }
