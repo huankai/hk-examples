@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="OFF">
     <Properties>
-        <Property name="projectName">hk-kafka-producer-example</Property>
+        <property name="LOG_HOME">${sys:user.dir}/logs</property>
     </Properties>
     <appenders>
         <Console name="Console" target="SYSTEM_OUT">

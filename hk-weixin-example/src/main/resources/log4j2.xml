@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="OFF">
 	<Properties>
-        <Property name="projectName">emi-web</Property>
+		<property name="LOG_HOME">${sys:user.dir}/logs</property>
     </Properties>
 	<appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36}.%M() @%L - %msg%n}{STYLE=Logback}" />
 		</Console>
-		<RollingFile name="RollingFile" fileName="${sys:user.home}/.hk/logs/${projectName}/app.log" filePattern="${sys:user.home}/.hk/logs/${projectName}/app-%d{yyyyMMdd}-%i.log.gz">
+		<RollingFile name="RollingFile" fileName="${LOG_HOME}/app.log" filePattern="${LOG_HOME}/app-%d{yyyyMMdd}-%i.log.gz">
             <PatternLayout>
                 <Pattern>%d{%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}.%M() @%L - %msg%n</Pattern>
             </PatternLayout>
