@@ -37,10 +37,10 @@ public class Commodity extends AbstractUUIDPersistable {
     /**
      * analyzer: 指定分词器类型
      */
-    @Field(analyzer = IKanalyzer.IK_SMART_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
+    @Field(analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
     private String name;
 
-    @Field(analyzer = IKanalyzer.IK_SMART_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
+    @Field(analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
     private String subTitle;
 
     @Field(type = FieldType.Double)

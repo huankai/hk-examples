@@ -1,5 +1,15 @@
 package com.hk.elasticsearch.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.Criteria;
+import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
+
 import com.hk.commons.util.ArrayUtils;
 import com.hk.commons.util.IDGenerator;
 import com.hk.commons.util.JsonUtils;
@@ -14,15 +24,6 @@ import com.hk.elasticsearch.example.entity.Commodity;
 import com.hk.elasticsearch.example.entity.CommodityFile;
 import com.hk.elasticsearch.example.repository.elasticsearch.CommodityRepository;
 import com.hk.elasticsearch.example.service.CommodityService;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.query.Criteria;
-import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author huangkai
@@ -46,10 +47,10 @@ public class CommodityTest extends BaseTest {
     public void addCommodity() {
         Commodity commodity = new Commodity();
         commodity.setId(IDGenerator.STRING_UUID.generate());
-        commodity.setName("苹果7 Plus");
+        commodity.setName("茶叶");
         commodity.setPrice(5888d);
         List<CommodityFile> files = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 1; i++) {
             CommodityFile file = new CommodityFile();
             file.setFileName("fileName" + i);
             file.setFilePath("filePath" + i);
@@ -63,10 +64,26 @@ public class CommodityTest extends BaseTest {
     @Test
     public void partialUpdate() {
         Commodity commodity = new Commodity();
-        commodity.setId("9d822a476d5748288a770b4646530a48");
+        commodity.setId("dcc05813084945aeb7315140c8f2df95");
         commodity.setPrice(4888d);
         commodity.setCategoryId("sddfffd");
         commodityRepository.partialUpdate(commodity);
+    }
+    
+    @Test
+    public void partialUpdates() {
+    	List<Commodity> list = new ArrayList<>();
+        Commodity commodity = new Commodity();
+        commodity.setId("dcc05813084945aeb7315140c8f2df95");
+        commodity.setPrice(3888d);
+        commodity.setCategoryId("sddfffd");
+        list.add(commodity);
+        commodity = new Commodity();
+        commodity.setId("08dacdec3e4d4158b6de6d5f42705b31");
+        commodity.setPrice(7888d);
+        commodity.setCategoryId("haha");
+        list.add(commodity);
+        commodityRepository.partialUpdates(list);
     }
 
     /**
@@ -98,7 +115,7 @@ public class CommodityTest extends BaseTest {
     public void findByPage() {
         QueryModel<Commodity> queryModel = new QueryModel<>();
         Commodity commodity = new Commodity();
-        commodity.setName("苹果");
+        commodity.setSubTitle("a");
 //        queryModel.setPageSize(1);
         queryModel.addOrders(Order.desc("price"));
         queryModel.setParam(commodity);
