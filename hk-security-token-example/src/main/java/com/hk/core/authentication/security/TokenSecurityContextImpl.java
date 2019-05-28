@@ -21,7 +21,7 @@ public class TokenSecurityContextImpl extends SpringSecurityContext implements T
     }
 
     @Override
-    public <T> Optional<T> getSessionAttributeAndRemove(String key, Class<T> clazz) {
+    public <T> Optional<T> consumeSessionAttribute(String key, Class<T> clazz) {
         throw new UnsupportedOperationException("AccessToken Un support getSessionAttributeAndRemove.");
     }
 
