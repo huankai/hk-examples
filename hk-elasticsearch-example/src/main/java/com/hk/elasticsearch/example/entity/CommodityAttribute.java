@@ -1,10 +1,11 @@
 package com.hk.elasticsearch.example.entity;
 
-import lombok.Data;
+import java.io.Serializable;
+
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import java.io.Serializable;
+import lombok.Data;
 
 /**
  * 商品属性信息
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * @date 2019/3/11 14:43
  */
 @Data
+@SuppressWarnings("serial")
 public class CommodityAttribute implements Serializable {
 
     /**
