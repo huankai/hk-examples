@@ -37,6 +37,7 @@
         <module>hk-hadoop-example</module>
         <module>hk-weixin-cp-example</module>
         <module>hk-springboot-webflux-example</module>
+        <module>hk-mycat-example</module>
     </modules>
 
     <dependencyManagement>
