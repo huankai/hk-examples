@@ -27,8 +27,8 @@ public class User extends AbstractUUIDPersistable {
     @Column(name = "pass_word")
     private String password;
 
-    @Column(name = "brithday")
-    private LocalDate brithday;
+    @Column(name = "birthday")
+    private LocalDate birthday;
 
     @Column(name = "sex")
     private Integer sex;
