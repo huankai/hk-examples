@@ -5,21 +5,16 @@ import com.hk.core.authentication.api.SecurityContext;
 import com.hk.core.authentication.api.UserPrincipal;
 import com.hk.mycat.example.entity.User;
 import com.hk.mycat.example.mappers.UserMapper;
-import com.hk.mycat.example.repository.jpa.UserRepository;
 import com.hk.mycat.example.service.UserService;
-import com.hk.mycat.example.vo.UserRoleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 /**
  * @author huangkai
@@ -63,10 +58,14 @@ public class MyCatExampleApplication {
 
 //            UserRoleVo userRoleVo = userMapper.findByUserId("2");
 //            System.out.println(JsonUtils.serialize(userRoleVo, true));
-            insert2();
-            User user = userService.find();
-            System.out.println("------->" + JsonUtils.serialize(user, true));
-            findById();
+            System.out.println("------find->" + JsonUtils.serialize(userService.find(), true));
+            for (int i = 0; i < 5; i++) {
+                insert2();
+
+            }
+//            User user = userService.find();
+//            System.out.println("------->" + JsonUtils.serialize(user, true));
+//            findById();
         }
 
 

@@ -8,7 +8,6 @@ import com.hk.mycat.example.repository.jpa.UserRepository;
 import com.hk.mycat.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -35,10 +34,10 @@ public class UserServiceImpl extends JpaServiceImpl<User, String> implements Use
     public User insert2(User user) {
         User save = userRepository.save(user);
         System.out.println("insert2------->" + JsonUtils.serialize(find(), true));
-        boolean flat = true;
-        if (flat) {
-            throw new RuntimeException("Null");
-        }
+//        boolean flat = true;
+//        if (flat) {
+//            throw new RuntimeException("Null");
+//        }
         return save;
 
     }
