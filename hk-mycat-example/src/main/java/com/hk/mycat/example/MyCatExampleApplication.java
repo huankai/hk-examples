@@ -1,10 +1,15 @@
 package com.hk.mycat.example;
 
+import com.hk.commons.util.ArrayUtils;
 import com.hk.commons.util.JsonUtils;
 import com.hk.core.authentication.api.SecurityContext;
 import com.hk.core.authentication.api.UserPrincipal;
+import com.hk.mycat.example.entity.Permission;
+import com.hk.mycat.example.entity.Role;
 import com.hk.mycat.example.entity.User;
 import com.hk.mycat.example.mappers.UserMapper;
+import com.hk.mycat.example.repository.jpa.PermissionRepository;
+import com.hk.mycat.example.repository.jpa.RoleRepository;
 import com.hk.mycat.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +20,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author huangkai
@@ -52,20 +60,22 @@ public class MyCatExampleApplication {
         @Autowired
         private UserMapper userMapper;
 
+        @Autowired
+        private RoleRepository roleRepository;
+
+        @Autowired
+        private PermissionRepository permissionRepository;
+
         @Override
         public void run(String... args) throws InterruptedException {
 //            insertUser();
 
 //            UserRoleVo userRoleVo = userMapper.findByUserId("2");
 //            System.out.println(JsonUtils.serialize(userRoleVo, true));
-            System.out.println("------find->" + JsonUtils.serialize(userService.find(), true));
-            for (int i = 0; i < 5; i++) {
-                insert2();
-
-            }
-//            User user = userService.find();
-//            System.out.println("------->" + JsonUtils.serialize(user, true));
-//            findById();
+            insert2();
+            User user = userService.find();
+            System.out.println("------->" + JsonUtils.serialize(user, true));
+            findById();
         }
 
 
@@ -86,10 +96,10 @@ public class MyCatExampleApplication {
             findById();
         }
 
-        private void insertUser() {
+        private void insertUser(int index) {
             User user = new User();
-            user.setPassword("insertxxx");
-            user.setUserName("insertxxx");
+            user.setPassword("bbb_password" + index);
+            user.setUserName("bbb_username" + index);
             user.setBirthday(LocalDate.now());
             user.setSex(1);
             user.setCreateDate(LocalDateTime.now());
