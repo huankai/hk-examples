@@ -1,9 +1,8 @@
 package com.hk.security.example.config;
 
 import com.hk.commons.JsonResult;
-import com.hk.commons.util.JsonUtils;
 import com.hk.core.authentication.security.expression.AdminAccessWebSecurityExpressionHandler;
-import com.hk.core.authentication.security.handler.logout.RedirectLogoutHandler;
+import com.hk.core.authentication.security.handler.logout.EquipmentLogoutHandler;
 import com.hk.core.autoconfigure.authentication.security.AuthenticationProperties;
 import com.hk.core.web.Webs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy;
-import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.ServletException;
@@ -114,7 +112,7 @@ public class SecurityExampleConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutUrl(browser.getLogoutUrl())
                 .invalidateHttpSession(true)
                 .addLogoutHandler(new SecurityContextLogoutHandler())
-                .addLogoutHandler(new RedirectLogoutHandler(browser.getLogoutSuccessUrl()))
+                .addLogoutHandler(new EquipmentLogoutHandler(browser.getLogoutSuccessUrl()))
                 .and()
                 .authorizeRequests().expressionHandler(new AdminAccessWebSecurityExpressionHandler())// admin 角色的用户、admin权限、保护的用户拥有所有访问权限
                 .anyRequest().authenticated();

@@ -2,13 +2,12 @@ package com.hk.core;
 
 import com.hk.commons.util.Contants;
 import com.hk.template.Template;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
 
@@ -20,9 +19,8 @@ import java.util.Properties;
  * @author kevin
  * @date 2018-05-29 14:43
  */
+@Slf4j
 public class TemplateEngine {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TemplateEngine.class);
 
     private static final String CLASS_PATH = "classpath";
 

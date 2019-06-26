@@ -12,6 +12,7 @@ import java.util.List;
  * @date 2018-11-21 11:43
  */
 public class MyRackDNSToSwitchMapping implements DNSToSwitchMapping {
+
     @Override
     public List<String> resolve(List<String> list) {
         List<String> result = new ArrayList<>();

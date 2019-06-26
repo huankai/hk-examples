@@ -27,7 +27,7 @@ public class HDFSTest {
     public void init() throws IOException {
         Configuration conf = new Configuration();
         //配置使用的是 HDFS 文件系统，如果不指定，会使用 core-default.xml（在hadoop-common jar包中） 中的默认配置
-        conf.set("fs.defaultFS", "hdfs://192.168.64.128:9000");
+        conf.set("fs.defaultFS", "hdfs://192.168.117.150:9000");
         //配置 HADOOP 的用户名，Linux 上的每个文件或目录都有可读、可写、可执行的权限，这里需要保证上传的文件需要有可写的权限
         System.setProperty("HADOOP_USER_NAME", "huangkai");
         fileSystem = FileSystem.get(conf);
@@ -94,7 +94,7 @@ public class HDFSTest {
     @Test
     public void downFileTest() throws IOException {
         //将 /JavaHelloDir/a.txt 下载到D盘 b.txt,在 windows 平台下，需要配置hadoop环境，查看 ： https://blog.csdn.net/woshixuye/article/details/53537519
-        fileSystem.copyToLocalFile(new Path("/JavaHelloDir/a.txt"), new Path("D:/b.txt"));
+        fileSystem.copyToLocalFile(new Path("/企业微信截图_15589496637651.png"), new Path("D:/b.png"));
     }
 
     /**
@@ -171,7 +171,7 @@ public class HDFSTest {
      * 分开读取文件内容 ，读取剩下部分
      *
      * <p>
-     * 在window命令窗口中执行 type navicat.zip.part1 nav  icat.zip.part2 >> navicat.zip 将第一部分与第二部分文件合并到navicat.zip文件中
+     * 在window命令窗口中执行 type navicat.zip.part1 navicat.zip.part2 >> navicat.zip 将第一部分与第二部分文件合并到navicat.zip文件中
      * </p>
      *
      * @throws IOException

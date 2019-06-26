@@ -17,6 +17,8 @@ spring:
     publisher-confirms: false
     #    是否开启发送失败退回，默认为false
     publisher-returns: false
+    template:
+      mandatory: true
   cloud:
     ########################################################################### spring cloud stream 配置
     stream:

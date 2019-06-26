@@ -1,11 +1,10 @@
 package com.hk.kafka.producer.example;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
@@ -15,9 +14,8 @@ import java.util.Properties;
  * @author kevin
  * @date 2018-08-30 15:58
  */
+@Slf4j
 public class CallbackProducer {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CallbackProducer.class);
 
     public static void main(String[] args) {
         Properties props = new Properties();
@@ -37,10 +35,10 @@ public class CallbackProducer {
         // ProducerRecord 有多个构造器，可以指定  partition,如果指定  了partition ，key 可以不用指定
         producer.send(new ProducerRecord<>("test", 0, null, "luck  ddd"), (metadata, exception) -> {
             if (null != metadata) {
-                LOGGER.info("partition : {},offset:{},topic:{}", metadata.partition(), metadata.offset(), metadata.topic());
+                log.info("partition : {},offset:{},topic:{}", metadata.partition(), metadata.offset(), metadata.topic());
             }
         });
-        LOGGER.info("finish");
+        log.info("finish");
         producer.close();
     }
 }

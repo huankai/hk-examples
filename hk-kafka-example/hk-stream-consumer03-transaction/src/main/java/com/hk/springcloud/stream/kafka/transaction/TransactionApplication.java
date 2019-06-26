@@ -1,11 +1,15 @@
 package com.hk.springcloud.stream.kafka.transaction;
 
-import java.time.LocalDateTime;
-
 import com.hk.commons.JsonResult;
+import com.hk.commons.util.ByteConstants;
+import com.hk.commons.util.JsonUtils;
+import com.hk.core.authentication.api.SecurityContext;
+import com.hk.core.authentication.api.UserPrincipal;
+import com.hk.springcloud.stream.kafka.transaction.domain.City;
+import com.hk.springcloud.stream.kafka.transaction.repository.jdbc.CityRepository;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,14 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hk.commons.util.ByteConstants;
-import com.hk.commons.util.JsonUtils;
-import com.hk.core.authentication.api.SecurityContext;
-import com.hk.core.authentication.api.UserPrincipal;
-import com.hk.springcloud.stream.kafka.transaction.domain.City;
-import com.hk.springcloud.stream.kafka.transaction.repository.jdbc.CityRepository;
-
-import lombok.Data;
+import java.time.LocalDateTime;
 
 /**
  * @author huangkai
@@ -36,9 +33,8 @@ import lombok.Data;
 @EnableBinding(Processor.class)
 @EnableTransactionManagement
 @RestController
+@Slf4j
 public class TransactionApplication {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(TransactionApplication.class, args);
@@ -74,8 +70,8 @@ public class TransactionApplication {
     @SendTo(Processor.OUTPUT)
     @Transactional
     public String process(MessageVo message) {
-        LOGGER.info("------------------------------------------");
-        LOGGER.info(JsonUtils.serialize(message, true));
+        log.info("------------------------------------------");
+        log.info(JsonUtils.serialize(message, true));
         City city = new City();
         city.setCityType(ByteConstants.ONE);
         city.setCode(RandomStringUtils.randomNumeric(5));
@@ -88,10 +84,10 @@ public class TransactionApplication {
 //        } else {
 //            shouldFail.set(true);
 //        }
-        LOGGER.info("Saving city={}", city);
+        log.info("Saving city={}", city);
         cityRepository.save(city);
         String result = LocalDateTime.now().toString();
-        LOGGER.info("Send Message...,{}", result);
+        log.info("Send Message...,{}", result);
         return result;
     }
 

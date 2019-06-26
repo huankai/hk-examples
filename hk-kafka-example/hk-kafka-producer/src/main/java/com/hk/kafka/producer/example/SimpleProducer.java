@@ -1,11 +1,8 @@
 package com.hk.kafka.producer.example;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.*;
-import org.apache.kafka.clients.producer.internals.DefaultPartitioner;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import sun.rmi.runtime.Log;
 
 import java.util.Properties;
 
@@ -13,9 +10,8 @@ import java.util.Properties;
  * @author kevin
  * @date 2018-08-30 15:58
  */
+@Slf4j
 public class SimpleProducer {
-
-    private static final Logger Logger = LoggerFactory.getLogger(SimpleProducer.class);
 
     public static void main(String[] args) throws InterruptedException {
         Properties props = new Properties();
@@ -37,20 +33,20 @@ public class SimpleProducer {
         while (running) {
             Thread.sleep(800);
             String message = "Send message " + (index++);
-            Logger.info("Send message {}...", message);
+            log.info("Send message {}...", message);
             producer.send(new ProducerRecord<>("test3", "luck", message), new Callback() {
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception) {
                     if (exception != null) {
-                        Logger.error("--------------------->" + exception.getMessage());
+                        log.error("--------------------->" + exception.getMessage());
                     } else {
-                        Logger.info("Send success ,partition is {},", metadata.partition());
+                        log.info("Send success ,partition is {},", metadata.partition());
                     }
                 }
             });
 //            producer.send(new ProducerRecord<>("test3", "luck", message));
         }
-        Logger.info("finish");
+        log.info("finish");
         producer.close();
     }
 }

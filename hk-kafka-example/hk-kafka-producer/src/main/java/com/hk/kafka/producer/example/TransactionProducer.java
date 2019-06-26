@@ -1,12 +1,10 @@
 package com.hk.kafka.producer.example;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
@@ -14,9 +12,8 @@ import java.util.Properties;
  * @author sjq-278
  * @date 2018-11-19 16:36
  */
+@Slf4j
 public class TransactionProducer {
-
-    private static final Logger logger = LoggerFactory.getLogger(TransactionProducer.class);
 
     public static void main(String[] args) {
         Properties props = new Properties();
@@ -42,7 +39,7 @@ public class TransactionProducer {
         try {
             for (int i = 0; i < 10; i++) {
                 Thread.sleep(500);
-                logger.info("index = {} ...", i);
+                log.info("index = {} ...", i);
                 if (i == 5) {// 模拟异常
                     throw new RuntimeException("Error...");
                 }

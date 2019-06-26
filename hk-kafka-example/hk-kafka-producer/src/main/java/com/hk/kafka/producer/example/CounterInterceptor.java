@@ -1,11 +1,10 @@
 package com.hk.kafka.producer.example;
 
 import com.hk.commons.util.JsonUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerInterceptor;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
@@ -15,9 +14,8 @@ import java.util.Map;
  * @author kevin
  * @date 2018-09-05 15:17
  */
+@Slf4j
 public class CounterInterceptor implements ProducerInterceptor<String, String> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CounterInterceptor.class);
 
     private int errorCount = 0;
 
@@ -54,7 +52,7 @@ public class CounterInterceptor implements ProducerInterceptor<String, String> {
      */
     @Override
     public void close() {
-        LOGGER.debug("successCount : {},errorCount :{}", successCount, errorCount);
+        log.debug("successCount : {},errorCount :{}", successCount, errorCount);
     }
 
     /**
@@ -64,7 +62,7 @@ public class CounterInterceptor implements ProducerInterceptor<String, String> {
      */
     @Override
     public void configure(Map<String, ?> configs) {
-        LOGGER.debug(JsonUtils.serialize(configs));
+        log.debug(JsonUtils.serialize(configs));
 
     }
 }

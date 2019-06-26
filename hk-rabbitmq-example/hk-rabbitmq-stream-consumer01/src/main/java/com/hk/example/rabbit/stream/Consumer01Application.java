@@ -4,8 +4,7 @@ import com.hk.commons.util.JsonUtils;
 import com.rabbitmq.client.Channel;
 import lombok.Getter;
 import lombok.Setter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.boot.SpringApplication;
@@ -25,12 +24,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author huangkai
  * @date 2019-01-17 14:39
  */
+@Slf4j
 @SpringBootApplication
 @EnableBinding(value = {PublishInput.class, RouteKeyInput.class, TopicInput.class,
         DelayedInput.class, AcknowledgeModeInput.class, AutoBindDlqInput.class})
 public class Consumer01Application {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Consumer01Application.class);
 
     public static void main(String[] args) {
         SpringApplication.run(Consumer01Application.class, args);
@@ -43,7 +41,7 @@ public class Consumer01Application {
      */
     @StreamListener(PublishInput.INPUT)
     public void receive(@Payload Date date) {
-        LOGGER.info("Consumer01Application Receive message : {}", date);
+        log.info("Consumer01Application Receive message : {}", date);
     }
 
     /**
@@ -53,7 +51,7 @@ public class Consumer01Application {
      */
     @StreamListener(RouteKeyInput.INPUT)
     public void routeKeyReceive(@Payload Date date) {
-        LOGGER.info("Consumer01Application routeKeyReceive message : {}", date);
+        log.info("Consumer01Application routeKeyReceive message : {}", date);
     }
 
     /**
@@ -63,7 +61,7 @@ public class Consumer01Application {
      */
     @StreamListener(TopicInput.INPUT)
     public void topicReceive(@Payload Date date) {
-        LOGGER.info("Consumer01Application topicReceive message : {}", date);
+        log.info("Consumer01Application topicReceive message : {}", date);
     }
 
     /* ************************** 死信队列 ***********************************************/
@@ -95,7 +93,7 @@ public class Consumer01Application {
     public void autoBindDlqReceive(@Payload MessageVo message) {
         String key = generateCacheKey(AutoBindDlqInput.INPUT, message.getId());
         try {
-            LOGGER.info("Consumer01Application autoBindDlqReceive message:{}", JsonUtils.serialize(message, true));
+            log.info("Consumer01Application autoBindDlqReceive message:{}", JsonUtils.serialize(message, true));
 //            if (StringUtils.isEmpty("")) {
 //                throw new RuntimeException("模拟异常...");
 //            }
@@ -136,7 +134,7 @@ public class Consumer01Application {
     public void acknowledgeModeReceive(String message,
                                        @Header(value = AmqpHeaders.CHANNEL) Channel channel,
                                        @Header(value = AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
-        LOGGER.info("Consumer01Application acknowledgeModeReceive message:{}", message);
+        log.info("Consumer01Application acknowledgeModeReceive message:{}", message);
         //手动确认消息，参数2的值为false 时确认收到消息, true 为拒接收到消息,消息会被rabbitmq 丢弃，即使开启了死信队列，消息也不会进入死信队列中
         channel.basicAck(deliveryTag, false);
     }
@@ -148,7 +146,7 @@ public class Consumer01Application {
      */
     @StreamListener(DelayedInput.INPUT)
     public void delayedReceive(@Payload Date date) {
-        LOGGER.info("消息接收时间 : {}", LocalDateTime.now());
-        LOGGER.info("Consumer01Application delayedReceive message : {}", date);
+        log.info("消息接收时间 : {}", LocalDateTime.now());
+        log.info("Consumer01Application delayedReceive message : {}", date);
     }
 }
