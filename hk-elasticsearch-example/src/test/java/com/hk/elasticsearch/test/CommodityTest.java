@@ -1,15 +1,5 @@
 package com.hk.elasticsearch.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.query.Criteria;
-import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
-
 import com.hk.commons.util.ArrayUtils;
 import com.hk.commons.util.IDGenerator;
 import com.hk.commons.util.JsonUtils;
@@ -24,6 +14,16 @@ import com.hk.elasticsearch.example.entity.Commodity;
 import com.hk.elasticsearch.example.entity.CommodityFile;
 import com.hk.elasticsearch.example.repository.elasticsearch.CommodityRepository;
 import com.hk.elasticsearch.example.service.CommodityService;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.completion.Completion;
+import org.springframework.data.elasticsearch.core.query.Criteria;
+import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author huangkai
@@ -47,14 +47,16 @@ public class CommodityTest extends BaseTest {
     public void addCommodity() {
         Commodity commodity = new Commodity();
         commodity.setId(IDGenerator.STRING_UUID.generate());
-        commodity.setName("茶叶");
+        commodity.setName("茶杯你说好不好");
         commodity.setPrice(5888d);
+        commodity.setSuggest(new Completion(new String[]{commodity.getName()}));
         List<CommodityFile> files = new ArrayList<>();
         for (int i = 0; i < 1; i++) {
             CommodityFile file = new CommodityFile();
             file.setFileName("fileName" + i);
             file.setFilePath("filePath" + i);
             file.setId(IDGenerator.STRING_UUID.generate());
+
             files.add(file);
         }
         commodity.setFiles(files);

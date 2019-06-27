@@ -4,9 +4,11 @@ import com.hk.core.elasticsearch.analyzer.IKanalyzer;
 import com.hk.core.elasticsearch.domain.AbstractUUIDPersistable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.elasticsearch.annotations.CompletionField;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.core.completion.Completion;
 
 import java.util.List;
 
@@ -42,6 +44,9 @@ public class Commodity extends AbstractUUIDPersistable {
 
     @Field(analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
     private String subTitle;
+
+    @CompletionField(maxInputLength = 100,searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER,analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER)
+    private Completion suggest;
 
     @Field(type = FieldType.Double)
     private Double price;

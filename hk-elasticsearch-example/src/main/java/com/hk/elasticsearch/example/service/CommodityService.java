@@ -22,5 +22,7 @@ public interface CommodityService {
 
     void deleteById(String id);
 
+    List<String> suggest(String keyword);
+
     QueryPage<Commodity> findByPage(List<Condition> conditions, int pageIndex, int pageSize);
 }
