@@ -2,16 +2,15 @@ package com.hk.elasticsearch.example.service.impl;
 
 import com.hk.commons.util.JsonUtils;
 import com.hk.commons.util.StringUtils;
-import com.hk.core.elasticsearch.analyzer.IKanalyzer;
 import com.hk.core.elasticsearch.highlight.HighlightTag;
-import com.hk.core.elasticsearch.query.Condition;
+import com.hk.core.elasticsearch.repository.BaseElasticsearchRepository;
 import com.hk.core.page.QueryPage;
 import com.hk.core.query.QueryModel;
+import com.hk.core.service.elasticsearch.impl.ElasticSearchServiceImpl;
 import com.hk.elasticsearch.example.entity.Commodity;
 import com.hk.elasticsearch.example.repository.elasticsearch.CommodityRepository;
 import com.hk.elasticsearch.example.service.CommodityService;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.lucene.search.function.FunctionScoreQuery;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -20,10 +19,6 @@ import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
-import org.elasticsearch.search.suggest.Suggest;
-import org.elasticsearch.search.suggest.SuggestBuilder;
-import org.elasticsearch.search.suggest.SuggestBuilders;
-import org.elasticsearch.search.suggest.completion.CompletionSuggestionBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -39,7 +34,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class CommodityServiceImpl implements CommodityService, HighlightTag {
+public class CommodityServiceImpl extends ElasticSearchServiceImpl<Commodity> implements CommodityService, HighlightTag {
 
     @Autowired
     private CommodityRepository commodityRepository;
@@ -48,10 +43,15 @@ public class CommodityServiceImpl implements CommodityService, HighlightTag {
     private ElasticsearchTemplate elasticsearchTemplate;
 
     @Override
-    public QueryPage<Commodity> findByPage(QueryModel<Commodity> queryModel) {
-        Commodity param = queryModel.getParam();
+    protected BaseElasticsearchRepository<Commodity> getBaseRepository() {
+        return commodityRepository;
+    }
+
+    @Override
+    public QueryPage<Commodity> queryForPage(QueryModel<Commodity> query) {
+        Commodity param = query.getParam();
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
-        queryBuilder.withPageable(PageRequest.of(queryModel.getStartRowIndex(), queryModel.getPageSize()));
+        queryBuilder.withPageable(PageRequest.of(query.getStartRowIndex(), query.getPageSize()));
         if (param != null) {
             // bool查询，这是个 复合过滤器（compound filter） ，它可以接受多个其他过滤器作为参数，并将这些过滤器结合成各式各样的布尔（逻辑）组合。
             BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
@@ -103,48 +103,4 @@ public class CommodityServiceImpl implements CommodityService, HighlightTag {
         return commodityRepository.queryForPage(queryBuilder.build());
     }
 
-    @Override
-    public Commodity save(Commodity commodity) {
-        return commodityRepository.save(commodity);
-    }
-
-    @Override
-    public Iterable<Commodity> findAll() {
-        return commodityRepository.findAll();
-    }
-
-    @Override
-    public void deleteById(String id) {
-        commodityRepository.deleteById(id);
-    }
-
-    @Override
-    public List<String> suggest(String keyword) {
-        CompletionSuggestionBuilder builder = SuggestBuilders.completionSuggestion("suggest")
-                .skipDuplicates(true)
-//                .prefix(keyword)
-                .text(keyword)
-                .analyzer(IKanalyzer.IK_MAX_WORD_ANALYZER)
-                .size(10);
-        SearchResponse searchResponse = elasticsearchTemplate.getClient()
-                .prepareSearch("hk-elasticsearch-example")
-                .setTypes("commodity")
-                .setQuery(QueryBuilders.matchAllQuery())
-                .suggest(new SuggestBuilder().setGlobalText(keyword).addSuggestion("my-suggest", builder))
-                .get();
-        List<? extends Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>> entries = searchResponse.getSuggest()
-                .getSuggestion("my-suggest")
-                .getEntries();
-        List<String> result = new ArrayList<>(entries.size());
-        for (Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option> options : entries) {
-            result.add(options.getText().string());
-        }
-        return result;
-    }
-
-
-    @Override
-    public QueryPage<Commodity> findByPage(List<Condition> conditions, int pageIndex, int pageSize) {
-        return commodityRepository.findByPage(conditions, pageIndex, pageSize);
-    }
 }

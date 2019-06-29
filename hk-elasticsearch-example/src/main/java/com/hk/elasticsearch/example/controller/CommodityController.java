@@ -1,6 +1,7 @@
 package com.hk.elasticsearch.example.controller;
 
 import com.hk.commons.JsonResult;
+import com.hk.elasticsearch.example.entity.Commodity;
 import com.hk.elasticsearch.example.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,12 @@ public class CommodityController {
     private CommodityService commodityService;
 
     @RequestMapping("suggest")
-    public JsonResult<List<String>> suggest(String keyword){
-        return JsonResult.success(commodityService.suggest(keyword));
+    public JsonResult<List<String>> suggest(String keyword) {
+        return JsonResult.success(commodityService.suggest("suggest", keyword));
+    }
+
+    @RequestMapping
+    public JsonResult<Commodity> get(String id) {
+        return JsonResult.success(commodityService.findById(id).orElse(null));
     }
 }
