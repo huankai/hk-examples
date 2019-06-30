@@ -36,10 +36,6 @@
             <groupId>com.hk</groupId>
             <artifactId>hk-core-data-jpa</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.hk</groupId>
-            <artifactId>hk-core-web</artifactId>
-        </dependency>
 
         <!-- 微信公众平台 -->
         <dependency>
@@ -48,8 +44,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-core-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
 
         <dependency>
@@ -63,8 +63,8 @@
         </dependency>
 
         <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
         <dependency>
@@ -87,8 +87,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-
         </plugins>
     </build>
 </project>
