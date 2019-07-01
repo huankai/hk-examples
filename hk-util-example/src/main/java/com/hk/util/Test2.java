@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * @author kevin
@@ -55,15 +55,15 @@ public class Test2 {
 
     /*  ***************************** */
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    private static class NameValue1 {
-
-        private String name;
-
-        private String value;
-    }
+//    @Data
+//    @NoArgsConstructor
+//    @AllArgsConstructor
+//    private static class NameValue1 {
+//
+//        private String name;
+//
+//        private String value;
+//    }
 
 
 //    public static void main(String[] args) {
@@ -115,6 +115,7 @@ public class Test2 {
         NameValue firstNameValue = lists.get(0);
         List<List<TextValueItem>> result = new ArrayList<>();
         int forSize = maxSize / firstNameValue.values.size(); //每个一级元素需要循环的次数
+        Collections.reverse(positions);//集合反转
         for (String firstValue : firstNameValue.values) {
             for (int i = 0; i < forSize; i++) {
                 List<TextValueItem> list = new ArrayList<>();
@@ -122,21 +123,33 @@ public class Test2 {
                 CollectionUtils.addAll(list, getList(i, positions, lists));
                 result.add(list);
             }
+            System.out.println("---------------------------");
         }
-        System.out.println(JsonUtils.serialize(result, true));
-
+//        System.out.println(JsonUtils.serialize(result, true));
+//        System.out.println(result.size());
     }
 
     private static List<TextValueItem> getList(int index, List<Position> positions, List<NameValue> nameValues) {
         List<TextValueItem> result = new ArrayList<>();
-        int[] posit = new int[]{positions.size()};
-        for (Position position : positions) {
-
+        int[] posit = new int[positions.size()]; //[0,0]
+        List<Integer> maxPositionList = positions // [2,3] //获取每个名称中的最大元素
+                .stream()
+                .map(Position::getMaxPosition)
+                .collect(Collectors.toList());
+        for (int i = 0, size = maxPositionList.size(); i < size; i++) {
+            Integer item = maxPositionList.get(i);
+            int beforeSum = maxPositionList.stream().limit(i).mapToInt(Integer::intValue).sum();
+            if (index <= beforeSum || index % item == 0) {
+                posit[size - i - 1] = 0;
+            } else {
+                posit[size - i - 1] = (index / item) + (index % item);
+            }
         }
-        for (int i = 0; i < posit.length; i++) {
-            NameValue nameValue = nameValues.get(i);
-            result.add(new TextValueItem(nameValue.name, nameValue.values.get(posit[i])));
-        }
+        System.out.println("posit－－－－－＞" + JsonUtils.serialize(posit));
+//        for (int i = 1; i <= posit.length; i++) {
+//            NameValue nameValue = nameValues.get(i);
+//            result.add(new TextValueItem(nameValue.name, nameValue.values.get(posit[i - 1])));
+//        }
         return result;
     }
 //
@@ -190,24 +203,24 @@ public class Test2 {
     }
 
 
-    private static List<List<TextValueItem>> build2(final List<NameValue> lists) {
-        int size = lists.size();
-        List<List<TextValueItem>> result = new ArrayList<>();
-        NameValue firstNameValue = lists.get(0);
-        int lastIndex = size - 1;
-        NameValue lastNameValue = lists.get(lastIndex);
-        List<Integer> indexList = IntStream.range(1, lastIndex).boxed().collect(Collectors.toList());
-        for (String value : firstNameValue.values) {
-            for (String lasValue : lastNameValue.values) {
-                List<TextValueItem> textValueItems = ArrayUtils.asArrayList(new TextValueItem(firstNameValue.name, value));
-                for (Integer centerIndex : indexList) {
-                    NameValue nameValue = lists.get(centerIndex);
-                    textValueItems.add(new TextValueItem(nameValue.name, nameValue.values.get(0)));
-                }
-                textValueItems.add(new TextValueItem(lastNameValue.name, lasValue));
-                result.add(textValueItems);
-            }
-        }
-        return result;
-    }
+//    private static List<List<TextValueItem>> build2(final List<NameValue> lists) {
+//        int size = lists.size();
+//        List<List<TextValueItem>> result = new ArrayList<>();
+//        NameValue firstNameValue = lists.get(0);
+//        int lastIndex = size - 1;
+//        NameValue lastNameValue = lists.get(lastIndex);
+//        List<Integer> indexList = IntStream.range(1, lastIndex).boxed().collect(Collectors.toList());
+//        for (String value : firstNameValue.values) {
+//            for (String lasValue : lastNameValue.values) {
+//                List<TextValueItem> textValueItems = ArrayUtils.asArrayList(new TextValueItem(firstNameValue.name, value));
+//                for (Integer centerIndex : indexList) {
+//                    NameValue nameValue = lists.get(centerIndex);
+//                    textValueItems.add(new TextValueItem(nameValue.name, nameValue.values.get(0)));
+//                }
+//                textValueItems.add(new TextValueItem(lastNameValue.name, lasValue));
+//                result.add(textValueItems);
+//            }
+//        }
+//        return result;
+//    }
 }
