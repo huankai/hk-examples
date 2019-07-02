@@ -28,7 +28,7 @@ public class WxMpDemoApplication {
         return new UserDetailClientService() {
             @Override
             public SecurityUserPrincipal loadUserByLoginUsername(String username) {
-                return new SecurityUserPrincipal(username, null, null, null, null, username, false,
+                return new SecurityUserPrincipal(1L, null, null, null, null, username, false,
                         username, ByteConstants.ONE, username,
                         username, ByteConstants.ONE, null, "$2a$10$KgOArE6QpbY2iTQC0WGGS.hP72PQsHpToqbNVEEmUrd5LcEqrbzAG", ByteConstants.TWO, null, null);
             }

@@ -1,8 +1,8 @@
 package com.hk.weixin.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hk.core.data.jpa.domain.AbstractAuditable;
-import com.hk.core.data.jpa.domain.AbstractUUIDPersistable;
+import com.hk.core.data.jpa.domain.AbstractSnowflakeAuditable;
+import com.hk.core.data.jpa.domain.AbstractSnowflakeIdPersistable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,7 +26,7 @@ public class ModelHolder {
     @Data
     @MappedSuperclass
     @EqualsAndHashCode(callSuper = true)
-    public static class SysUserThirdBase extends AbstractUUIDPersistable {
+    public static class SysUserThirdBase extends AbstractSnowflakeIdPersistable {
 
         @OneToOne
         private User user;
@@ -51,7 +51,7 @@ public class ModelHolder {
     @Data
     @MappedSuperclass
     @EqualsAndHashCode(callSuper = true)
-    public static class SysLoginLogBase extends AbstractUUIDPersistable {
+    public static class SysLoginLogBase extends AbstractSnowflakeIdPersistable {
 
         @ManyToOne(optional = false)
         private User user;
@@ -77,36 +77,36 @@ public class ModelHolder {
     @Data
     @MappedSuperclass
     @EqualsAndHashCode(callSuper = true)
-    public static class RolePermissionBase extends AbstractUUIDPersistable {
+    public static class RolePermissionBase extends AbstractSnowflakeIdPersistable {
 
         @Column(name = "role_id")
-        private String roleId;
+        private Long roleId;
 
         @Column(name = "permission_id")
-        private String permissionId;
+        private Long permissionId;
 
     }
 
     @Data
     @MappedSuperclass
     @EqualsAndHashCode(callSuper = true)
-    public static class UserRoleBase extends AbstractUUIDPersistable {
+    public static class UserRoleBase extends AbstractSnowflakeIdPersistable {
 
         @Column(name = "user_id")
-        private String userId;
+        private Long userId;
 
         @Column(name = "role_id")
-        private String roleId;
+        private Long roleId;
 
     }
 
     @Data
     @MappedSuperclass
     @EqualsAndHashCode(callSuper = true)
-    public static class RoleBase extends AbstractUUIDPersistable {
+    public static class RoleBase extends AbstractSnowflakeIdPersistable {
 
         @Column(name = "app_id")
-        private String appId;
+        private Long appId;
 
         @Column(name = "role_name")
         private String roleName;
@@ -119,13 +119,13 @@ public class ModelHolder {
     @Data
     @MappedSuperclass
     @EqualsAndHashCode(callSuper = true)
-    public static class PermissionBase extends AbstractUUIDPersistable {
+    public static class PermissionBase extends AbstractSnowflakeIdPersistable {
 
         /**
          *
          */
         @Column(name = "app_id")
-        private String appId;
+        private Long appId;
 
         @Column(name = "permission")
         private String permission;
@@ -138,7 +138,7 @@ public class ModelHolder {
     @Data
     @MappedSuperclass
     @EqualsAndHashCode(callSuper = true)
-    public static class UserBase extends AbstractAuditable {
+    public static class UserBase extends AbstractSnowflakeAuditable {
 
         @Column(name = "user_name")
         private String userName;

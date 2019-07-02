@@ -46,7 +46,7 @@ public class TransactionApplication {
 
             @Override
             public UserPrincipal getPrincipal() {
-                return new UserPrincipal("0", "0", ByteConstants.ZERO);
+                return new UserPrincipal(1L, "0", ByteConstants.ZERO);
             }
 
             @Override

@@ -1,6 +1,5 @@
 package com.hk.weixin.example.security.filter;
 
-import com.hk.commons.util.ByteConstants;
 import com.hk.commons.util.StringUtils;
 import com.hk.core.authentication.security.SecurityUserPrincipal;
 import com.hk.weixin.example.security.config.WechatQrCodeConfig;
@@ -70,9 +69,10 @@ public class WechatQrCodeCallbackAuthenticationFilter extends AbstractAuthentica
             try {
                 WxMpOAuth2AccessToken accessToken = wxService.oauth2getAccessToken(code);
                 WxMpUser user = wxService.oauth2getUserInfo(accessToken, null);
-                SecurityUserPrincipal userPrincipal = new SecurityUserPrincipal(user.getOpenId(), null, null, null, null, user.getNickname(), false,
-                        user.getNickname(), ByteConstants.ONE, user.getNickname(),
-                        user.getNickname(), ByteConstants.ONE, user.getHeadImgUrl(), null, ByteConstants.TWO, null, null);
+                SecurityUserPrincipal userPrincipal = null; // todo
+//                SecurityUserPrincipal userPrincipal = new SecurityUserPrincipal(user.getOpenId(), null, null, null, null, user.getNickname(), false,
+//                        user.getNickname(), ByteConstants.ONE, user.getNickname(),
+//                        user.getNickname(), ByteConstants.ONE, user.getHeadImgUrl(), null, ByteConstants.TWO, null, null);
                 WechatQrCodeAuthenticationToken authenticationToken = new WechatQrCodeAuthenticationToken(userPrincipal);
                 setDetails(request, authenticationToken);
                 return getAuthenticationManager().authenticate(authenticationToken);

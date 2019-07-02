@@ -1,6 +1,9 @@
 package com.hk.util;
 
-import com.hk.commons.util.*;
+import com.hk.commons.util.ArrayUtils;
+import com.hk.commons.util.CollectionUtils;
+import com.hk.commons.util.StringUtils;
+import com.hk.commons.util.TextValueItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +11,6 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author kevin
@@ -92,7 +94,7 @@ public class Test2 {
         String[] nameValues = StringUtils.tokenizeToStringArray(text, ";");
         List<NameValue> lists = new ArrayList<>(nameValues.length);
         List<Position> positions = new ArrayList<>();
-        int maxSize = 1;
+        int excludeFirstValuesSize = 1; //排除第一个元素后其它总元素总数
         for (int index = 0; index < nameValues.length; index++) {
             String nameValue = nameValues[index];
             String[] keyValue = StringUtils.tokenizeToStringArray(nameValue, ":");
@@ -100,8 +102,8 @@ public class Test2 {
                 String name = keyValue[0];
                 String[] values = StringUtils.splitByComma(keyValue[1]);
                 if (ArrayUtils.isNotEmpty(values)) {
-                    maxSize = maxSize * values.length;
                     if (index != 0) { // 第一个元素不放进去
+                        excludeFirstValuesSize = excludeFirstValuesSize * values.length;
                         positions.add(new Position(index, values.length));
                     }
                     lists.add(new NameValue(name, ArrayUtils.asArrayList(values)));
@@ -114,38 +116,53 @@ public class Test2 {
         }
         NameValue firstNameValue = lists.get(0);
         List<List<TextValueItem>> result = new ArrayList<>();
-        int forSize = maxSize / firstNameValue.values.size(); //每个一级元素需要循环的次数
         Collections.reverse(positions);//集合反转
         for (String firstValue : firstNameValue.values) {
-            for (int i = 0; i < forSize; i++) {
+            for (int i = 0; i < excludeFirstValuesSize; i++) {
                 List<TextValueItem> list = new ArrayList<>();
                 list.add(new TextValueItem(firstNameValue.name, firstValue));
                 CollectionUtils.addAll(list, getList(i, positions, lists));
                 result.add(list);
             }
+//            颜色:蓝色男款,白色男款
+//            尺码:38,39,40;类别:a,b
+            /*
+                    1:3
+                    2:2
+
+             */
             System.out.println("---------------------------");
         }
 //        System.out.println(JsonUtils.serialize(result, true));
 //        System.out.println(result.size());
     }
 
+
+
     private static List<TextValueItem> getList(int index, List<Position> positions, List<NameValue> nameValues) {
         List<TextValueItem> result = new ArrayList<>();
-        int[] posit = new int[positions.size()]; //[0,0]
-        List<Integer> maxPositionList = positions // [2,3] //获取每个名称中的最大元素
-                .stream()
-                .map(Position::getMaxPosition)
-                .collect(Collectors.toList());
-        for (int i = 0, size = maxPositionList.size(); i < size; i++) {
-            Integer item = maxPositionList.get(i);
-            int beforeSum = maxPositionList.stream().limit(i).mapToInt(Integer::intValue).sum();
-            if (index <= beforeSum || index % item == 0) {
-                posit[size - i - 1] = 0;
-            } else {
-                posit[size - i - 1] = (index / item) + (index % item);
-            }
-        }
-        System.out.println("posit－－－－－＞" + JsonUtils.serialize(posit));
+        int limitIndex = 0, multiply;
+        do {
+            multiply = positions.stream().limit(limitIndex).mapToInt(Position::getMaxPosition)
+                    .reduce(1, (x, y) -> x * y);
+            limitIndex++;
+        } while (index >= multiply);
+        System.out.println(index + "index:" + (limitIndex - 1) + ",post:" );
+
+//        List<Integer> maxPositionList = positions // [2,3] //获取每个名称中的最大元素
+//                .stream()
+//                .map(Position::getMaxPosition)
+//                .collect(Collectors.toList());
+//        for (int i = 0, size = maxPositionList.size(); i < size; i++) {
+//            Integer item = maxPositionList.get(i);
+//
+//            if (index <= beforeSum || index % item == 0) {
+//                posit[size - i - 1] = 0;
+//            } else {
+//                posit[size - i - 1] = (index / item) + (index % item);
+//            }
+//        }
+//        System.out.println("posit－－－－－＞" + JsonUtils.serialize(posit));
 //        for (int i = 1; i <= posit.length; i++) {
 //            NameValue nameValue = nameValues.get(i);
 //            result.add(new TextValueItem(nameValue.name, nameValue.values.get(posit[i - 1])));
