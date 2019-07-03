@@ -43,8 +43,8 @@ public class TokenUserPrincipal extends SecurityUserPrincipal implements Seriali
         this.expire = expire;
     }
 
-    public TokenUserPrincipal(String token, LocalDateTime expire, String userId, String orgId, String orgName,
-                              String deptId, String deptName,
+    public TokenUserPrincipal(String token, LocalDateTime expire, Long userId, Long orgId, String orgName,
+                              Long deptId, String deptName,
                               String account, boolean protectUser,
                               String realName, Byte userType, String phone,
                               String email, Byte sex, String iconPath, String password,

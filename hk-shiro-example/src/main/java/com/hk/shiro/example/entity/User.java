@@ -21,13 +21,13 @@ import java.time.LocalDate;
 @SuppressWarnings("serial")
 public class User extends AbstractAuditable {
 
-    @NotEmpty
+    @NotNull
     @Column(value = "org_id")
-    private String orgId;
+    private Long orgId;
 
-    @NotEmpty
+    @NotNull
     @Column(value = "dept_id")
-    private String deptId;
+    private Long deptId;
 
     @NotEmpty
     @Length(max = 20)
@@ -70,10 +70,10 @@ public class User extends AbstractAuditable {
     private LocalDate birth;
 
     @Column(value = "province_id")
-    private String provinceId;
+    private Long provinceId;
 
     @Column(value = "city_id")
-    private String cityId;
+    private Long cityId;
 
     @Column(value = "user_status")
     private Byte userStatus;

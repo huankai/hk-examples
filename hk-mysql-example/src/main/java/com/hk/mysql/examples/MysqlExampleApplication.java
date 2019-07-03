@@ -37,7 +37,7 @@ public class MysqlExampleApplication {
         return new SecurityContext() {
             @Override
             public UserPrincipal getPrincipal() {
-                return new UserPrincipal("1", "1", ByteConstants.ZERO);
+                return new UserPrincipal(1L, "1", ByteConstants.ZERO);
             }
 
             @Override

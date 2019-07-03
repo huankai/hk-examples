@@ -1,6 +1,5 @@
 package com.hk.shiro.example.service.impl;
 
-import com.hk.core.authentication.api.UserPrincipal;
 import com.hk.core.authentication.shiro.ShiroUserPrincipal;
 import com.hk.core.authentication.shiro.UserDetailsService;
 import com.hk.core.data.jdbc.query.CompositeCondition;
@@ -36,11 +35,11 @@ public class UserServiceImpl extends JdbcServiceImpl<User, String> implements Us
         ShiroUserPrincipal account = null;
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            UserPrincipal userPrincipal = new UserPrincipal(user.getId(), user.getAccount(), user.getIsProtect(), user.getRealName(), user.getUserType()
-                    , user.getPhone(), user.getEmail(), user.getSex(), user.getIconPath(), null, null);
+//            UserPrincipal userPrincipal = new UserPrincipal(user.getId(), user.getAccount(), user.getIsProtect(), user.getRealName(), user.getUserType()
+//                    , user.getPhone(), user.getEmail(), user.getSex(), user.getIconPath(), null, null);
 //            userPrincipal.setRoleSet();配置角色与权限
 //            userPrincipal.setPermissionSet();
-            account = new ShiroUserPrincipal(userPrincipal, user.getPassword());
+            account = new ShiroUserPrincipal(null, user.getPassword());
         }
         return Optional.ofNullable(account);
     }
