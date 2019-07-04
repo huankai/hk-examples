@@ -1,7 +1,7 @@
 package com.hk.elasticsearch.example.entity;
 
 import com.hk.core.elasticsearch.analyzer.IKanalyzer;
-import com.hk.core.elasticsearch.domain.AbstractUUIDPersistable;
+import com.hk.core.elasticsearch.domain.AbstractIDPersistable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,7 +28,7 @@ import java.util.List;
 @Data
 @Document(indexName = "xls-commodity2", refreshInterval = "-1")
 @EqualsAndHashCode(callSuper = true)
-public class Commodity extends AbstractUUIDPersistable {
+public class Commodity extends AbstractIDPersistable {
 
     /**
      * 厂家id
@@ -181,7 +181,7 @@ public class Commodity extends AbstractUUIDPersistable {
     @Field(type = FieldType.Nested)
     private List<CommoditySpecification> attributeList;
 
-    @CompletionField(maxInputLength = 100,preservePositionIncrements = false,
+    @CompletionField(maxInputLength = 100, preservePositionIncrements = false,
             searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER)
     private Completion suggest;
 

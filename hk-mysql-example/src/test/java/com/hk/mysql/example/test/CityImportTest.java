@@ -111,6 +111,7 @@ public class CityImportTest extends BaseTest {
 
         private Double latitude;
 
+        @Builder.Default
         private String createdBy = "0";
 
         private String description;
@@ -118,16 +119,19 @@ public class CityImportTest extends BaseTest {
         /**
          * 创建时间
          */
+        @Builder.Default
         private LocalDateTime createdDate = LocalDateTime.now();
 
         /**
          * 最后更新用户
          */
+        @Builder.Default
         private String lastModifiedBy = "0";
 
         /**
          * 最后更新时间
          */
+        @Builder.Default
         private LocalDateTime lastModifiedDate = LocalDateTime.now();
     }
 

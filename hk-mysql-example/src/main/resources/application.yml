@@ -91,7 +91,10 @@ mybatis:
     - classpath:mybatis/mappers/*.xml
   configuration:
     map-underscore-to-camel-case: true
-
+hk:
+  snowflake:
+    data-center-id: 2
+    worker-id: 1
 ######################################################### logging 配置
 logging:
   level:

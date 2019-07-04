@@ -9,7 +9,7 @@ public interface UserResponseListOrBuilder extends
 
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -18,7 +18,7 @@ public interface UserResponseListOrBuilder extends
       getUserResponseList();
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -26,7 +26,7 @@ public interface UserResponseListOrBuilder extends
   com.hk.proto.grpc.UserResponse getUserResponse(int index);
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -34,7 +34,7 @@ public interface UserResponseListOrBuilder extends
   int getUserResponseCount();
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -43,7 +43,7 @@ public interface UserResponseListOrBuilder extends
       getUserResponseOrBuilderList();
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>

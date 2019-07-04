@@ -91,7 +91,7 @@ private static final long serialVersionUID = 0L;
   private java.util.List<com.hk.proto.grpc.UserResponse> userResponse_;
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -101,7 +101,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -112,7 +112,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -122,7 +122,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -132,7 +132,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   *    集合
+   * 集合
    * </pre>
    *
    * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -499,7 +499,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -513,7 +513,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -527,7 +527,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -541,7 +541,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -562,7 +562,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -580,7 +580,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -600,7 +600,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -621,7 +621,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -639,7 +639,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -657,7 +657,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -676,7 +676,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -693,7 +693,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -710,7 +710,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -721,7 +721,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -735,7 +735,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -750,7 +750,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -761,7 +761,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>
@@ -773,7 +773,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *    集合
+     * 集合
      * </pre>
      *
      * <code>repeated .com.hk.proto.UserResponse userResponse = 1;</code>

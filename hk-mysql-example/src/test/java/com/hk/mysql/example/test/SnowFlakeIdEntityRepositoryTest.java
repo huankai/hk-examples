@@ -9,6 +9,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author kevin
  * @date 2019-7-2 17:42
@@ -21,11 +24,14 @@ public class SnowFlakeIdEntityRepositoryTest extends BaseTest {
 
     @Test
     public void insertTest() {
-        for (int i = 0; i < 100; i++) {
-            SnowFlakeIdEntity flakeIdEntity = new SnowFlakeIdEntity();
-            flakeIdEntity.setName("test");
-            System.out.println(JsonUtils.serialize(snowFlakeIdEntityRepository.save(flakeIdEntity), true));
-
+        int size = 100;
+        List<SnowFlakeIdEntity> list = new ArrayList<>(size);
+        SnowFlakeIdEntity flakeIdEntity;
+        for (int i = 0; i < size; i++) {
+            flakeIdEntity = new SnowFlakeIdEntity();
+            flakeIdEntity.setName("test" + i);
+            list.add(flakeIdEntity);
         }
+        System.out.println(JsonUtils.serialize(snowFlakeIdEntityRepository.saveAll(list), true));
     }
 }
