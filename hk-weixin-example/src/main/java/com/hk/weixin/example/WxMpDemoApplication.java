@@ -34,7 +34,7 @@ public class WxMpDemoApplication {
             }
 
             @Override
-            public ClientAppInfo getClientInfoById(String clientId) {
+            public ClientAppInfo getClientInfoById(Long  clientId) {
                 return null;
             }
         };

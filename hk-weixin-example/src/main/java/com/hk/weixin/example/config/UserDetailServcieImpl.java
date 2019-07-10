@@ -34,7 +34,7 @@ public class UserDetailServcieImpl implements UserDetailClientService {
     }
 
     @Override
-    public ClientAppInfo getClientInfoById(String clientId) {
+    public ClientAppInfo getClientInfoById(Long clientId) {
         return null;
     }
 

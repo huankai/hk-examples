@@ -1,0 +1,18 @@
+server:
+  port: 8089
+  servlet:
+    context-path: /apollo
+  tomcat:
+    max-threads: 200
+app:
+  id: ${spring.application.name}
+apollo:
+  meta: http://182.61.40.18:8080
+spring:
+  application:
+    name: hk-apollo-example
+  main:
+    banner-mode: "off"
+logging:
+  level:
+    root: error

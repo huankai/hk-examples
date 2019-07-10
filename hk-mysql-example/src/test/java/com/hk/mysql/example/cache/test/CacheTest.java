@@ -1,6 +1,5 @@
 package com.hk.mysql.example.cache.test;
 
-import com.hk.core.cache.NullCacheProperties;
 import com.hk.core.test.BaseTest;
 import com.hk.mysql.examples.MysqlExampleApplication;
 import com.hk.mysql.examples.domain.Account;
