@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -19,15 +20,24 @@ import java.util.concurrent.TimeUnit;
  * @author huangkai
  * @date 2019-02-19 10:23
  */
-@SpringBootTest(classes = {RedisExampleApplication.class})
 @Log4j2
+@SpringBootTest(classes = {RedisExampleApplication.class})
 public class KeyTest extends BaseTest {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
 
     /**
-     * 获取给定模式的key
+     * <pre>
+     *
+     * 获取给定模式的key，生产环境严格禁用此命令，会导致 redis 锁住，
+     * 同时还有 config / flushdb /flushall 这些不安全的命令，应该在
+     * redis.conf 配置文件中使用
+     *  rename-command KEYS ""
+     *  rename-command KEYS ""
+     *  rename-command KEYS ""
+     *  rename-command KEYS "" 取消
+     * </pre>
      */
     @Test
     public void keys() {

@@ -39,6 +39,7 @@
         <module>hk-springboot-webflux-example</module>
         <module>hk-mycat-example</module>
         <module>hk-apollo-example</module>
+        <module>hk-nacos-discovery-example</module>
     </modules>
 
     <dependencyManagement>

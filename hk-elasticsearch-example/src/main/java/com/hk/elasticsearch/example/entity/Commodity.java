@@ -32,6 +32,11 @@ public class Commodity extends AbstractIDPersistable {
 
     /**
      * 厂家id
+     * fielddata: 默认为 false,当为 false 时，无法进行统计分析
+     * analyzer: 分词器
+     * searchAnalyzer: 搜索分词器
+     * type: 字段类型
+     * format: 格式
      */
     @Field(type = FieldType.Keyword)
     private String brandId;
@@ -39,19 +44,21 @@ public class Commodity extends AbstractIDPersistable {
     /**
      * 商品名称
      */
-    @Field(analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
+    @Field(analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER,
+            searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
     private String name;
 
     /**
      * 品牌商品
      */
-    @Field(analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
+    @Field(fielddata = true, analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER,
+            searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
     private String brandName;
 
     /**
      * 品牌商家编号
      */
-    @Field(analyzer = IKanalyzer.IK_SMART_ANALYZER, searchAnalyzer = IKanalyzer.IK_SMART_ANALYZER, type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private String mchtCode;
 
     /**
@@ -69,7 +76,8 @@ public class Commodity extends AbstractIDPersistable {
     /**
      * 商品类别名称
      */
-    @Field(analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
+    @Field(fielddata = true, analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER,
+            searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
     private String categoryName;
 
     /**
@@ -105,7 +113,8 @@ public class Commodity extends AbstractIDPersistable {
     @Field(type = FieldType.Boolean)
     private Boolean publishStatus;
 
-    @Field(analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
+    @Field(analyzer = IKanalyzer.IK_MAX_WORD_ANALYZER,
+            searchAnalyzer = IKanalyzer.IK_MAX_WORD_ANALYZER, type = FieldType.Text)
     private String subTitle;
 
     @Field(type = FieldType.Integer)

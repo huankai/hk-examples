@@ -51,6 +51,7 @@ public class CommodityServiceImpl extends ElasticSearchServiceImpl<Commodity> im
     public QueryPage<Commodity> queryForPage(QueryModel<Commodity> query) {
         Commodity param = query.getParam();
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
+//        queryBuilder.withQuery(QueryBuilders.)
         queryBuilder.withPageable(PageRequest.of(query.getStartRowIndex(), query.getPageSize()));
         if (param != null) {
             // bool查询，这是个 复合过滤器（compound filter） ，它可以接受多个其他过滤器作为参数，并将这些过滤器结合成各式各样的布尔（逻辑）组合。
