@@ -1,0 +1,23 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /
+spring:
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        # 多个地址使用 , 分隔
+        server-addr: 182.61.40.18:8848
+        #  注册的IP地址
+        ip: 127.0.0.1
+        # 权重 1 ~ 100，值越大，权重越大
+        weight: 1
+        # 命名空间id; https://nacos.io/zh-cn/docs/system-configurations.html，不同命名空间是隔离的，不能调用不同命名空间的服务提供方
+        namespace: eae427cd-ecb0-49fd-b3f1-999a0d68d2fe
+ribbon:
+  nacos:
+    # nacos 集成 Ribbon，默认为 true
+    enabled: true
+logging:
+  config: "classpath:log4j2.xml"

@@ -1,0 +1,16 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: hk-nacos-consumer
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 182.61.40.18:8848,127.0.0.1:8848
+        register-enabled: true
+        namespace: eae427cd-ecb0-49fd-b3f1-999a0d68d2fe
+logging:
+  config: "classpath:log4j2.xml"

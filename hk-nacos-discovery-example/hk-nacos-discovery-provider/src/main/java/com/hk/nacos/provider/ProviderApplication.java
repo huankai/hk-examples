@@ -1,19 +1,18 @@
-package com.hk.nacos.discovery;
+package com.hk.nacos.provider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-
 /**
- * @author huangkai
- * @date 2019-07-10 21:57
+ * @author kevin
+ * @date 2019-7-11 9:24
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ClientExampleApplicatioin {
+public class ProviderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ClientExampleApplicatioin.class, args);
+        SpringApplication.run(ProviderApplication.class, args);
     }
 }
