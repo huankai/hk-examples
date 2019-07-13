@@ -17,7 +17,7 @@ public class HolidayRequest {
 
     public static void main(String[] args) {
         ProcessEngineConfiguration configuration = new StandaloneProcessEngineConfiguration()
-                .setJdbcUrl("jdbc:mysql://127.0.0.1/hk_flow?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true")
+                .setJdbcUrl("jdbc:mysql://127.0.0.1/hk_flow?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true")
                 .setJdbcUsername("root")
                 .setJdbcPassword("root")
                 .setJdbcDriver("com.mysql.cj.jdbc.Driver")

@@ -12,18 +12,12 @@
         <version>2.1.5.RELEASE</version>
     </parent>
 
-    <properties>
-        <weixin.cp.version>3.3.0</weixin.cp.version>
-    </properties>
-
     <dependencies>
 
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-cp</artifactId>
-            <version>${weixin.cp.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.hk</groupId>
             <artifactId>hk-core-web</artifactId>
