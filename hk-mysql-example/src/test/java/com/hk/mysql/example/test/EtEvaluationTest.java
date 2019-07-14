@@ -2,8 +2,8 @@ package com.hk.mysql.example.test;
 
 import com.hk.commons.util.StringUtils;
 import com.hk.commons.util.date.DateTimeUtils;
-import com.hk.core.data.jdbc.JdbcSession;
-import com.hk.core.data.jdbc.SelectArguments;
+import com.hk.core.jdbc.JdbcSession;
+import com.hk.core.jdbc.SelectArguments;
 import com.hk.core.test.BaseTest;
 import com.hk.mysql.examples.MysqlExampleApplication;
 import org.junit.Test;

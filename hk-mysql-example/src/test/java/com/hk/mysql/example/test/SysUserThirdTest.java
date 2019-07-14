@@ -2,8 +2,8 @@ package com.hk.mysql.example.test;
 
 import com.hk.commons.util.ByteConstants;
 import com.hk.commons.util.IDGenerator;
-import com.hk.core.data.jdbc.JdbcSession;
 import com.hk.core.data.jdbc.domain.AbstractAuditable;
+import com.hk.core.jdbc.JdbcSession;
 import com.hk.core.test.BaseTest;
 import com.hk.mysql.examples.MysqlExampleApplication;
 import lombok.Data;

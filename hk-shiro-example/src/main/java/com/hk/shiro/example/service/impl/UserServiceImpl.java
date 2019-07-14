@@ -2,9 +2,9 @@ package com.hk.shiro.example.service.impl;
 
 import com.hk.core.authentication.shiro.ShiroUserPrincipal;
 import com.hk.core.authentication.shiro.UserDetailsService;
-import com.hk.core.data.jdbc.query.CompositeCondition;
-import com.hk.core.data.jdbc.query.SimpleCondition;
 import com.hk.core.data.jdbc.repository.JdbcRepository;
+import com.hk.core.jdbc.query.CompositeCondition;
+import com.hk.core.jdbc.query.SimpleCondition;
 import com.hk.core.service.jdbc.impl.JdbcServiceImpl;
 import com.hk.shiro.example.entity.User;
 import com.hk.shiro.example.repository.jdbc.UserRepository;

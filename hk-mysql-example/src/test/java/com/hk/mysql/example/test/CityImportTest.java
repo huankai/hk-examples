@@ -6,7 +6,7 @@ import com.hk.commons.poi.excel.model.ReadResult;
 import com.hk.commons.poi.excel.read.DomReadExcel;
 import com.hk.commons.poi.excel.read.ReadableExcel;
 import com.hk.commons.util.JsonUtils;
-import com.hk.core.data.jdbc.JdbcSession;
+import com.hk.core.jdbc.JdbcSession;
 import com.hk.core.test.BaseTest;
 import com.hk.mysql.examples.MysqlExampleApplication;
 import lombok.AllArgsConstructor;

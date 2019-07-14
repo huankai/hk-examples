@@ -1,8 +1,8 @@
 package com.hk.mysql.examples.repository.jdbc.impl;
 
-import com.hk.core.data.jdbc.JdbcDaoSupport;
-import com.hk.core.data.jdbc.SelectArguments;
-import com.hk.core.data.jdbc.query.SimpleCondition;
+import com.hk.core.jdbc.JdbcDaoSupport;
+import com.hk.core.jdbc.SelectArguments;
+import com.hk.core.jdbc.query.SimpleCondition;
 import com.hk.mysql.examples.domain.JdbcAccount;
 import com.hk.mysql.examples.repository.jdbc.custom.CustomJdbcAccountRepository;
 

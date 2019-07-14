@@ -1,8 +1,8 @@
 package com.hk.mysql.example.test;
 
-import com.hk.core.data.jdbc.JdbcSession;
-import com.hk.core.data.jdbc.SelectArguments;
-import com.hk.core.data.jdbc.query.SimpleCondition;
+import com.hk.core.jdbc.JdbcSession;
+import com.hk.core.jdbc.SelectArguments;
+import com.hk.core.jdbc.query.SimpleCondition;
 import com.hk.core.test.BaseTest;
 import com.hk.mysql.examples.MysqlExampleApplication;
 import lombok.AllArgsConstructor;
