@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
- * 消息接收者01
+ * 消息接收者02
  *
  * @author huangkai
  * @date 2019-01-17 10:33

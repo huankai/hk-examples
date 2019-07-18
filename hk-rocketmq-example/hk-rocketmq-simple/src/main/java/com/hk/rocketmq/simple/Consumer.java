@@ -1,6 +1,5 @@
 package com.hk.rocketmq.simple;
 
-import org.apache.rocketmq.client.consumer.DefaultMQPullConsumer;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
@@ -20,7 +19,7 @@ public class Consumer {
     public static void main(String[] args) throws Exception {
 
         // Instantiate with specified consumer group name.在 push 模式下，不建议做批处理，使用 DefaultMQPullConsumer 做批处理
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("please_rename_unique_group_name");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("simple-consumer");
 
         // Specify name server addresses.
         consumer.setNamesrvAddr("182.61.40.18:9876");
