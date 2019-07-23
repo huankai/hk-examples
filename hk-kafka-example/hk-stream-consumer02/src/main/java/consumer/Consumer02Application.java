@@ -29,6 +29,7 @@ public class Consumer02Application {
 
     @StreamListener(Sink.INPUT)
     public void transactionMessage(List<MessageVo> messages) {
+        
         logger.info("consumer02 --------> {}", messages);
     }
 

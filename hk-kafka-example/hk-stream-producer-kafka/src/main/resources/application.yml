@@ -1,0 +1,37 @@
+server:
+  port: 7775
+spring:
+  application:
+    name: hk-stream-producer
+  main:
+    banner-mode: 'off'
+    allow-bean-definition-overriding: true
+  cloud:
+    ########################################################################### spring cloud stream 配置
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers:
+            - 192.168.117.100:9092
+            - 192.168.117.101:9092
+            - 192.168.117.102:9092
+      bindings:
+        output:
+          destination: test-event
+        sendToInput:
+          destination: sendToEvent
+          group: ${spring.application.name}
+        input:
+          destination: test-event
+          group: ${spring.application.name}
+
+
+logging:
+  level:
+    root: error
+    org.apache.kafka.clients.producer: info
+    org.apache.kafka.clients.consumer: info
+    org.apache.kafka.clients.admin: info
+    org.springframework.cloud.stream: debug
+    com.hk: debug

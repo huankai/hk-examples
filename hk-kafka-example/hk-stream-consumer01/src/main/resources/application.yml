@@ -8,19 +8,25 @@ spring:
     banner-mode: 'off'
     allow-bean-definition-overriding: true
   cloud:
-########################################################################### spring cloud stream 配置
+    ########################################################################### spring cloud stream 配置
     stream:
       default-binder: kafka
-#      instance-count: 3
+      instance-index: 0
+      instance-count: 3
       kafka:
         binder:
           brokers:
             - sjq-01:9092
             - sjq-02:9092
             - sjq-03:9092
-#          min-partition-count: 2
-#          replication-factor: 2
-          # required-acks: 3
+          # 最小分区数
+          min-partition-count: 2
+          # 分区副本数
+          replication-factor: 2
+          # 消息确认ack ,默认为 1 ,可以设置为 'all'
+          required-acks: "1"
+          # 允许自动创建 topic
+          auto-create-topics: true
       bindings:
         input:
           # 消息接收的主题，见生产者 （hk-sso-server） 配置文件中的 spring.cloud.stream.bindings.output.destination 参数值

@@ -15,7 +15,7 @@ public class SimpleProducer {
 
     public static void main(String[] args) throws InterruptedException {
         Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "sjq-01:9092,sjq-02:9092,sjq-03:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.117.100:9092,192.168.117.101:9092,192.168.117.102:9092");
         props.put(ProducerConfig.ACKS_CONFIG, "all");//等待分区的所有副本应答，才表示此消息发送成功
         props.put(ProducerConfig.RETRIES_CONFIG, 5); // 生产者从服务器收到临时性错误时，生产者重发消息的次数
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);// 一批消息处理大小
