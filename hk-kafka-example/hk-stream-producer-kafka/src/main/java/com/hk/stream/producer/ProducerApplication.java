@@ -34,7 +34,7 @@ public class ProducerApplication {
 
     @RequestMapping("/")
     public String index(String message) {
-        boolean result = processor.output().send(MessageBuilder.withPayload(message).build());
+        boolean result = processor.output().send(MessageBuilder.withPayload(message).setHeader("haha", "hahadf").build());
         log.info(String.valueOf(result));
         return message;
     }

@@ -30,8 +30,9 @@ spring:
 logging:
   level:
     root: error
-    org.apache.kafka.clients.producer: info
-    org.apache.kafka.clients.consumer: info
-    org.apache.kafka.clients.admin: info
-    org.springframework.cloud.stream: debug
+    org.apache.kafka: info
+    #    org.apache.kafka.clients.consumer: info
+    #    org.apache.kafka.clients.admin: info
+    org.springframework.kafka: trace
+    org.springframework.cloud.kafka: trace
     com.hk: debug
