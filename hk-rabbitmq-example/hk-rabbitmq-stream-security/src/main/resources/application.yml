@@ -1,0 +1,39 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: hk-stream-security
+  main:
+    banner-mode: 'off'
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: 182.61.40.18
+    username: guest
+    password: huangkai#admin
+    virtual-host: /
+    listener:
+      type: simple
+  cloud:
+    stream:
+      default-binder: rabbit
+      bindings:
+        output:
+          destination: text
+        input:
+          destination: text
+          group: ${spring.application.name}
+      rabbit:
+        bindings:
+          output:
+            producer:
+              exchange-type: fanout
+          input:
+            consumer:
+              exchange-type: fanout
+logging:
+  level:
+    root: error
+    com.hk: info
+    org.springframework.cloud.stream: debug

@@ -1,11 +1,11 @@
 package com.hk.rabbit.publish;
 
-import com.hk.commons.util.Contants;
 import com.hk.rabbit.util.ConnectionUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -35,7 +35,7 @@ public class Recver1 {
          * 第二个参数 表示是否自动确定，这里设置为 false
          */
         channel.basicConsume(QUEUE_NAME, false, (consumerTag, delivery) -> {
-            System.out.println("收到消息：" + new String(delivery.getBody(), Contants.UTF_8));
+            System.out.println("收到消息：" + new String(delivery.getBody(), StandardCharsets.UTF_8));
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {

@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hk-stream-producer-kafka</artifactId>
+    <artifactId>hk-rabbitmq-stream-security</artifactId>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>com.hk</groupId>
-        <artifactId>hk-kafka-example</artifactId>
+        <artifactId>hk-rabbitmq-example</artifactId>
         <version>2.1.5.RELEASE</version>
     </parent>
 
@@ -18,10 +18,7 @@
             <groupId>com.hk</groupId>
             <artifactId>hk-core-utils</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.hk</groupId>
-            <artifactId>hk-core-stream-kafka</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.hk</groupId>
             <artifactId>hk-core-authentication-security-stream</artifactId>
@@ -30,29 +27,33 @@
             <groupId>com.hk</groupId>
             <artifactId>hk-core-spring-boot-autoconfigure</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.integration</groupId>
-            <artifactId>spring-integration-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-integration</artifactId>
-        </dependency>
 
+        <dependency>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-core-stream-rabbitmq</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-core-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

@@ -68,11 +68,13 @@ spring:
               # 当消息消费失败后， 是否丢不弃该消息，默认为 false，当设置为 true 时，消息会重新入队
               requeue-rejected: true
               # 死信 队列名称，默认为 (当前队列名称 + .dlq)
-#              dead-letter-queue-name: aaa
+              #              dead-letter-queue-name: aaa
               # 配置进入死信队列的过期时间，单位为毫秒，可防止消息堆积
               # dlq-ttl: 60000
               # 告诉服务器,在我们没有确认当前消息完成之前,不要给我发新的消息，默认值就为 1
               # prefetch: 1
+              # 当消费者断开连接后是否删除该队列，默认为 false
+              exclusive: false
           acknowledge_mode_input:
             consumer:
               exchange-type: fanout
