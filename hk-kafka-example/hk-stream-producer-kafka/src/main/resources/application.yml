@@ -25,6 +25,9 @@ spring:
         input:
           destination: test-event
           group: ${spring.application.name}
+          consumer:
+            autoCommitOffset: true
+            converterBeanName: abd
 
 
 logging:

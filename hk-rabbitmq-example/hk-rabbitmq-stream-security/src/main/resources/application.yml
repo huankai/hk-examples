@@ -19,17 +19,17 @@ spring:
     stream:
       default-binder: rabbit
       bindings:
-        output:
-          destination: text
-        input:
-          destination: text
+        publishSubscribe_output:
+          destination: publishSubscribe
+        publishSubscribe_input:
+          destination: publishSubscribe
           group: ${spring.application.name}
       rabbit:
         bindings:
-          output:
+          publishSubscribe_output:
             producer:
               exchange-type: fanout
-          input:
+          publishSubscribe_input:
             consumer:
               exchange-type: fanout
 logging:

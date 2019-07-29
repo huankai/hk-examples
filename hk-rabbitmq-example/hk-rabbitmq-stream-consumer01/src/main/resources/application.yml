@@ -46,6 +46,8 @@ spring:
           publish_input:
             consumer:
               exchange-type: fanout
+              # 是否开启事务通道，默认情况下为false
+              transacted: true
           routekey_input:
             consumer:
               # 配置 routeKey

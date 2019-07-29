@@ -16,14 +16,14 @@ import org.springframework.cloud.stream.messaging.Processor;
  */
 @Slf4j
 @SpringBootApplication
-@EnableBinding(Processor.class)
+@EnableBinding(PublishSubscribe.class)
 public class RabbitmqSecurityApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(RabbitmqSecurityApplication.class, args);
     }
 
-    @StreamListener(Processor.INPUT)
+    @StreamListener(PublishSubscribe.INPUT)
     public void receiveMessage(String message) {
         try {
             UserPrincipal principal = SecurityContextUtils.getPrincipal();

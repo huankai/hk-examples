@@ -1,6 +1,7 @@
 package com.hk.rabbitmq.security.controller;
 
 import com.hk.commons.util.StringUtils;
+import com.hk.rabbitmq.security.PublishSubscribe;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @Autowired
-    private Processor processor;
+    private PublishSubscribe publishSubscribe;
 
     @RequestMapping("/")
     public String index(String message) {
         log.info("index...");
-        processor.output().send(MessageBuilder.withPayload(StringUtils.defaultIfEmpty(message, RandomStringUtils.randomNumeric(10))).build());
+        publishSubscribe.output().send(MessageBuilder.withPayload(StringUtils.defaultIfEmpty(message, RandomStringUtils.randomNumeric(10))).build());
         return message;
     }
 }
