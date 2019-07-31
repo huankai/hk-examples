@@ -28,7 +28,7 @@ public class RabbitmqSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     private UserDetailsService userDetailsService = username -> new SecurityUserPrincipal(1L, null, null, null, null, username, false,
             username, ByteConstants.ONE, username,
-            username, ByteConstants.ONE, null, "admin", ByteConstants.TWO, null, null);
+            username, ByteConstants.ONE, null, username, ByteConstants.TWO, null, null);
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -37,7 +37,7 @@ public class RabbitmqSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/*.ico");
     }
 }

@@ -41,7 +41,7 @@ public class NestedExcelWriteTest {
                         return super.getCommentText(obj, propertyName, propertyType);
                     }
                 });
-        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/sjq-278/Desktop/excel.xls")));
+        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/kevin/Desktop/excel.xls")));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class NestedExcelWriteTest {
                         return super.getCommentText(obj, propertyName, propertyType);
                     }
                 });
-        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/sjq-278/Desktop/excel.xlsx")));
+        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/kevin/Desktop/excel.xlsx")));
     }
 
     @Test
