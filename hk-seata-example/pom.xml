@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hk-seata-example</artifactId>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>com.hk</groupId>
+        <artifactId>hk-examples</artifactId>
+        <version>2.1.5.RELEASE</version>
+    </parent>
+
+    <modules>
+        <module>hk-seata-example01</module>
+        <module>hk-seata-example02</module>
+        <module>hk-seata-example03</module>
+    </modules>
+</project>

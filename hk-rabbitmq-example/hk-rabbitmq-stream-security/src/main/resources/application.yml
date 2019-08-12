@@ -35,5 +35,5 @@ spring:
 logging:
   level:
     root: error
-    com.hk: info
+    com.hk: debug
     org.springframework.cloud.stream: debug

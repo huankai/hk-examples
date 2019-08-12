@@ -26,7 +26,7 @@ import java.util.List;
  * @date 2019-03-09 16:10
  */
 @Data
-@Document(indexName = "xls-commodity2", refreshInterval = "-1")
+@Document(indexName = "xls-commodity", replicas = 3, shards = 5, refreshInterval = "-1")
 @EqualsAndHashCode(callSuper = true)
 public class Commodity extends AbstractIDPersistable {
 
