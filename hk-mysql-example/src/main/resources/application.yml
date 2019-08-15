@@ -88,7 +88,7 @@ pagehelper:
   params: count=countSql
 mybatis:
   mapper-locations:
-    - classpath:mybatis/mappers/*.xml
+    - classpath*:mybatis/mappers/*.xml
   configuration:
     map-underscore-to-camel-case: true
 hk:
