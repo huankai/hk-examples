@@ -1,17 +1,16 @@
 package com.hk.cache.redis.example;
 
-import com.hk.commons.util.Contants;
 import com.hk.commons.util.JsonUtils;
 import com.hk.core.test.BaseTest;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -51,7 +50,7 @@ public class KeyTest extends BaseTest {
     @Test
     public void dump() {
         byte[] keyByte = redisTemplate.dump("BaseCode::id4ce3abf76f1a45528605d5a611b8a693");
-        log.debug("dump:{}", new String(keyByte, Contants.CHARSET_UTF_8));
+        log.debug("dump:{}", new String(keyByte, StandardCharsets.UTF_8));
     }
 
     /**
