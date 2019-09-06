@@ -26,7 +26,7 @@ public class KafkaSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().anyRequest().authenticated();
     }
 
-    private UserDetailsService userDetailsService = username -> new SecurityUserPrincipal(1L, null, null, null, null, username, false,
+    private UserDetailsService userDetailsService = username -> new SecurityUserPrincipal(1L, null, null, null, null, username,
             username, ByteConstants.ONE, username,
             username, ByteConstants.ONE, null, username, ByteConstants.TWO, null, null);
 

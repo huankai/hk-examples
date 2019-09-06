@@ -28,7 +28,7 @@ public class UserDetailServcieImpl implements UserDetailClientService {
             throw new UsernameNotFoundException("不存在的用户:" + username);
         }
         User user = optional.get();
-        return new SecurityUserPrincipal(user.getId(), null, null, null, null, user.getPhone(), false,
+        return new SecurityUserPrincipal(user.getId(), null, null, null, null, user.getPhone(),
                 user.getNickName(), ByteConstants.ONE, user.getPhone(),
                 user.getEmail(), ByteConstants.ONE, user.getIconPath(), user.getPassWord(), ByteConstants.TWO, null, null);
     }
