@@ -32,5 +32,17 @@ public abstract class ConnectionModel {
         }
     }
 
+    public static class MySql8Connection extends ConnectionModel {
+
+        public MySql8Connection(String jdbcUrl, String username, String password) {
+            super(jdbcUrl, username, password);
+        }
+
+        @Override
+        public String getDriverName() {
+            return "com.mysql.cj.jdbc.Driver";
+        }
+    }
+
 
 }
