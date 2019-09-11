@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.elasticsearch.annotations.*;
 import org.springframework.data.elasticsearch.core.completion.Completion;
 
@@ -345,6 +346,18 @@ public class Commodity extends AbstractIDPersistable {
 //        private Integer maxUseIntegration;
 //
 //    }
+
+    /**
+     * 指定版本,类型为 Long
+     */
+    @Version
+    private Long version;
+
+    /**
+     * parent
+     */
+    @Parent(type = "")
+    private String parent;
 
     /**
      * 商品服务信息

@@ -35,7 +35,7 @@ public class TokenUserPrincipal extends SecurityUserPrincipal implements Seriali
 
     public TokenUserPrincipal(String token, LocalDateTime expire, SecurityUserPrincipal principal) {
         super(principal.getUserId(), principal.getOrgId(), principal.getOrgName(),
-                principal.getDeptId(), principal.getDeptName(), principal.getAccount(), principal.isProtectUser(),
+                principal.getDeptId(), principal.getDeptName(), principal.getAccount(),
                 principal.getRealName(), principal.getUserType(), principal.getPhone(),
                 principal.getEmail(), principal.getSex(), principal.getIconPath(), principal.getPassword(), principal.getUserType(),
                 principal.getRoles(), principal.getPermissions());
@@ -45,11 +45,11 @@ public class TokenUserPrincipal extends SecurityUserPrincipal implements Seriali
 
     public TokenUserPrincipal(String token, LocalDateTime expire, Long userId, Long orgId, String orgName,
                               Long deptId, String deptName,
-                              String account, boolean protectUser,
+                              String account,
                               String realName, Byte userType, String phone,
                               String email, Byte sex, String iconPath, String password,
                               Byte userStatus, Set<String> roles, Set<String> permissions) {
-        super(userId, orgId, orgName, deptId, deptName, account, protectUser, realName, userType, phone, email, sex, iconPath, password, userStatus,
+        super(userId, orgId, orgName, deptId, deptName, account, realName, userType, phone, email, sex, iconPath, password, userStatus,
                 roles, permissions);
         this.token = token;
         this.expire = expire;
