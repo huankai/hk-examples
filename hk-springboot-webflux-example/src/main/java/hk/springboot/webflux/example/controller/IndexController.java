@@ -14,8 +14,6 @@ public class IndexController {
 
     /**
      * {@link Mono} 返回一个对象
-     *
-     * @return
      */
     @GetMapping("/")
     public Mono<JsonResult<Void>> index() {

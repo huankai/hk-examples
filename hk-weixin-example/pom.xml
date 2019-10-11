@@ -8,12 +8,8 @@
     <parent>
         <groupId>com.hk</groupId>
         <artifactId>hk-examples</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <version>2.1.8.RELEASE</version>
     </parent>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -79,13 +75,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

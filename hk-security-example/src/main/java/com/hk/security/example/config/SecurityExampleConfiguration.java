@@ -3,7 +3,7 @@ package com.hk.security.example.config;
 import com.hk.commons.JsonResult;
 import com.hk.core.authentication.security.expression.AdminAccessWebSecurityExpressionHandler;
 import com.hk.core.authentication.security.handler.logout.EquipmentLogoutHandler;
-import com.hk.core.autoconfigure.authentication.security.AuthenticationProperties;
+import com.hk.core.autoconfigure.authentication.AuthenticationProperties;
 import com.hk.core.web.Webs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -69,17 +69,17 @@ public class SecurityExampleConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        AuthenticationProperties.LoginProperties browser = properties.getLogin();
+        AuthenticationProperties.LoginProperties login = properties.getLogin();
         http
                 .csrf().disable()
 
                 .formLogin()
 
-                .loginPage(browser.getLoginUrl()).permitAll() // 登陆 请求地址不需要认证可以访问，配置在这里
-                .usernameParameter(browser.getUsernameParameter())
-                .passwordParameter(browser.getPasswordParameter())
-                .loginProcessingUrl(browser.getLoginProcessingUrl())
-                .and().exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint(browser.getLoginUrl()) {
+                .loginPage(login.getLoginUrl()).permitAll() // 登陆 请求地址不需要认证可以访问，配置在这里
+                .usernameParameter(login.getUsernameParameter())
+                .passwordParameter(login.getPasswordParameter())
+                .loginProcessingUrl(login.getLoginProcessingUrl())
+                .and().exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint(login.getLoginUrl()) {
             @Override
             public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
                 if (Webs.isAndroid(request) || Webs.isIPhone(request)) {
@@ -100,19 +100,19 @@ public class SecurityExampleConfiguration extends WebSecurityConfigurerAdapter {
                         Webs.writeJson(response, 200, JsonResult.unauthorized("用户未认证"));
                     } else {
                         request.getSession();
-                        response.sendRedirect(browser.getLoginUrl());
+                        response.sendRedirect(login.getLoginUrl());
                     }
                 })
-                .maximumSessions(browser.getMaximumSessions())
+                .maximumSessions(login.getMaximumSessions())
                 .sessionRegistry(sessionRegistry())
-                .maxSessionsPreventsLogin(browser.isMaxSessionsPreventsLogin())
+                .maxSessionsPreventsLogin(login.isMaxSessionsPreventsLogin())
                 .and()
                 .and()
                 .logout().clearAuthentication(true)
-                .logoutUrl(browser.getLogoutUrl())
+                .logoutUrl(login.getLogoutUrl())
                 .invalidateHttpSession(true)
                 .addLogoutHandler(new SecurityContextLogoutHandler())
-                .addLogoutHandler(new EquipmentLogoutHandler(browser.getLogoutSuccessUrl()))
+                .addLogoutHandler(new EquipmentLogoutHandler(login.getLogoutSuccessUrl()))
                 .and()
                 .authorizeRequests().expressionHandler(new AdminAccessWebSecurityExpressionHandler())// admin 角色的用户、admin权限、保护的用户拥有所有访问权限
                 .anyRequest().authenticated();

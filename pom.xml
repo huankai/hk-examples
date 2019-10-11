@@ -2,17 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.hk</groupId>
     <artifactId>hk-examples</artifactId>
-    <version>2.1.5.RELEASE</version>
     <packaging>pom</packaging>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
-
+    <parent>
+        <groupId>com.hk</groupId>
+        <artifactId>hk-parent</artifactId>
+        <version>2.1.8.RELEASE</version>
+    </parent>
     <modules>
         <module>fs-example</module>
         <module>hk-netty-example</module>
@@ -21,7 +18,6 @@
         <module>hk-flowable-example</module>
         <module>hk-poi-example</module>
         <module>hk-cache-redis-example</module>
-        <module>hk-solr-example</module>
         <module>hk-elasticsearch-example</module>
         <module>hk-util-example</module>
         <module>hk-weixin-example</module>
@@ -30,10 +26,8 @@
         <module>hk-kafka-example</module>
         <module>hk-oracle-example</module>
         <module>hk-mysql-example</module>
-        <module>hk-shiro-example</module>
         <module>hk-security-example</module>
         <module>hk-security-token-example</module>
-        <module>hk-security-cas-example</module>
         <module>hk-messsage-websocket-example</module>
         <module>hk-hadoop-example</module>
         <module>hk-weixin-cp-example</module>
@@ -43,92 +37,4 @@
         <module>hk-nacos-discovery-example</module>
         <module>hk-seata-example</module>
     </modules>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.hk</groupId>
-                <artifactId>hk-core-spring-boot-dependencies</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <pluginManagement>
-            <!-- 注意体会插件配置的顺序，这正体现了一个maven的运行流程 -->
-            <plugins>
-                <!-- Maven Clean Plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.1.0</version>
-                    <configuration>
-                        <skip>false</skip> <!-- 忽略clean [mvn clean -Dmaven.clean.skip=true] -->
-                        <failOnError>false</failOnError> <!-- clean时忽略错误 [mvn clean -Dmaven.clean.failOnError=false] -->
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>auto-clean</id>
-                            <phase>clean</phase> <!-- clean生命周期clean阶段 -->
-                            <goals>
-                                <goal>clean</goal> <!-- 执行clean插件的clean目标 -->
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!-- compiler插件, 设定JDK版本 -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
-                    <configuration>
-                        <source>${java.version}</source> <!-- 源代码使用的jdk版本 -->
-                        <target>${java.version}</target> <!-- 构建后生成class文件jdk版本 -->
-                        <encoding>${project.build.sourceEncoding}</encoding> <!-- 构建使用的编码 -->
-                    </configuration>
-                </plugin>
-
-                <!-- 运行Maven 单元测试 -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.1.0</version>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.1.2</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
-
-            </plugins>
-        </pluginManagement>
-    </build>
 </project>
