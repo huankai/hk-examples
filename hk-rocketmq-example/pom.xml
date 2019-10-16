@@ -16,7 +16,7 @@
     </modules>
 
     <properties>
-        <rocketmq.version>4.4.0</rocketmq.version>
+        <rocketmq.version>4.5.2</rocketmq.version>
     </properties>
 
     <dependencyManagement>

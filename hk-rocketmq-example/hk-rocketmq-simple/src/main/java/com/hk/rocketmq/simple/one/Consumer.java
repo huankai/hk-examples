@@ -1,4 +1,4 @@
-package com.hk.rocketmq.simple;
+package com.hk.rocketmq.simple.one;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -9,7 +9,7 @@ import org.apache.rocketmq.common.message.MessageExt;
 import java.util.List;
 
 /**
- * 消费者
+ * 一、同步消费者
  *
  * @author huangkai
  * @date 2019-07-14 12:17
@@ -44,7 +44,7 @@ public class Consumer {
                     System.out.println("Receive New Messages" + msg);
                 }
 //                System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
-                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS; // 标记该消息已经被成功消费
             }
         });
 

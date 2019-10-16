@@ -2,13 +2,15 @@ package com.hk.httpclient;
 
 import com.hk.commons.http.get.HttpGetHttpExecutor;
 
+import java.io.IOException;
+
 /**
  * @author kevin
  * @date 2019-6-25 13:35
  */
 public class Psvm {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         HttpGetHttpExecutor httpExecutor = new HttpGetHttpExecutor();
 //        httpExecutor.setAsync(true);// 设置为异步请求
 //        httpExecutor.setFutureCallback(new FutureCallback<HttpResponse>() { // 设置 异步 回调

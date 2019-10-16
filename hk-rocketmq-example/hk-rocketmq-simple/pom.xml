@@ -18,6 +18,4 @@
             <artifactId>rocketmq-client</artifactId>
         </dependency>
     </dependencies>
-
-
 </project>
