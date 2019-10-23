@@ -2,7 +2,7 @@ package com.hk.weixin.cp.config;
 
 import me.chanjar.weixin.cp.api.WxCpService;
 import me.chanjar.weixin.cp.api.impl.WxCpServiceImpl;
-import me.chanjar.weixin.cp.config.WxCpInMemoryConfigStorage;
+import me.chanjar.weixin.cp.config.impl.WxCpDefaultConfigImpl;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +22,8 @@ public class WeiXinCpConfiguration {
     }
 
     @Bean
-    public WxCpInMemoryConfigStorage configStorage() {
-        WxCpInMemoryConfigStorage configStorage = new WxCpInMemoryConfigStorage();
+    public WxCpDefaultConfigImpl configStorage() {
+        WxCpDefaultConfigImpl configStorage = new WxCpDefaultConfigImpl();
         configStorage.setCorpId(cpProperties.getCorpId());
         configStorage.setCorpSecret(cpProperties.getCorpSecret());
         configStorage.setAgentId(cpProperties.getAgentId());

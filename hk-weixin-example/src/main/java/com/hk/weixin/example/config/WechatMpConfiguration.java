@@ -1,31 +1,20 @@
 package com.hk.weixin.example.config;
 
 import com.hk.core.autoconfigure.weixin.WechatMpProperties;
+import com.hk.weixin.example.handler.*;
+import me.chanjar.weixin.common.api.WxConsts.EventType;
+import me.chanjar.weixin.common.api.WxConsts.MenuButtonType;
+import me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
+import me.chanjar.weixin.mp.api.WxMpMessageRouter;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.config.WxMpConfigStorage;
+import me.chanjar.weixin.mp.config.impl.WxMpDefaultConfigImpl;
+import me.chanjar.weixin.mp.constant.WxMpEventConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.hk.weixin.example.handler.AbstractHandler;
-import com.hk.weixin.example.handler.KfSessionHandler;
-import com.hk.weixin.example.handler.LocationHandler;
-import com.hk.weixin.example.handler.LogHandler;
-import com.hk.weixin.example.handler.MenuHandler;
-import com.hk.weixin.example.handler.MsgHandler;
-import com.hk.weixin.example.handler.NullHandler;
-import com.hk.weixin.example.handler.StoreCheckNotifyHandler;
-import com.hk.weixin.example.handler.SubscribeHandler;
-import com.hk.weixin.example.handler.UnsubscribeHandler;
-
-import me.chanjar.weixin.common.api.WxConsts.EventType;
-import me.chanjar.weixin.common.api.WxConsts.MenuButtonType;
-import me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
-import me.chanjar.weixin.mp.api.WxMpConfigStorage;
-import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
-import me.chanjar.weixin.mp.api.WxMpMessageRouter;
-import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.constant.WxMpEventConstants;
 
 /**
  * wechat mp configuration
@@ -68,8 +57,8 @@ public class WechatMpConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
-	public WxMpConfigStorage configStorage() {
-		WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
+	public WxMpDefaultConfigImpl configStorage() {
+		WxMpDefaultConfigImpl configStorage = new WxMpDefaultConfigImpl();
 		configStorage.setAppId(this.properties.getAppId());
 		configStorage.setSecret(this.properties.getSecret());
 		configStorage.setToken(this.properties.getToken());
