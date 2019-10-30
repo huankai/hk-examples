@@ -36,8 +36,6 @@ public class Consumer01Application {
 
     /**
      * 发布订阅模式
-     *
-     * @param date
      */
     @StreamListener(PublishInput.INPUT)
     public void receive(@Payload Date date) {
@@ -46,8 +44,6 @@ public class Consumer01Application {
 
     /**
      * 发布、订阅模式，使用 routeKey
-     *
-     * @param date
      */
     @StreamListener(RouteKeyInput.INPUT)
     public void routeKeyReceive(@Payload Date date) {
@@ -56,8 +52,6 @@ public class Consumer01Application {
 
     /**
      * topic 模式
-     *
-     * @param date
      */
     @StreamListener(TopicInput.INPUT)
     public void topicReceive(@Payload Date date) {
