@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.hk.weixin.example.config;
 
 import com.hk.commons.util.ByteConstants;

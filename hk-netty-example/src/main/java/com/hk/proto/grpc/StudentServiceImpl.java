@@ -7,11 +7,17 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * 服务端实现 rpc 接口
+ *
  * @author huangkai
  * @date 2019-03-25 22:20
  */
 public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBase {
 
+    /**
+     * @param request          接收客户端的参数
+     * @param responseObserver 响应对象，返回数据给客户端，此方法无返回值，使用  responseObserver.onNext()返回 结果
+     */
     @Override
     public void getRealNameByName(StudentRequest request, StreamObserver<StudentResponse> responseObserver) {
         System.out.println("name:" + request.getName());

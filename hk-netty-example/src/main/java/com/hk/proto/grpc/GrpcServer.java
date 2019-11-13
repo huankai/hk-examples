@@ -23,7 +23,9 @@ public class GrpcServer {
 
     private void start() throws IOException {
         this.server = ServerBuilder.forPort(8899)
-                .addService(new StudentServiceImpl()).build().start();
+                .addService(new StudentServiceImpl())
+                .build()
+                .start();
         System.out.println("server start...");
 
         /* JVM 退出时的回掉钩子*/

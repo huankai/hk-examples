@@ -1,6 +1,6 @@
 package com.hk.weixin.example.config;
 
-import com.hk.core.autoconfigure.weixin.WechatMpProperties;
+import com.hk.core.autoconfigure.weixin.WeiXinMpProperties;
 import com.hk.weixin.example.handler.*;
 import me.chanjar.weixin.common.api.WxConsts.EventType;
 import me.chanjar.weixin.common.api.WxConsts.MenuButtonType;
@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ConditionalOnClass(WxMpService.class)
-public class WechatMpConfiguration {
+public class WeiXinMpConfiguration {
 	
 	@Autowired
 	protected LogHandler logHandler;
@@ -38,7 +38,7 @@ public class WechatMpConfiguration {
 	protected StoreCheckNotifyHandler storeCheckNotifyHandler;
 	
 	@Autowired
-	private WechatMpProperties properties;
+	private WeiXinMpProperties properties;
 	
 	@Autowired
 	private LocationHandler locationHandler;
