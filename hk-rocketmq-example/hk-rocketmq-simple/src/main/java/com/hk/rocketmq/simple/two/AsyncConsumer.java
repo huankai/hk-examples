@@ -1,4 +1,4 @@
-package com.hk.rocketmq.simple.one;
+package com.hk.rocketmq.simple.two;
 
 import com.hk.rocketmq.simple.constants.Constants;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
@@ -7,17 +7,17 @@ import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.message.MessageExt;
 
 /**
- * 一、同步消费者
+ * 2、 异步消费者
  *
- * @author huangkai
- * @date 2019-07-14 12:17
+ * @author kevin
+ * @date 2019-11-18 17:08
  */
-public class Consumer {
+public class AsyncConsumer {
 
     public static void main(String[] args) throws Exception {
 
         // Instantiate with specified consumer group name.在 push 模式下，不建议做批处理，使用 DefaultMQPullConsumer 做批处理
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("simple-consumer");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("async-simple-consumer");
 
         // Specify name server addresses.
         consumer.setNamesrvAddr(Constants.NAME_SERVER);
@@ -31,7 +31,7 @@ public class Consumer {
 //
 //        设置消息消费模式，广播与集群，在集群模式下自动负载均衡，广播模式下相同给的消费者都能收到消息，默认为集群模式
 //        consumer.setMessageModel(MessageModel.BROADCASTING);
-        consumer.subscribe("TopicTest", "*");
+        consumer.subscribe("asyncTopicTest", "*");
         // Register callback to execute on arrival of messages fetched from brokers.
         consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
             for (MessageExt msg : msgs) {
@@ -46,4 +46,5 @@ public class Consumer {
 
         System.out.printf("Consumer Started.%n");
     }
+
 }

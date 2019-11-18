@@ -1,5 +1,6 @@
 package com.hk.rocketmq.simple.one;
 
+import com.hk.rocketmq.simple.constants.Constants;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -18,7 +19,8 @@ import java.io.UnsupportedEncodingException;
  */
 public class SyncProducer {
 
-    public static void main(String[] args) throws MQClientException, UnsupportedEncodingException, RemotingException, InterruptedException, MQBrokerException {
+    public static void main(String[] args) throws MQClientException,
+            UnsupportedEncodingException, RemotingException, InterruptedException, MQBrokerException {
         /*
          * 实例化消息生产者Producer:
          * 参数一: 指定生产的组名
@@ -27,8 +29,12 @@ public class SyncProducer {
         /*
          * 设置生产者的 nameSrv 地址，多个使用 ; 分隔
          */
-        producer.setNamesrvAddr("182.61.40.18:9876");
-
+        producer.setNamesrvAddr(Constants.NAME_SERVER);
+//        producer.setCompressMsgBodyOverHowmuch(1024 * 1024 * 5); // 消息到达多大时进行压缩:5M
+//        producer.setRetryTimesWhenSendFailed(3); //设置消息发送失败重试次数
+//        producer.setHeartbeatBrokerInterval(1000 * 15);//配置心跳时间 15 秒
+//        producer.setMaxMessageSize(1024 * 1024 * 20); // 设置消息最大大小， 20M
+//        producer.createTopic();//创建主题
         /*
          * 启动Producer实例
          */

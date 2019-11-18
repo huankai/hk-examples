@@ -1,5 +1,6 @@
-package com.hk.rocketmq.simple;
+package com.hk.rocketmq.simple.two;
 
+import com.hk.rocketmq.simple.constants.Constants;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -14,16 +15,16 @@ public class AsyncProducer {
 
     public static void main(String[] args) throws Exception {
         //Instantiate with a producer group name.
-        DefaultMQProducer producer = new DefaultMQProducer("asyn-simple-producer");
+        DefaultMQProducer producer = new DefaultMQProducer("simple-producer");
         // Specify name server addresses.
-        producer.setNamesrvAddr("182.61.40.18:9876");//指定 namesrv 地址，多个使用 ; 分隔
+        producer.setNamesrvAddr(Constants.NAME_SERVER);//指定 namesrv 地址，多个使用 ; 分隔
         //Launch the instance.
-        producer.setRetryTimesWhenSendAsyncFailed(0);
+//        producer.setRetryTimesWhenSendAsyncFailed(0);
         producer.start();
         for (int i = 0; i < 10; i++) {
             final int index = i;
             //Create a message instance, specifying topic, tag and message body.
-            Message msg = new Message("AsynTopicTest",
+            Message msg = new Message("asyncTopicTest",
                     "TagA",
                     "OrderID188",
                     "Hello world".getBytes(RemotingHelper.DEFAULT_CHARSET));
