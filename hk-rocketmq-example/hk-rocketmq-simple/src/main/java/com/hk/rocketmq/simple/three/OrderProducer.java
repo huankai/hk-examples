@@ -99,6 +99,7 @@ public class OrderProducer {
                     "TagA",
                     item.getOrderNo(),
                     item.toString().getBytes(StandardCharsets.UTF_8));
+//            msg.setDelayTimeLevel();
             /*
                 参数一: 消息
                 参数二: MessageQueueSelector 消息队列选择器
