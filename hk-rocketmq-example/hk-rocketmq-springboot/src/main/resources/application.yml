@@ -1,0 +1,11 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  main:
+    banner-mode: 'off'
+rocketmq:
+  name-server: 119.23.31.32:9876
+  producer:
+    group: producer-group

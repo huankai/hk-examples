@@ -24,6 +24,8 @@ public class SqlFilterConsumer {
     public static void main(String[] args) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("sql-filter-simple-consumer");
         consumer.setNamesrvAddr(Constants.NAME_SERVER);
+
+        // 更多 例子，可参考: http://rocketmq.apache.org/docs/filter-by-sql92-example/
         consumer.subscribe("sqlFilterTopicTest", MessageSelector.bySql("i > 3"));// 根据 sql 过滤 i 大于  3 的消息
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override

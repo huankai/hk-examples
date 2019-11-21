@@ -28,7 +28,7 @@ public class BatchProducer {
             list.add(new Message("batchTopicTest",
                     "TagA",
                     "",
-                    ("Delay Message " + i).getBytes()));
+                    ("Batch Message " + i).getBytes()));
 
         }
         producer.send(list);// 不用循环，直接发送多条消息

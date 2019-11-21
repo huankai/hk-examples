@@ -13,6 +13,7 @@
     </parent>
     <modules>
         <module>hk-rocketmq-simple</module>
+        <module>hk-rocketmq-springboot</module>
     </modules>
 
     <properties>

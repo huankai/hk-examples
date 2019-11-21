@@ -22,7 +22,7 @@ public class BatchConsumer {
 
     public static void main(String[] args) throws MQClientException, RemotingException,
             InterruptedException, MQBrokerException {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("delay-simple-consumer");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("batch-consumer");
         consumer.setNamesrvAddr(Constants.NAME_SERVER);
         consumer.subscribe("batchTopicTest", "*");
         /*

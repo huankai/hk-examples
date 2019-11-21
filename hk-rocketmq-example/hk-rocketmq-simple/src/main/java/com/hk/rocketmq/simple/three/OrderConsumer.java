@@ -5,10 +5,8 @@ import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
-import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageExt;
-import org.apache.rocketmq.remoting.exception.RemotingException;
 
 import java.util.List;
 
@@ -22,10 +20,9 @@ import java.util.List;
 public class OrderConsumer {
 
 
-    public static void main(String[] args) throws MQClientException, RemotingException,
-            InterruptedException, MQBrokerException {
+    public static void main(String[] args) throws MQClientException {
 // Instantiate with specified consumer group name.在 push 模式下，不建议做批处理，使用 DefaultMQPullConsumer 做批处理
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("async-simple-consumer");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("order-consumer");
 
         // Specify name server addresses.
         consumer.setNamesrvAddr(Constants.NAME_SERVER);

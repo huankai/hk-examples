@@ -31,7 +31,7 @@ public class Consumer {
 //
 //        设置消息消费模式，广播与集群，在集群模式下自动负载均衡，广播模式下相同给的消费者都能收到消息，默认为集群模式
 //        consumer.setMessageModel(MessageModel.BROADCASTING);
-        consumer.subscribe("TopicTest", "*");
+        consumer.subscribe("topicTest", "*");
         // Register callback to execute on arrival of messages fetched from brokers.
         consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
             for (MessageExt msg : msgs) {

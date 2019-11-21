@@ -5,12 +5,14 @@ import com.hk.core.data.jpa.domain.AbstractUUIDPersistable;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,6 +23,7 @@ import java.util.List;
  */
 @Data
 @Entity
+@Accessors(chain = true)
 @Table(name = "t_account")
 @EqualsAndHashCode(callSuper = true)
 @TypeDef(name = JsonTypeDef.json, typeClass = JsonStringType.class)
@@ -36,7 +39,6 @@ public class Account extends AbstractUUIDPersistable {
     @Column(name = "content_one")
     private Content contentOne;
 
-
     /**
      * <pre>
      *
@@ -49,4 +51,11 @@ public class Account extends AbstractUUIDPersistable {
     @Column(name = "content")
     @Type(type = JsonTypeDef.json)
     private List<Content> content;
+
+    /**
+     * 使用版本注解实现 jpa 乐观锁
+     */
+    @Version
+    @Column(name = "version")
+    private Integer version;
 }

@@ -5,10 +5,8 @@ import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
-import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageExt;
-import org.apache.rocketmq.remoting.exception.RemotingException;
 
 import java.util.List;
 
@@ -22,11 +20,10 @@ import java.util.List;
 public class DelayConsumer {
 
 
-    public static void main(String[] args) throws MQClientException, RemotingException,
-            InterruptedException, MQBrokerException {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("delay-simple-consumer");
+    public static void main(String[] args) throws MQClientException {
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("delay-consumer");
         consumer.setNamesrvAddr(Constants.NAME_SERVER);
-        consumer.subscribe("DelayTopicTest", "*");
+        consumer.subscribe("delayTopicTest", "*");
         /*
            使用 MessageListenerOrderly 时，会使用一个线程处理一个队列的消息，严格保证消息消费的顺序
          */

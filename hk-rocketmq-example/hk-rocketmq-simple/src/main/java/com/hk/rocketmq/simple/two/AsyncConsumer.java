@@ -17,7 +17,7 @@ public class AsyncConsumer {
     public static void main(String[] args) throws Exception {
 
         // Instantiate with specified consumer group name.在 push 模式下，不建议做批处理，使用 DefaultMQPullConsumer 做批处理
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("async-simple-consumer");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("async-consumer");
 
         // Specify name server addresses.
         consumer.setNamesrvAddr(Constants.NAME_SERVER);

@@ -27,11 +27,16 @@ public class AccountServiceTest extends BaseTest {
     @Autowired
     private AccountService accountService;
 
+    /**
+     * 更新测试：乐观锁
+     */
     @Test
     public void update() {
-        Account account = accountService.getOne("1");
-        account.setNickName("ddd");
-        accountService.updateByIdSelective(account);
+        Account account = new Account();
+        account.setId("402881196e889c58016e889c831b0000");
+        account.setNickName("dd3d66xxx");
+        account.setVersion(1);
+        accountService.insertOrUpdate(account);
     }
 
     @Test
@@ -39,6 +44,7 @@ public class AccountServiceTest extends BaseTest {
         Account account = new Account();
         account.setSheyuanId("test2");
         account.setNickName("testName");
+        account.setVersion(0);
         List<Content> contents = new ArrayList<>();
         Content content = null;
         for (int i = 0; i < 5; i++) {

@@ -22,7 +22,7 @@ public class FilterProducer {
         producer.setNamesrvAddr(Constants.NAME_SERVER);//指定 namesrv 地址，多个使用 ; 分隔
         producer.start();
         Message message = new Message("filterTopicTest", // 发送到指定 topic 的 TagA
-                "TagA",
+                "TagC",
                 "",
                 "filter Message ".getBytes());
         producer.send(message);

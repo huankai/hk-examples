@@ -17,10 +17,10 @@ public class DelayProducer {
 
     public static void main(String[] args) throws MQClientException, RemotingException,
             InterruptedException, MQBrokerException {
-        DefaultMQProducer producer = new DefaultMQProducer("dlay-producer");
+        DefaultMQProducer producer = new DefaultMQProducer("delay-producer");
         producer.setNamesrvAddr(Constants.NAME_SERVER);//指定 namesrv 地址，多个使用 ; 分隔
         producer.start();
-        Message msg = new Message("DelayTopicTest",
+        Message msg = new Message("delayTopicTest",
                 "TagA",
                 "",
                 "Delay Message".getBytes());

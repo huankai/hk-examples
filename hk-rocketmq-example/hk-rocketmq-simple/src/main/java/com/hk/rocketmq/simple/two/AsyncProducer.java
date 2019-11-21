@@ -15,7 +15,7 @@ public class AsyncProducer {
 
     public static void main(String[] args) throws Exception {
         //Instantiate with a producer group name.
-        DefaultMQProducer producer = new DefaultMQProducer("simple-producer");
+        DefaultMQProducer producer = new DefaultMQProducer("async-producer");
         // Specify name server addresses.
         producer.setNamesrvAddr(Constants.NAME_SERVER);//指定 namesrv 地址，多个使用 ; 分隔
         //Launch the instance.
@@ -31,13 +31,13 @@ public class AsyncProducer {
             producer.send(msg, new SendCallback() {
                 @Override
                 public void onSuccess(SendResult sendResult) {
-                    System.out.printf("%-10d OK %s %n", index,
+                    System.out.printf("onSuccess: %-10d OK %s %n", index,
                             sendResult.getMsgId());
                 }
 
                 @Override
                 public void onException(Throwable e) {
-                    System.out.printf("%-10d Exception %s %n", index, e);
+                    System.out.printf("onException: %-10d Exception %s %n", index, e);
                     e.printStackTrace();
                 }
             });
