@@ -42,7 +42,10 @@ public class TransactionProducer {
             }
 
             /**
-             * 消息事物回查方法
+             * 消息事物回查方法，此方法返回值如下:
+             *      LocalTransactionState.COMMIT_MESSAGE : 提交消息，消费者无可以消费
+             *      LocalTransactionState.ROLLBACK_MESSAGE : 回滚消息，消费者无法消费，该消息会丢弃
+             *      LocalTransactionState.UNKNOW : 回滚消息，消费者无法消费，该消息会丢弃
              * @param msg
              * @return
              */

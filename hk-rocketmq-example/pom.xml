@@ -13,7 +13,10 @@
     </parent>
     <modules>
         <module>hk-rocketmq-simple</module>
-        <module>hk-rocketmq-springboot</module>
+        <module>hk-rocketmq-springboot-producer</module>
+        <module>hk-rocketmq-springboot-consumer</module>
+        <module>hk-rocketmq-springcloud-stream-producer</module>
+        <module>hk-rocketmq-springcloud-stream-consumer</module>
     </modules>
 
     <properties>
@@ -28,6 +31,7 @@
                 <version>${rocketmq.version}</version>
             </dependency>
         </dependencies>
+
     </dependencyManagement>
 
 </project>

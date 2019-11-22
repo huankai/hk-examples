@@ -4,7 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hk-rocketmq-springboot</artifactId>
+    <artifactId>hk-rocketmq-springcloud-stream-producer</artifactId>
+
     <parent>
         <groupId>com.hk</groupId>
         <artifactId>hk-rocketmq-example</artifactId>
@@ -15,6 +16,10 @@
         <dependency>
             <groupId>com.hk</groupId>
             <artifactId>hk-core-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hk</groupId>
+            <artifactId>hk-core-stream-rocketmq</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -29,9 +34,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-spring-boot-starter</artifactId>
-        </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
