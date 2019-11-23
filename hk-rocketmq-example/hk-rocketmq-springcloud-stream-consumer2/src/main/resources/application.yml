@@ -1,12 +1,12 @@
 server:
-  port: 8081
+  port: 8082
   servlet:
     context-path: /
 spring:
   main:
     banner-mode: 'off'
   application:
-    name: rocketmq-sprongcloud-stream-consumer01
+    name: rocketmq-sprongcloud-stream-consumer02
   cloud:
     stream:
       rocketmq:
@@ -24,19 +24,10 @@ spring:
           tag-stream-input:
             consumer:
               #  消费指定 Tag的消息
-              tags: "TagA"
+              tags: "TagB"
       bindings:
-        test-stream-input:
-          destination: test-stream-topic
-          group: test-stream-consumer-group
-        transaction-stream-input:
-          destination: transaction-stream-topic
-          group: transaction-stream-consumer-group
         tag-stream-input:
           destination: tag-stream-topic
-          group: tag-stream-consumer-group
-        delay-stream-input:
-          destination: delay-stream-topic
-          group: delay-stream-consumer-group
+          group: tag-stream-consumer-group02
 
 

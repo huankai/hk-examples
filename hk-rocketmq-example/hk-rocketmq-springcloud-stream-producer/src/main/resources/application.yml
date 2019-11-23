@@ -5,3 +5,67 @@ server:
 spring:
   main:
     banner-mode: 'off'
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 119.23.31.32:9876
+          #          是否为 Producer 和 Consumer 开启消息轨迹功能，默认为 true
+          enable-msg-trace: true
+          #          消息轨迹开启后存储的 topic 名称
+          customized-trace-topic: RMQ_SYS_TRACE_TOPIC
+        #           阿里云 账号 accessKey
+        #          access-key:
+        #          阿里云账号 secretKey
+        #          secret-key:
+        bindings:
+          test-stream-output:
+            #      生产者配置
+            producer:
+              #    是否开启，默认为 true
+              enable: true
+              #     生产者组
+              group: test-stream-output-group
+              #     是否发送事物消息，默认为 false
+              transactional: false
+              #     是否使用同步方式发送消息，默认为 false
+              sync: false
+              #     是否在 Vip Channel 上发送消息，默认为 true
+              vip-channel-enabled: true
+              #     发送消息的超时时间(毫秒)。默认为 3000 毫秒
+              send-message-timeout: 3000
+              #     消息体压缩阀值(当消息体超过 4k 的时候会被压缩)。
+              compress-message-body-threshold: 4096
+              #     在同步发送消息的模式下，消息发送失败的重试次数。默认为 2
+              retry-times-when-send-failed: 2
+              #     在异步发送消息的模式下，消息发送失败的重试次数。默认为 2
+              retry-times-when-send-async-failed: 2
+              #     消息发送失败的情况下是否重试其它的 broker，默认为 false
+              retry-next-server: false
+          transaction-stream-output:
+            #      生产者配置
+            producer:
+              transactional: true
+              #     生产者组
+              group: transaction-stream-output-group
+          tag-stream-output:
+            #      生产者配置
+            producer:
+              #     生产者组
+              group: tag-stream-output-group
+          delay-stream-output:
+            #      生产者配置
+            producer:
+              #     生产者组
+              group: delay-stream-output-group
+      bindings:
+        test-stream-output:
+          destination: test-stream-topic
+        transaction-stream-output:
+          destination: transaction-stream-topic
+        tag-stream-output:
+          destination: tag-stream-topic
+        delay-stream-output:
+          destination: delay-stream-topic
+
+

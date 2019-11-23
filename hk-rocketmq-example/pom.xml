@@ -17,6 +17,7 @@
         <module>hk-rocketmq-springboot-consumer</module>
         <module>hk-rocketmq-springcloud-stream-producer</module>
         <module>hk-rocketmq-springcloud-stream-consumer</module>
+        <module>hk-rocketmq-springcloud-stream-consumer2</module>
     </modules>
 
     <properties>
