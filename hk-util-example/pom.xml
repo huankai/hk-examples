@@ -11,10 +11,6 @@
         <version>2.1.8.RELEASE</version>
     </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>ws.schild</groupId>
@@ -41,7 +37,6 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.39.Final</version>
         </dependency>
-
         <dependency>
             <groupId>com.hk</groupId>
             <artifactId>hk-core-httpclient</artifactId>
