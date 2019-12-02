@@ -7,6 +7,8 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.exception.RemotingException;
 
+import java.time.LocalDateTime;
+
 /**
  * 延迟消息生产者
  *
@@ -30,8 +32,9 @@ public class DelayProducer {
          只能设置等级 ，预设值的延迟时间间隔为：
             1s、 5s、 10s、 30s、 1m、 2m、 3m、 4m、 5m、 6m、 7m、 8m、 9m、 10m、 20m、 30m、 1h、 2h
          */
-        msg.setDelayTimeLevel(3);
+        msg.setDelayTimeLevel(4);// 延迟等级从 1 开始 ，第一次为 1s ，依次类推
         producer.send(msg);
+        System.out.println(LocalDateTime.now());
         producer.shutdown();
     }
 }

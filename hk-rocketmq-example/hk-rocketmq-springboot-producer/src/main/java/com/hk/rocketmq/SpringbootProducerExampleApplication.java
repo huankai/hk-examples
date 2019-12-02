@@ -1,5 +1,7 @@
 package com.hk.rocketmq;
 
+import com.hk.commons.util.date.DatePattern;
+import com.hk.commons.util.date.DateTimeUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -18,6 +20,7 @@ import org.springframework.messaging.support.MessageBuilder;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -89,7 +92,20 @@ public class SpringbootProducerExampleApplication implements CommandLineRunner {
         /*
          7、 发送事物消息
          */
-        testTransaction();
+//        testTransaction();
+
+        /*
+        8、发送延迟消息
+            参数一:　发送的目的地
+            参数二:　 发送的消息
+            参数三:　 发送超时时间，单位: 毫秒
+            参数四:　 延迟等级、小于等于 0 是不延迟 ，
+                    延迟等级为: 1s、 5s、 10s、 30s、 1m、 2m、 3m、 4m、 5m、 6m、 7m、 8m、 9m、 10m、 20m、 30m、 1h、 2h
+                    设置为 1，延迟1s ，依次类推
+         */
+        rocketMQTemplate.syncSend("delay-topic",
+                MessageBuilder.withPayload("sync delay Message" +
+                        DateTimeUtils.localDateTimeToString(LocalDateTime.now(), DatePattern.YYYY_MM_DD_HH_MM_SS)).build(), 3000, 4);
     }
 
 
@@ -100,11 +116,11 @@ public class SpringbootProducerExampleApplication implements CommandLineRunner {
         for (int i = 0; i < 10; i++) {
             try {
 
-                org.springframework.messaging.Message msg = MessageBuilder.withPayload("Hello RocketMQ " + i).
+                org.springframework.messaging.Message<String> msg = MessageBuilder.withPayload("Hello RocketMQ " + i).
                         setHeader(RocketMQHeaders.TRANSACTION_ID, "KEY_" + i).build();
                 SendResult sendResult = rocketMQTemplate.sendMessageInTransaction(TX_GROUP_NAME,
                         "transaction-topic:" + tags[i % tags.length], msg, null);
-                System.out.printf("------ send Transactional msg body = %s , sendResult=%s %n",
+                System.out.printf("------ send Transactional msg bod  y = %s , sendResult=%s %n",
                         msg.getPayload(), sendResult.getSendStatus());
 
                 Thread.sleep(10);

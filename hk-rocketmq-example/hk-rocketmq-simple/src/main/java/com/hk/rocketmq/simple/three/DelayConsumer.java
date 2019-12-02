@@ -8,6 +8,7 @@ import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageExt;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -31,8 +32,9 @@ public class DelayConsumer {
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
                 for (MessageExt msg : msgs) {
+                    System.out.println(LocalDateTime.now());
                     System.out.println(" Receive Message:" + new String(msg.getBody()) +
-                            ", 延迟时间:" + (System.currentTimeMillis() - msg.getStoreTimestamp()));
+                            ", " + (System.currentTimeMillis() - msg.getStoreTimestamp()) + "ms later");
                 }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }

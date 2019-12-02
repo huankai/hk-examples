@@ -60,7 +60,7 @@ public class RocketProducerApplication implements CommandLineRunner {
                 .withPayload(new MessageVo(IDGenerator.UUID_32.generate(), "delay message ..." + LocalDateTime.now()))
                 // 添加延迟队列头等级,只能设置等级 ，预设值的延迟时间间隔为：
 //                 1s、 5s、 10s、 30s、 1m、 2m、 3m、 4m、 5m、 6m、 7m、 8m、 9m、 10m、 20m、 30m、 1h、 2h
-                .setHeader(MessageConst.PROPERTY_DELAY_TIME_LEVEL, 2)// TODO 延迟队列好像没有生效
+                .setHeader(MessageConst.PROPERTY_DELAY_TIME_LEVEL, 1)
                 .build());
     }
 
