@@ -6,7 +6,7 @@ import com.hk.commons.util.JsonUtils;
 import com.hk.core.authentication.api.SecurityContext;
 import com.hk.core.authentication.api.UserPrincipal;
 import com.hk.springcloud.stream.kafka.transaction.domain.City;
-import com.hk.springcloud.stream.kafka.transaction.repository.jdbc.CityRepository;
+import com.hk.springcloud.stream.kafka.transaction.repository.jpa.CityRepository;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;

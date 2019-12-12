@@ -1,4 +1,4 @@
-package com.hk.mysql.examples.repository.jdbc.custom;
+package com.hk.mysql.examples.repository.jpa.custom;
 
 import com.hk.mysql.examples.domain.JdbcAccount;
 

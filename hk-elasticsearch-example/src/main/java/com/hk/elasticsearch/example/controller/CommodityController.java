@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 /**
  * @author huangkai
  * @date 2019-06-27 22:27
@@ -20,10 +18,10 @@ public class CommodityController {
     @Autowired
     private CommodityService commodityService;
 
-    @RequestMapping("suggest")
-    public JsonResult<List<String>> suggest(String keyword) {
-        return JsonResult.success(commodityService.suggest("suggest", keyword));
-    }
+//    @RequestMapping("suggest")
+//    public JsonResult<List<String>> suggest(String keyword) {
+//        return JsonResult.success(commodityService.suggest("suggest", keyword));
+//    }
 
     @RequestMapping
     public JsonResult<Commodity> get(String id) {

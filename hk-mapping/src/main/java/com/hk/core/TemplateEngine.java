@@ -1,6 +1,6 @@
 package com.hk.core;
 
-import com.hk.commons.util.Contants;
+import com.hk.commons.util.Constants;
 import com.hk.template.Template;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.VelocityContext;
@@ -46,7 +46,7 @@ public class TemplateEngine {
     public static String parseTemplate(Template template) {
         try (StringWriter writer = new StringWriter()) {
             VelocityEngine engine = getVelocityEngine();
-            engine.mergeTemplate(template.getTemplatePath(), Contants.UTF_8, buildContext(template), writer);
+            engine.mergeTemplate(template.getTemplatePath(), Constants.UTF_8, buildContext(template), writer);
             return writer.toString();
         } catch (Exception e) {
             throw new RuntimeException(e);

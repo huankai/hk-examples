@@ -1,11 +1,11 @@
 package com.hk.mysql.examples.domain;
 
-import com.hk.core.data.jdbc.domain.AbstractUUIDPersistable;
+import com.hk.core.data.jpa.domain.AbstractUUIDPersistable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,20 +16,20 @@ import java.util.List;
  * @date 2019-02-26 17:22
  */
 @Data
-@Table(value = "test")
+@Table(name = "test")
 @EqualsAndHashCode(callSuper = true)
 public class JdbcAccount extends AbstractUUIDPersistable {
 
-    @Column(value = "name_")
+    @Column(name = "name_")
     private String name;
 
-    @Column(value = "value_")
+    @Column(name = "value_")
     private String value;
 
-    @Column(value = "time_")
+    @Column(name = "time_")
     private LocalDateTime time;
 
-    @Column(value = "content")
+    @Column(name = "content")
     private List<Content> content;
 
     @Data

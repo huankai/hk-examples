@@ -1,11 +1,11 @@
 package com.hk.rabbit.cluster;
 
-import com.hk.commons.util.Contants;
 import com.hk.rabbit.util.ConnectionUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -21,8 +21,10 @@ public class Recver {
         Channel channel = connection.createChannel();
         channel.queueDeclare(Sender.QUEUE_NAME, false, false, false, null);
 
-        channel.basicConsume(Sender.QUEUE_NAME, true, (consumerTag, delivery) -> System.out.println("收到消息：" + new String(delivery.getBody(), Contants.UTF_8)), consumerTag -> {
-        });
+        channel.basicConsume(Sender.QUEUE_NAME, true, (consumerTag, delivery) ->
+                        System.out.println("收到消息：" + new String(delivery.getBody(), StandardCharsets.UTF_8)),
+                consumerTag -> {
+                });
 
 //        channel.basicConsume(Sender.QUEUE_NAME, true, new DefaultConsumer(channel) {
 //

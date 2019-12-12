@@ -1,12 +1,12 @@
 package com.hk.security.example.service.impl;
 
 
-import com.hk.core.data.jdbc.repository.JdbcRepository;
-import com.hk.core.service.jdbc.impl.JdbcServiceImpl;
+import com.hk.core.data.jpa.repository.BaseJpaRepository;
+import com.hk.core.service.jpa.impl.JpaServiceImpl;
 import com.hk.security.example.entity.User;
-import com.hk.security.example.repository.jdbc.UserRepository;
+import com.hk.security.example.repository.jpa.UserRepository;
 import com.hk.security.example.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
  * @date 2018-12-17 15:05
  */
 @Service
-public class UserServiceImpl extends JdbcServiceImpl<User, String> implements UserService {
+@RequiredArgsConstructor
+public class UserServiceImpl extends JpaServiceImpl<User, String> implements UserService {
 
-    @Autowired
     private UserRepository userRepository;
 
     @Override
-    protected JdbcRepository<User, String> getBaseRepository() {
+    protected final BaseJpaRepository<User, String> getBaseRepository() {
         return userRepository;
     }
 

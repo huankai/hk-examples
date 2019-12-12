@@ -1,12 +1,12 @@
 package com.hk.security.example.entity;
 
-import com.hk.core.data.jdbc.domain.AbstractAuditable;
+import com.hk.core.data.jpa.domain.AbstractAuditable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -17,65 +17,65 @@ import java.time.LocalDate;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Table(value = "sys_user")
+@Table(name = "sys_user")
 @SuppressWarnings("serial")
 public class User extends AbstractAuditable {
 
     @NotEmpty
-    @Column(value = "org_id")
+    @Column(name = "org_id")
     private String orgId;
 
     @NotEmpty
-    @Column(value = "dept_id")
+    @Column(name = "dept_id")
     private String deptId;
 
     @NotEmpty
     @Length(max = 20)
-    @Column(value = "account")
+    @Column(name = "account")
     private String account;
 
     @NotEmpty
     @Length(max = 11)
-    @Column(value = "phone")
+    @Column(name = "phone")
     private String phone;
 
-    @Column(value = "email")
+    @Column(name = "email")
     private String email;
 
     @NotEmpty
     @Length(max = 20)
-    @Column(value = "real_name")
+    @Column(name = "real_name")
     private String realName;
 
     @NotNull
-    @Column(value = "password")
+    @Column(name = "password")
     private String password;
 
     @NotEmpty
-    @Column(value = "user_type")
+    @Column(name = "user_type")
     private Byte userType;
 
     @NotNull
-    @Column(value = "is_protect")
+    @Column(name = "is_protect")
     private Boolean isProtect;
 
     @NotNull
-    @Column(value = "sex")
+    @Column(name = "sex")
     private Byte sex;
 
-    @Column(value = "icon_path")
+    @Column(name = "icon_path")
     private String iconPath;
 
-    @Column(value = "birth")
+    @Column(name = "birth")
     private LocalDate birth;
 
-    @Column(value = "province_id")
+    @Column(name = "province_id")
     private String provinceId;
 
-    @Column(value = "city_id")
+    @Column(name = "city_id")
     private String cityId;
 
-    @Column(value = "user_status")
+    @Column(name = "user_status")
     private Byte userStatus;
 
 }

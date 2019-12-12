@@ -2,7 +2,7 @@ package com.hk.mysql.example.test;
 
 import com.hk.commons.util.ByteConstants;
 import com.hk.commons.util.IDGenerator;
-import com.hk.core.data.jdbc.domain.AbstractAuditable;
+import com.hk.core.data.jpa.domain.AbstractAuditable;
 import com.hk.core.jdbc.JdbcSession;
 import com.hk.core.test.BaseTest;
 import com.hk.mysql.examples.MysqlExampleApplication;
@@ -11,9 +11,9 @@ import lombok.EqualsAndHashCode;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,24 +54,24 @@ public class SysUserThirdTest extends BaseTest {
 
 
     @Data
-    @Table(value = "sys_user_third")
+    @Table(name = "sys_user_third")
     @EqualsAndHashCode(callSuper = true)
     @SuppressWarnings("serial")
     static class SysUserThird extends AbstractAuditable {
 
-        @Column(value = "user_id")
+        @Column(name = "user_id")
         private String userId;
 
-        @Column(value = "user_third_name")
+        @Column(name = "user_third_name")
         private String userThirdName;
 
-        @Column(value = "open_id")
+        @Column(name = "open_id")
         private String openId;
 
-        @Column(value = "icon_url")
+        @Column(name = "icon_url")
         private String iconUrl;
 
-        @Column(value = "account_type")
+        @Column(name = "account_type")
         private Byte accountType;
     }
 }

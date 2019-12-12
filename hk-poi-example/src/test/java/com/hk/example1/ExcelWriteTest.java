@@ -5,7 +5,6 @@ import com.hk.commons.poi.excel.model.WriteParam;
 import com.hk.commons.poi.excel.write.HSSFWriteableExcel;
 import com.hk.commons.poi.excel.write.SXSSFWriteableExcel;
 import com.hk.commons.poi.excel.write.WriteableExcel;
-import com.hk.commons.poi.excel.write.XSSFWriteableExcel;
 import com.hk.commons.poi.excel.write.handler.SimpleWriteableHandler;
 import com.hk.commons.util.StringUtils;
 import org.junit.Test;
@@ -22,7 +21,7 @@ public class ExcelWriteTest {
     @Test
     public void writeTo2003() throws FileNotFoundException {
         List<ExcelVo> data = Lists.newArrayList();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5555; i++) {
             data.add(new ExcelVo("name" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()));
         }
         WriteParam<ExcelVo> writeParam = WriteParam.<ExcelVo>builder()
@@ -39,28 +38,28 @@ public class ExcelWriteTest {
                 return super.getCommentText(obj, propertyName, propertyType);
             }
         });
-        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/Administration/Desktop/excel_test.xls")));
+        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/kevin/Desktop/excel_test.xls")));
     }
 
     @Test
     public void writeTo2007ByXSSF() throws FileNotFoundException {
         List<ExcelVo> data = Lists.newArrayList();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10000; i++) {
             data.add(new ExcelVo("name" + i, 2 + i, LocalDate.now(), i % 2 == 0, LocalDateTime.now()));
         }
         WriteParam<ExcelVo> writeParam = WriteParam.<ExcelVo>builder().beanClazz(ExcelVo.class).data(data).build();
 
-        WriteableExcel<ExcelVo> writeableExcel = new XSSFWriteableExcel<>(new SimpleWriteableHandler<ExcelVo>() {
+        WriteableExcel<ExcelVo> writeableExcel = new SXSSFWriteableExcel<>(new SimpleWriteableHandler<ExcelVo>() {
 
             @Override
             protected String getCommentText(ExcelVo obj, String propertyName, Class<?> propertyType) {
-                if (StringUtils.equals("age", propertyName)) {
-                    return "年龄...";
-                }
+//                if (StringUtils.equals("age", propertyName)) {
+//                    return "年龄...";
+//                }
                 return super.getCommentText(obj, propertyName, propertyType);
             }
         });
-        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/Administration/Desktop/excel.xlsx")));
+        writeableExcel.write(writeParam, new FileOutputStream(new File("C:/Users/kevin/Desktop/excel.xlsx")));
     }
 
     @Test
