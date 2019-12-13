@@ -8,7 +8,7 @@ import com.hk.mysql.examples.domain.Content;
 import com.hk.mysql.examples.domain.JdbcAccount;
 import com.hk.mysql.examples.domain.MyBatisAccount;
 import com.hk.mysql.examples.mappers.MyBatisAccountMapper;
-import com.hk.mysql.examples.repository.jdbc.JdbcAccountRepository;
+import com.hk.mysql.examples.repository.jpa.JdbcAccountRepository;
 import com.hk.mysql.examples.service.AccountService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
