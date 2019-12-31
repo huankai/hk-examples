@@ -10,6 +10,7 @@ import java.security.SecureRandom;
 public class NioTest01 {
 
     public static void main(String[] args) {
+        // 创建一个 buffer ,大小为 10 ,可存放 10 个 int
         IntBuffer buffer = IntBuffer.allocate(10);
         for (int i = 0; i < buffer.capacity(); i++) {
             int anInt = new SecureRandom().nextInt(20);
