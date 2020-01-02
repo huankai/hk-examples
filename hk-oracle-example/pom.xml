@@ -14,7 +14,6 @@
     </parent>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <oracle.jdbc.version>11.2.0.3</oracle.jdbc.version>
     </properties>
 
@@ -36,11 +35,11 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc6</artifactId>
             <version>${oracle.jdbc.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
