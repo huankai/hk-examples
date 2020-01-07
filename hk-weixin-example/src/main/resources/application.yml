@@ -3,38 +3,39 @@ server:
   servlet:
     context-path: /wx
 spring:
+  main:
+    allow-bean-definition-overriding: true
   #国际化配置
   #encoding:文件编码
   #basename: 注意:这里不需要写 classpath: 前缀，也不需要写 .properties后缀，多个文件使用英文逗号(,)分隔
   #       自定义的需要写在spring定义的前面，否则有相同的key可能会覆盖
-  messages: 
+  messages:
     encoding: UTF-8
-    basename: org/springframework/security/messages_zh_CN  
+    basename: org/springframework/security/messages_zh_CN
 
-
-#  thymeleaf:
-#    cache: false
-#    enabled: true
-#    encoding: UTF-8
-#    prefix: classpath:/templates/
-#    suffix: .html
-#    mode: HTML5
-#    content-type: text/html; charset=utf-8
-  jpa: 
+  #  thymeleaf:
+  #    cache: false
+  #    enabled: true
+  #    encoding: UTF-8
+  #    prefix: classpath:/templates/
+  #    suffix: .html
+  #    mode: HTML5
+  #    content-type: text/html; charset=utf-8
+  jpa:
     show-sql: true
     generate-ddl: false
     properties:
-      hibernate: 
-         dialect: org.hibernate.dialect.MySQL8Dialect
-################################################################### datasource
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  ################################################################### datasource
   datasource:
     name: hikari
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://182.61.40.18:3705/hk_pms?useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: pms
-    password: pmsadmin
-######################################################### hikari datasource 配置
+    url: jdbc:mysql://localhost/database?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456#1211
+    ######################################################### hikari datasource 配置
     hikari:
       maximum-pool-size: 50
       max-lifetime: 600000
@@ -43,7 +44,7 @@ spring:
       read-only: false
       connection-test-query: SELECT 1 FROM DUAL
 
-################################################################### redis
+  ################################################################### redis
   application:
     name: hk-weixin-example
   freemarker:
@@ -53,27 +54,24 @@ spring:
     content-type: text/html
     expose-request-attributes: false
     expose-session-attributes: false
-#    prefix: classpath:/templates/
+    #    prefix: classpath:/templates/
     suffix: .html
     template-loader-path: classpath:/templates/
 logging:
   config: classpath:log4j2.xml
 
-wechat: 
-  mp: 
-    appId: wxa49e73a00e958d9d
-    secret: a55a6019ba1d6a4ad93e8fc64df13596
-    token: hk9060
-
-
 # 微信二维码参数配置    
-wx: 
+wx:
+  mp:
+    enabled: true
+    app-id: appid
+    secret: secret
   qrcode:
     call-host: http://ce4msk.natappfree.cc
     callback-url: /wechat/callback
     state: 3d6be0a4685d839573b04816624a415e
-  
-    
-    
-    
-    
+
+
+
+
+
