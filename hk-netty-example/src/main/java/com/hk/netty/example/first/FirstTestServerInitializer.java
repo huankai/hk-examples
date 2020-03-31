@@ -15,10 +15,9 @@ public class FirstTestServerInitializer extends ChannelInitializer<SocketChannel
      * channel 被注册时调用
      *
      * @param ch
-     * @throws Exception
      */
     @Override
-    protected void initChannel(SocketChannel ch) throws Exception {
+    protected void initChannel(SocketChannel ch) {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast("httpServerCodec", new HttpServerCodec());
         pipeline.addLast("firstHttpServerHandler", new FirstHttpServerHandler());

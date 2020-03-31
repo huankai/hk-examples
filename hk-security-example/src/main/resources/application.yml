@@ -36,7 +36,6 @@ spring:
       connection-timeout: 30000
       read-only: false
       connection-test-query: SELECT 1 FROM DUAL
-
 ######################################################### security 配置
 hk:
   authentication:

@@ -2,6 +2,7 @@ package com.hk.netty.example.first;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -24,12 +25,15 @@ public class FirstTestServer {
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup)
+                    .option(ChannelOption.SO_BACKLOG, 128) // 设置线程队列连接个数
+                    .childOption(ChannelOption.SO_KEEPALIVE, true) // 设置保持活动连接状态
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new FirstTestServerInitializer());
 
-            // 绑定端口
+            // 绑定端口，并且同步处理
             ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();
 
+//            对关闭通道进行监听，当有关闭通过的时候才会被处理
             channelFuture.channel().closeFuture().sync();
 
         } finally {
