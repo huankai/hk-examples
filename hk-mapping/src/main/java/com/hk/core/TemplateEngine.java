@@ -1,6 +1,5 @@
 package com.hk.core;
 
-import com.hk.commons.util.Constants;
 import com.hk.template.Template;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.VelocityContext;
@@ -13,6 +12,7 @@ import org.springframework.beans.PropertyAccessorFactory;
 
 import java.beans.PropertyDescriptor;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 /**
@@ -46,7 +46,7 @@ public class TemplateEngine {
     public static String parseTemplate(Template template) {
         try (StringWriter writer = new StringWriter()) {
             VelocityEngine engine = getVelocityEngine();
-            engine.mergeTemplate(template.getTemplatePath(), Constants.UTF_8, buildContext(template), writer);
+            engine.mergeTemplate(template.getTemplatePath(), StandardCharsets.UTF_8.name(), buildContext(template), writer);
             return writer.toString();
         } catch (Exception e) {
             throw new RuntimeException(e);
